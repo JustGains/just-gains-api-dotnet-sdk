@@ -9,13 +9,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>JustgainsApiSDK</AssemblyName>
-    <Version>1.0.1.0</Version>
+    <Version>0.0.1.0</Version>
     <Authors>Just Super Human Foundation</Authors>
     <Owners>James Greene</Owners>
     <Product>JustGainsAPI.Standard</Product>
     <Copyright>Copyright ©  2019</Copyright>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
     <Description>SDK to connect to the JustGains API</Description>
     <LangVersion>7.3</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

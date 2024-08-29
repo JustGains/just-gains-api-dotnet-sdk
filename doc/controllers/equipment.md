@@ -286,8 +286,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentTranslations400ErrorException`](../../doc/models/equipment-translations-400-error-exception.md) |
-| 404 | Equipment not found | [`EquipmentTranslations404ErrorException`](../../doc/models/equipment-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Equipment not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Equipment Translations

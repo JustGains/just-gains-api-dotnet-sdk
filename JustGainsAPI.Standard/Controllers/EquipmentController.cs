@@ -207,8 +207,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("equipmentCode", equipmentCode))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new EquipmentTranslations400ErrorException(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Equipment not found", (_reason, _context) => new EquipmentTranslations404ErrorException(_reason, _context))))
+                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
+                  .ErrorCase("404", CreateErrorCase("Equipment not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

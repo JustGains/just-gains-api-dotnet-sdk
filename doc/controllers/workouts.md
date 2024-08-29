@@ -39,7 +39,7 @@ GetAPaginatedListOfWorkoutsAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsResponse>`](../../doc/models/workouts-response.md)
+[`Task<Models.WorkoutTableListResponse>`](../../doc/models/workout-table-list-response.md)
 
 ## Example Usage
 
@@ -50,7 +50,7 @@ SortBy1Enum? sortBy = SortBy1Enum.CreatedAt;
 SortOrderEnum? sortOrder = SortOrderEnum.Desc;
 try
 {
-    WorkoutsResponse result = await workoutsController.GetAPaginatedListOfWorkoutsAsync(
+    WorkoutTableListResponse result = await workoutsController.GetAPaginatedListOfWorkoutsAsync(
         page,
         pageSize,
         sortBy,
@@ -68,7 +68,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid pagination parameters | [`Workouts400ErrorException`](../../doc/models/workouts-400-error-exception.md) |
+| 400 | Invalid pagination parameters | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create a New Workout
@@ -86,7 +86,7 @@ CreateANewWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsResponse1>`](../../doc/models/workouts-response-1.md)
+[`Task<Models.WorkoutResponse>`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -107,7 +107,7 @@ Workout body = new Workout
 
 try
 {
-    WorkoutsResponse1 result = await workoutsController.CreateANewWorkoutAsync(body);
+    WorkoutResponse result = await workoutsController.CreateANewWorkoutAsync(body);
 }
 catch (ApiException e)
 {
@@ -120,7 +120,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid workout data | [`Workouts400ErrorException`](../../doc/models/workouts-400-error-exception.md) |
+| 400 | Invalid workout data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get a Workout by ID
@@ -138,7 +138,7 @@ GetAWorkoutByIDAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsResponse1>`](../../doc/models/workouts-response-1.md)
+[`Task<Models.WorkoutResponse>`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -146,7 +146,7 @@ GetAWorkoutByIDAsync(
 int workoutId = 250;
 try
 {
-    WorkoutsResponse1 result = await workoutsController.GetAWorkoutByIDAsync(workoutId);
+    WorkoutResponse result = await workoutsController.GetAWorkoutByIDAsync(workoutId);
 }
 catch (ApiException e)
 {
@@ -159,7 +159,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout not found | [`Workouts404ErrorException`](../../doc/models/workouts-404-error-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Duplicate a Workout
@@ -181,7 +181,7 @@ DuplicateAWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDuplicateResponse>`](../../doc/models/workouts-duplicate-response.md)
+[`Task<Models.WorkoutResponse>`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -194,7 +194,7 @@ WorkoutsDuplicateRequest body = new WorkoutsDuplicateRequest
 
 try
 {
-    WorkoutsDuplicateResponse result = await workoutsController.DuplicateAWorkoutAsync(
+    WorkoutResponse result = await workoutsController.DuplicateAWorkoutAsync(
         workoutId,
         body
     );
@@ -210,7 +210,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request data | [`WorkoutsDuplicate400ErrorException`](../../doc/models/workouts-duplicate-400-error-exception.md) |
-| 403 | Permission denied | [`WorkoutsDuplicate403ErrorException`](../../doc/models/workouts-duplicate-403-error-exception.md) |
-| 404 | Workout not found | [`WorkoutsDuplicate404ErrorException`](../../doc/models/workouts-duplicate-404-error-exception.md) |
+| 400 | Invalid request data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 403 | Permission denied | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

@@ -22,7 +22,7 @@ Documentation for accessing and setting credentials for bearerAuth.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```csharp
-WorkoutCreatorAPI.Standard.WorkoutCreatorAPIClient client = new WorkoutCreatorAPI.Standard.WorkoutCreatorAPIClient.Builder()
+JustGainsAPI.Standard.JustGainsAPIClient client = new JustGainsAPI.Standard.JustGainsAPIClient.Builder()
     .BearerAuthCredentials(
         new BearerAuthModel.Builder(
             "AccessToken"

@@ -10,12 +10,12 @@
 | Name |
 |  --- |
 | `MainGroup` |
-| `SubGroup` |
+| `Subgroup` |
 | `ExerciseGroup` |
 
 ## Example
 
 ```
-sub_group
+main_group
 ```
 

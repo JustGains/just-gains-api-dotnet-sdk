@@ -52,7 +52,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsWeeks404ErrorException`](../../doc/models/programs-weeks-404-error-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Add Week to Program
@@ -72,7 +72,7 @@ AddWeekToProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsWeeksResponse1>`](../../doc/models/programs-weeks-response-1.md)
+[`Task<Models.WeekResponse>`](../../doc/models/week-response.md)
 
 ## Example Usage
 
@@ -98,7 +98,7 @@ Week body = new Week
 
 try
 {
-    ProgramsWeeksResponse1 result = await programsProgramWeeksController.AddWeekToProgramAsync(
+    WeekResponse result = await programsProgramWeeksController.AddWeekToProgramAsync(
         programId,
         body
     );
@@ -114,6 +114,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsWeeks400ErrorException`](../../doc/models/programs-weeks-400-error-exception.md) |
-| 404 | Program not found | [`ProgramsWeeks404ErrorException`](../../doc/models/programs-weeks-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

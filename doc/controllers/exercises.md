@@ -55,7 +55,7 @@ GetExercisesAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesResponse>`](../../doc/models/exercises-response.md)
+[`Task<Models.ExerciseListResponse>`](../../doc/models/exercise-list-response.md)
 
 ## Example Usage
 
@@ -65,7 +65,7 @@ int? pageIndex = 1;
 int? pageSize = 100;
 try
 {
-    ExercisesResponse result = await exercisesController.GetExercisesAsync(
+    ExerciseListResponse result = await exercisesController.GetExercisesAsync(
         null,
         null,
         null,
@@ -88,7 +88,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400ErrorException`](../../doc/models/exercises-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create a New Exercise
@@ -108,7 +108,7 @@ CreateANewExerciseAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesResponse1>`](../../doc/models/exercises-response-1.md)
+[`Task<Models.ExerciseResponse>`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -140,7 +140,7 @@ Exercise body = new Exercise
 string localeCode = "en-US";
 try
 {
-    ExercisesResponse1 result = await exercisesController.CreateANewExerciseAsync(
+    ExerciseResponse result = await exercisesController.CreateANewExerciseAsync(
         body,
         localeCode
     );
@@ -156,7 +156,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`Exercises400ErrorException`](../../doc/models/exercises-400-error-exception.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise
@@ -178,7 +178,7 @@ GetExerciseAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesResponse2>`](../../doc/models/exercises-response-2.md)
+[`Task<Models.ExerciseResponse>`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -187,7 +187,7 @@ string exerciseCode = "exerciseCode8";
 string localeCode = "en-US";
 try
 {
-    ExercisesResponse2 result = await exercisesController.GetExerciseAsync(
+    ExerciseResponse result = await exercisesController.GetExerciseAsync(
         exerciseCode,
         localeCode
     );
@@ -203,8 +203,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400ErrorException`](../../doc/models/exercises-400-error-exception.md) |
-| 404 | Exercise not found | [`Exercises404ErrorException`](../../doc/models/exercises-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update an Exercise
@@ -224,7 +224,7 @@ UpdateAnExerciseAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesResponse2>`](../../doc/models/exercises-response-2.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -256,7 +256,7 @@ Exercise body = new Exercise
 
 try
 {
-    ExercisesResponse2 result = await exercisesController.UpdateAnExerciseAsync(
+    JustGainsBasicResponse result = await exercisesController.UpdateAnExerciseAsync(
         exerciseCode,
         body
     );
@@ -272,8 +272,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`Exercises400ErrorException`](../../doc/models/exercises-400-error-exception.md) |
-| 500 | Internal server error | [`Exercises500ErrorException`](../../doc/models/exercises-500-error-exception.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete an Exercise
@@ -291,7 +290,7 @@ DeleteAnExerciseAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesResponse4>`](../../doc/models/exercises-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -299,7 +298,7 @@ DeleteAnExerciseAsync(
 string exerciseCode = "exerciseCode8";
 try
 {
-    ExercisesResponse4 result = await exercisesController.DeleteAnExerciseAsync(exerciseCode);
+    JustGainsBasicResponse result = await exercisesController.DeleteAnExerciseAsync(exerciseCode);
 }
 catch (ApiException e)
 {
@@ -312,10 +311,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400ErrorException`](../../doc/models/exercises-400-error-exception.md) |
-| 401 | Unauthorized | [`Exercises401ErrorException`](../../doc/models/exercises-401-error-exception.md) |
-| 404 | Exercise not found | [`Exercises404ErrorException`](../../doc/models/exercises-404-error-exception.md) |
-| 500 | Internal server error | [`Exercises500ErrorException`](../../doc/models/exercises-500-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise Translations
@@ -335,7 +333,7 @@ GetExerciseTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesTranslationsResponse>`](../../doc/models/exercises-translations-response.md)
+[`Task<Models.ExerciseTranslationListResponse>`](../../doc/models/exercise-translation-list-response.md)
 
 ## Example Usage
 
@@ -343,7 +341,7 @@ GetExerciseTranslationsAsync(
 string exerciseCode = "exerciseCode8";
 try
 {
-    ExercisesTranslationsResponse result = await exercisesController.GetExerciseTranslationsAsync(exerciseCode);
+    ExerciseTranslationListResponse result = await exercisesController.GetExerciseTranslationsAsync(exerciseCode);
 }
 catch (ApiException e)
 {
@@ -356,8 +354,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesTranslations400ErrorException`](../../doc/models/exercises-translations-400-error-exception.md) |
-| 404 | Exercise translations not found | [`ExercisesTranslations404ErrorException`](../../doc/models/exercises-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise translations not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Exercise Translations
@@ -379,7 +377,7 @@ UpdateExerciseTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesTranslationsResponse1>`](../../doc/models/exercises-translations-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -395,7 +393,7 @@ List<Models.ExerciseTranslation> body = new List<Models.ExerciseTranslation>
 
 try
 {
-    ExercisesTranslationsResponse1 result = await exercisesController.UpdateExerciseTranslationsAsync(
+    JustGainsBasicResponse result = await exercisesController.UpdateExerciseTranslationsAsync(
         exerciseCode,
         body
     );
@@ -411,9 +409,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesTranslations400ErrorException`](../../doc/models/exercises-translations-400-error-exception.md) |
-| 404 | Exercise not found | [`ExercisesTranslations404ErrorException`](../../doc/models/exercises-translations-404-error-exception.md) |
-| 422 | Validation error | [`ExercisesTranslations422ErrorException`](../../doc/models/exercises-translations-422-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 422 | Validation error | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise Muscle Group
@@ -435,7 +433,7 @@ GetExerciseMuscleGroupAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesMuscleGroupsResponse>`](../../doc/models/exercises-muscle-groups-response.md)
+[`Task<Models.MuscleGroupDtoResponse>`](../../doc/models/muscle-group-dto-response.md)
 
 ## Example Usage
 
@@ -444,7 +442,7 @@ string exerciseCode = "exerciseCode8";
 string localeCode = "en-US";
 try
 {
-    ExercisesMuscleGroupsResponse result = await exercisesController.GetExerciseMuscleGroupAsync(
+    MuscleGroupDtoResponse result = await exercisesController.GetExerciseMuscleGroupAsync(
         exerciseCode,
         localeCode
     );
@@ -460,6 +458,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesMuscleGroups400ErrorException`](../../doc/models/exercises-muscle-groups-400-error-exception.md) |
-| 404 | Exercise not found | [`ExercisesMuscleGroups404ErrorException`](../../doc/models/exercises-muscle-groups-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

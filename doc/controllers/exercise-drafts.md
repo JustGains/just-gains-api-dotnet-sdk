@@ -9,12 +9,10 @@ ExerciseDraftsController exerciseDraftsController = client.ExerciseDraftsControl
 `ExerciseDraftsController`
 
 
-# Exercise Draft Format
-
-Create or Update an existing exercise with the Exercise Draft format
+# Create Update an Existing Exercise With the Exercise Draft Format
 
 ```csharp
-ExerciseDraftFormatAsync(
+CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(
     Models.ExerciseDraftDTO body)
 ```
 
@@ -26,7 +24,7 @@ ExerciseDraftFormatAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseDraftResponse>`](../../doc/models/exercise-draft-response.md)
+[`Task<Models.ExerciseResponse>`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -37,7 +35,7 @@ ExerciseDraftDTO body = new ExerciseDraftDTO
 
 try
 {
-    ExerciseDraftResponse result = await exerciseDraftsController.ExerciseDraftFormatAsync(body);
+    ExerciseResponse result = await exerciseDraftsController.CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(body);
 }
 catch (ApiException e)
 {
@@ -50,6 +48,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseDraft400ErrorException`](../../doc/models/exercise-draft-400-error-exception.md) |
-| 404 | Exercise not found | [`ExerciseDraft404ErrorException`](../../doc/models/exercise-draft-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

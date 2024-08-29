@@ -11,7 +11,7 @@ Request object for updating user information
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `User` | [`User1`](../../doc/models/user-1.md) | Required | Updated user information |
+| `User` | [`User`](../../doc/models/user.md) | Required | Represents a user in the system. |
 
 ## Example (as JSON)
 

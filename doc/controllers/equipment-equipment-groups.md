@@ -12,7 +12,6 @@ EquipmentEquipmentGroupsController equipmentEquipmentGroupsController = client.E
 
 * [Get Equipment Groups](../../doc/controllers/equipment-equipment-groups.md#get-equipment-groups)
 * [Add Equipment Group](../../doc/controllers/equipment-equipment-groups.md#add-equipment-group)
-* [Get Equipment Group](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group)
 * [Update an Existing Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-an-existing-equipment-group)
 * [Delete an Equipment Group](../../doc/controllers/equipment-equipment-groups.md#delete-an-equipment-group)
 * [Get Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group-translations)
@@ -36,7 +35,7 @@ GetEquipmentGroupsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsResponse>`](../../doc/models/equipment-groups-response.md)
+[`Task<Models.EquipmentGroupListResponse>`](../../doc/models/equipment-group-list-response.md)
 
 ## Example Usage
 
@@ -44,7 +43,7 @@ GetEquipmentGroupsAsync(
 string localeCode = "en-US";
 try
 {
-    EquipmentGroupsResponse result = await equipmentEquipmentGroupsController.GetEquipmentGroupsAsync(localeCode);
+    EquipmentGroupListResponse result = await equipmentEquipmentGroupsController.GetEquipmentGroupsAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -57,7 +56,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400ErrorException`](../../doc/models/equipment-groups-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Add Equipment Group
@@ -75,7 +74,7 @@ AddEquipmentGroupAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsResponse1>`](../../doc/models/equipment-groups-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -90,7 +89,7 @@ EquipmentGroup body = new EquipmentGroup
 
 try
 {
-    EquipmentGroupsResponse1 result = await equipmentEquipmentGroupsController.AddEquipmentGroupAsync(body);
+    JustGainsBasicResponse result = await equipmentEquipmentGroupsController.AddEquipmentGroupAsync(body);
 }
 catch (ApiException e)
 {
@@ -103,54 +102,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400ErrorException`](../../doc/models/equipment-groups-400-error-exception.md) |
-
-
-# Get Equipment Group
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetEquipmentGroupAsync(
-    string equipmentGroupCode,
-    string localeCode = "en-US")
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `equipmentGroupCode` | `string` | Template, Required | The equipment group code to retrieve. |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment group names. |
-
-## Response Type
-
-[`Task<Models.EquipmentGroupsResponse1>`](../../doc/models/equipment-groups-response-1.md)
-
-## Example Usage
-
-```csharp
-string equipmentGroupCode = "equipmentGroupCode8";
-string localeCode = "en-US";
-try
-{
-    EquipmentGroupsResponse1 result = await equipmentEquipmentGroupsController.GetEquipmentGroupAsync(
-        equipmentGroupCode,
-        localeCode
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Equipment group not found | [`EquipmentGroups404ErrorException`](../../doc/models/equipment-groups-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update an Existing Equipment Group
@@ -170,7 +122,7 @@ UpdateAnExistingEquipmentGroupAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsResponse1>`](../../doc/models/equipment-groups-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -186,7 +138,7 @@ EquipmentGroup body = new EquipmentGroup
 
 try
 {
-    EquipmentGroupsResponse1 result = await equipmentEquipmentGroupsController.UpdateAnExistingEquipmentGroupAsync(
+    JustGainsBasicResponse result = await equipmentEquipmentGroupsController.UpdateAnExistingEquipmentGroupAsync(
         equipmentGroupCode,
         body
     );
@@ -202,7 +154,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400ErrorException`](../../doc/models/equipment-groups-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete an Equipment Group
@@ -220,7 +172,7 @@ DeleteAnEquipmentGroupAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsResponse4>`](../../doc/models/equipment-groups-response-4.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -228,7 +180,7 @@ DeleteAnEquipmentGroupAsync(
 string equipmentGroupCode = "equipmentGroupCode8";
 try
 {
-    EquipmentGroupsResponse4 result = await equipmentEquipmentGroupsController.DeleteAnEquipmentGroupAsync(equipmentGroupCode);
+    JustGainsResponse result = await equipmentEquipmentGroupsController.DeleteAnEquipmentGroupAsync(equipmentGroupCode);
 }
 catch (ApiException e)
 {
@@ -255,7 +207,7 @@ GetEquipmentGroupTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsTranslationsResponse>`](../../doc/models/equipment-groups-translations-response.md)
+[`Task<Models.EquipmentGroupTranslationListResponse>`](../../doc/models/equipment-group-translation-list-response.md)
 
 ## Example Usage
 
@@ -263,7 +215,7 @@ GetEquipmentGroupTranslationsAsync(
 string equipmentGroupCode = "equipmentGroupCode8";
 try
 {
-    EquipmentGroupsTranslationsResponse result = await equipmentEquipmentGroupsController.GetEquipmentGroupTranslationsAsync(equipmentGroupCode);
+    EquipmentGroupTranslationListResponse result = await equipmentEquipmentGroupsController.GetEquipmentGroupTranslationsAsync(equipmentGroupCode);
 }
 catch (ApiException e)
 {
@@ -276,8 +228,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroupsTranslations400ErrorException`](../../doc/models/equipment-groups-translations-400-error-exception.md) |
-| 404 | Equipment group not found | [`EquipmentGroupsTranslations404ErrorException`](../../doc/models/equipment-groups-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Equipment group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Equipment Group Translations
@@ -301,7 +253,7 @@ UpdateEquipmentGroupTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentGroupsTranslationsResponse1>`](../../doc/models/equipment-groups-translations-response-1.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -319,7 +271,7 @@ List<Models.EquipmentGroupTranslation> body = new List<Models.EquipmentGroupTran
 
 try
 {
-    EquipmentGroupsTranslationsResponse1 result = await equipmentEquipmentGroupsController.UpdateEquipmentGroupTranslationsAsync(
+    JustGainsResponse result = await equipmentEquipmentGroupsController.UpdateEquipmentGroupTranslationsAsync(
         equipmentGroupCode,
         body
     );
@@ -335,7 +287,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroupsTranslations400ErrorException`](../../doc/models/equipment-groups-translations-400-error-exception.md) |
-| 404 | Equipment group not found | [`EquipmentGroupsTranslations404ErrorException`](../../doc/models/equipment-groups-translations-404-error-exception.md) |
-| 422 | Validation error | [`EquipmentGroupsTranslations422ErrorException`](../../doc/models/equipment-groups-translations-422-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Equipment group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 422 | Validation error | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

@@ -1,7 +1,7 @@
 
 # User Without Creator Profile
 
-Represents a user in the system.
+Represents a user in the system without creator profile.
 
 ## Structure
 

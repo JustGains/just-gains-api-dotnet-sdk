@@ -21,7 +21,7 @@ Represents a user in the system.
 | `OAuthProvider` | `string` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
 | `Role` | `string` | Optional | The user's role in the system, determining their permissions. |
 | `RefreshToken` | `string` | Optional | refreshToken value to get next accesstoken |
-| `UserCreatorProfile` | [`UserCreatorProfile`](../../doc/models/user-creator-profile.md) | Optional | The user's creator profile |
+| `UserCreatorProfile` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
 
 ## Example (as JSON)
 

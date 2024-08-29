@@ -1,8 +1,6 @@
 
 # Auth Response
 
-Response object for authentication operations
-
 ## Structure
 
 `AuthResponse`
@@ -11,24 +9,31 @@ Response object for authentication operations
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccessToken` | `string` | Optional | JWT access token for authenticated requests |
-| `RefreshToken` | `string` | Optional | JWT refresh token for obtaining new access tokens |
-| `TokenExpiration` | `DateTime?` | Optional | Expiration time of the access token |
-| `UserInfo` | [`UserInfo1`](../../doc/models/user-info-1.md) | Optional | User information |
+| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
+| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
+| `Data` | [`Data2`](../../doc/models/data-2.md) | Required | The data returned by the operation. |
 
 ## Example (as JSON)
 
 ```json
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "tokenExpiration": "06/15/2023 14:30:00",
-  "userInfo": {
-    "id": "00000bce-0000-0000-0000-000000000000",
-    "email": "email4",
-    "userName": "userName4",
-    "firstName": "firstName2",
-    "lastName": "lastName6"
+  "status": "OK",
+  "message": "Operation completed successfully.",
+  "data": {
+    "status": "OK",
+    "message": "Operation completed successfully.",
+    "data": {
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "tokenExpiration": "06/15/2023 14:30:00",
+      "userInfo": {
+        "id": "00000bce-0000-0000-0000-000000000000",
+        "email": "email4",
+        "userName": "userName4",
+        "firstName": "firstName2",
+        "lastName": "lastName6"
+      }
+    }
   }
 }
 ```

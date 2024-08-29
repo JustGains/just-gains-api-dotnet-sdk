@@ -24,14 +24,14 @@ GetCurrentUserInformationAsync()
 
 ## Response Type
 
-[`Task<Models.AuthUserResponse>`](../../doc/models/auth-user-response.md)
+[`Task<Models.UserResponse>`](../../doc/models/user-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    AuthUserResponse result = await userManagementController.GetCurrentUserInformationAsync();
+    UserResponse result = await userManagementController.GetCurrentUserInformationAsync();
 }
 catch (ApiException e)
 {
@@ -44,7 +44,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to retrieve user information | [`AuthUser400ErrorException`](../../doc/models/auth-user-400-error-exception.md) |
+| 400 | Failed to retrieve user information | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update User Information
@@ -64,14 +64,14 @@ UpdateUserInformationAsync(
 
 ## Response Type
 
-[`Task<Models.AuthUserResponse1>`](../../doc/models/auth-user-response-1.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
 ```csharp
 UpdateUserRequest body = new UpdateUserRequest
 {
-    User = new User1
+    User = new User
     {
         UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
         UserName = "fitness_enthusiast_42",
@@ -87,7 +87,7 @@ UpdateUserRequest body = new UpdateUserRequest
 
 try
 {
-    AuthUserResponse1 result = await userManagementController.UpdateUserInformationAsync(body);
+    JustGainsResponse result = await userManagementController.UpdateUserInformationAsync(body);
 }
 catch (ApiException e)
 {
@@ -100,5 +100,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to update user information | [`AuthUser400ErrorException`](../../doc/models/auth-user-400-error-exception.md) |
+| 400 | Failed to update user information | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

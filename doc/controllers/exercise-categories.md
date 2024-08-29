@@ -12,7 +12,6 @@ ExerciseCategoriesController exerciseCategoriesController = client.ExerciseCateg
 
 * [Get Exercise Categories](../../doc/controllers/exercise-categories.md#get-exercise-categories)
 * [Create Exercise Category](../../doc/controllers/exercise-categories.md#create-exercise-category)
-* [Get Exercise Category](../../doc/controllers/exercise-categories.md#get-exercise-category)
 * [Update an Exercise Category](../../doc/controllers/exercise-categories.md#update-an-exercise-category)
 * [Delete an Exercise Category](../../doc/controllers/exercise-categories.md#delete-an-exercise-category)
 * [Get Exercise Category Translations](../../doc/controllers/exercise-categories.md#get-exercise-category-translations)
@@ -36,7 +35,7 @@ GetExerciseCategoriesAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesResponse>`](../../doc/models/exercise-categories-response.md)
+[`Task<Models.ExerciseCategoryListResponse>`](../../doc/models/exercise-category-list-response.md)
 
 ## Example Usage
 
@@ -44,7 +43,7 @@ GetExerciseCategoriesAsync(
 string localeCode = "en-US";
 try
 {
-    ExerciseCategoriesResponse result = await exerciseCategoriesController.GetExerciseCategoriesAsync(localeCode);
+    ExerciseCategoryListResponse result = await exerciseCategoriesController.GetExerciseCategoriesAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -69,7 +68,7 @@ CreateExerciseCategoryAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesResponse1>`](../../doc/models/exercise-categories-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -82,7 +81,7 @@ ExerciseCategory body = new ExerciseCategory
 
 try
 {
-    ExerciseCategoriesResponse1 result = await exerciseCategoriesController.CreateExerciseCategoryAsync(body);
+    JustGainsBasicResponse result = await exerciseCategoriesController.CreateExerciseCategoryAsync(body);
 }
 catch (ApiException e)
 {
@@ -95,54 +94,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad Request | [`ExerciseCategories400ErrorException`](../../doc/models/exercise-categories-400-error-exception.md) |
-
-
-# Get Exercise Category
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetExerciseCategoryAsync(
-    string exerciseCategoryCode,
-    string localeCode = "en-US")
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `exerciseCategoryCode` | `string` | Template, Required | - |
-| `localeCode` | `string` | Query, Optional | The locale for returned category name |
-
-## Response Type
-
-[`Task<Models.ExerciseCategoriesResponse1>`](../../doc/models/exercise-categories-response-1.md)
-
-## Example Usage
-
-```csharp
-string exerciseCategoryCode = "exerciseCategoryCode8";
-string localeCode = "en-US";
-try
-{
-    ExerciseCategoriesResponse1 result = await exerciseCategoriesController.GetExerciseCategoryAsync(
-        exerciseCategoryCode,
-        localeCode
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Exercise Category Not Found | [`ExerciseCategories404ErrorException`](../../doc/models/exercise-categories-404-error-exception.md) |
+| 400 | Bad Request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update an Exercise Category
@@ -162,7 +114,7 @@ UpdateAnExerciseCategoryAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesResponse1>`](../../doc/models/exercise-categories-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -176,7 +128,7 @@ ExerciseCategory body = new ExerciseCategory
 
 try
 {
-    ExerciseCategoriesResponse1 result = await exerciseCategoriesController.UpdateAnExerciseCategoryAsync(
+    JustGainsBasicResponse result = await exerciseCategoriesController.UpdateAnExerciseCategoryAsync(
         exerciseCategoryCode,
         body
     );
@@ -192,8 +144,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad Request | [`ExerciseCategories400ErrorException`](../../doc/models/exercise-categories-400-error-exception.md) |
-| 404 | Category not found | [`ExerciseCategories404ErrorException`](../../doc/models/exercise-categories-404-error-exception.md) |
+| 400 | Bad Request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Category not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete an Exercise Category
@@ -211,7 +163,7 @@ DeleteAnExerciseCategoryAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesResponse4>`](../../doc/models/exercise-categories-response-4.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -219,7 +171,7 @@ DeleteAnExerciseCategoryAsync(
 string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
-    ExerciseCategoriesResponse4 result = await exerciseCategoriesController.DeleteAnExerciseCategoryAsync(exerciseCategoryCode);
+    JustGainsResponse result = await exerciseCategoriesController.DeleteAnExerciseCategoryAsync(exerciseCategoryCode);
 }
 catch (ApiException e)
 {
@@ -232,7 +184,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Category not found | [`ExerciseCategories404ErrorException`](../../doc/models/exercise-categories-404-error-exception.md) |
+| 404 | Category not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise Category Translations
@@ -252,7 +204,7 @@ GetExerciseCategoryTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesTranslationsResponse>`](../../doc/models/exercise-categories-translations-response.md)
+[`Task<Models.ExerciseCategoryTranslationListResponse>`](../../doc/models/exercise-category-translation-list-response.md)
 
 ## Example Usage
 
@@ -260,7 +212,7 @@ GetExerciseCategoryTranslationsAsync(
 string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
-    ExerciseCategoriesTranslationsResponse result = await exerciseCategoriesController.GetExerciseCategoryTranslationsAsync(exerciseCategoryCode);
+    ExerciseCategoryTranslationListResponse result = await exerciseCategoriesController.GetExerciseCategoryTranslationsAsync(exerciseCategoryCode);
 }
 catch (ApiException e)
 {
@@ -273,8 +225,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseCategoriesTranslations400ErrorException`](../../doc/models/exercise-categories-translations-400-error-exception.md) |
-| 404 | Exercise category not found | [`ExerciseCategoriesTranslations404ErrorException`](../../doc/models/exercise-categories-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise category not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Exercise Category Translations
@@ -296,7 +248,7 @@ UpdateExerciseCategoryTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseCategoriesTranslationsResponse1>`](../../doc/models/exercise-categories-translations-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -313,7 +265,7 @@ List<Models.ExerciseCategoryTranslation> body = new List<Models.ExerciseCategory
 
 try
 {
-    ExerciseCategoriesTranslationsResponse1 result = await exerciseCategoriesController.UpdateExerciseCategoryTranslationsAsync(
+    JustGainsBasicResponse result = await exerciseCategoriesController.UpdateExerciseCategoryTranslationsAsync(
         exerciseCategoryCode,
         body
     );
@@ -329,7 +281,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseCategoriesTranslations400ErrorException`](../../doc/models/exercise-categories-translations-400-error-exception.md) |
-| 404 | Exercise category not found | [`ExerciseCategoriesTranslations404ErrorException`](../../doc/models/exercise-categories-translations-404-error-exception.md) |
-| 422 | Validation error | [`ExerciseCategoriesTranslations422ErrorException`](../../doc/models/exercise-categories-translations-422-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise category not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 422 | Validation error | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

@@ -26,7 +26,7 @@ AddViewProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsViewsResponse>`](../../doc/models/programs-views-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -49,7 +49,7 @@ ProgramView body = new ProgramView
 
 try
 {
-    ProgramsViewsResponse result = await programsProgramViewsController.AddViewProgramAsync(
+    JustGainsBasicResponse result = await programsProgramViewsController.AddViewProgramAsync(
         programId,
         body
     );
@@ -65,6 +65,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsViews400ErrorException`](../../doc/models/programs-views-400-error-exception.md) |
-| 404 | Program not found | [`ProgramsViews404ErrorException`](../../doc/models/programs-views-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

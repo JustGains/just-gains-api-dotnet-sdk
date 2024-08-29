@@ -36,7 +36,7 @@ RegisterANewUserAsync(
 
 ## Response Type
 
-[`Task<Models.AuthSignupResponse>`](../../doc/models/auth-signup-response.md)
+[`Task<Models.UserInfoResponse>`](../../doc/models/user-info-response.md)
 
 ## Example Usage
 
@@ -53,7 +53,7 @@ UserRegisterRequest body = new UserRegisterRequest
 
 try
 {
-    AuthSignupResponse result = await authenticationNewController.RegisterANewUserAsync(body);
+    UserInfoResponse result = await authenticationNewController.RegisterANewUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -66,7 +66,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid parameters | [`AuthSignup400ErrorException`](../../doc/models/auth-signup-400-error-exception.md) |
+| 400 | Invalid parameters | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Sign in a User
@@ -86,7 +86,7 @@ SignInAUserAsync(
 
 ## Response Type
 
-[`Task<Models.AuthSigninResponse>`](../../doc/models/auth-signin-response.md)
+[`Task<Models.AuthResponse>`](../../doc/models/auth-response.md)
 
 ## Example Usage
 
@@ -99,7 +99,7 @@ UserLoginRequest body = new UserLoginRequest
 
 try
 {
-    AuthSigninResponse result = await authenticationNewController.SignInAUserAsync(body);
+    AuthResponse result = await authenticationNewController.SignInAUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -112,7 +112,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid credentials | [`AuthSignin400ErrorException`](../../doc/models/auth-signin-400-error-exception.md) |
+| 400 | Invalid credentials | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Resend Confirmation Email
@@ -132,7 +132,7 @@ ResendConfirmationEmailAsync(
 
 ## Response Type
 
-[`Task<Models.AuthResendConfirmationEmailResponse>`](../../doc/models/auth-resend-confirmation-email-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -144,7 +144,7 @@ ConfirmEmailRequest body = new ConfirmEmailRequest
 
 try
 {
-    AuthResendConfirmationEmailResponse result = await authenticationNewController.ResendConfirmationEmailAsync(body);
+    JustGainsBasicResponse result = await authenticationNewController.ResendConfirmationEmailAsync(body);
 }
 catch (ApiException e)
 {
@@ -157,7 +157,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to send confirmation email | [`AuthResendConfirmationEmail400ErrorException`](../../doc/models/auth-resend-confirmation-email-400-error-exception.md) |
+| 400 | Failed to send confirmation email | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Initiate Forgot Password Process
@@ -177,7 +177,7 @@ InitiateForgotPasswordProcessAsync(
 
 ## Response Type
 
-[`Task<Models.AuthForgotPasswordResponse>`](../../doc/models/auth-forgot-password-response.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -189,7 +189,7 @@ ForgotPasswordRequest body = new ForgotPasswordRequest
 
 try
 {
-    AuthForgotPasswordResponse result = await authenticationNewController.InitiateForgotPasswordProcessAsync(body);
+    JustGainsResponse result = await authenticationNewController.InitiateForgotPasswordProcessAsync(body);
 }
 catch (ApiException e)
 {
@@ -197,6 +197,12 @@ catch (ApiException e)
     Console.WriteLine(e.Message);
 }
 ```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 404 | Failed to send password reset email | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Reset User Password
@@ -216,7 +222,7 @@ ResetUserPasswordAsync(
 
 ## Response Type
 
-[`Task<Models.AuthResetPasswordResponse>`](../../doc/models/auth-reset-password-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -228,7 +234,7 @@ ResetPasswordRequest body = new ResetPasswordRequest
 
 try
 {
-    AuthResetPasswordResponse result = await authenticationNewController.ResetUserPasswordAsync(body);
+    JustGainsBasicResponse result = await authenticationNewController.ResetUserPasswordAsync(body);
 }
 catch (ApiException e)
 {
@@ -241,7 +247,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to reset password | [`AuthResetPassword400ErrorException`](../../doc/models/auth-reset-password-400-error-exception.md) |
+| 400 | Failed to reset password | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Refresh Authentication Token
@@ -254,14 +260,14 @@ RefreshAuthenticationTokenAsync()
 
 ## Response Type
 
-[`Task<Models.AuthRefreshTokenResponse>`](../../doc/models/auth-refresh-token-response.md)
+[`Task<Models.AuthResponse>`](../../doc/models/auth-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    AuthRefreshTokenResponse result = await authenticationNewController.RefreshAuthenticationTokenAsync();
+    AuthResponse result = await authenticationNewController.RefreshAuthenticationTokenAsync();
 }
 catch (ApiException e)
 {
@@ -269,6 +275,12 @@ catch (ApiException e)
     Console.WriteLine(e.Message);
 }
 ```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to refresh token | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Sign Out the Current User
@@ -281,14 +293,14 @@ SignOutTheCurrentUserAsync()
 
 ## Response Type
 
-[`Task<Models.JustGainsDefaultResponse>`](../../doc/models/just-gains-default-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    JustGainsDefaultResponse result = await authenticationNewController.SignOutTheCurrentUserAsync();
+    JustGainsBasicResponse result = await authenticationNewController.SignOutTheCurrentUserAsync();
 }
 catch (ApiException e)
 {
@@ -297,12 +309,9 @@ catch (ApiException e)
 }
 ```
 
-## Example Response *(as JSON)*
+## Errors
 
-```json
-{
-  "status": "OK",
-  "message": "User was successfully signed out!"
-}
-```
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to sign out user | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

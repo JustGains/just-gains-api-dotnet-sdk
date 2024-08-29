@@ -26,14 +26,14 @@ GetAListOfAllUsersAsync()
 
 ## Response Type
 
-[`Task<List<Models.UsersResponse>>`](../../doc/models/users-response.md)
+[`Task<Models.UserInfoListResponse>`](../../doc/models/user-info-list-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    List<UsersResponse> result = await usersController.GetAListOfAllUsersAsync();
+    UserInfoListResponse result = await usersController.GetAListOfAllUsersAsync();
 }
 catch (ApiException e)
 {
@@ -46,8 +46,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`Users401ErrorException`](../../doc/models/users-401-error-exception.md) |
-| 403 | Access denied | [`Users403ErrorException`](../../doc/models/users-403-error-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 403 | Access denied | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get a User by ID
@@ -65,7 +65,7 @@ GetAUserByIDAsync(
 
 ## Response Type
 
-[`Task<Models.UsersResponse1>`](../../doc/models/users-response-1.md)
+[`Task<Models.UserResponse>`](../../doc/models/user-response.md)
 
 ## Example Usage
 
@@ -73,7 +73,7 @@ GetAUserByIDAsync(
 string userId = "123e4567-e89b-12d3-a456-426614174000";
 try
 {
-    UsersResponse1 result = await usersController.GetAUserByIDAsync(userId);
+    UserResponse result = await usersController.GetAUserByIDAsync(userId);
 }
 catch (ApiException e)
 {
@@ -86,10 +86,10 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid user ID format | [`Users400ErrorException`](../../doc/models/users-400-error-exception.md) |
-| 401 | Authentication required | [`Users401ErrorException`](../../doc/models/users-401-error-exception.md) |
-| 403 | Access denied | [`Users403ErrorException`](../../doc/models/users-403-error-exception.md) |
-| 404 | User not found | [`Users404ErrorException`](../../doc/models/users-404-error-exception.md) |
+| 400 | Invalid user ID format | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 403 | Access denied | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | User not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update a User
@@ -109,7 +109,7 @@ UpdateAUserAsync(
 
 ## Response Type
 
-[`Task<Models.UsersResponse2>`](../../doc/models/users-response-2.md)
+[`Task<Models.UserWithoutCreatorProfileResponse>`](../../doc/models/user-without-creator-profile-response.md)
 
 ## Example Usage
 
@@ -130,7 +130,7 @@ UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
 
 try
 {
-    UsersResponse2 result = await usersController.UpdateAUserAsync(
+    UserWithoutCreatorProfileResponse result = await usersController.UpdateAUserAsync(
         userId,
         body
     );
@@ -146,8 +146,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid user data | [`Users400ErrorException`](../../doc/models/users-400-error-exception.md) |
-| 404 | User not found | [`Users404ErrorException`](../../doc/models/users-404-error-exception.md) |
+| 400 | Invalid user data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | User not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete a User
@@ -165,7 +165,7 @@ DeleteAUserAsync(
 
 ## Response Type
 
-[`Task<Models.UsersResponse3>`](../../doc/models/users-response-3.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -173,7 +173,7 @@ DeleteAUserAsync(
 string userId = "userId0";
 try
 {
-    UsersResponse3 result = await usersController.DeleteAUserAsync(userId);
+    JustGainsBasicResponse result = await usersController.DeleteAUserAsync(userId);
 }
 catch (ApiException e)
 {
@@ -186,5 +186,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | User not found | [`Users404ErrorException`](../../doc/models/users-404-error-exception.md) |
+| 404 | User not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

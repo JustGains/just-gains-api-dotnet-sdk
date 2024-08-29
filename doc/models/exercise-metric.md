@@ -13,7 +13,6 @@ Represents a metric associated with an exercise, including how it should be disp
 |  --- | --- | --- | --- |
 | `ExerciseMetricCode` | `string` | Optional | A unique identifier for the exercise metric. |
 | `ExerciseMetricName` | `string` | Optional | Translated name of the metric (Realistically not used because the real data for this comes from measurementData) |
-| `ExerciseMetricTranslations` | [`List<ExerciseMetricTranslation>`](../../doc/models/exercise-metric-translation.md) | Optional | - |
 | `MeasurementData` | [`MeasurementData`](../../doc/models/measurement-data.md) | Optional | - |
 
 ## Example (as JSON)
@@ -22,24 +21,6 @@ Represents a metric associated with an exercise, including how it should be disp
 {
   "exerciseMetricCode": "WEIGHT",
   "exerciseMetricName": "exerciseMetricName6",
-  "exerciseMetricTranslations": [
-    {
-      "localeCode": "localeCode6",
-      "exerciseMetricName": "exerciseMetricName4",
-      "measurementData": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "localeCode": "localeCode6",
-      "exerciseMetricName": "exerciseMetricName4",
-      "measurementData": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
-  ],
   "measurementData": {
     "metricCode": "metricCode4",
     "displayName": "displayName2",

@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustGainsAPI.Standard", "JustGainsAPI.Standard/JustGainsAPI.Standard.csproj", "{a09ad962-4997-4abe-9d91-ffe7eb8db46f}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustGainsAPI.Tests", "JustGainsAPI.Tests/JustGainsAPI.Tests.csproj", "{233cc9e1-0b3d-4af9-8e09-198592054eae}"
+EndProject
+Global
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {a09ad962-4997-4abe-9d91-ffe7eb8db46f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {a09ad962-4997-4abe-9d91-ffe7eb8db46f}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {a09ad962-4997-4abe-9d91-ffe7eb8db46f}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {a09ad962-4997-4abe-9d91-ffe7eb8db46f}.Release|Any CPU.Build.0 = Release|Any CPU
+        {233cc9e1-0b3d-4af9-8e09-198592054eae}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {233cc9e1-0b3d-4af9-8e09-198592054eae}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {233cc9e1-0b3d-4af9-8e09-198592054eae}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {233cc9e1-0b3d-4af9-8e09-198592054eae}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(SolutionProperties) = preSolution
+        HideSolutionNode = FALSE
+    EndGlobalSection
+EndGlobal

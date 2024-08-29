@@ -12,7 +12,6 @@ MusclesMuscleGroupsController musclesMuscleGroupsController = client.MusclesMusc
 
 * [Get Muscle Groups](../../doc/controllers/muscles-muscle-groups.md#get-muscle-groups)
 * [Create a New Muscle Group](../../doc/controllers/muscles-muscle-groups.md#create-a-new-muscle-group)
-* [Get Muscle Group](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group)
 * [Update a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-a-muscle-group)
 * [Delete a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#delete-a-muscle-group)
 * [Get Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group-translations)
@@ -36,7 +35,7 @@ GetMuscleGroupsAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsResponse>`](../../doc/models/muscle-groups-response.md)
+[`Task<Models.MuscleGroupListResponse>`](../../doc/models/muscle-group-list-response.md)
 
 ## Example Usage
 
@@ -44,7 +43,7 @@ GetMuscleGroupsAsync(
 string localeCode = "en-US";
 try
 {
-    MuscleGroupsResponse result = await musclesMuscleGroupsController.GetMuscleGroupsAsync(localeCode);
+    MuscleGroupListResponse result = await musclesMuscleGroupsController.GetMuscleGroupsAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -69,7 +68,7 @@ CreateANewMuscleGroupAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsResponse1>`](../../doc/models/muscle-groups-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -91,12 +90,12 @@ MuscleGroup body = new MuscleGroup
         "HAMSTRINGS",
         "GASTROCNEMIUS",
     },
-    MuscleGroupType = MuscleGroupType5Enum.MainGroup,
+    MuscleGroupType = MuscleGroupTypeEnum.MainGroup,
 };
 
 try
 {
-    MuscleGroupsResponse1 result = await musclesMuscleGroupsController.CreateANewMuscleGroupAsync(body);
+    JustGainsBasicResponse result = await musclesMuscleGroupsController.CreateANewMuscleGroupAsync(body);
 }
 catch (ApiException e)
 {
@@ -109,49 +108,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid muscle group data | [`MuscleGroups400ErrorException`](../../doc/models/muscle-groups-400-error-exception.md) |
-| 401 | Authentication required | [`MuscleGroups401ErrorException`](../../doc/models/muscle-groups-401-error-exception.md) |
-
-
-# Get Muscle Group
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetMuscleGroupAsync(
-    string muscleGroupCode,
-    string localeCode = "en-US")
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to retrieve. |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized muscle group names. |
-
-## Response Type
-
-[`Task<Models.MuscleGroupsResponse1>`](../../doc/models/muscle-groups-response-1.md)
-
-## Example Usage
-
-```csharp
-string muscleGroupCode = "muscleGroupCode2";
-string localeCode = "en-US";
-try
-{
-    MuscleGroupsResponse1 result = await musclesMuscleGroupsController.GetMuscleGroupAsync(
-        muscleGroupCode,
-        localeCode
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
+| 400 | Invalid muscle group data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update a Muscle Group
@@ -171,7 +129,7 @@ UpdateAMuscleGroupAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsResponse1>`](../../doc/models/muscle-groups-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -194,12 +152,12 @@ MuscleGroup body = new MuscleGroup
         "HAMSTRINGS",
         "GASTROCNEMIUS",
     },
-    MuscleGroupType = MuscleGroupType5Enum.MainGroup,
+    MuscleGroupType = MuscleGroupTypeEnum.MainGroup,
 };
 
 try
 {
-    MuscleGroupsResponse1 result = await musclesMuscleGroupsController.UpdateAMuscleGroupAsync(
+    JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateAMuscleGroupAsync(
         muscleGroupCode,
         body
     );
@@ -215,9 +173,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid muscle group data | [`MuscleGroups400ErrorException`](../../doc/models/muscle-groups-400-error-exception.md) |
-| 401 | Authentication required | [`MuscleGroups401ErrorException`](../../doc/models/muscle-groups-401-error-exception.md) |
-| 404 | Muscle group not found | [`MuscleGroups404ErrorException`](../../doc/models/muscle-groups-404-error-exception.md) |
+| 400 | Invalid muscle group data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete a Muscle Group
@@ -235,7 +193,7 @@ DeleteAMuscleGroupAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsResponse4>`](../../doc/models/muscle-groups-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -243,7 +201,7 @@ DeleteAMuscleGroupAsync(
 string muscleGroupCode = "muscleGroupCode2";
 try
 {
-    MuscleGroupsResponse4 result = await musclesMuscleGroupsController.DeleteAMuscleGroupAsync(muscleGroupCode);
+    JustGainsBasicResponse result = await musclesMuscleGroupsController.DeleteAMuscleGroupAsync(muscleGroupCode);
 }
 catch (ApiException e)
 {
@@ -256,8 +214,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`MuscleGroups401ErrorException`](../../doc/models/muscle-groups-401-error-exception.md) |
-| 404 | Muscle group not found | [`MuscleGroups404ErrorException`](../../doc/models/muscle-groups-404-error-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Muscle Group Translations
@@ -277,7 +235,7 @@ GetMuscleGroupTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsTranslationsResponse>`](../../doc/models/muscle-groups-translations-response.md)
+[`Task<Models.MuscleGroupTranslationListResponse>`](../../doc/models/muscle-group-translation-list-response.md)
 
 ## Example Usage
 
@@ -285,7 +243,7 @@ GetMuscleGroupTranslationsAsync(
 string muscleGroupCode = "muscleGroupCode2";
 try
 {
-    MuscleGroupsTranslationsResponse result = await musclesMuscleGroupsController.GetMuscleGroupTranslationsAsync(muscleGroupCode);
+    MuscleGroupTranslationListResponse result = await musclesMuscleGroupsController.GetMuscleGroupTranslationsAsync(muscleGroupCode);
 }
 catch (ApiException e)
 {
@@ -298,8 +256,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to retrieve muscle group translations | [`MuscleGroupsTranslations400ErrorException`](../../doc/models/muscle-groups-translations-400-error-exception.md) |
-| 404 | Muscle group not found | [`MuscleGroupsTranslations404ErrorException`](../../doc/models/muscle-groups-translations-404-error-exception.md) |
+| 400 | Failed to retrieve muscle group translations | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Muscle Group Translations
@@ -321,7 +279,7 @@ UpdateMuscleGroupTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.MuscleGroupsTranslationsResponse1>`](../../doc/models/muscle-groups-translations-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -339,7 +297,7 @@ List<Models.MuscleGroupTranslation> body = new List<Models.MuscleGroupTranslatio
 
 try
 {
-    MuscleGroupsTranslationsResponse1 result = await musclesMuscleGroupsController.UpdateMuscleGroupTranslationsAsync(
+    JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateMuscleGroupTranslationsAsync(
         muscleGroupCode,
         body
     );
@@ -355,7 +313,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to update muscle group translations | [`MuscleGroupsTranslations400ErrorException`](../../doc/models/muscle-groups-translations-400-error-exception.md) |
-| 404 | Muscle group not found | [`MuscleGroupsTranslations404ErrorException`](../../doc/models/muscle-groups-translations-404-error-exception.md) |
-| 422 | Validation error | [`MuscleGroupsTranslations422ErrorException`](../../doc/models/muscle-groups-translations-422-error-exception.md) |
+| 400 | Failed to update muscle group translations | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 422 | Validation error | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

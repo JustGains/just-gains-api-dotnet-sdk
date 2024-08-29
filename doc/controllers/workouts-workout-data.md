@@ -34,7 +34,7 @@ GetWorkoutDataByIdAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDataResponse>`](../../doc/models/workouts-data-response.md)
+[`Task<Models.WorkoutDataListResponse>`](../../doc/models/workout-data-list-response.md)
 
 ## Example Usage
 
@@ -42,7 +42,7 @@ GetWorkoutDataByIdAsync(
 int workoutId = 250;
 try
 {
-    WorkoutsDataResponse result = await workoutsWorkoutDataController.GetWorkoutDataByIdAsync(workoutId);
+    WorkoutDataListResponse result = await workoutsWorkoutDataController.GetWorkoutDataByIdAsync(workoutId);
 }
 catch (ApiException e)
 {
@@ -55,7 +55,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout not found | [`WorkoutsData404ErrorException`](../../doc/models/workouts-data-404-error-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Workout Detail by Id
@@ -77,7 +77,7 @@ GetWorkoutDetailByIdAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDataResponse1>`](../../doc/models/workouts-data-response-1.md)
+[`Task<Models.WorkoutDataResponse>`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -86,7 +86,7 @@ int workoutId = 250;
 string exerciseCode = "exerciseCode8";
 try
 {
-    WorkoutsDataResponse1 result = await workoutsWorkoutDataController.GetWorkoutDetailByIdAsync(
+    WorkoutDataResponse result = await workoutsWorkoutDataController.GetWorkoutDetailByIdAsync(
         workoutId,
         exerciseCode
     );
@@ -102,7 +102,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout or exercise not found | [`WorkoutsData404ErrorException`](../../doc/models/workouts-data-404-error-exception.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Add New Exercise to the Workout
@@ -124,7 +124,7 @@ AddNewExerciseToTheWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDataResponse1>`](../../doc/models/workouts-data-response-1.md)
+[`Task<Models.WorkoutDataResponse>`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -178,7 +178,7 @@ WorkoutData body = new WorkoutData
 
 try
 {
-    WorkoutsDataResponse1 result = await workoutsWorkoutDataController.AddNewExerciseToTheWorkoutAsync(
+    WorkoutDataResponse result = await workoutsWorkoutDataController.AddNewExerciseToTheWorkoutAsync(
         workoutId,
         exerciseCode,
         body
@@ -195,8 +195,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`WorkoutsData400ErrorException`](../../doc/models/workouts-data-400-error-exception.md) |
-| 404 | Workout not found | [`WorkoutsData404ErrorException`](../../doc/models/workouts-data-404-error-exception.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Exercise in the Workout
@@ -218,7 +218,7 @@ UpdateExerciseInTheWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDataResponse1>`](../../doc/models/workouts-data-response-1.md)
+[`Task<Models.WorkoutDataResponse>`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -272,7 +272,7 @@ WorkoutData body = new WorkoutData
 
 try
 {
-    WorkoutsDataResponse1 result = await workoutsWorkoutDataController.UpdateExerciseInTheWorkoutAsync(
+    WorkoutDataResponse result = await workoutsWorkoutDataController.UpdateExerciseInTheWorkoutAsync(
         workoutId,
         exerciseCode,
         body
@@ -289,8 +289,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`WorkoutsData400ErrorException`](../../doc/models/workouts-data-400-error-exception.md) |
-| 404 | Workout or exercise not found | [`WorkoutsData404ErrorException`](../../doc/models/workouts-data-404-error-exception.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Deletes an Exercise From the Workout
@@ -310,7 +310,7 @@ DeletesAnExerciseFromTheWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutsDataResponse1>`](../../doc/models/workouts-data-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -319,7 +319,7 @@ int workoutId = 250;
 string exerciseCode = "exerciseCode8";
 try
 {
-    WorkoutsDataResponse1 result = await workoutsWorkoutDataController.DeletesAnExerciseFromTheWorkoutAsync(
+    JustGainsBasicResponse result = await workoutsWorkoutDataController.DeletesAnExerciseFromTheWorkoutAsync(
         workoutId,
         exerciseCode
     );
@@ -335,5 +335,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout or exercise not found | [`WorkoutsData404ErrorException`](../../doc/models/workouts-data-404-error-exception.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

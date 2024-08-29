@@ -1,0 +1,48 @@
+
+# Exercise Instruction 1
+
+The data returned by the operation.
+
+## Structure
+
+`ExerciseInstruction1`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `ExerciseCode` | `string` | Required | The exerciseCode of the exercise to add instructions to. |
+| `UserId` | `string` | Optional | The userId of the creator related to this instruction |
+| `LocaleCode` | `string` | Required | Language code for the instructions |
+| `InstructionJSON` | [`InstructionJSON`](../../doc/models/instruction-json.md) | Required | - |
+
+## Example (as JSON)
+
+```json
+{
+  "exerciseCode": "BARBELL-BENCH-PRESS",
+  "userId": "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
+  "localeCode": "en-US",
+  "instructionJSON": {
+    "time": 1625832000000,
+    "version": "2.24.3",
+    "blocks": [
+      {
+        "id": "id6",
+        "type": "paragraph",
+        "data": {
+          "text": "text0"
+        }
+      },
+      {
+        "id": "id6",
+        "type": "paragraph",
+        "data": {
+          "text": "text0"
+        }
+      }
+    ]
+  }
+}
+```
+

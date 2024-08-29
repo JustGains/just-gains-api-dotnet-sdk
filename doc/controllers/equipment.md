@@ -38,7 +38,7 @@ GetEquipmentsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentResponse>`](../../doc/models/equipment-response.md)
+[`Task<Models.EquipmentListResponse>`](../../doc/models/equipment-list-response.md)
 
 ## Example Usage
 
@@ -46,7 +46,7 @@ GetEquipmentsAsync(
 string localeCode = "en-US";
 try
 {
-    EquipmentResponse result = await equipmentController.GetEquipmentsAsync(localeCode);
+    EquipmentListResponse result = await equipmentController.GetEquipmentsAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -71,7 +71,7 @@ CreateEquipmentAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentResponse1>`](../../doc/models/equipment-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -89,7 +89,7 @@ Equipment body = new Equipment
 
 try
 {
-    EquipmentResponse1 result = await equipmentController.CreateEquipmentAsync(body);
+    JustGainsBasicResponse result = await equipmentController.CreateEquipmentAsync(body);
 }
 catch (ApiException e)
 {
@@ -102,7 +102,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request data. | [`Equipment400ErrorException`](../../doc/models/equipment-400-error-exception.md) |
+| 400 | Invalid request data. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Equipment
@@ -124,7 +124,7 @@ GetEquipmentAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentResponse1>`](../../doc/models/equipment-response-1.md)
+[`Task<Models.EquipmentResponse>`](../../doc/models/equipment-response.md)
 
 ## Example Usage
 
@@ -133,7 +133,7 @@ string equipmentCode = "equipmentCode6";
 string localeCode = "en-US";
 try
 {
-    EquipmentResponse1 result = await equipmentController.GetEquipmentAsync(
+    EquipmentResponse result = await equipmentController.GetEquipmentAsync(
         equipmentCode,
         localeCode
     );
@@ -149,7 +149,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Equipment not found with the given code. | [`Equipment404ErrorException`](../../doc/models/equipment-404-error-exception.md) |
+| 404 | Equipment not found with the given code. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Equipment
@@ -169,7 +169,7 @@ UpdateEquipmentAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentResponse1>`](../../doc/models/equipment-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -188,7 +188,7 @@ Equipment body = new Equipment
 
 try
 {
-    EquipmentResponse1 result = await equipmentController.UpdateEquipmentAsync(
+    JustGainsBasicResponse result = await equipmentController.UpdateEquipmentAsync(
         equipmentCode,
         body
     );
@@ -204,9 +204,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request. Invalid input data. | [`Equipment400ErrorException`](../../doc/models/equipment-400-error-exception.md) |
-| 404 | Equipment not found with the given code. | [`Equipment404ErrorException`](../../doc/models/equipment-404-error-exception.md) |
-| 409 | Conflict. The equipment code already exists for a different equipment. | [`Equipment409ErrorException`](../../doc/models/equipment-409-error-exception.md) |
+| 400 | Bad request. Invalid input data. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Equipment not found with the given code. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 409 | Conflict. The equipment code already exists for a different equipment. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete Equipment
@@ -224,7 +224,7 @@ DeleteEquipmentAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentResponse4>`](../../doc/models/equipment-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -232,7 +232,7 @@ DeleteEquipmentAsync(
 string equipmentCode = "equipmentCode6";
 try
 {
-    EquipmentResponse4 result = await equipmentController.DeleteEquipmentAsync(equipmentCode);
+    JustGainsBasicResponse result = await equipmentController.DeleteEquipmentAsync(equipmentCode);
 }
 catch (ApiException e)
 {
@@ -245,7 +245,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to delete the equipment or equipment does not exist. | [`Equipment400ErrorException`](../../doc/models/equipment-400-error-exception.md) |
+| 400 | Failed to delete the equipment or equipment does not exist. | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Equipment Translations
@@ -265,7 +265,7 @@ GetEquipmentTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentTranslationsResponse>`](../../doc/models/equipment-translations-response.md)
+[`Task<Models.EquipmentTranslationListResponse>`](../../doc/models/equipment-translation-list-response.md)
 
 ## Example Usage
 
@@ -273,7 +273,7 @@ GetEquipmentTranslationsAsync(
 string equipmentCode = "equipmentCode6";
 try
 {
-    EquipmentTranslationsResponse result = await equipmentController.GetEquipmentTranslationsAsync(equipmentCode);
+    EquipmentTranslationListResponse result = await equipmentController.GetEquipmentTranslationsAsync(equipmentCode);
 }
 catch (ApiException e)
 {
@@ -309,7 +309,7 @@ UpdateEquipmentTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.EquipmentTranslationsResponse1>`](../../doc/models/equipment-translations-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -317,12 +317,13 @@ UpdateEquipmentTranslationsAsync(
 string equipmentCode = "equipmentCode6";
 EquipmentTranslation body = new EquipmentTranslation
 {
-    EquipmentName = "equipmentName6",
+    EquipmentName = "Barbell",
+    LocaleCode = "en-US",
 };
 
 try
 {
-    EquipmentTranslationsResponse1 result = await equipmentController.UpdateEquipmentTranslationsAsync(
+    JustGainsBasicResponse result = await equipmentController.UpdateEquipmentTranslationsAsync(
         equipmentCode,
         body
     );
@@ -338,6 +339,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentTranslations400ErrorException`](../../doc/models/equipment-translations-400-error-exception.md) |
-| 404 | Equipment not found | [`EquipmentTranslations404ErrorException`](../../doc/models/equipment-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Equipment not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

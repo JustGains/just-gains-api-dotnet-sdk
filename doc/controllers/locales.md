@@ -34,7 +34,7 @@ GetLocalesAsync(
 
 ## Response Type
 
-[`Task<Models.LocalesResponse>`](../../doc/models/locales-response.md)
+[`Task<Models.LocaleListResponse>`](../../doc/models/locale-list-response.md)
 
 ## Example Usage
 
@@ -42,7 +42,7 @@ GetLocalesAsync(
 bool showAll = false;
 try
 {
-    LocalesResponse result = await localesController.GetLocalesAsync(showAll);
+    LocaleListResponse result = await localesController.GetLocalesAsync(showAll);
 }
 catch (ApiException e)
 {
@@ -67,7 +67,7 @@ CreateANewLocaleAsync(
 
 ## Response Type
 
-[`Task<Models.LocalesResponse>`](../../doc/models/locales-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -81,7 +81,7 @@ Locale body = new Locale
 
 try
 {
-    LocalesResponse result = await localesController.CreateANewLocaleAsync(body);
+    JustGainsBasicResponse result = await localesController.CreateANewLocaleAsync(body);
 }
 catch (ApiException e)
 {
@@ -108,7 +108,7 @@ GetLocaleAsync(
 
 ## Response Type
 
-[`Task<Models.LocalesResponse>`](../../doc/models/locales-response.md)
+[`Task<Models.LocaleResponse>`](../../doc/models/locale-response.md)
 
 ## Example Usage
 
@@ -116,7 +116,7 @@ GetLocaleAsync(
 string localeCode = "localeCode2";
 try
 {
-    LocalesResponse result = await localesController.GetLocaleAsync(localeCode);
+    LocaleResponse result = await localesController.GetLocaleAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -143,7 +143,7 @@ UpdateALocaleAsync(
 
 ## Response Type
 
-[`Task<Models.LocalesResponse>`](../../doc/models/locales-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -158,7 +158,7 @@ Locale body = new Locale
 
 try
 {
-    LocalesResponse result = await localesController.UpdateALocaleAsync(
+    JustGainsBasicResponse result = await localesController.UpdateALocaleAsync(
         localeCode,
         body
     );
@@ -186,7 +186,7 @@ DeleteALocaleAsync(
 
 ## Response Type
 
-[`Task<Models.LocalesResponse4>`](../../doc/models/locales-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -194,7 +194,7 @@ DeleteALocaleAsync(
 string localeCode = "localeCode2";
 try
 {
-    LocalesResponse4 result = await localesController.DeleteALocaleAsync(localeCode);
+    JustGainsBasicResponse result = await localesController.DeleteALocaleAsync(localeCode);
 }
 catch (ApiException e)
 {

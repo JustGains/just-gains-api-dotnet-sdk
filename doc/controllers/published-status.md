@@ -12,7 +12,6 @@ PublishedStatusController publishedStatusController = client.PublishedStatusCont
 
 * [Get All Published Status](../../doc/controllers/published-status.md#get-all-published-status)
 * [Create a New Published Status](../../doc/controllers/published-status.md#create-a-new-published-status)
-* [Get Published Status](../../doc/controllers/published-status.md#get-published-status)
 * [Update a Published Status](../../doc/controllers/published-status.md#update-a-published-status)
 * [Delete a Published Status](../../doc/controllers/published-status.md#delete-a-published-status)
 * [Get All Published Status Translations](../../doc/controllers/published-status.md#get-all-published-status-translations)
@@ -36,14 +35,14 @@ GetAllPublishedStatusAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusResponse>`](../../doc/models/published-status-response.md)
+[`Task<Models.PublishedStatusListResponse>`](../../doc/models/published-status-list-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    PublishedStatusResponse result = await publishedStatusController.GetAllPublishedStatusAsync();
+    PublishedStatusListResponse result = await publishedStatusController.GetAllPublishedStatusAsync();
 }
 catch (ApiException e)
 {
@@ -56,7 +55,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400ErrorException`](../../doc/models/published-status-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create a New Published Status
@@ -74,7 +73,7 @@ CreateANewPublishedStatusAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusResponse1>`](../../doc/models/published-status-response-1.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -88,7 +87,7 @@ PublishedStatus body = new PublishedStatus
 
 try
 {
-    PublishedStatusResponse1 result = await publishedStatusController.CreateANewPublishedStatusAsync(body);
+    JustGainsResponse result = await publishedStatusController.CreateANewPublishedStatusAsync(body);
 }
 catch (ApiException e)
 {
@@ -101,50 +100,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400ErrorException`](../../doc/models/published-status-400-error-exception.md) |
-
-
-# Get Published Status
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetPublishedStatusAsync(
-    string publishedStatusCode,
-    string localeCode = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `publishedStatusCode` | `string` | Template, Required | - |
-| `localeCode` | `string` | Query, Optional | Locale code for translations (e.g., en-US) |
-
-## Response Type
-
-[`Task<Models.PublishedStatusResponse1>`](../../doc/models/published-status-response-1.md)
-
-## Example Usage
-
-```csharp
-string publishedStatusCode = "publishedStatusCode2";
-try
-{
-    PublishedStatusResponse1 result = await publishedStatusController.GetPublishedStatusAsync(publishedStatusCode);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Published status not found | [`PublishedStatus404ErrorException`](../../doc/models/published-status-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update a Published Status
@@ -164,7 +120,7 @@ UpdateAPublishedStatusAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusResponse1>`](../../doc/models/published-status-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -179,7 +135,7 @@ PublishedStatus body = new PublishedStatus
 
 try
 {
-    PublishedStatusResponse1 result = await publishedStatusController.UpdateAPublishedStatusAsync(
+    JustGainsBasicResponse result = await publishedStatusController.UpdateAPublishedStatusAsync(
         publishedStatusCode,
         body
     );
@@ -195,8 +151,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400ErrorException`](../../doc/models/published-status-400-error-exception.md) |
-| 404 | Published status not found | [`PublishedStatus404ErrorException`](../../doc/models/published-status-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete a Published Status
@@ -214,7 +170,7 @@ DeleteAPublishedStatusAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusResponse4>`](../../doc/models/published-status-response-4.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -222,7 +178,7 @@ DeleteAPublishedStatusAsync(
 string publishedStatusCode = "publishedStatusCode2";
 try
 {
-    PublishedStatusResponse4 result = await publishedStatusController.DeleteAPublishedStatusAsync(publishedStatusCode);
+    JustGainsResponse result = await publishedStatusController.DeleteAPublishedStatusAsync(publishedStatusCode);
 }
 catch (ApiException e)
 {
@@ -235,7 +191,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Published status not found | [`PublishedStatus404ErrorException`](../../doc/models/published-status-404-error-exception.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get All Published Status Translations
@@ -255,7 +211,7 @@ GetAllPublishedStatusTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusTranslationsResponse>`](../../doc/models/published-status-translations-response.md)
+[`Task<Models.PublishedStatusTranslationListResponse>`](../../doc/models/published-status-translation-list-response.md)
 
 ## Example Usage
 
@@ -263,7 +219,7 @@ GetAllPublishedStatusTranslationsAsync(
 string publishedStatusCode = "publishedStatusCode2";
 try
 {
-    PublishedStatusTranslationsResponse result = await publishedStatusController.GetAllPublishedStatusTranslationsAsync(publishedStatusCode);
+    PublishedStatusTranslationListResponse result = await publishedStatusController.GetAllPublishedStatusTranslationsAsync(publishedStatusCode);
 }
 catch (ApiException e)
 {
@@ -276,8 +232,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatusTranslations400ErrorException`](../../doc/models/published-status-translations-400-error-exception.md) |
-| 404 | Published status not found | [`PublishedStatusTranslations404ErrorException`](../../doc/models/published-status-translations-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Published Status Translations
@@ -297,7 +253,7 @@ UpdatePublishedStatusTranslationsAsync(
 
 ## Response Type
 
-[`Task<Models.PublishedStatusTranslationsResponse1>`](../../doc/models/published-status-translations-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -314,7 +270,7 @@ List<Models.PublishedStatusTranslation> body = new List<Models.PublishedStatusTr
 
 try
 {
-    PublishedStatusTranslationsResponse1 result = await publishedStatusController.UpdatePublishedStatusTranslationsAsync(
+    JustGainsBasicResponse result = await publishedStatusController.UpdatePublishedStatusTranslationsAsync(
         publishedStatusCode,
         body
     );
@@ -330,8 +286,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatusTranslations400ErrorException`](../../doc/models/published-status-translations-400-error-exception.md) |
-| 401 | Unauthorized | [`PublishedStatusTranslations401ErrorException`](../../doc/models/published-status-translations-401-error-exception.md) |
-| 404 | Published status not found | [`PublishedStatusTranslations404ErrorException`](../../doc/models/published-status-translations-404-error-exception.md) |
-| 422 | Unprocessable Entity | [`PublishedStatusTranslations422ErrorException`](../../doc/models/published-status-translations-422-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 422 | Unprocessable Entity | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

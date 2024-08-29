@@ -37,7 +37,7 @@ GetMediaAssetsAsync(
 
 ## Response Type
 
-[`Task<Models.MediaAssetsResponse>`](../../doc/models/media-assets-response.md)
+[`Task<Models.MediaAssetListResponse>`](../../doc/models/media-asset-list-response.md)
 
 ## Example Usage
 
@@ -46,7 +46,7 @@ int? page = 1;
 int? pageSize = 20;
 try
 {
-    MediaAssetsResponse result = await mediaAssetsController.GetMediaAssetsAsync(
+    MediaAssetListResponse result = await mediaAssetsController.GetMediaAssetsAsync(
         page,
         pageSize
     );
@@ -80,7 +80,7 @@ UploadANewMediaAssetAsync(
 
 ## Response Type
 
-[`Task<Models.MediaAssetsResponse1>`](../../doc/models/media-assets-response-1.md)
+[`Task<Models.MediaAssetResponse>`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -88,7 +88,7 @@ UploadANewMediaAssetAsync(
 string mediaType = "image/jpeg";
 try
 {
-    MediaAssetsResponse1 result = await mediaAssetsController.UploadANewMediaAssetAsync(
+    MediaAssetResponse result = await mediaAssetsController.UploadANewMediaAssetAsync(
         null,
         mediaType
     );
@@ -118,7 +118,7 @@ GetMediaAssetAsync(
 
 ## Response Type
 
-[`Task<Models.MediaAssetsResponse1>`](../../doc/models/media-assets-response-1.md)
+[`Task<Models.MediaAssetResponse>`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -126,7 +126,7 @@ GetMediaAssetAsync(
 Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 try
 {
-    MediaAssetsResponse1 result = await mediaAssetsController.GetMediaAssetAsync(mediaAssetId);
+    MediaAssetResponse result = await mediaAssetsController.GetMediaAssetAsync(mediaAssetId);
 }
 catch (ApiException e)
 {
@@ -139,7 +139,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404ErrorException`](../../doc/models/media-assets-404-error-exception.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update a Media Asset
@@ -159,7 +159,7 @@ UpdateAMediaAssetAsync(
 
 ## Response Type
 
-[`Task<Models.MediaAssetsResponse1>`](../../doc/models/media-assets-response-1.md)
+[`Task<Models.MediaAssetResponse>`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -178,7 +178,7 @@ MediaAsset body = new MediaAsset
 
 try
 {
-    MediaAssetsResponse1 result = await mediaAssetsController.UpdateAMediaAssetAsync(
+    MediaAssetResponse result = await mediaAssetsController.UpdateAMediaAssetAsync(
         mediaAssetId,
         body
     );
@@ -194,7 +194,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404ErrorException`](../../doc/models/media-assets-404-error-exception.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete a Media Asset
@@ -212,7 +212,7 @@ DeleteAMediaAssetAsync(
 
 ## Response Type
 
-[`Task<Models.MediaAssetsResponse4>`](../../doc/models/media-assets-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -220,7 +220,7 @@ DeleteAMediaAssetAsync(
 Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 try
 {
-    MediaAssetsResponse4 result = await mediaAssetsController.DeleteAMediaAssetAsync(mediaAssetId);
+    JustGainsBasicResponse result = await mediaAssetsController.DeleteAMediaAssetAsync(mediaAssetId);
 }
 catch (ApiException e)
 {
@@ -233,7 +233,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404ErrorException`](../../doc/models/media-assets-404-error-exception.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Media Asset Detail
@@ -280,5 +280,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404ErrorException`](../../doc/models/media-assets-404-error-exception.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

@@ -26,7 +26,7 @@ GetAnlyticsProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsAnalyticsResponse>`](../../doc/models/programs-analytics-response.md)
+[`Task<Models.ProgramAnalyticsResponse>`](../../doc/models/program-analytics-response.md)
 
 ## Example Usage
 
@@ -34,7 +34,7 @@ GetAnlyticsProgramAsync(
 int programId = 126;
 try
 {
-    ProgramsAnalyticsResponse result = await programsProgramAnalyticsController.GetAnlyticsProgramAsync(programId);
+    ProgramAnalyticsResponse result = await programsProgramAnalyticsController.GetAnlyticsProgramAsync(programId);
 }
 catch (ApiException e)
 {
@@ -47,5 +47,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsAnalytics404ErrorException`](../../doc/models/programs-analytics-404-error-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

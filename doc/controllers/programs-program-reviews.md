@@ -31,7 +31,7 @@ GetReviewsProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsReviewsResponse>`](../../doc/models/programs-reviews-response.md)
+[`Task<Models.ProgramReviewResponse>`](../../doc/models/program-review-response.md)
 
 ## Example Usage
 
@@ -39,7 +39,7 @@ GetReviewsProgramAsync(
 int programId = 126;
 try
 {
-    ProgramsReviewsResponse result = await programsProgramReviewsController.GetReviewsProgramAsync(programId);
+    ProgramReviewResponse result = await programsProgramReviewsController.GetReviewsProgramAsync(programId);
 }
 catch (ApiException e)
 {
@@ -52,7 +52,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsReviews404ErrorException`](../../doc/models/programs-reviews-404-error-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Add Review Program
@@ -72,7 +72,7 @@ AddReviewProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsReviewsResponse1>`](../../doc/models/programs-reviews-response-1.md)
+[`Task<Models.ProgramReviewResponse>`](../../doc/models/program-review-response.md)
 
 ## Example Usage
 
@@ -92,7 +92,7 @@ ProgramReview body = new ProgramReview
 
 try
 {
-    ProgramsReviewsResponse1 result = await programsProgramReviewsController.AddReviewProgramAsync(
+    ProgramReviewResponse result = await programsProgramReviewsController.AddReviewProgramAsync(
         programId,
         body
     );
@@ -108,6 +108,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsReviews400ErrorException`](../../doc/models/programs-reviews-400-error-exception.md) |
-| 404 | Program not found | [`ProgramsReviews404ErrorException`](../../doc/models/programs-reviews-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

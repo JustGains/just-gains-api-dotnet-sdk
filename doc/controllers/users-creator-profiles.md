@@ -36,7 +36,7 @@ GetCreatorProfilesAsync(
 
 ## Response Type
 
-[`Task<Models.CreatorProfilesResponse>`](../../doc/models/creator-profiles-response.md)
+[`Task<Models.CreatorProfileListResponse>`](../../doc/models/creator-profile-list-response.md)
 
 ## Example Usage
 
@@ -45,7 +45,7 @@ int? page = 1;
 int? limit = 20;
 try
 {
-    CreatorProfilesResponse result = await usersCreatorProfilesController.GetCreatorProfilesAsync(
+    CreatorProfileListResponse result = await usersCreatorProfilesController.GetCreatorProfilesAsync(
         page,
         limit
     );
@@ -61,8 +61,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400ErrorException`](../../doc/models/creator-profiles-400-error-exception.md) |
-| 500 | An unexpected error occurred | [`CreatorProfiles500ErrorException`](../../doc/models/creator-profiles-500-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create Creator Profile
@@ -80,7 +79,7 @@ CreateCreatorProfileAsync(
 
 ## Response Type
 
-[`Task<Models.CreatorProfilesResponse1>`](../../doc/models/creator-profiles-response-1.md)
+[`Task<Models.CreatorProfileResponse>`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -94,7 +93,7 @@ CreatorProfile body = new CreatorProfile
 
 try
 {
-    CreatorProfilesResponse1 result = await usersCreatorProfilesController.CreateCreatorProfileAsync(body);
+    CreatorProfileResponse result = await usersCreatorProfilesController.CreateCreatorProfileAsync(body);
 }
 catch (ApiException e)
 {
@@ -107,9 +106,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400ErrorException`](../../doc/models/creator-profiles-400-error-exception.md) |
-| 401 | Unauthorized | [`CreatorProfiles401ErrorException`](../../doc/models/creator-profiles-401-error-exception.md) |
-| 500 | Internal server error | [`CreatorProfiles500ErrorException`](../../doc/models/creator-profiles-500-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Creator Profile
@@ -129,7 +127,7 @@ GetCreatorProfileAsync(
 
 ## Response Type
 
-[`Task<Models.CreatorProfilesResponse1>`](../../doc/models/creator-profiles-response-1.md)
+[`Task<Models.CreatorProfileResponse>`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -137,7 +135,7 @@ GetCreatorProfileAsync(
 Guid creatorProfileId = new Guid("000008d2-0000-0000-0000-000000000000");
 try
 {
-    CreatorProfilesResponse1 result = await usersCreatorProfilesController.GetCreatorProfileAsync(creatorProfileId);
+    CreatorProfileResponse result = await usersCreatorProfilesController.GetCreatorProfileAsync(creatorProfileId);
 }
 catch (ApiException e)
 {
@@ -150,8 +148,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Creator profile not found | [`CreatorProfiles404ErrorException`](../../doc/models/creator-profiles-404-error-exception.md) |
-| 500 | Internal server error | [`CreatorProfiles500ErrorException`](../../doc/models/creator-profiles-500-error-exception.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Creator Profile
@@ -171,7 +168,7 @@ UpdateCreatorProfileAsync(
 
 ## Response Type
 
-[`Task<Models.CreatorProfilesResponse1>`](../../doc/models/creator-profiles-response-1.md)
+[`Task<Models.CreatorProfileResponse>`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -186,7 +183,7 @@ CreatorProfile body = new CreatorProfile
 
 try
 {
-    CreatorProfilesResponse1 result = await usersCreatorProfilesController.UpdateCreatorProfileAsync(
+    CreatorProfileResponse result = await usersCreatorProfilesController.UpdateCreatorProfileAsync(
         creatorProfileId,
         body
     );
@@ -202,10 +199,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400ErrorException`](../../doc/models/creator-profiles-400-error-exception.md) |
-| 401 | Unauthorized | [`CreatorProfiles401ErrorException`](../../doc/models/creator-profiles-401-error-exception.md) |
-| 404 | Creator profile not found | [`CreatorProfiles404ErrorException`](../../doc/models/creator-profiles-404-error-exception.md) |
-| 500 | Internal server error | [`CreatorProfiles500ErrorException`](../../doc/models/creator-profiles-500-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete Creator Profile
@@ -223,7 +219,7 @@ DeleteCreatorProfileAsync(
 
 ## Response Type
 
-[`Task<Models.CreatorProfilesResponse4>`](../../doc/models/creator-profiles-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -231,7 +227,7 @@ DeleteCreatorProfileAsync(
 Guid creatorProfileId = new Guid("000008d2-0000-0000-0000-000000000000");
 try
 {
-    CreatorProfilesResponse4 result = await usersCreatorProfilesController.DeleteCreatorProfileAsync(creatorProfileId);
+    JustGainsBasicResponse result = await usersCreatorProfilesController.DeleteCreatorProfileAsync(creatorProfileId);
 }
 catch (ApiException e)
 {
@@ -244,7 +240,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`CreatorProfiles401ErrorException`](../../doc/models/creator-profiles-401-error-exception.md) |
-| 404 | Creator profile not found | [`CreatorProfiles404ErrorException`](../../doc/models/creator-profiles-404-error-exception.md) |
-| 500 | Internal server error | [`CreatorProfiles500ErrorException`](../../doc/models/creator-profiles-500-error-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

@@ -16,8 +16,8 @@
 
 ```json
 {
-  "localeCode": "localeCode2",
-  "equipmentName": "equipmentName0"
+  "localeCode": "en-US",
+  "equipmentName": "Barbell"
 }
 ```
 

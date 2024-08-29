@@ -13,7 +13,7 @@
 | `EquipmentGroupName` | `string` | Optional | Name of the equipment group, localized. |
 | `EquipmentGroupParent` | `string` | Optional | parent group CODE for hierarchical structuring. |
 | `EquipmentGroupEquipment` | `List<string>` | Optional | - |
-| `EquipmentThumbnail` | [`EquipmentThumbnail1`](../../doc/models/equipment-thumbnail-1.md) | Optional | Link to the thumbnail image for the equipment group. |
+| `EquipmentThumbnail` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 | `SortOrder` | `int?` | Optional | Used to sort the equipment groups<br>**Default**: `0` |
 
 ## Example (as JSON)

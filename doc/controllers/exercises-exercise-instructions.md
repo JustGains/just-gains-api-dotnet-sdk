@@ -36,7 +36,7 @@ GetExerciseInstructionsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesInstructionsResponse>`](../../doc/models/exercises-instructions-response.md)
+[`Task<Models.ExerciseInstructionListResponse>`](../../doc/models/exercise-instruction-list-response.md)
 
 ## Example Usage
 
@@ -44,7 +44,7 @@ GetExerciseInstructionsAsync(
 string exerciseCode = "exerciseCode8";
 try
 {
-    ExercisesInstructionsResponse result = await exercisesExerciseInstructionsController.GetExerciseInstructionsAsync(exerciseCode);
+    ExerciseInstructionListResponse result = await exercisesExerciseInstructionsController.GetExerciseInstructionsAsync(exerciseCode);
 }
 catch (ApiException e)
 {
@@ -57,8 +57,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructions400ErrorException`](../../doc/models/exercises-instructions-400-error-exception.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructions404ErrorException`](../../doc/models/exercises-instructions-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create New Exercise Instructions
@@ -78,7 +78,7 @@ CreateNewExerciseInstructionsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesInstructionsResponse1>`](../../doc/models/exercises-instructions-response-1.md)
+[`Task<Models.ExerciseInstructionResponse>`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -88,7 +88,7 @@ ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
     LocaleCode = "en-US",
-    InstructionJSON = new InstructionJSON1
+    InstructionJSON = new InstructionJSON
     {
         Time = 1625832000000L,
         Version = "2.24.3",
@@ -98,7 +98,7 @@ ExerciseInstruction body = new ExerciseInstruction
 
 try
 {
-    ExercisesInstructionsResponse1 result = await exercisesExerciseInstructionsController.CreateNewExerciseInstructionsAsync(
+    ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.CreateNewExerciseInstructionsAsync(
         exerciseCode,
         body
     );
@@ -114,8 +114,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructions400ErrorException`](../../doc/models/exercises-instructions-400-error-exception.md) |
-| 401 | Unauthorized | [`ExercisesInstructions401ErrorException`](../../doc/models/exercises-instructions-401-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise Instruction
@@ -139,7 +139,7 @@ GetExerciseInstructionAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesInstructionsUserIdResponse>`](../../doc/models/exercises-instructions-user-id-response.md)
+[`Task<Models.ExerciseInstructionResponse>`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -149,7 +149,7 @@ string localeCode = "localeCode2";
 string userId = "userId0";
 try
 {
-    ExercisesInstructionsUserIdResponse result = await exercisesExerciseInstructionsController.GetExerciseInstructionAsync(
+    ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.GetExerciseInstructionAsync(
         exerciseCode,
         localeCode,
         userId
@@ -166,8 +166,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructionsUserId400ErrorException`](../../doc/models/exercises-instructions-user-id-400-error-exception.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404ErrorException`](../../doc/models/exercises-instructions-user-id-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Exercise Instructions
@@ -191,7 +191,7 @@ UpdateExerciseInstructionsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesInstructionsUserIdResponse>`](../../doc/models/exercises-instructions-user-id-response.md)
+[`Task<Models.ExerciseInstructionResponse>`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -203,7 +203,7 @@ ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
     LocaleCode = "en-US",
-    InstructionJSON = new InstructionJSON1
+    InstructionJSON = new InstructionJSON
     {
         Time = 1625832000000L,
         Version = "2.24.3",
@@ -213,7 +213,7 @@ ExerciseInstruction body = new ExerciseInstruction
 
 try
 {
-    ExercisesInstructionsUserIdResponse result = await exercisesExerciseInstructionsController.UpdateExerciseInstructionsAsync(
+    ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.UpdateExerciseInstructionsAsync(
         exerciseCode,
         localeCode,
         userId,
@@ -231,9 +231,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructionsUserId400ErrorException`](../../doc/models/exercises-instructions-user-id-400-error-exception.md) |
-| 401 | Unauthorized | [`ExercisesInstructionsUserId401ErrorException`](../../doc/models/exercises-instructions-user-id-401-error-exception.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404ErrorException`](../../doc/models/exercises-instructions-user-id-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete Exercise Instructions
@@ -255,7 +255,7 @@ DeleteExerciseInstructionsAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesInstructionsUserIdResponse2>`](../../doc/models/exercises-instructions-user-id-response-2.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -265,7 +265,7 @@ string localeCode = "localeCode2";
 string userId = "userId0";
 try
 {
-    ExercisesInstructionsUserIdResponse2 result = await exercisesExerciseInstructionsController.DeleteExerciseInstructionsAsync(
+    JustGainsBasicResponse result = await exercisesExerciseInstructionsController.DeleteExerciseInstructionsAsync(
         exerciseCode,
         localeCode,
         userId
@@ -282,6 +282,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`ExercisesInstructionsUserId401ErrorException`](../../doc/models/exercises-instructions-user-id-401-error-exception.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404ErrorException`](../../doc/models/exercises-instructions-user-id-404-error-exception.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

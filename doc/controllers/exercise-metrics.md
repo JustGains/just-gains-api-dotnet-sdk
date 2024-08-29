@@ -12,7 +12,6 @@ ExerciseMetricsController exerciseMetricsController = client.ExerciseMetricsCont
 
 * [Get Exercise Metrics](../../doc/controllers/exercise-metrics.md#get-exercise-metrics)
 * [Create a New Exercise Metric](../../doc/controllers/exercise-metrics.md#create-a-new-exercise-metric)
-* [Get Exercise Metric](../../doc/controllers/exercise-metrics.md#get-exercise-metric)
 * [Update an Exercise Metric](../../doc/controllers/exercise-metrics.md#update-an-exercise-metric)
 * [Delete an Exercise Metric](../../doc/controllers/exercise-metrics.md#delete-an-exercise-metric)
 
@@ -34,7 +33,7 @@ GetExerciseMetricsAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseMetricsResponse>`](../../doc/models/exercise-metrics-response.md)
+[`Task<Models.ExerciseMetricListResponse>`](../../doc/models/exercise-metric-list-response.md)
 
 ## Example Usage
 
@@ -42,7 +41,7 @@ GetExerciseMetricsAsync(
 string localeCode = "en-US";
 try
 {
-    ExerciseMetricsResponse result = await exerciseMetricsController.GetExerciseMetricsAsync(localeCode);
+    ExerciseMetricListResponse result = await exerciseMetricsController.GetExerciseMetricsAsync(localeCode);
 }
 catch (ApiException e)
 {
@@ -55,7 +54,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseMetrics400ErrorException`](../../doc/models/exercise-metrics-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create a New Exercise Metric
@@ -73,7 +72,7 @@ CreateANewExerciseMetricAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseMetricsResponse1>`](../../doc/models/exercise-metrics-response-1.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -85,7 +84,7 @@ ExerciseMetric body = new ExerciseMetric
 
 try
 {
-    ExerciseMetricsResponse1 result = await exerciseMetricsController.CreateANewExerciseMetricAsync(body);
+    JustGainsBasicResponse result = await exerciseMetricsController.CreateANewExerciseMetricAsync(body);
 }
 catch (ApiException e)
 {
@@ -98,54 +97,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseMetrics400ErrorException`](../../doc/models/exercise-metrics-400-error-exception.md) |
-
-
-# Get Exercise Metric
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetExerciseMetricAsync(
-    string metricCode,
-    string localeCode = "en-US")
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `metricCode` | `string` | Template, Required | - |
-| `localeCode` | `string` | Query, Optional | The locale for the metric name and measurement data |
-
-## Response Type
-
-[`Task<Models.ExerciseMetricsResponse1>`](../../doc/models/exercise-metrics-response-1.md)
-
-## Example Usage
-
-```csharp
-string metricCode = "metricCode4";
-string localeCode = "en-US";
-try
-{
-    ExerciseMetricsResponse1 result = await exerciseMetricsController.GetExerciseMetricAsync(
-        metricCode,
-        localeCode
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Exercise metric not found | [`ExerciseMetrics404ErrorException`](../../doc/models/exercise-metrics-404-error-exception.md) |
+| 400 | Bad request | [`ExerciseMetrics400Error2Exception`](../../doc/models/exercise-metrics-400-error-2-exception.md) |
 
 
 # Update an Exercise Metric
@@ -165,7 +117,7 @@ UpdateAnExerciseMetricAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseMetricsResponse1>`](../../doc/models/exercise-metrics-response-1.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -178,7 +130,7 @@ ExerciseMetric body = new ExerciseMetric
 
 try
 {
-    ExerciseMetricsResponse1 result = await exerciseMetricsController.UpdateAnExerciseMetricAsync(
+    JustGainsResponse result = await exerciseMetricsController.UpdateAnExerciseMetricAsync(
         metricCode,
         body
     );
@@ -194,8 +146,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseMetrics400ErrorException`](../../doc/models/exercise-metrics-400-error-exception.md) |
-| 404 | Exercise metric not found | [`ExerciseMetrics404ErrorException`](../../doc/models/exercise-metrics-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise metric not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete an Exercise Metric
@@ -213,7 +165,7 @@ DeleteAnExerciseMetricAsync(
 
 ## Response Type
 
-[`Task<Models.ExerciseMetricsResponse4>`](../../doc/models/exercise-metrics-response-4.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -221,7 +173,7 @@ DeleteAnExerciseMetricAsync(
 string metricCode = "metricCode4";
 try
 {
-    ExerciseMetricsResponse4 result = await exerciseMetricsController.DeleteAnExerciseMetricAsync(metricCode);
+    JustGainsResponse result = await exerciseMetricsController.DeleteAnExerciseMetricAsync(metricCode);
 }
 catch (ApiException e)
 {
@@ -234,5 +186,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Exercise metric deleted successfully | [`ExerciseMetrics404Error3Exception`](../../doc/models/exercise-metrics-404-error-3-exception.md) |
+| 404 | Exercise metric deleted successfully | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

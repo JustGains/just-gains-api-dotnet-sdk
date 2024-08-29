@@ -14,7 +14,7 @@ Represents a creator's profile information.
 | `CreatorProfileId` | `Guid?` | Optional | Unique identifier for the creator profile. |
 | `UserId` | `Guid?` | Optional | Associated user ID, if applicable. |
 | `CreatorEmail` | `string` | Optional | Creator's email address. |
-| `ProfilePhoto` | [`ProfilePhoto`](../../doc/models/profile-photo.md) | Optional | Creator's profile photo. |
+| `ProfilePhoto` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 | `SocialMediaAccounts` | [`List<CreatorSocialMediaAccount>`](../../doc/models/creator-social-media-account.md) | Optional | List of creator's social media accounts. |
 
 ## Example (as JSON)

@@ -9,19 +9,20 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Status` | `string` | Required | - |
-| `Message` | `string` | Required | - |
-| `Errors` | `List<string>` | Optional | - |
+| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
+| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
+| `Errors` | `object` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "Not Found",
-  "message": "Equipment not found",
-  "errors": [
-    "Equipment with the specified code does not exist"
-  ]
+  "status": "OK",
+  "message": "Operation completed successfully.",
+  "errors": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

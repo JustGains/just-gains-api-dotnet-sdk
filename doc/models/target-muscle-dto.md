@@ -17,8 +17,8 @@
 
 ```json
 {
+  "muscle_name": "BICEP",
   "id": 244,
-  "muscle_name": "muscle_name4",
   "target_percentage": 80
 }
 ```

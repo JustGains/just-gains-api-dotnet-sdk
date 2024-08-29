@@ -23,14 +23,14 @@ CheckServerAliveAsync()
 
 ## Response Type
 
-[`Task<Models.Response>`](../../doc/models/response.md)
+`Task<string>`
 
 ## Example Usage
 
 ```csharp
 try
 {
-    Response result = await statusController.CheckServerAliveAsync();
+    string result = await statusController.CheckServerAliveAsync();
 }
 catch (ApiException e)
 {
@@ -39,10 +39,16 @@ catch (ApiException e)
 }
 ```
 
+## Example Response
+
+```
+"All is working!"
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`M400ErrorException`](../../doc/models/m400-error-exception.md) |
-| 404 | Not found | [`M404ErrorException`](../../doc/models/m404-error-exception.md) |
+| 400 | Bad request | `ApiException` |
+| 404 | Not found | `ApiException` |
 

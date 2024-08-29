@@ -19,7 +19,6 @@ User information object
 | `EmailConfirmed` | `bool?` | Optional | Indicates if the user's email has been confirmed |
 | `Roles` | `List<string>` | Optional | List of roles assigned to the user |
 | `LastLoginAt` | `DateTime?` | Optional | Timestamp of the user's last login |
-| `Message` | `string` | Optional | Message to be displayed to the user |
 
 ## Example (as JSON)
 
@@ -35,8 +34,7 @@ User information object
     "user",
     "admin"
   ],
-  "lastLoginAt": "06/14/2023 09:30:00",
-  "message": "Welcome back, John!"
+  "lastLoginAt": "06/14/2023 09:30:00"
 }
 ```
 

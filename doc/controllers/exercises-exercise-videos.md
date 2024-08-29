@@ -34,7 +34,7 @@ GetExerciseVideoOnAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesVideosResponse>`](../../doc/models/exercises-videos-response.md)
+[`Task<Models.ExerciseVideoListResponse>`](../../doc/models/exercise-video-list-response.md)
 
 ## Example Usage
 
@@ -42,7 +42,7 @@ GetExerciseVideoOnAsync(
 string exerciseCode = "exerciseCode8";
 try
 {
-    ExercisesVideosResponse result = await exercisesExerciseVideosController.GetExerciseVideoOnAsync(exerciseCode);
+    ExerciseVideoListResponse result = await exercisesExerciseVideosController.GetExerciseVideoOnAsync(exerciseCode);
 }
 catch (ApiException e)
 {
@@ -55,8 +55,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise code | [`ExercisesVideos400ErrorException`](../../doc/models/exercises-videos-400-error-exception.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404ErrorException`](../../doc/models/exercises-videos-404-error-exception.md) |
+| 400 | Invalid exercise code | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Add New Exercise Videos
@@ -71,12 +71,12 @@ AddNewExerciseVideosAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code to add videos for |
+| `exerciseCode` | `string` | Template, Required | The exercise code to add videos to |
 | `body` | [`ExerciseVideo`](../../doc/models/exercise-video.md) | Body, Required | - |
 
 ## Response Type
 
-[`Task<Models.ExercisesVideosResponse1>`](../../doc/models/exercises-videos-response-1.md)
+[`Task<Models.ExerciseVideoResponse>`](../../doc/models/exercise-video-response.md)
 
 ## Example Usage
 
@@ -91,7 +91,7 @@ ExerciseVideo body = new ExerciseVideo
 
 try
 {
-    ExercisesVideosResponse1 result = await exercisesExerciseVideosController.AddNewExerciseVideosAsync(
+    ExerciseVideoResponse result = await exercisesExerciseVideosController.AddNewExerciseVideosAsync(
         exerciseCode,
         body
     );
@@ -107,8 +107,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise video data | [`ExercisesVideos400ErrorException`](../../doc/models/exercises-videos-400-error-exception.md) |
-| 401 | Authentication required | [`ExercisesVideos401ErrorException`](../../doc/models/exercises-videos-401-error-exception.md) |
+| 400 | Invalid exercise video data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Exercise Videos
@@ -162,9 +162,9 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise video data | [`ExercisesVideos400ErrorException`](../../doc/models/exercises-videos-400-error-exception.md) |
-| 401 | Authentication required | [`ExercisesVideos401ErrorException`](../../doc/models/exercises-videos-401-error-exception.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404ErrorException`](../../doc/models/exercises-videos-404-error-exception.md) |
+| 400 | Invalid exercise video data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Exercise Video by User Id
@@ -211,8 +211,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise code | [`ExercisesVideos400ErrorException`](../../doc/models/exercises-videos-400-error-exception.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404ErrorException`](../../doc/models/exercises-videos-404-error-exception.md) |
+| 400 | Invalid exercise code | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete an Exercise Video
@@ -234,7 +234,7 @@ DeleteAnExerciseVideoAsync(
 
 ## Response Type
 
-[`Task<Models.ExercisesVideosExerciseVideoIdResponse>`](../../doc/models/exercises-videos-exercise-video-id-response.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -244,7 +244,7 @@ string userId = "userId0";
 int exerciseVideoId = 66;
 try
 {
-    ExercisesVideosExerciseVideoIdResponse result = await exercisesExerciseVideosController.DeleteAnExerciseVideoAsync(
+    JustGainsResponse result = await exercisesExerciseVideosController.DeleteAnExerciseVideoAsync(
         exerciseCode,
         userId,
         exerciseVideoId
@@ -261,6 +261,6 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`ExercisesVideosExerciseVideoId401ErrorException`](../../doc/models/exercises-videos-exercise-video-id-401-error-exception.md) |
-| 404 | Exercise video not found | [`ExercisesVideosExerciseVideoId404ErrorException`](../../doc/models/exercises-videos-exercise-video-id-404-error-exception.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise video not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

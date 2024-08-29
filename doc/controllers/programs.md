@@ -46,7 +46,7 @@ GetProgramsAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsResponse>`](../../doc/models/programs-response.md)
+[`Task<Models.ProgramListResponse>`](../../doc/models/program-list-response.md)
 
 ## Example Usage
 
@@ -57,7 +57,7 @@ SortByEnum? sortBy = SortByEnum.CreatedAt;
 SortOrderEnum? sortOrder = SortOrderEnum.Desc;
 try
 {
-    ProgramsResponse result = await programsController.GetProgramsAsync(
+    ProgramListResponse result = await programsController.GetProgramsAsync(
         page,
         pageSize,
         sortBy,
@@ -93,7 +93,7 @@ CreateProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsResponse1>`](../../doc/models/programs-response-1.md)
+[`Task<Models.ProgramResponse>`](../../doc/models/program-response.md)
 
 ## Example Usage
 
@@ -119,7 +119,7 @@ Program body = new Program
 
 try
 {
-    ProgramsResponse1 result = await programsController.CreateProgramAsync(body);
+    ProgramResponse result = await programsController.CreateProgramAsync(body);
 }
 catch (ApiException e)
 {
@@ -132,7 +132,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400ErrorException`](../../doc/models/programs-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Get Program
@@ -152,7 +152,7 @@ GetProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsResponse1>`](../../doc/models/programs-response-1.md)
+[`Task<Models.ProgramResponse>`](../../doc/models/program-response.md)
 
 ## Example Usage
 
@@ -160,7 +160,7 @@ GetProgramAsync(
 int programId = 126;
 try
 {
-    ProgramsResponse1 result = await programsController.GetProgramAsync(programId);
+    ProgramResponse result = await programsController.GetProgramAsync(programId);
 }
 catch (ApiException e)
 {
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`Programs404ErrorException`](../../doc/models/programs-404-error-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Update Program
@@ -193,7 +193,7 @@ UpdateProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsResponse1>`](../../doc/models/programs-response-1.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -220,7 +220,7 @@ Program body = new Program
 
 try
 {
-    ProgramsResponse1 result = await programsController.UpdateProgramAsync(
+    JustGainsResponse result = await programsController.UpdateProgramAsync(
         programId,
         body
     );
@@ -236,8 +236,8 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400ErrorException`](../../doc/models/programs-400-error-exception.md) |
-| 404 | Program not found | [`Programs404ErrorException`](../../doc/models/programs-404-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Delete Program
@@ -255,7 +255,7 @@ DeleteProgramAsync(
 
 ## Response Type
 
-[`Task<Models.ProgramsResponse4>`](../../doc/models/programs-response-4.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -263,7 +263,7 @@ DeleteProgramAsync(
 int programId = 126;
 try
 {
-    ProgramsResponse4 result = await programsController.DeleteProgramAsync(programId);
+    JustGainsBasicResponse result = await programsController.DeleteProgramAsync(programId);
 }
 catch (ApiException e)
 {
@@ -276,5 +276,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`Programs404ErrorException`](../../doc/models/programs-404-error-exception.md) |
+| 404 | Program not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

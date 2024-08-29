@@ -12,7 +12,7 @@
 | `LocaleCode` | `string` | Optional | A unique code for the locale. |
 | `LocaleName` | `string` | Optional | The name of the locale. |
 | `Published` | `bool?` | Optional | Indicates whether the locale is published. |
-| `LocaleIcon` | [`LocaleIcon`](../../doc/models/locale-icon.md) | Optional | The icon associated with this locale. |
+| `LocaleIcon` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 
 ## Example (as JSON)
 

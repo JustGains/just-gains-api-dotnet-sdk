@@ -1,4 +1,4 @@
-// <copyright file="AuthenticationNewController.cs" company="APIMatic">
+// <copyright file="AuthenticationController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -24,14 +24,14 @@ using System.Net.Http;
 namespace JustGainsAPI.Standard.Controllers
 {
     /// <summary>
-    /// AuthenticationNewController.
+    /// AuthenticationController.
     /// </summary>
-    public class AuthenticationNewController : BaseController
+    public class AuthenticationController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthenticationNewController"/> class.
+        /// Initializes a new instance of the <see cref="AuthenticationController"/> class.
         /// </summary>
-        internal AuthenticationNewController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
+        internal AuthenticationController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
         /// Register a new user EndPoint.

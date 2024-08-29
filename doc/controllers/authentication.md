@@ -1,22 +1,24 @@
-# Authentication New
+# Authentication
+
+Updated endpoints for user authentication, including registration, login, logout, and token refresh.
 
 ```csharp
-AuthenticationNewController authenticationNewController = client.AuthenticationNewController;
+AuthenticationController authenticationController = client.AuthenticationController;
 ```
 
 ## Class Name
 
-`AuthenticationNewController`
+`AuthenticationController`
 
 ## Methods
 
-* [Register a New User](../../doc/controllers/authentication-new.md#register-a-new-user)
-* [Sign in a User](../../doc/controllers/authentication-new.md#sign-in-a-user)
-* [Resend Confirmation Email](../../doc/controllers/authentication-new.md#resend-confirmation-email)
-* [Initiate Forgot Password Process](../../doc/controllers/authentication-new.md#initiate-forgot-password-process)
-* [Reset User Password](../../doc/controllers/authentication-new.md#reset-user-password)
-* [Refresh Authentication Token](../../doc/controllers/authentication-new.md#refresh-authentication-token)
-* [Sign Out the Current User](../../doc/controllers/authentication-new.md#sign-out-the-current-user)
+* [Register a New User](../../doc/controllers/authentication.md#register-a-new-user)
+* [Sign in a User](../../doc/controllers/authentication.md#sign-in-a-user)
+* [Resend Confirmation Email](../../doc/controllers/authentication.md#resend-confirmation-email)
+* [Initiate Forgot Password Process](../../doc/controllers/authentication.md#initiate-forgot-password-process)
+* [Reset User Password](../../doc/controllers/authentication.md#reset-user-password)
+* [Refresh Authentication Token](../../doc/controllers/authentication.md#refresh-authentication-token)
+* [Sign Out the Current User](../../doc/controllers/authentication.md#sign-out-the-current-user)
 
 
 # Register a New User
@@ -53,7 +55,7 @@ UserRegisterRequest body = new UserRegisterRequest
 
 try
 {
-    UserInfoResponse result = await authenticationNewController.RegisterANewUserAsync(body);
+    UserInfoResponse result = await authenticationController.RegisterANewUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -99,7 +101,7 @@ UserLoginRequest body = new UserLoginRequest
 
 try
 {
-    AuthResponse result = await authenticationNewController.SignInAUserAsync(body);
+    AuthResponse result = await authenticationController.SignInAUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -144,7 +146,7 @@ ConfirmEmailRequest body = new ConfirmEmailRequest
 
 try
 {
-    JustGainsBasicResponse result = await authenticationNewController.ResendConfirmationEmailAsync(body);
+    JustGainsBasicResponse result = await authenticationController.ResendConfirmationEmailAsync(body);
 }
 catch (ApiException e)
 {
@@ -189,7 +191,7 @@ ForgotPasswordRequest body = new ForgotPasswordRequest
 
 try
 {
-    JustGainsResponse result = await authenticationNewController.InitiateForgotPasswordProcessAsync(body);
+    JustGainsResponse result = await authenticationController.InitiateForgotPasswordProcessAsync(body);
 }
 catch (ApiException e)
 {
@@ -234,7 +236,7 @@ ResetPasswordRequest body = new ResetPasswordRequest
 
 try
 {
-    JustGainsBasicResponse result = await authenticationNewController.ResetUserPasswordAsync(body);
+    JustGainsBasicResponse result = await authenticationController.ResetUserPasswordAsync(body);
 }
 catch (ApiException e)
 {
@@ -267,7 +269,7 @@ RefreshAuthenticationTokenAsync()
 ```csharp
 try
 {
-    AuthResponse result = await authenticationNewController.RefreshAuthenticationTokenAsync();
+    AuthResponse result = await authenticationController.RefreshAuthenticationTokenAsync();
 }
 catch (ApiException e)
 {
@@ -300,7 +302,7 @@ SignOutTheCurrentUserAsync()
 ```csharp
 try
 {
-    JustGainsBasicResponse result = await authenticationNewController.SignOutTheCurrentUserAsync();
+    JustGainsBasicResponse result = await authenticationController.SignOutTheCurrentUserAsync();
 }
 catch (ApiException e)
 {

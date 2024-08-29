@@ -93,10 +93,7 @@
   ],
   "pagination": {
     "currentPage": 166,
-    "totalPages": {
-      "key1": "val1",
-      "key2": "val2"
-    },
+    "totalPages": 154,
     "pageSize": 134,
     "totalCount": 250,
     "hasPrevious": false

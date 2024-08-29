@@ -39,7 +39,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="hasNext">hasNext.</param>
         public Pagination(
             int? currentPage = null,
-            object totalPages = null,
+            int? totalPages = null,
             int? pageSize = null,
             int? totalCount = null,
             bool? hasPrevious = null,
@@ -63,7 +63,7 @@ namespace JustGainsAPI.Standard.Models
         /// The total number of pages
         /// </summary>
         [JsonProperty("totalPages", NullValueHandling = NullValueHandling.Ignore)]
-        public object TotalPages { get; set; }
+        public int? TotalPages { get; set; }
 
         /// <summary>
         /// The number of items per page
@@ -126,7 +126,7 @@ namespace JustGainsAPI.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.CurrentPage = {(this.CurrentPage == null ? "null" : this.CurrentPage.ToString())}");
-            toStringOutput.Add($"TotalPages = {(this.TotalPages == null ? "null" : this.TotalPages.ToString())}");
+            toStringOutput.Add($"this.TotalPages = {(this.TotalPages == null ? "null" : this.TotalPages.ToString())}");
             toStringOutput.Add($"this.PageSize = {(this.PageSize == null ? "null" : this.PageSize.ToString())}");
             toStringOutput.Add($"this.TotalCount = {(this.TotalCount == null ? "null" : this.TotalCount.ToString())}");
             toStringOutput.Add($"this.HasPrevious = {(this.HasPrevious == null ? "null" : this.HasPrevious.ToString())}");

@@ -47,6 +47,7 @@ namespace JustGainsAPI.Standard
         private readonly GlobalConfiguration globalConfiguration;
         private const string userAgent = "APIMATIC 3.0";
         private readonly HttpCallBack httpCallBack;
+        private readonly Lazy<AuthenticationController> authentication;
         private readonly Lazy<UsersController> users;
         private readonly Lazy<UsersCreatorProfilesController> usersCreatorProfiles;
         private readonly Lazy<ExercisesController> exercises;
@@ -64,7 +65,6 @@ namespace JustGainsAPI.Standard
         private readonly Lazy<ProgramsProgramWeeksController> programsProgramWeeks;
         private readonly Lazy<ProgramsProgramAnalyticsController> programsProgramAnalytics;
         private readonly Lazy<StatusController> status;
-        private readonly Lazy<AuthenticationNewController> authenticationNew;
         private readonly Lazy<UserManagementController> userManagement;
         private readonly Lazy<MediaAssetsController> mediaAssets;
         private readonly Lazy<LocalesController> locales;
@@ -96,6 +96,8 @@ namespace JustGainsAPI.Standard
 
             BearerAuthCredentials = bearerAuthManager;
 
+            this.authentication = new Lazy<AuthenticationController>(
+                () => new AuthenticationController(globalConfiguration));
             this.users = new Lazy<UsersController>(
                 () => new UsersController(globalConfiguration));
             this.usersCreatorProfiles = new Lazy<UsersCreatorProfilesController>(
@@ -130,8 +132,6 @@ namespace JustGainsAPI.Standard
                 () => new ProgramsProgramAnalyticsController(globalConfiguration));
             this.status = new Lazy<StatusController>(
                 () => new StatusController(globalConfiguration));
-            this.authenticationNew = new Lazy<AuthenticationNewController>(
-                () => new AuthenticationNewController(globalConfiguration));
             this.userManagement = new Lazy<UserManagementController>(
                 () => new UserManagementController(globalConfiguration));
             this.mediaAssets = new Lazy<MediaAssetsController>(
@@ -147,6 +147,11 @@ namespace JustGainsAPI.Standard
             this.programsProgramReviews = new Lazy<ProgramsProgramReviewsController>(
                 () => new ProgramsProgramReviewsController(globalConfiguration));
         }
+
+        /// <summary>
+        /// Gets AuthenticationController controller.
+        /// </summary>
+        public AuthenticationController AuthenticationController => this.authentication.Value;
 
         /// <summary>
         /// Gets UsersController controller.
@@ -232,11 +237,6 @@ namespace JustGainsAPI.Standard
         /// Gets StatusController controller.
         /// </summary>
         public StatusController StatusController => this.status.Value;
-
-        /// <summary>
-        /// Gets AuthenticationNewController controller.
-        /// </summary>
-        public AuthenticationNewController AuthenticationNewController => this.authenticationNew.Value;
 
         /// <summary>
         /// Gets UserManagementController controller.

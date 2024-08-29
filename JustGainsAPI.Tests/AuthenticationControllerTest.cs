@@ -1,4 +1,4 @@
-// <copyright file="AuthenticationNewControllerTest.cs" company="APIMatic">
+// <copyright file="AuthenticationControllerTest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -19,15 +19,15 @@ using NUnit.Framework;
 namespace JustGainsAPI.Tests
 {
     /// <summary>
-    /// AuthenticationNewControllerTest.
+    /// AuthenticationControllerTest.
     /// </summary>
     [TestFixture]
-    public class AuthenticationNewControllerTest : ControllerTestBase
+    public class AuthenticationControllerTest : ControllerTestBase
     {
         /// <summary>
         /// Controller instance (for all tests).
         /// </summary>
-        private AuthenticationNewController controller;
+        private AuthenticationController controller;
 
         /// <summary>
         /// Setup test class.
@@ -35,7 +35,7 @@ namespace JustGainsAPI.Tests
         [OneTimeSetUp]
         public void SetUpDerived()
         {
-            this.controller = this.Client.AuthenticationNewController;
+            this.controller = this.Client.AuthenticationController;
         }
 
         /// <summary>

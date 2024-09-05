@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
         public List<Models.WorkoutTableItem> Data { get; set; }

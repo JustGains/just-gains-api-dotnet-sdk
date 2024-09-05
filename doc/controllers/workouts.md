@@ -24,7 +24,7 @@ WorkoutsController workoutsController = client.WorkoutsController;
 GetAPaginatedListOfWorkoutsAsync(
     int? page = 1,
     int? pageSize = 20,
-    Models.SortBy1Enum? sortBy = Models.SortBy1Enum.CreatedAt,
+    string sortBy = null,
     Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc)
 ```
 
@@ -34,7 +34,7 @@ GetAPaginatedListOfWorkoutsAsync(
 |  --- | --- | --- | --- |
 | `page` | `int?` | Query, Optional | The page number to retrieve |
 | `pageSize` | `int?` | Query, Optional | The number of items to retrieve per page |
-| `sortBy` | [`SortBy1Enum?`](../../doc/models/sort-by-1-enum.md) | Query, Optional | The field to sort the results by |
+| `sortBy` | `string` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum?`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in |
 
 ## Response Type
@@ -46,14 +46,13 @@ GetAPaginatedListOfWorkoutsAsync(
 ```csharp
 int? page = 1;
 int? pageSize = 20;
-SortBy1Enum? sortBy = SortBy1Enum.CreatedAt;
 SortOrderEnum? sortOrder = SortOrderEnum.Desc;
 try
 {
     WorkoutTableListResponse result = await workoutsController.GetAPaginatedListOfWorkoutsAsync(
         page,
         pageSize,
-        sortBy,
+        null,
         sortOrder
     );
 }

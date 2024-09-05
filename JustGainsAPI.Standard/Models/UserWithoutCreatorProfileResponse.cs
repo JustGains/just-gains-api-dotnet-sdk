@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public UserWithoutCreatorProfileResponse(
             string status,
             string message,
-            Models.UserWithoutCreatorProfile1 data)
+            Models.UserWithoutCreatorProfile data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Represents a user in the system without creator profile.
         /// </summary>
         [JsonProperty("data")]
-        public Models.UserWithoutCreatorProfile1 Data { get; set; }
+        public Models.UserWithoutCreatorProfile Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

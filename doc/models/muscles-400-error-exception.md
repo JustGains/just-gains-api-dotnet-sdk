@@ -18,11 +18,11 @@
 
 ```json
 {
-  "status": "status6",
-  "message": "message4",
+  "status": "Error",
+  "message": "Operation Failed",
   "errors": [
-    "errors9",
-    "errors0"
+    "Invalid input data",
+    "User not found"
   ],
   "error": {
     "key1": "val1",

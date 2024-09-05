@@ -106,7 +106,7 @@ catch (ApiException e)
 ```csharp
 RemoveARoleFromAUserAsync(
     Guid userId,
-    string roleId)
+    string roleName)
 ```
 
 ## Parameters
@@ -114,7 +114,7 @@ RemoveARoleFromAUserAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `Guid` | Template, Required | - |
-| `roleId` | `string` | Template, Required | - |
+| `roleName` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -124,12 +124,12 @@ RemoveARoleFromAUserAsync(
 
 ```csharp
 Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
-string roleId = "roleId6";
+string roleName = "roleName6";
 try
 {
     JustGainsResponse result = await usersRoleManagementController.RemoveARoleFromAUserAsync(
         userId,
-        roleId
+        roleName
     );
 }
 catch (ApiException e)

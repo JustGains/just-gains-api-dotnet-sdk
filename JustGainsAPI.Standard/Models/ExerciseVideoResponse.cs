@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public ExerciseVideoResponse(
             string status,
             string message,
-            Models.ExerciseVideo1 data)
+            Models.ExerciseVideo data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public Models.ExerciseVideo1 Data { get; set; }
+        public Models.ExerciseVideo Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

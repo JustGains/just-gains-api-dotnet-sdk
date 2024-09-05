@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public WeekResponse(
             string status,
             string message,
-            Models.Week1 data)
+            Models.Week data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Represents a week within a training program.
         /// </summary>
         [JsonProperty("data")]
-        public Models.Week1 Data { get; set; }
+        public Models.Week Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

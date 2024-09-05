@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public ProgramAnalyticsResponse(
             string status,
             string message,
-            Models.ProgramAnalytics1 data)
+            Models.ProgramAnalytics data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Contains analytics data for a specific program.
         /// </summary>
         [JsonProperty("data")]
-        public Models.ProgramAnalytics1 Data { get; set; }
+        public Models.ProgramAnalytics Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

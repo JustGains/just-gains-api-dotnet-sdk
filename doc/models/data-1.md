@@ -1,8 +1,6 @@
 
 # Data 1
 
-The data returned by the operation.
-
 ## Structure
 
 `Data1`

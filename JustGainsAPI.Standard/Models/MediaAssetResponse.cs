@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public MediaAssetResponse(
             string status,
             string message,
-            Models.MediaAsset1 data)
+            Models.MediaAsset data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public Models.MediaAsset1 Data { get; set; }
+        public Models.MediaAsset Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

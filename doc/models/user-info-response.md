@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`UserInfo1`](../../doc/models/user-info-1.md) | Required | The data returned by the operation. |
+| `Data` | [`UserInfo`](../../doc/models/user-info.md) | Required | User information object |
 
 ## Example (as JSON)
 

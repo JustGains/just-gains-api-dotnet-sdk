@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`Workout1`](../../doc/models/workout-1.md) | Required | The data returned by the operation. |
+| `Data` | [`Workout`](../../doc/models/workout.md) | Required | Represents a workout in the system. |
 
 ## Example (as JSON)
 

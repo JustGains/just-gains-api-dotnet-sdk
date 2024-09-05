@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`MediaAsset1`](../../doc/models/media-asset-1.md) | Required | The data returned by the operation. |
+| `Data` | [`MediaAsset`](../../doc/models/media-asset.md) | Required | - |
 
 ## Example (as JSON)
 

@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`List<MuscleTranslation>`](../../doc/models/muscle-translation.md) | Required | The data returned by the operation. |
+| `Data` | [`List<MuscleTranslation>`](../../doc/models/muscle-translation.md) | Required | - |
 
 ## Example (as JSON)
 

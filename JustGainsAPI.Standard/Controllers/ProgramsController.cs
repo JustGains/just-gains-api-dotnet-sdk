@@ -38,7 +38,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="page">Optional parameter: Example: 1.</param>
         /// <param name="pageSize">Optional parameter: Example: 20.</param>
-        /// <param name="sortBy">Optional parameter: Example: createdAt.</param>
+        /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: Example: desc.</param>
         /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="userId">Optional parameter: Example: .</param>
@@ -46,7 +46,7 @@ namespace JustGainsAPI.Standard.Controllers
         public Models.ProgramListResponse GetPrograms(
                 int? page = 1,
                 int? pageSize = 20,
-                Models.SortByEnum? sortBy = Models.SortByEnum.CreatedAt,
+                string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
                 string publishStatusCode = null,
                 Guid? userId = null)
@@ -57,7 +57,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="page">Optional parameter: Example: 1.</param>
         /// <param name="pageSize">Optional parameter: Example: 20.</param>
-        /// <param name="sortBy">Optional parameter: Example: createdAt.</param>
+        /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: Example: desc.</param>
         /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="userId">Optional parameter: Example: .</param>
@@ -66,7 +66,7 @@ namespace JustGainsAPI.Standard.Controllers
         public async Task<Models.ProgramListResponse> GetProgramsAsync(
                 int? page = 1,
                 int? pageSize = 20,
-                Models.SortByEnum? sortBy = Models.SortByEnum.CreatedAt,
+                string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
                 string publishStatusCode = null,
                 Guid? userId = null,
@@ -77,12 +77,12 @@ namespace JustGainsAPI.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page ?? 1))
                       .Query(_query => _query.Setup("pageSize", pageSize ?? 20))
-                      .Query(_query => _query.Setup("sortBy", (sortBy.HasValue) ? ApiHelper.JsonSerialize(sortBy.Value).Trim('\"') : "createdAt"))
+                      .Query(_query => _query.Setup("sortBy", sortBy))
                       .Query(_query => _query.Setup("sortOrder", (sortOrder.HasValue) ? ApiHelper.JsonSerialize(sortOrder.Value).Trim('\"') : "desc"))
                       .Query(_query => _query.Setup("publishStatusCode", publishStatusCode))
                       .Query(_query => _query.Setup("userId", userId))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new Programs400ErrorException(_reason, _context))))
+                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

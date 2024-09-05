@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public ProgramReviewResponse(
             string status,
             string message,
-            Models.ProgramReview1 data)
+            Models.ProgramReview data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Represents a user's review of a program.
         /// </summary>
         [JsonProperty("data")]
-        public Models.ProgramReview1 Data { get; set; }
+        public Models.ProgramReview Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`ProgramAnalytics1`](../../doc/models/program-analytics-1.md) | Required | The data returned by the operation. |
+| `Data` | [`ProgramAnalytics`](../../doc/models/program-analytics.md) | Required | Contains analytics data for a specific program. |
 
 ## Example (as JSON)
 

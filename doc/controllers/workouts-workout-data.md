@@ -139,9 +139,13 @@ WorkoutData body = new WorkoutData
     {
         new ExerciseMetric1
         {
+            MetricCode = "WEIGHT",
+            MetricUnit = "KG",
         },
         new ExerciseMetric1
         {
+            MetricCode = "REPS",
+            MetricUnit = "COUNT",
         },
     },
     ExerciseData = new List<List<double>>
@@ -233,9 +237,13 @@ WorkoutData body = new WorkoutData
     {
         new ExerciseMetric1
         {
+            MetricCode = "WEIGHT",
+            MetricUnit = "KG",
         },
         new ExerciseMetric1
         {
+            MetricCode = "REPS",
+            MetricUnit = "COUNT",
         },
     },
     ExerciseData = new List<List<double>>

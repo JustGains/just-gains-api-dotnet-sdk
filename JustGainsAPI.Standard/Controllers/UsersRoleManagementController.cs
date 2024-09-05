@@ -92,30 +92,30 @@ namespace JustGainsAPI.Standard.Controllers
         /// Remove a role from a user EndPoint.
         /// </summary>
         /// <param name="userId">Required parameter: Example: .</param>
-        /// <param name="roleId">Required parameter: Example: .</param>
+        /// <param name="roleName">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse RemoveARoleFromAUser(
                 Guid userId,
-                string roleId)
-            => CoreHelper.RunTask(RemoveARoleFromAUserAsync(userId, roleId));
+                string roleName)
+            => CoreHelper.RunTask(RemoveARoleFromAUserAsync(userId, roleName));
 
         /// <summary>
         /// Remove a role from a user EndPoint.
         /// </summary>
         /// <param name="userId">Required parameter: Example: .</param>
-        /// <param name="roleId">Required parameter: Example: .</param>
+        /// <param name="roleName">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> RemoveARoleFromAUserAsync(
                 Guid userId,
-                string roleId,
+                string roleName,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/users/{userId}/roles/{roleId}")
+                  .Setup(HttpMethod.Delete, "/users/{userId}/roles/{roleName}")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("userId", userId))
-                      .Template(_template => _template.Setup("roleId", roleId))))
+                      .Template(_template => _template.Setup("roleName", roleName))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

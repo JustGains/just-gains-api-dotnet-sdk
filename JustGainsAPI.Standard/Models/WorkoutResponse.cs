@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public WorkoutResponse(
             string status,
             string message,
-            Models.Workout1 data)
+            Models.Workout data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Represents a workout in the system.
         /// </summary>
         [JsonProperty("data")]
-        public Models.Workout1 Data { get; set; }
+        public Models.Workout Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

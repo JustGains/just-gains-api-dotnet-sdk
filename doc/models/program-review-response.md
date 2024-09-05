@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`ProgramReview1`](../../doc/models/program-review-1.md) | Required | The data returned by the operation. |
+| `Data` | [`ProgramReview`](../../doc/models/program-review.md) | Required | Represents a user's review of a program. |
 
 ## Example (as JSON)
 

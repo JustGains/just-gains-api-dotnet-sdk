@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public RolesResponse1(
             string status,
             string message,
-            Models.Role1 data)
+            Models.Role data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// The data returned by the operation.
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public Models.Role1 Data { get; set; }
+        public Models.Role Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

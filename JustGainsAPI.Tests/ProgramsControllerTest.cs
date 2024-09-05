@@ -48,7 +48,7 @@ namespace JustGainsAPI.Tests
             // Parameters for the API call
             int? page = 1;
             int? pageSize = 20;
-            Standard.Models.SortByEnum sortBy = ApiHelper.JsonDeserialize<Standard.Models.SortByEnum>("\"createdAt\"");
+            string sortBy = null;
             Standard.Models.SortOrderEnum sortOrder = ApiHelper.JsonDeserialize<Standard.Models.SortOrderEnum>("\"desc\"");
             string publishStatusCode = null;
             Guid? userId = null;

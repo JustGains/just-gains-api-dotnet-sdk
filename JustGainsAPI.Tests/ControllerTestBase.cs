@@ -44,7 +44,6 @@ namespace JustGainsAPI.Tests
             JustGainsAPIClient config = JustGainsAPIClient.CreateFromEnvironment();
             this.Client = config.ToBuilder()
                 .HttpCallback(HttpCallBack)
-                .Environment(JustGainsAPI.Standard.Environment.Testing)
                 .Build();
         }
     }

@@ -27,7 +27,7 @@ ProgramsController programsController = client.ProgramsController;
 GetProgramsAsync(
     int? page = 1,
     int? pageSize = 20,
-    Models.SortByEnum? sortBy = Models.SortByEnum.CreatedAt,
+    string sortBy = null,
     Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
     string publishStatusCode = null,
     Guid? userId = null)
@@ -39,7 +39,7 @@ GetProgramsAsync(
 |  --- | --- | --- | --- |
 | `page` | `int?` | Query, Optional | - |
 | `pageSize` | `int?` | Query, Optional | - |
-| `sortBy` | [`SortByEnum?`](../../doc/models/sort-by-enum.md) | Query, Optional | - |
+| `sortBy` | `string` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum?`](../../doc/models/sort-order-enum.md) | Query, Optional | - |
 | `publishStatusCode` | `string` | Query, Optional | - |
 | `userId` | `Guid?` | Query, Optional | - |
@@ -53,14 +53,13 @@ GetProgramsAsync(
 ```csharp
 int? page = 1;
 int? pageSize = 20;
-SortByEnum? sortBy = SortByEnum.CreatedAt;
 SortOrderEnum? sortOrder = SortOrderEnum.Desc;
 try
 {
     ProgramListResponse result = await programsController.GetProgramsAsync(
         page,
         pageSize,
-        sortBy,
+        null,
         sortOrder
     );
 }
@@ -75,7 +74,7 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400ErrorException`](../../doc/models/programs-400-error-exception.md) |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
 # Create Program

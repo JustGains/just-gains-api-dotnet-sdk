@@ -38,13 +38,13 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="page">Optional parameter: The page number to retrieve.</param>
         /// <param name="pageSize">Optional parameter: The number of items to retrieve per page.</param>
-        /// <param name="sortBy">Optional parameter: The field to sort the results by.</param>
+        /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: The order to sort the results in.</param>
         /// <returns>Returns the Models.WorkoutTableListResponse response from the API call.</returns>
         public Models.WorkoutTableListResponse GetAPaginatedListOfWorkouts(
                 int? page = 1,
                 int? pageSize = 20,
-                Models.SortBy1Enum? sortBy = Models.SortBy1Enum.CreatedAt,
+                string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc)
             => CoreHelper.RunTask(GetAPaginatedListOfWorkoutsAsync(page, pageSize, sortBy, sortOrder));
 
@@ -53,14 +53,14 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="page">Optional parameter: The page number to retrieve.</param>
         /// <param name="pageSize">Optional parameter: The number of items to retrieve per page.</param>
-        /// <param name="sortBy">Optional parameter: The field to sort the results by.</param>
+        /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: The order to sort the results in.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.WorkoutTableListResponse response from the API call.</returns>
         public async Task<Models.WorkoutTableListResponse> GetAPaginatedListOfWorkoutsAsync(
                 int? page = 1,
                 int? pageSize = 20,
-                Models.SortBy1Enum? sortBy = Models.SortBy1Enum.CreatedAt,
+                string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutTableListResponse>()
@@ -70,7 +70,7 @@ namespace JustGainsAPI.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page ?? 1))
                       .Query(_query => _query.Setup("pageSize", pageSize ?? 20))
-                      .Query(_query => _query.Setup("sortBy", (sortBy.HasValue) ? ApiHelper.JsonSerialize(sortBy.Value).Trim('\"') : "createdAt"))
+                      .Query(_query => _query.Setup("sortBy", sortBy))
                       .Query(_query => _query.Setup("sortOrder", (sortOrder.HasValue) ? ApiHelper.JsonSerialize(sortOrder.Value).Trim('\"') : "desc"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid pagination parameters", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

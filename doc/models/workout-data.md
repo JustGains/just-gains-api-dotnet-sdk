@@ -27,16 +27,12 @@ Represents a single exercise within a workout, including its data, order, and gr
   "exerciseNotes": "Keep your core tight throughout the movement",
   "exerciseMetrics": [
     {
-      "code": "WEIGHT",
-      "unit": "KG",
-      "metricCode": "metricCode6",
-      "metricUnit": "metricUnit0"
+      "metricCode": "WEIGHT",
+      "metricUnit": "KG"
     },
     {
-      "code": "REPS",
-      "unit": "COUNT",
-      "metricCode": "metricCode6",
-      "metricUnit": "metricUnit0"
+      "metricCode": "REPS",
+      "metricUnit": "COUNT"
     }
   ],
   "exerciseData": [

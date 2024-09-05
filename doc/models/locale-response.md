@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`Locale1`](../../doc/models/locale-1.md) | Required | The data returned by the operation. |
+| `Data` | [`Locale`](../../doc/models/locale.md) | Required | - |
 
 ## Example (as JSON)
 

@@ -36,6 +36,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getExercises EndPoint.
         /// </summary>
+        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
         /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
@@ -47,6 +48,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="pageSize">Optional parameter: Page size for pagination.</param>
         /// <returns>Returns the Models.ExerciseListResponse response from the API call.</returns>
         public Models.ExerciseListResponse GetExercises(
+                string nameSearch = null,
                 List<string> exerciseCategoryCodes = null,
                 List<string> exerciseTypeCodes = null,
                 List<string> exerciseEquipmentCodes = null,
@@ -56,11 +58,12 @@ namespace JustGainsAPI.Standard.Controllers
                 string localeCode = "en-US",
                 int? pageIndex = 1,
                 int? pageSize = 100)
-            => CoreHelper.RunTask(GetExercisesAsync(exerciseCategoryCodes, exerciseTypeCodes, exerciseEquipmentCodes, exerciseMuscleCodes, exerciseMetricCodes, publishedStatusCodes, localeCode, pageIndex, pageSize));
+            => CoreHelper.RunTask(GetExercisesAsync(nameSearch, exerciseCategoryCodes, exerciseTypeCodes, exerciseEquipmentCodes, exerciseMuscleCodes, exerciseMetricCodes, publishedStatusCodes, localeCode, pageIndex, pageSize));
 
         /// <summary>
         /// getExercises EndPoint.
         /// </summary>
+        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
         /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
@@ -73,6 +76,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseListResponse response from the API call.</returns>
         public async Task<Models.ExerciseListResponse> GetExercisesAsync(
+                string nameSearch = null,
                 List<string> exerciseCategoryCodes = null,
                 List<string> exerciseTypeCodes = null,
                 List<string> exerciseEquipmentCodes = null,
@@ -87,6 +91,7 @@ namespace JustGainsAPI.Standard.Controllers
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/exercises")
                   .Parameters(_parameters => _parameters
+                      .Query(_query => _query.Setup("nameSearch", nameSearch))
                       .Query(_query => _query.Setup("exerciseCategoryCodes", exerciseCategoryCodes))
                       .Query(_query => _query.Setup("exerciseTypeCodes", exerciseTypeCodes))
                       .Query(_query => _query.Setup("exerciseEquipmentCodes", exerciseEquipmentCodes))

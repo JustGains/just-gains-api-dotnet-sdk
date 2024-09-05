@@ -14,16 +14,16 @@ namespace JustGainsAPI.Standard
     public enum Environment
     {
         /// <summary>
-        /// Production.
-        /// </summary>
-        [EnumMember(Value = "production")]
-        Production,
-
-        /// <summary>
         /// Testing.
         /// </summary>
         [EnumMember(Value = "testing")]
         Testing,
+
+        /// <summary>
+        /// Production.
+        /// </summary>
+        [EnumMember(Value = "production")]
+        Production,
 
         /// <summary>
         /// Mock.

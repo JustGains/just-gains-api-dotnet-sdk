@@ -39,6 +39,37 @@ namespace JustGainsAPI.Tests
         }
 
         /// <summary>
+        /// Get current user information.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [Test]
+        public async Task TestTestGetCurrentUserInformation()
+        {
+            // Perform API call
+            Standard.Models.UserInfoResponse result = null;
+            try
+            {
+                result = await this.controller.GetCurrentUserInformationAsync();
+            }
+            catch (ApiException)
+            {
+            }
+
+            // Test response code
+            Assert.AreEqual(200, HttpCallBack.Response.StatusCode, "Status should be 200");
+
+            // Test headers
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Content-Type", "application/json");
+
+            Assert.IsTrue(
+                    TestHelper.AreHeadersProperSubsetOf (
+                    headers,
+                    HttpCallBack.Response.Headers),
+                    "Headers should match");
+        }
+
+        /// <summary>
         /// Refresh authentication token.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>

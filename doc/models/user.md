@@ -19,7 +19,7 @@ Represents a user in the system.
 | `LastName` | `string` | Optional | The user's last name. |
 | `FullName` | `string` | Optional | The user's full name, typically a combination of first and last name. |
 | `OAuthProvider` | `string` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
-| `Role` | `string` | Optional | The user's role in the system, determining their permissions. |
+| `Roles` | `List<string>` | Optional | The user's role in the system, determining their permissions. |
 | `RefreshToken` | `string` | Optional | refreshToken value to get next accesstoken |
 | `UserCreatorProfile` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
 
@@ -35,7 +35,9 @@ Represents a user in the system.
   "lastName": "Doe",
   "fullName": "Jane Doe",
   "oAuthProvider": "Google",
-  "role": "user"
+  "roles": [
+    "user"
+  ]
 }
 ```
 

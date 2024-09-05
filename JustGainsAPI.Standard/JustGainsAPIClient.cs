@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using APIMatic.Core;
 using APIMatic.Core.Authentication;
-using APIMatic.Core.Types;
 using JustGainsAPI.Standard.Authentication;
 using JustGainsAPI.Standard.Controllers;
 using JustGainsAPI.Standard.Http.Client;
@@ -25,15 +24,15 @@ namespace JustGainsAPI.Standard
             new Dictionary<Environment, Dictionary<Enum, string>>
         {
             {
-                Environment.Production, new Dictionary<Enum, string>
-                {
-                    { Server.Default, "https://api.justgains.com/api" },
-                }
-            },
-            {
                 Environment.Testing, new Dictionary<Enum, string>
                 {
                     { Server.Default, "https://testing.api.justgains.com/api" },
+                }
+            },
+            {
+                Environment.Production, new Dictionary<Enum, string>
+                {
+                    { Server.Default, "https://api.justgains.com/api" },
                 }
             },
             {
@@ -46,7 +45,7 @@ namespace JustGainsAPI.Standard
 
         private readonly GlobalConfiguration globalConfiguration;
         private const string userAgent = "APIMATIC 3.0";
-        private readonly HttpCallBack httpCallBack;
+        private readonly HttpCallback httpCallback;
         private readonly Lazy<AuthenticationController> authentication;
         private readonly Lazy<UsersController> users;
         private readonly Lazy<UsersCreatorProfilesController> usersCreatorProfiles;
@@ -65,22 +64,23 @@ namespace JustGainsAPI.Standard
         private readonly Lazy<ProgramsProgramWeeksController> programsProgramWeeks;
         private readonly Lazy<ProgramsProgramAnalyticsController> programsProgramAnalytics;
         private readonly Lazy<StatusController> status;
-        private readonly Lazy<UserManagementController> userManagement;
+        private readonly Lazy<UsersRoleManagementController> usersRoleManagement;
         private readonly Lazy<MediaAssetsController> mediaAssets;
         private readonly Lazy<LocalesController> locales;
         private readonly Lazy<PublishedStatusController> publishedStatus;
         private readonly Lazy<ExerciseMetricsController> exerciseMetrics;
         private readonly Lazy<ProgramsProgramViewsController> programsProgramViews;
         private readonly Lazy<ProgramsProgramReviewsController> programsProgramReviews;
+        private readonly Lazy<ExercisesExerciseThumbnailsController> exercisesExerciseThumbnails;
 
         private JustGainsAPIClient(
             Environment environment,
             BearerAuthModel bearerAuthModel,
-            HttpCallBack httpCallBack,
+            HttpCallback httpCallback,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.Environment = environment;
-            this.httpCallBack = httpCallBack;
+            this.httpCallback = httpCallback;
             this.HttpClientConfiguration = httpClientConfiguration;
             BearerAuthModel = bearerAuthModel;
             var bearerAuthManager = new BearerAuthManager(bearerAuthModel);
@@ -88,7 +88,7 @@ namespace JustGainsAPI.Standard
                 .AuthManagers(new Dictionary<string, AuthManager> {
                     {"bearerAuth", bearerAuthManager},
                 })
-                .ApiCallback(httpCallBack)
+                .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
                 .UserAgent(userAgent)
@@ -132,8 +132,8 @@ namespace JustGainsAPI.Standard
                 () => new ProgramsProgramAnalyticsController(globalConfiguration));
             this.status = new Lazy<StatusController>(
                 () => new StatusController(globalConfiguration));
-            this.userManagement = new Lazy<UserManagementController>(
-                () => new UserManagementController(globalConfiguration));
+            this.usersRoleManagement = new Lazy<UsersRoleManagementController>(
+                () => new UsersRoleManagementController(globalConfiguration));
             this.mediaAssets = new Lazy<MediaAssetsController>(
                 () => new MediaAssetsController(globalConfiguration));
             this.locales = new Lazy<LocalesController>(
@@ -146,6 +146,8 @@ namespace JustGainsAPI.Standard
                 () => new ProgramsProgramViewsController(globalConfiguration));
             this.programsProgramReviews = new Lazy<ProgramsProgramReviewsController>(
                 () => new ProgramsProgramReviewsController(globalConfiguration));
+            this.exercisesExerciseThumbnails = new Lazy<ExercisesExerciseThumbnailsController>(
+                () => new ExercisesExerciseThumbnailsController(globalConfiguration));
         }
 
         /// <summary>
@@ -239,9 +241,9 @@ namespace JustGainsAPI.Standard
         public StatusController StatusController => this.status.Value;
 
         /// <summary>
-        /// Gets UserManagementController controller.
+        /// Gets UsersRoleManagementController controller.
         /// </summary>
-        public UserManagementController UserManagementController => this.userManagement.Value;
+        public UsersRoleManagementController UsersRoleManagementController => this.usersRoleManagement.Value;
 
         /// <summary>
         /// Gets MediaAssetsController controller.
@@ -274,6 +276,11 @@ namespace JustGainsAPI.Standard
         public ProgramsProgramReviewsController ProgramsProgramReviewsController => this.programsProgramReviews.Value;
 
         /// <summary>
+        /// Gets ExercisesExerciseThumbnailsController controller.
+        /// </summary>
+        public ExercisesExerciseThumbnailsController ExercisesExerciseThumbnailsController => this.exercisesExerciseThumbnails.Value;
+
+        /// <summary>
         /// Gets the configuration of the Http Client associated with this client.
         /// </summary>
         public IHttpClientConfiguration HttpClientConfiguration { get; }
@@ -287,7 +294,7 @@ namespace JustGainsAPI.Standard
         /// <summary>
         /// Gets http callback.
         /// </summary>
-        internal HttpCallBack HttpCallBack => this.httpCallBack;
+        public HttpCallback HttpCallback => this.httpCallback;
 
         /// <summary>
         /// Gets the credentials to use with BearerAuth.
@@ -323,7 +330,7 @@ namespace JustGainsAPI.Standard
         {
             Builder builder = new Builder()
                 .Environment(this.Environment)
-                .HttpCallBack(httpCallBack)
+                .HttpCallback(httpCallback)
                 .HttpClientConfig(config => config.Build());
 
             if (BearerAuthModel != null)
@@ -376,7 +383,7 @@ namespace JustGainsAPI.Standard
             private Environment environment = JustGainsAPI.Standard.Environment.Testing;
             private BearerAuthModel bearerAuthModel = new BearerAuthModel();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
-            private HttpCallBack httpCallBack;
+            private HttpCallback httpCallback;
 
             /// <summary>
             /// Sets credentials for BearerAuth.
@@ -436,16 +443,15 @@ namespace JustGainsAPI.Standard
             }
 
 
-           
 
             /// <summary>
-            /// Sets the HttpCallBack for the Builder.
+            /// Sets the HttpCallback for the Builder.
             /// </summary>
-            /// <param name="httpCallBack"> http callback. </param>
+            /// <param name="httpCallback"> http callback. </param>
             /// <returns>Builder.</returns>
-            internal Builder HttpCallBack(HttpCallBack httpCallBack)
+            public Builder HttpCallback(HttpCallback httpCallback)
             {
-                this.httpCallBack = httpCallBack;
+                this.httpCallback = httpCallback;
                 return this;
             }
 
@@ -462,7 +468,7 @@ namespace JustGainsAPI.Standard
                 return new JustGainsAPIClient(
                     environment,
                     bearerAuthModel,
-                    httpCallBack,
+                    httpCallback,
                     httpClientConfig.Build());
             }
         }

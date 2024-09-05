@@ -26,7 +26,9 @@ Request object for updating user information
     "lastName": "Doe",
     "fullName": "Jane Doe",
     "oAuthProvider": "Google",
-    "role": "user"
+    "roles": [
+      "user"
+    ]
   }
 }
 ```

@@ -125,7 +125,10 @@ UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
     LastName = "Doe",
     FullName = "Jane Doe",
     OAuthProvider = "Google",
-    Role = "user",
+    Roles = new List<string>
+    {
+        "user",
+    },
 };
 
 try

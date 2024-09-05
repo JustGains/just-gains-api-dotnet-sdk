@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using APIMatic.Core.Types;
 using JustGainsAPI.Standard;
 using JustGainsAPI.Standard.Authentication;
 using JustGainsAPI.Standard.Http.Client;
@@ -29,7 +28,7 @@ namespace JustGainsAPI.Tests
         /// <summary>
         /// Gets HttpCallBackHandler.
         /// </summary>
-        internal HttpCallBack HttpCallBack { get; private set; } = new HttpCallBack();
+        internal HttpCallback HttpCallBack { get; private set; } = new HttpCallback();
 
         /// <summary>
         /// Gets JustGainsAPIClient Client.
@@ -44,7 +43,8 @@ namespace JustGainsAPI.Tests
         {
             JustGainsAPIClient config = JustGainsAPIClient.CreateFromEnvironment();
             this.Client = config.ToBuilder()
-                .HttpCallBack(HttpCallBack)
+                .HttpCallback(HttpCallBack)
+                .Environment(JustGainsAPI.Standard.Environment.Testing)
                 .Build();
         }
     }

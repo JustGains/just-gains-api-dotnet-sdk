@@ -34,21 +34,21 @@ namespace JustGainsAPI.Standard.Controllers
         internal ExerciseDraftsController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Create / Update an existing exercise with the ExerciseDraft format EndPoint.
+        /// Create/Update an exercise with ExerciseDraftDTO EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ExerciseResponse response from the API call.</returns>
-        public Models.ExerciseResponse CreateUpdateAnExistingExerciseWithTheExerciseDraftFormat(
+        public Models.ExerciseResponse CreateUpdateAnExerciseWithExerciseDraftDTO(
                 Models.ExerciseDraftDTO body)
-            => CoreHelper.RunTask(CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(body));
+            => CoreHelper.RunTask(CreateUpdateAnExerciseWithExerciseDraftDTOAsync(body));
 
         /// <summary>
-        /// Create / Update an existing exercise with the ExerciseDraft format EndPoint.
+        /// Create/Update an exercise with ExerciseDraftDTO EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseResponse response from the API call.</returns>
-        public async Task<Models.ExerciseResponse> CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(
+        public async Task<Models.ExerciseResponse> CreateUpdateAnExerciseWithExerciseDraftDTOAsync(
                 Models.ExerciseDraftDTO body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseResponse>()

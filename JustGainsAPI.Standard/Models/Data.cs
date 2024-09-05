@@ -39,7 +39,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="lastName">lastName.</param>
         /// <param name="fullName">fullName.</param>
         /// <param name="oAuthProvider">oAuthProvider.</param>
-        /// <param name="role">role.</param>
+        /// <param name="roles">roles.</param>
         /// <param name="refreshToken">refreshToken.</param>
         /// <param name="userCreatorProfile">userCreatorProfile.</param>
         public Data(
@@ -51,7 +51,7 @@ namespace JustGainsAPI.Standard.Models
             string lastName = null,
             string fullName = null,
             string oAuthProvider = null,
-            string role = null,
+            List<string> roles = null,
             string refreshToken = null,
             Models.CreatorProfile userCreatorProfile = null)
         {
@@ -63,7 +63,7 @@ namespace JustGainsAPI.Standard.Models
             this.LastName = lastName;
             this.FullName = fullName;
             this.OAuthProvider = oAuthProvider;
-            this.Role = role;
+            this.Roles = roles;
             this.RefreshToken = refreshToken;
             this.UserCreatorProfile = userCreatorProfile;
         }
@@ -119,8 +119,8 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// The user's role in the system, determining their permissions.
         /// </summary>
-        [JsonProperty("role", NullValueHandling = NullValueHandling.Ignore)]
-        public string Role { get; set; }
+        [JsonProperty("roles", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Roles { get; set; }
 
         /// <summary>
         /// refreshToken value to get next accesstoken
@@ -164,7 +164,7 @@ namespace JustGainsAPI.Standard.Models
                 ((this.LastName == null && other.LastName == null) || (this.LastName?.Equals(other.LastName) == true)) &&
                 ((this.FullName == null && other.FullName == null) || (this.FullName?.Equals(other.FullName) == true)) &&
                 ((this.OAuthProvider == null && other.OAuthProvider == null) || (this.OAuthProvider?.Equals(other.OAuthProvider) == true)) &&
-                ((this.Role == null && other.Role == null) || (this.Role?.Equals(other.Role) == true)) &&
+                ((this.Roles == null && other.Roles == null) || (this.Roles?.Equals(other.Roles) == true)) &&
                 ((this.RefreshToken == null && other.RefreshToken == null) || (this.RefreshToken?.Equals(other.RefreshToken) == true)) &&
                 ((this.UserCreatorProfile == null && other.UserCreatorProfile == null) || (this.UserCreatorProfile?.Equals(other.UserCreatorProfile) == true));
         }
@@ -183,7 +183,7 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.LastName = {(this.LastName == null ? "null" : this.LastName)}");
             toStringOutput.Add($"this.FullName = {(this.FullName == null ? "null" : this.FullName)}");
             toStringOutput.Add($"this.OAuthProvider = {(this.OAuthProvider == null ? "null" : this.OAuthProvider)}");
-            toStringOutput.Add($"this.Role = {(this.Role == null ? "null" : this.Role)}");
+            toStringOutput.Add($"this.Roles = {(this.Roles == null ? "null" : $"[{string.Join(", ", this.Roles)} ]")}");
             toStringOutput.Add($"this.RefreshToken = {(this.RefreshToken == null ? "null" : this.RefreshToken)}");
             toStringOutput.Add($"this.UserCreatorProfile = {(this.UserCreatorProfile == null ? "null" : this.UserCreatorProfile.ToString())}");
         }

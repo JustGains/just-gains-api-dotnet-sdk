@@ -48,13 +48,14 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | ProgramsProgramWeeksController | Gets ProgramsProgramWeeksController controller. |
 | ProgramsProgramAnalyticsController | Gets ProgramsProgramAnalyticsController controller. |
 | StatusController | Gets StatusController controller. |
-| UserManagementController | Gets UserManagementController controller. |
+| UsersRoleManagementController | Gets UsersRoleManagementController controller. |
 | MediaAssetsController | Gets MediaAssetsController controller. |
 | LocalesController | Gets LocalesController controller. |
 | PublishedStatusController | Gets PublishedStatusController controller. |
 | ExerciseMetricsController | Gets ExerciseMetricsController controller. |
 | ProgramsProgramViewsController | Gets ProgramsProgramViewsController controller. |
 | ProgramsProgramReviewsController | Gets ProgramsProgramReviewsController controller. |
+| ExercisesExerciseThumbnailsController | Gets ExercisesExerciseThumbnailsController controller. |
 
 ### Properties
 

@@ -46,7 +46,8 @@ namespace JustGainsAPI.Tests
         public async Task TestTestGetExercises()
         {
             // Parameters for the API call
-            List<string> exerciseCategoryCodes = null;
+            string nameSearch = "Bench Press";
+            List<string> exerciseCategoryCodes = ApiHelper.JsonDeserialize<List<string>>("[\"STRENGTH\",\"CARDIO\"]");
             List<string> exerciseTypeCodes = null;
             List<string> exerciseEquipmentCodes = null;
             List<string> exerciseMuscleCodes = null;
@@ -60,7 +61,7 @@ namespace JustGainsAPI.Tests
             Standard.Models.ExerciseListResponse result = null;
             try
             {
-                result = await this.controller.GetExercisesAsync(exerciseCategoryCodes, exerciseTypeCodes, exerciseEquipmentCodes, exerciseMuscleCodes, exerciseMetricCodes, publishedStatusCodes, localeCode, pageIndex, pageSize);
+                result = await this.controller.GetExercisesAsync(nameSearch, exerciseCategoryCodes, exerciseTypeCodes, exerciseEquipmentCodes, exerciseMuscleCodes, exerciseMetricCodes, publishedStatusCodes, localeCode, pageIndex, pageSize);
             }
             catch (ApiException)
             {

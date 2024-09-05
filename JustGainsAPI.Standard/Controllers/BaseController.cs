@@ -10,6 +10,7 @@ using JustGainsAPI.Standard.Http.Request;
 using JustGainsAPI.Standard.Http.Response;
 using JustGainsAPI.Standard.Utilities;
 using System;
+using System.Collections.Generic;
 
 namespace JustGainsAPI.Standard.Controllers
 {
@@ -32,9 +33,14 @@ namespace JustGainsAPI.Standard.Controllers
             => new ApiCall<HttpRequest, HttpResponse, HttpContext, ApiException, T, T>(
                 globalConfiguration,
                 compatibilityFactory,
-                serialization: arraySerialization
+                serialization: arraySerialization,
+                globalErrors: globalErrors
             );
 
         private static readonly CompatibilityFactory compatibilityFactory = new CompatibilityFactory();
+        private static readonly Dictionary<string, ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException>> globalErrors = new Dictionary<string, ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException>>
+        {
+            { "0", CreateErrorCase("An Error Occurred", (reason, context) => new JustGainsErrorResponseException(reason, context)) }
+        };
     }
 }

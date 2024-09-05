@@ -9,10 +9,10 @@ ExerciseDraftsController exerciseDraftsController = client.ExerciseDraftsControl
 `ExerciseDraftsController`
 
 
-# Create Update an Existing Exercise With the Exercise Draft Format
+# Create Update an Exercise With Exercise Draft DTO
 
 ```csharp
-CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(
+CreateUpdateAnExerciseWithExerciseDraftDTOAsync(
     Models.ExerciseDraftDTO body)
 ```
 
@@ -35,7 +35,7 @@ ExerciseDraftDTO body = new ExerciseDraftDTO
 
 try
 {
-    ExerciseResponse result = await exerciseDraftsController.CreateUpdateAnExistingExerciseWithTheExerciseDraftFormatAsync(body);
+    ExerciseResponse result = await exerciseDraftsController.CreateUpdateAnExerciseWithExerciseDraftDTOAsync(body);
 }
 catch (ApiException e)
 {

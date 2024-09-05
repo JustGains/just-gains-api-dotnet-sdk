@@ -1,4 +1,4 @@
-// <copyright file="UserManagementControllerTest.cs" company="APIMatic">
+// <copyright file="UsersRoleManagementControllerTest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -19,15 +19,15 @@ using NUnit.Framework;
 namespace JustGainsAPI.Tests
 {
     /// <summary>
-    /// UserManagementControllerTest.
+    /// UsersRoleManagementControllerTest.
     /// </summary>
     [TestFixture]
-    public class UserManagementControllerTest : ControllerTestBase
+    public class UsersRoleManagementControllerTest : ControllerTestBase
     {
         /// <summary>
         /// Controller instance (for all tests).
         /// </summary>
-        private UserManagementController controller;
+        private UsersRoleManagementController controller;
 
         /// <summary>
         /// Setup test class.
@@ -35,21 +35,21 @@ namespace JustGainsAPI.Tests
         [OneTimeSetUp]
         public void SetUpDerived()
         {
-            this.controller = this.Client.UserManagementController;
+            this.controller = this.Client.UsersRoleManagementController;
         }
 
         /// <summary>
-        /// Get current user information.
+        /// Get all roles.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestGetCurrentUserInformation()
+        public async Task TestTestGetAllRoles()
         {
             // Perform API call
-            Standard.Models.UserResponse result = null;
+            Standard.Models.RolesResponse result = null;
             try
             {
-                result = await this.controller.GetCurrentUserInformationAsync();
+                result = await this.controller.GetAllRolesAsync();
             }
             catch (ApiException)
             {

@@ -34,6 +34,54 @@ namespace JustGainsAPI.Standard.Controllers
         internal AuthenticationController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
+        /// Get current user information EndPoint.
+        /// </summary>
+        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
+        public Models.UserInfoResponse GetCurrentUserInformation()
+            => CoreHelper.RunTask(GetCurrentUserInformationAsync());
+
+        /// <summary>
+        /// Get current user information EndPoint.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
+        public async Task<Models.UserInfoResponse> GetCurrentUserInformationAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.UserInfoResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/auth/user"))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("401", CreateErrorCase("Failed to retrieve user information", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Update user information EndPoint.
+        /// </summary>
+        /// <param name="body">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public Models.JustGainsResponse UpdateUserInformation(
+                Models.UpdateUserRequest body)
+            => CoreHelper.RunTask(UpdateUserInformationAsync(body));
+
+        /// <summary>
+        /// Update user information EndPoint.
+        /// </summary>
+        /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public async Task<Models.JustGainsResponse> UpdateUserInformationAsync(
+                Models.UpdateUserRequest body,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.JustGainsResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Put, "/auth/user")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Failed to update user information", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
         /// Register a new user EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>

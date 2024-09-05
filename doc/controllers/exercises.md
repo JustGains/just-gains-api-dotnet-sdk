@@ -28,6 +28,7 @@ ExercisesController exercisesController = client.ExercisesController;
 
 ```csharp
 GetExercisesAsync(
+    string nameSearch = null,
     List<string> exerciseCategoryCodes = null,
     List<string> exerciseTypeCodes = null,
     List<string> exerciseEquipmentCodes = null,
@@ -43,6 +44,7 @@ GetExercisesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `nameSearch` | `string` | Query, Optional | List of exercise names to filter by |
 | `exerciseCategoryCodes` | `List<string>` | Query, Optional | List of exercise category codes to filter by |
 | `exerciseTypeCodes` | `List<string>` | Query, Optional | List of exercise types to filter by |
 | `exerciseEquipmentCodes` | `List<string>` | Query, Optional | List of exercise equipment to filter by |
@@ -60,13 +62,21 @@ GetExercisesAsync(
 ## Example Usage
 
 ```csharp
+string nameSearch = "Bench Press";
+List<string> exerciseCategoryCodes = new List<string>
+{
+    "STRENGTH",
+    "CARDIO",
+};
+
 string localeCode = "en-US";
 int? pageIndex = 1;
 int? pageSize = 100;
 try
 {
     ExerciseListResponse result = await exercisesController.GetExercisesAsync(
-        null,
+        nameSearch,
+        exerciseCategoryCodes,
         null,
         null,
         null,

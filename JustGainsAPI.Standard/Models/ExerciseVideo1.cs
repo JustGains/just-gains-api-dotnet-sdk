@@ -33,17 +33,17 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         /// <param name="exerciseCode">exerciseCode.</param>
         /// <param name="userId">userId.</param>
-        /// <param name="mediaElement">mediaElement.</param>
+        /// <param name="mediaAsset">mediaAsset.</param>
         /// <param name="sortOrder">sortOrder.</param>
         public ExerciseVideo1(
             string exerciseCode = null,
             Guid? userId = null,
-            Models.MediaAsset mediaElement = null,
+            Models.MediaAsset mediaAsset = null,
             int? sortOrder = null)
         {
             this.ExerciseCode = exerciseCode;
             this.UserId = userId;
-            this.MediaElement = mediaElement;
+            this.MediaAsset = mediaAsset;
             this.SortOrder = sortOrder;
         }
 
@@ -60,10 +60,10 @@ namespace JustGainsAPI.Standard.Models
         public Guid? UserId { get; set; }
 
         /// <summary>
-        /// Gets or sets MediaElement.
+        /// Gets or sets MediaAsset.
         /// </summary>
-        [JsonProperty("mediaElement", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.MediaAsset MediaElement { get; set; }
+        [JsonProperty("mediaAsset", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MediaAsset MediaAsset { get; set; }
 
         /// <summary>
         /// The order in which the video should be displayed.
@@ -95,7 +95,7 @@ namespace JustGainsAPI.Standard.Models
             }
             return obj is ExerciseVideo1 other &&                ((this.ExerciseCode == null && other.ExerciseCode == null) || (this.ExerciseCode?.Equals(other.ExerciseCode) == true)) &&
                 ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
-                ((this.MediaElement == null && other.MediaElement == null) || (this.MediaElement?.Equals(other.MediaElement) == true)) &&
+                ((this.MediaAsset == null && other.MediaAsset == null) || (this.MediaAsset?.Equals(other.MediaAsset) == true)) &&
                 ((this.SortOrder == null && other.SortOrder == null) || (this.SortOrder?.Equals(other.SortOrder) == true));
         }
         
@@ -107,7 +107,7 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.ExerciseCode = {(this.ExerciseCode == null ? "null" : this.ExerciseCode)}");
             toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId.ToString())}");
-            toStringOutput.Add($"this.MediaElement = {(this.MediaElement == null ? "null" : this.MediaElement.ToString())}");
+            toStringOutput.Add($"this.MediaAsset = {(this.MediaAsset == null ? "null" : this.MediaAsset.ToString())}");
             toStringOutput.Add($"this.SortOrder = {(this.SortOrder == null ? "null" : this.SortOrder.ToString())}");
         }
     }

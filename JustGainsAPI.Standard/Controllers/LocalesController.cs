@@ -112,24 +112,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a locale EndPoint.
         /// </summary>
-        /// <param name="localeCode">Required parameter: The locale code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="localeCode">Required parameter: The locale code to update..</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateALocale(
-                string localeCode,
-                Models.Locale body)
-            => CoreHelper.RunTask(UpdateALocaleAsync(localeCode, body));
+                Models.Locale body,
+                string localeCode)
+            => CoreHelper.RunTask(UpdateALocaleAsync(body, localeCode));
 
         /// <summary>
         /// Update a locale EndPoint.
         /// </summary>
-        /// <param name="localeCode">Required parameter: The locale code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="localeCode">Required parameter: The locale code to update..</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateALocaleAsync(
-                string localeCode,
                 Models.Locale body,
+                string localeCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -137,8 +137,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("localeCode", localeCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("localeCode", localeCode))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

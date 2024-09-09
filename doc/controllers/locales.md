@@ -104,7 +104,7 @@ GetLocaleAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to retrieve. |
+| `localeCode` | `string` | Template, Required | The locale code to retrieve.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -130,16 +130,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateALocaleAsync(
-    string localeCode,
-    Models.Locale body)
+    Models.Locale body,
+    string localeCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to update. |
 | `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
+| `localeCode` | `string` | Template, Required | The locale code to update.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -148,7 +148,6 @@ UpdateALocaleAsync(
 ## Example Usage
 
 ```csharp
-string localeCode = "localeCode2";
 Locale body = new Locale
 {
     LocaleCode = "en-US",
@@ -156,11 +155,12 @@ Locale body = new Locale
     Published = true,
 };
 
+string localeCode = "localeCode2";
 try
 {
     JustGainsBasicResponse result = await localesController.UpdateALocaleAsync(
-        localeCode,
-        body
+        body,
+        localeCode
     );
 }
 catch (ApiException e)
@@ -182,7 +182,7 @@ DeleteALocaleAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to delete. |
+| `localeCode` | `string` | Template, Required | The locale code to delete.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 

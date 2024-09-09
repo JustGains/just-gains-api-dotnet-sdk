@@ -22,7 +22,7 @@ Documentation for accessing and setting credentials for bearerAuth.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```csharp
-JustGainsAPI.Standard.JustGainsAPIClient client = new JustGainsAPI.Standard.JustGainsAPIClient.Builder()
+JustGainsAPIClient client = new JustGainsAPIClient.Builder()
     .BearerAuthCredentials(
         new BearerAuthModel.Builder(
             "AccessToken"

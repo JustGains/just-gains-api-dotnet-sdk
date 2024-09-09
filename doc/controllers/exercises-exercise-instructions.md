@@ -32,7 +32,7 @@ GetExerciseInstructionsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve instruction models for |
-| `localeCodes` | `List<string>` | Query, Optional | The array of locales for the instructions (e.g., 'en-US', 'es-ES') |
+| `localeCodes` | `List<string>` | Query, Optional | The array of locales for the instructions (e.g., 'en-US', 'es-ES')<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -65,16 +65,16 @@ catch (ApiException e)
 
 ```csharp
 CreateNewExerciseInstructionsAsync(
-    string exerciseCode,
-    Models.ExerciseInstruction body)
+    Models.ExerciseInstruction body,
+    string exerciseCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
 | `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
 
 ## Response Type
 
@@ -83,7 +83,6 @@ CreateNewExerciseInstructionsAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCode = "exerciseCode8";
 ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
@@ -96,11 +95,12 @@ ExerciseInstruction body = new ExerciseInstruction
     UserId = "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
 };
 
+string exerciseCode = "exerciseCode8";
 try
 {
     ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.CreateNewExerciseInstructionsAsync(
-        exerciseCode,
-        body
+        body,
+        exerciseCode
     );
 }
 catch (ApiException e)
@@ -134,7 +134,7 @@ GetExerciseInstructionAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve instructions for |
-| `localeCode` | `string` | Template, Required | The locale for the instructions (e.g., 'en-US', 'es-ES') |
+| `localeCode` | `string` | Template, Required | The locale for the instructions (e.g., 'en-US', 'es-ES')<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The UserID that belongs to the instructions being requested |
 
 ## Response Type
@@ -174,20 +174,20 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseInstructionsAsync(
+    Models.ExerciseInstruction body,
     string exerciseCode,
     string localeCode,
-    string userId,
-    Models.ExerciseInstruction body)
+    string userId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
-| `localeCode` | `string` | Template, Required | The locale code for the instructions to update |
-| `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
 | `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
+| `localeCode` | `string` | Template, Required | The locale code for the instructions to update<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
+| `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
 
 ## Response Type
 
@@ -196,9 +196,6 @@ UpdateExerciseInstructionsAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCode = "exerciseCode8";
-string localeCode = "localeCode2";
-string userId = "userId0";
 ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
@@ -211,13 +208,16 @@ ExerciseInstruction body = new ExerciseInstruction
     UserId = "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
 };
 
+string exerciseCode = "exerciseCode8";
+string localeCode = "localeCode2";
+string userId = "userId0";
 try
 {
     ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.UpdateExerciseInstructionsAsync(
+        body,
         exerciseCode,
         localeCode,
-        userId,
-        body
+        userId
     );
 }
 catch (ApiException e)
@@ -250,7 +250,7 @@ DeleteExerciseInstructionsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to delete |
-| `localeCode` | `string` | Template, Required | The locale code for the instructions to delete |
+| `localeCode` | `string` | Template, Required | The locale code for the instructions to delete<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The user ID of the instructions to delete |
 
 ## Response Type

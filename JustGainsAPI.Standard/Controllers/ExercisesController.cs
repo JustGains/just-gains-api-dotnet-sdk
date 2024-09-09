@@ -36,71 +36,71 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getExercises EndPoint.
         /// </summary>
-        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
-        /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
-        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
         /// <param name="exerciseMetricCodes">Optional parameter: List of exercise metrics to filter by.</param>
-        /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
+        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
+        /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="localeCode">Optional parameter: Locale to filter by.</param>
+        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="pageIndex">Optional parameter: Page index for pagination.</param>
         /// <param name="pageSize">Optional parameter: Page size for pagination.</param>
+        /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
         /// <returns>Returns the Models.ExerciseListResponse response from the API call.</returns>
         public Models.ExerciseListResponse GetExercises(
-                string nameSearch = null,
                 List<string> exerciseCategoryCodes = null,
-                List<string> exerciseTypeCodes = null,
                 List<string> exerciseEquipmentCodes = null,
-                List<string> exerciseMuscleCodes = null,
                 List<string> exerciseMetricCodes = null,
-                List<string> publishedStatusCodes = null,
+                List<string> exerciseMuscleCodes = null,
+                List<string> exerciseTypeCodes = null,
                 string localeCode = "en-US",
+                string nameSearch = null,
                 int? pageIndex = 1,
-                int? pageSize = 100)
-            => CoreHelper.RunTask(GetExercisesAsync(nameSearch, exerciseCategoryCodes, exerciseTypeCodes, exerciseEquipmentCodes, exerciseMuscleCodes, exerciseMetricCodes, publishedStatusCodes, localeCode, pageIndex, pageSize));
+                int? pageSize = 100,
+                List<string> publishedStatusCodes = null)
+            => CoreHelper.RunTask(GetExercisesAsync(exerciseCategoryCodes, exerciseEquipmentCodes, exerciseMetricCodes, exerciseMuscleCodes, exerciseTypeCodes, localeCode, nameSearch, pageIndex, pageSize, publishedStatusCodes));
 
         /// <summary>
         /// getExercises EndPoint.
         /// </summary>
-        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
-        /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
-        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
         /// <param name="exerciseMetricCodes">Optional parameter: List of exercise metrics to filter by.</param>
-        /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
+        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
+        /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="localeCode">Optional parameter: Locale to filter by.</param>
+        /// <param name="nameSearch">Optional parameter: List of exercise names to filter by.</param>
         /// <param name="pageIndex">Optional parameter: Page index for pagination.</param>
         /// <param name="pageSize">Optional parameter: Page size for pagination.</param>
+        /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseListResponse response from the API call.</returns>
         public async Task<Models.ExerciseListResponse> GetExercisesAsync(
-                string nameSearch = null,
                 List<string> exerciseCategoryCodes = null,
-                List<string> exerciseTypeCodes = null,
                 List<string> exerciseEquipmentCodes = null,
-                List<string> exerciseMuscleCodes = null,
                 List<string> exerciseMetricCodes = null,
-                List<string> publishedStatusCodes = null,
+                List<string> exerciseMuscleCodes = null,
+                List<string> exerciseTypeCodes = null,
                 string localeCode = "en-US",
+                string nameSearch = null,
                 int? pageIndex = 1,
                 int? pageSize = 100,
+                List<string> publishedStatusCodes = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseListResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/exercises")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("nameSearch", nameSearch))
                       .Query(_query => _query.Setup("exerciseCategoryCodes", exerciseCategoryCodes))
-                      .Query(_query => _query.Setup("exerciseTypeCodes", exerciseTypeCodes))
                       .Query(_query => _query.Setup("exerciseEquipmentCodes", exerciseEquipmentCodes))
-                      .Query(_query => _query.Setup("exerciseMuscleCodes", exerciseMuscleCodes))
                       .Query(_query => _query.Setup("exerciseMetricCodes", exerciseMetricCodes))
-                      .Query(_query => _query.Setup("publishedStatusCodes", publishedStatusCodes))
+                      .Query(_query => _query.Setup("exerciseMuscleCodes", exerciseMuscleCodes))
+                      .Query(_query => _query.Setup("exerciseTypeCodes", exerciseTypeCodes))
                       .Query(_query => _query.Setup("localeCode", localeCode ?? "en-US"))
+                      .Query(_query => _query.Setup("nameSearch", nameSearch))
                       .Query(_query => _query.Setup("pageIndex", pageIndex ?? 1))
-                      .Query(_query => _query.Setup("pageSize", pageSize ?? 100))))
+                      .Query(_query => _query.Setup("pageSize", pageSize ?? 100))
+                      .Query(_query => _query.Setup("publishedStatusCodes", publishedStatusCodes))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -175,24 +175,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update an exercise EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateAnExercise(
-                string exerciseCode,
-                Models.Exercise body)
-            => CoreHelper.RunTask(UpdateAnExerciseAsync(exerciseCode, body));
+                Models.Exercise body,
+                string exerciseCode)
+            => CoreHelper.RunTask(UpdateAnExerciseAsync(body, exerciseCode));
 
         /// <summary>
         /// Update an exercise EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateAnExerciseAsync(
-                string exerciseCode,
                 Models.Exercise body,
+                string exerciseCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -200,8 +200,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -267,32 +267,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateExerciseTranslations EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The unique code of the exercise.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The unique code of the exercise.</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateExerciseTranslations(
-                string exerciseCode,
-                List<Models.ExerciseTranslation> body)
-            => CoreHelper.RunTask(UpdateExerciseTranslationsAsync(exerciseCode, body));
+                List<Models.ExerciseTranslation> body,
+                string exerciseCode)
+            => CoreHelper.RunTask(UpdateExerciseTranslationsAsync(body, exerciseCode));
 
         /// <summary>
         /// updateExerciseTranslations EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The unique code of the exercise.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The unique code of the exercise.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateExerciseTranslationsAsync(
-                string exerciseCode,
                 List<Models.ExerciseTranslation> body,
+                string exerciseCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/exercises/{exerciseCode}/translations")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

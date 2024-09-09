@@ -31,7 +31,7 @@ GetEquipmentGroupsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment group names. |
+| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment group names.<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -109,16 +109,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExistingEquipmentGroupAsync(
-    string equipmentGroupCode,
-    Models.EquipmentGroup body)
+    Models.EquipmentGroup body,
+    string equipmentGroupCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentGroupCode` | `string` | Template, Required | The equipment group code to update. |
 | `body` | [`EquipmentGroup`](../../doc/models/equipment-group.md) | Body, Required | - |
+| `equipmentGroupCode` | `string` | Template, Required | The equipment group code to update. |
 
 ## Response Type
 
@@ -127,7 +127,6 @@ UpdateAnExistingEquipmentGroupAsync(
 ## Example Usage
 
 ```csharp
-string equipmentGroupCode = "equipmentGroupCode8";
 EquipmentGroup body = new EquipmentGroup
 {
     EquipmentGroupCode = "DUMBBELLS",
@@ -136,11 +135,12 @@ EquipmentGroup body = new EquipmentGroup
     SortOrder = 0,
 };
 
+string equipmentGroupCode = "equipmentGroupCode8";
 try
 {
     JustGainsBasicResponse result = await equipmentEquipmentGroupsController.UpdateAnExistingEquipmentGroupAsync(
-        equipmentGroupCode,
-        body
+        body,
+        equipmentGroupCode
     );
 }
 catch (ApiException e)
@@ -240,16 +240,16 @@ Updates the translations for a specific equipment group identified by its code.
 
 ```csharp
 UpdateEquipmentGroupTranslationsAsync(
-    string equipmentGroupCode,
-    List<Models.EquipmentGroupTranslation> body)
+    List<Models.EquipmentGroupTranslation> body,
+    string equipmentGroupCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentGroupCode` | `string` | Template, Required | The unique code of the equipment group |
 | `body` | [`List<EquipmentGroupTranslation>`](../../doc/models/equipment-group-translation.md) | Body, Required | - |
+| `equipmentGroupCode` | `string` | Template, Required | The unique code of the equipment group |
 
 ## Response Type
 
@@ -258,8 +258,7 @@ UpdateEquipmentGroupTranslationsAsync(
 ## Example Usage
 
 ```csharp
-string equipmentGroupCode = "EQP-001";
-List<Models.EquipmentGroupTranslation> body = new List<Models.EquipmentGroupTranslation>
+List<EquipmentGroupTranslation> body = new List<EquipmentGroupTranslation>
 {
     new EquipmentGroupTranslation
     {
@@ -269,11 +268,12 @@ List<Models.EquipmentGroupTranslation> body = new List<Models.EquipmentGroupTran
     },
 };
 
+string equipmentGroupCode = "EQP-001";
 try
 {
     JustGainsResponse result = await equipmentEquipmentGroupsController.UpdateEquipmentGroupTranslationsAsync(
-        equipmentGroupCode,
-        body
+        body,
+        equipmentGroupCode
     );
 }
 catch (ApiException e)

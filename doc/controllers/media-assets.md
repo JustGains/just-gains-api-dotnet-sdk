@@ -32,8 +32,8 @@ GetMediaAssetsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | - |
-| `pageSize` | `int?` | Query, Optional | - |
+| `page` | `int?` | Query, Optional | **Default**: `1` |
+| `pageSize` | `int?` | Query, Optional | **Default**: `20` |
 
 ## Response Type
 
@@ -63,9 +63,9 @@ catch (ApiException e)
 
 ```csharp
 UploadANewMediaAssetAsync(
+    string description = null,
     FileStreamInfo file = null,
     string mediaType = null,
-    string description = null,
     string uploadDirectory = null)
 ```
 
@@ -73,9 +73,9 @@ UploadANewMediaAssetAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `file` | `FileStreamInfo` | Form, Optional | - |
-| `mediaType` | `string` | Form, Optional | - |
 | `description` | `string` | Form, Optional | - |
+| `file` | `FileStreamInfo` | Form, Optional | - |
+| `mediaType` | `string` | Form, Optional | **Constraints**: *Pattern*: `^[a-z]+/[a-z]+$` |
 | `uploadDirectory` | `string` | Form, Optional | Optional. Specify a custom upload directory. |
 
 ## Response Type
@@ -89,6 +89,7 @@ string mediaType = "image/jpeg";
 try
 {
     MediaAssetResponse result = await mediaAssetsController.UploadANewMediaAssetAsync(
+        null,
         null,
         mediaType
     );
@@ -146,16 +147,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAMediaAssetAsync(
-    Guid mediaAssetId,
-    Models.MediaAsset body)
+    Models.MediaAsset body,
+    Guid mediaAssetId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mediaAssetId` | `Guid` | Template, Required | - |
 | `body` | [`MediaAsset`](../../doc/models/media-asset.md) | Body, Required | - |
+| `mediaAssetId` | `Guid` | Template, Required | - |
 
 ## Response Type
 
@@ -164,7 +165,6 @@ UpdateAMediaAssetAsync(
 ## Example Usage
 
 ```csharp
-Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 MediaAsset body = new MediaAsset
 {
     MediaId = new Guid("7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b"),
@@ -176,11 +176,12 @@ MediaAsset body = new MediaAsset
     Description = "High-intensity interval training (HIIT) workout routine for beginners",
 };
 
+Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 try
 {
     MediaAssetResponse result = await mediaAssetsController.UpdateAMediaAssetAsync(
-        mediaAssetId,
-        body
+        body,
+        mediaAssetId
     );
 }
 catch (ApiException e)
@@ -242,16 +243,16 @@ catch (ApiException e)
 
 ```csharp
 GetMediaAssetDetailAsync(
-    Guid mediaAssetId,
-    string fileName)
+    string fileName,
+    Guid mediaAssetId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mediaAssetId` | `Guid` | Template, Required | - |
 | `fileName` | `string` | Template, Required | - |
+| `mediaAssetId` | `Guid` | Template, Required | - |
 
 ## Response Type
 
@@ -260,13 +261,13 @@ GetMediaAssetDetailAsync(
 ## Example Usage
 
 ```csharp
-Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 string fileName = "fileName4";
+Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 try
 {
     Stream result = await mediaAssetsController.GetMediaAssetDetailAsync(
-        mediaAssetId,
-        fileName
+        fileName,
+        mediaAssetId
     );
 }
 catch (ApiException e)

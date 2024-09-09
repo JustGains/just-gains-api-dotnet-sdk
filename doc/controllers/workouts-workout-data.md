@@ -64,16 +64,16 @@ catch (ApiException e)
 
 ```csharp
 GetWorkoutDetailByIdAsync(
-    int workoutId,
-    string exerciseCode)
+    string exerciseCode,
+    int workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -82,13 +82,13 @@ GetWorkoutDetailByIdAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
 string exerciseCode = "exerciseCode8";
+int workoutId = 250;
 try
 {
     WorkoutDataResponse result = await workoutsWorkoutDataController.GetWorkoutDetailByIdAsync(
-        workoutId,
-        exerciseCode
+        exerciseCode,
+        workoutId
     );
 }
 catch (ApiException e)
@@ -109,18 +109,18 @@ catch (ApiException e)
 
 ```csharp
 AddNewExerciseToTheWorkoutAsync(
-    int workoutId,
+    Models.WorkoutData body,
     string exerciseCode,
-    Models.WorkoutData body)
+    int workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `int` | Template, Required | - |
 
 ## Response Type
 
@@ -129,13 +129,11 @@ AddNewExerciseToTheWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
-string exerciseCode = "exerciseCode8";
 WorkoutData body = new WorkoutData
 {
     ExerciseCode = "BARBELL_SQUAT",
     ExerciseNotes = "Keep your core tight throughout the movement",
-    ExerciseMetrics = new List<Models.ExerciseMetric1>
+    ExerciseMetrics = new List<ExerciseMetric1>
     {
         new ExerciseMetric1
         {
@@ -180,12 +178,14 @@ WorkoutData body = new WorkoutData
     ExerciseGroupType = ExerciseGroupTypeEnum.SUPERSET,
 };
 
+string exerciseCode = "exerciseCode8";
+int workoutId = 250;
 try
 {
     WorkoutDataResponse result = await workoutsWorkoutDataController.AddNewExerciseToTheWorkoutAsync(
-        workoutId,
+        body,
         exerciseCode,
-        body
+        workoutId
     );
 }
 catch (ApiException e)
@@ -207,18 +207,18 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseInTheWorkoutAsync(
-    int workoutId,
+    Models.WorkoutData body,
     string exerciseCode,
-    Models.WorkoutData body)
+    int workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `int` | Template, Required | - |
 
 ## Response Type
 
@@ -227,13 +227,11 @@ UpdateExerciseInTheWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
-string exerciseCode = "exerciseCode8";
 WorkoutData body = new WorkoutData
 {
     ExerciseCode = "BARBELL_SQUAT",
     ExerciseNotes = "Keep your core tight throughout the movement",
-    ExerciseMetrics = new List<Models.ExerciseMetric1>
+    ExerciseMetrics = new List<ExerciseMetric1>
     {
         new ExerciseMetric1
         {
@@ -278,12 +276,14 @@ WorkoutData body = new WorkoutData
     ExerciseGroupType = ExerciseGroupTypeEnum.SUPERSET,
 };
 
+string exerciseCode = "exerciseCode8";
+int workoutId = 250;
 try
 {
     WorkoutDataResponse result = await workoutsWorkoutDataController.UpdateExerciseInTheWorkoutAsync(
-        workoutId,
+        body,
         exerciseCode,
-        body
+        workoutId
     );
 }
 catch (ApiException e)
@@ -305,16 +305,16 @@ catch (ApiException e)
 
 ```csharp
 DeletesAnExerciseFromTheWorkoutAsync(
-    int workoutId,
-    string exerciseCode)
+    string exerciseCode,
+    int workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -323,13 +323,13 @@ DeletesAnExerciseFromTheWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
 string exerciseCode = "exerciseCode8";
+int workoutId = 250;
 try
 {
     JustGainsBasicResponse result = await workoutsWorkoutDataController.DeletesAnExerciseFromTheWorkoutAsync(
-        workoutId,
-        exerciseCode
+        exerciseCode,
+        workoutId
     );
 }
 catch (ApiException e)

@@ -92,24 +92,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update an exercise metric EndPoint.
         /// </summary>
-        /// <param name="metricCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="metricCode">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse UpdateAnExerciseMetric(
-                string metricCode,
-                Models.ExerciseMetric body)
-            => CoreHelper.RunTask(UpdateAnExerciseMetricAsync(metricCode, body));
+                Models.ExerciseMetric body,
+                string metricCode)
+            => CoreHelper.RunTask(UpdateAnExerciseMetricAsync(body, metricCode));
 
         /// <summary>
         /// Update an exercise metric EndPoint.
         /// </summary>
-        /// <param name="metricCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="metricCode">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> UpdateAnExerciseMetricAsync(
-                string metricCode,
                 Models.ExerciseMetric body,
+                string metricCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -117,8 +117,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("metricCode", metricCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("metricCode", metricCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise metric not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

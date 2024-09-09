@@ -63,16 +63,16 @@ catch (ApiException e)
 
 ```csharp
 AddNewExerciseVideosAsync(
-    string exerciseCode,
-    Models.ExerciseVideo body)
+    Models.ExerciseVideo body,
+    string exerciseCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code to add videos to |
 | `body` | [`ExerciseVideo`](../../doc/models/exercise-video.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code to add videos to |
 
 ## Response Type
 
@@ -81,7 +81,6 @@ AddNewExerciseVideosAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCode = "exerciseCode8";
 ExerciseVideo body = new ExerciseVideo
 {
     ExerciseCode = "BARBELL_SQUAT",
@@ -89,11 +88,12 @@ ExerciseVideo body = new ExerciseVideo
     SortOrder = 1,
 };
 
+string exerciseCode = "exerciseCode8";
 try
 {
     ExerciseVideoResponse result = await exercisesExerciseVideosController.AddNewExerciseVideosAsync(
-        exerciseCode,
-        body
+        body,
+        exerciseCode
     );
 }
 catch (ApiException e)
@@ -115,16 +115,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseVideosAsync(
-    string exerciseCode,
-    List<Models.ExerciseVideo> body)
+    List<Models.ExerciseVideo> body,
+    string exerciseCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code of the exercise videos to update |
 | `body` | [`List<ExerciseVideo>`](../../doc/models/exercise-video.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code of the exercise videos to update |
 
 ## Response Type
 
@@ -133,8 +133,7 @@ UpdateExerciseVideosAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCode = "exerciseCode8";
-List<Models.ExerciseVideo> body = new List<Models.ExerciseVideo>
+List<ExerciseVideo> body = new List<ExerciseVideo>
 {
     new ExerciseVideo
     {
@@ -144,11 +143,12 @@ List<Models.ExerciseVideo> body = new List<Models.ExerciseVideo>
     },
 };
 
+string exerciseCode = "exerciseCode8";
 try
 {
     ExercisesVideosResponse2 result = await exercisesExerciseVideosController.UpdateExerciseVideosAsync(
-        exerciseCode,
-        body
+        body,
+        exerciseCode
     );
 }
 catch (ApiException e)
@@ -220,8 +220,8 @@ catch (ApiException e)
 ```csharp
 DeleteAnExerciseVideoAsync(
     string exerciseCode,
-    string userId,
-    int exerciseVideoId)
+    int exerciseVideoId,
+    string userId)
 ```
 
 ## Parameters
@@ -229,8 +229,8 @@ DeleteAnExerciseVideoAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `userId` | `string` | Template, Required | The userId of the video creator |
 | `exerciseVideoId` | `int` | Template, Required | The exercise video ID to delete |
+| `userId` | `string` | Template, Required | The userId of the video creator |
 
 ## Response Type
 
@@ -240,14 +240,14 @@ DeleteAnExerciseVideoAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
 int exerciseVideoId = 66;
+string userId = "userId0";
 try
 {
     JustGainsResponse result = await exercisesExerciseVideosController.DeleteAnExerciseVideoAsync(
         exerciseCode,
-        userId,
-        exerciseVideoId
+        exerciseVideoId,
+        userId
     );
 }
 catch (ApiException e)

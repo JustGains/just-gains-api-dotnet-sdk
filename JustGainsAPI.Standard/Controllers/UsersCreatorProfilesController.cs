@@ -36,31 +36,31 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getCreatorProfiles EndPoint.
         /// </summary>
-        /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
+        /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public Models.CreatorProfileListResponse GetCreatorProfiles(
-                int? page = 1,
-                int? limit = 20)
-            => CoreHelper.RunTask(GetCreatorProfilesAsync(page, limit));
+                int? limit = 20,
+                int? page = 1)
+            => CoreHelper.RunTask(GetCreatorProfilesAsync(limit, page));
 
         /// <summary>
         /// getCreatorProfiles EndPoint.
         /// </summary>
-        /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
+        /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public async Task<Models.CreatorProfileListResponse> GetCreatorProfilesAsync(
-                int? page = 1,
                 int? limit = 20,
+                int? page = 1,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.CreatorProfileListResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/creator-profiles")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("page", page ?? 1))
-                      .Query(_query => _query.Setup("limit", limit ?? 20))))
+                      .Query(_query => _query.Setup("limit", limit ?? 20))
+                      .Query(_query => _query.Setup("page", page ?? 1))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -125,24 +125,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateCreatorProfile EndPoint.
         /// </summary>
-        /// <param name="creatorProfileId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="creatorProfileId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.CreatorProfileResponse response from the API call.</returns>
         public Models.CreatorProfileResponse UpdateCreatorProfile(
-                Guid creatorProfileId,
-                Models.CreatorProfile body)
-            => CoreHelper.RunTask(UpdateCreatorProfileAsync(creatorProfileId, body));
+                Models.CreatorProfile body,
+                Guid creatorProfileId)
+            => CoreHelper.RunTask(UpdateCreatorProfileAsync(body, creatorProfileId));
 
         /// <summary>
         /// updateCreatorProfile EndPoint.
         /// </summary>
-        /// <param name="creatorProfileId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="creatorProfileId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CreatorProfileResponse response from the API call.</returns>
         public async Task<Models.CreatorProfileResponse> UpdateCreatorProfileAsync(
-                Guid creatorProfileId,
                 Models.CreatorProfile body,
+                Guid creatorProfileId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.CreatorProfileResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -150,8 +150,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

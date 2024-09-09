@@ -110,18 +110,18 @@ catch (ApiException e)
 
 ```csharp
 AddOrUpdateExerciseThumbnailAsync(
+    Models.ExerciseThumbnail body,
     string exerciseCode,
-    string userId,
-    Models.ExerciseThumbnail body)
+    string userId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code to add or update thumbnail for |
 | `userId` | `string` | Template, Required | The userId of the thumbnail creator |
-| `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 
 ## Response Type
 
@@ -130,8 +130,6 @@ AddOrUpdateExerciseThumbnailAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCode = "exerciseCode8";
-string userId = "userId0";
 ExerciseThumbnail body = new ExerciseThumbnail
 {
     ExerciseCode = "exerciseCode2",
@@ -148,12 +146,14 @@ ExerciseThumbnail body = new ExerciseThumbnail
     },
 };
 
+string exerciseCode = "exerciseCode8";
+string userId = "userId0";
 try
 {
     ExerciseThumbnailResponse result = await exercisesExerciseThumbnailsController.AddOrUpdateExerciseThumbnailAsync(
+        body,
         exerciseCode,
-        userId,
-        body
+        userId
     );
 }
 catch (ApiException e)

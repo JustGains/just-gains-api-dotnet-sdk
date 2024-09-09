@@ -61,7 +61,7 @@ GetAUserByIDAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `userId` | `string` | Template, Required | - |
+| `userId` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -96,16 +96,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAUserAsync(
-    string userId,
-    Models.UserWithoutCreatorProfile body)
+    Models.UserWithoutCreatorProfile body,
+    string userId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `userId` | `string` | Template, Required | - |
 | `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
+| `userId` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -114,7 +114,6 @@ UpdateAUserAsync(
 ## Example Usage
 
 ```csharp
-string userId = "userId0";
 UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
 {
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
@@ -131,11 +130,12 @@ UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
     },
 };
 
+string userId = "userId0";
 try
 {
     UserWithoutCreatorProfileResponse result = await usersController.UpdateAUserAsync(
-        userId,
-        body
+        body,
+        userId
     );
 }
 catch (ApiException e)

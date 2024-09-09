@@ -29,7 +29,7 @@ GetExerciseMetricsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | The locale for the metric names and measurement data |
+| `localeCode` | `string` | Query, Optional | The locale for the metric names and measurement data<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -104,16 +104,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExerciseMetricAsync(
-    string metricCode,
-    Models.ExerciseMetric body)
+    Models.ExerciseMetric body,
+    string metricCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `metricCode` | `string` | Template, Required | - |
 | `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
+| `metricCode` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -122,17 +122,17 @@ UpdateAnExerciseMetricAsync(
 ## Example Usage
 
 ```csharp
-string metricCode = "metricCode4";
 ExerciseMetric body = new ExerciseMetric
 {
     ExerciseMetricCode = "WEIGHT",
 };
 
+string metricCode = "metricCode4";
 try
 {
     JustGainsResponse result = await exerciseMetricsController.UpdateAnExerciseMetricAsync(
-        metricCode,
-        body
+        body,
+        metricCode
     );
 }
 catch (ApiException e)

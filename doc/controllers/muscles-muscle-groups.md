@@ -31,7 +31,7 @@ GetMuscleGroupsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized muscle group names. |
+| `localeCode` | `string` | Query, Optional | The locale to use for the localized muscle group names.<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -116,16 +116,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAMuscleGroupAsync(
-    string muscleGroupCode,
-    Models.MuscleGroup body)
+    Models.MuscleGroup body,
+    string muscleGroupCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to update. |
 | `body` | [`MuscleGroup`](../../doc/models/muscle-group.md) | Body, Required | - |
+| `muscleGroupCode` | `string` | Template, Required | The muscle group code to update.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -134,7 +134,6 @@ UpdateAMuscleGroupAsync(
 ## Example Usage
 
 ```csharp
-string muscleGroupCode = "muscleGroupCode2";
 MuscleGroup body = new MuscleGroup
 {
     MuscleGroupCode = "CHEST",
@@ -155,11 +154,12 @@ MuscleGroup body = new MuscleGroup
     MuscleGroupType = MuscleGroupTypeEnum.MainGroup,
 };
 
+string muscleGroupCode = "muscleGroupCode2";
 try
 {
     JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateAMuscleGroupAsync(
-        muscleGroupCode,
-        body
+        body,
+        muscleGroupCode
     );
 }
 catch (ApiException e)
@@ -189,7 +189,7 @@ DeleteAMuscleGroupAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to delete. |
+| `muscleGroupCode` | `string` | Template, Required | The muscle group code to delete.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -231,7 +231,7 @@ GetMuscleGroupTranslationsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group |
+| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -266,16 +266,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateMuscleGroupTranslationsAsync(
-    string muscleGroupCode,
-    List<Models.MuscleGroupTranslation> body)
+    List<Models.MuscleGroupTranslation> body,
+    string muscleGroupCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group |
 | `body` | [`List<MuscleGroupTranslation>`](../../doc/models/muscle-group-translation.md) | Body, Required | - |
+| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -284,8 +284,7 @@ UpdateMuscleGroupTranslationsAsync(
 ## Example Usage
 
 ```csharp
-string muscleGroupCode = "muscleGroupCode2";
-List<Models.MuscleGroupTranslation> body = new List<Models.MuscleGroupTranslation>
+List<MuscleGroupTranslation> body = new List<MuscleGroupTranslation>
 {
     new MuscleGroupTranslation
     {
@@ -295,11 +294,12 @@ List<Models.MuscleGroupTranslation> body = new List<Models.MuscleGroupTranslatio
     },
 };
 
+string muscleGroupCode = "muscleGroupCode2";
 try
 {
     JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateMuscleGroupTranslationsAsync(
-        muscleGroupCode,
-        body
+        body,
+        muscleGroupCode
     );
 }
 catch (ApiException e)

@@ -64,24 +64,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Add new exercise videos EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The exercise code to add videos to.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The exercise code to add videos to.</param>
         /// <returns>Returns the Models.ExerciseVideoResponse response from the API call.</returns>
         public Models.ExerciseVideoResponse AddNewExerciseVideos(
-                string exerciseCode,
-                Models.ExerciseVideo body)
-            => CoreHelper.RunTask(AddNewExerciseVideosAsync(exerciseCode, body));
+                Models.ExerciseVideo body,
+                string exerciseCode)
+            => CoreHelper.RunTask(AddNewExerciseVideosAsync(body, exerciseCode));
 
         /// <summary>
         /// Add new exercise videos EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The exercise code to add videos to.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The exercise code to add videos to.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseVideoResponse response from the API call.</returns>
         public async Task<Models.ExerciseVideoResponse> AddNewExerciseVideosAsync(
-                string exerciseCode,
                 Models.ExerciseVideo body,
+                string exerciseCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseVideoResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -89,8 +89,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise video data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Authentication required", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -99,24 +99,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update exercise videos EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The exercise code of the exercise videos to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The exercise code of the exercise videos to update.</param>
         /// <returns>Returns the Models.ExercisesVideosResponse2 response from the API call.</returns>
         public Models.ExercisesVideosResponse2 UpdateExerciseVideos(
-                string exerciseCode,
-                List<Models.ExerciseVideo> body)
-            => CoreHelper.RunTask(UpdateExerciseVideosAsync(exerciseCode, body));
+                List<Models.ExerciseVideo> body,
+                string exerciseCode)
+            => CoreHelper.RunTask(UpdateExerciseVideosAsync(body, exerciseCode));
 
         /// <summary>
         /// Update exercise videos EndPoint.
         /// </summary>
-        /// <param name="exerciseCode">Required parameter: The exercise code of the exercise videos to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: The exercise code of the exercise videos to update.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExercisesVideosResponse2 response from the API call.</returns>
         public async Task<Models.ExercisesVideosResponse2> UpdateExerciseVideosAsync(
-                string exerciseCode,
                 List<Models.ExerciseVideo> body,
+                string exerciseCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExercisesVideosResponse2>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -124,8 +124,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise video data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Authentication required", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
@@ -169,27 +169,27 @@ namespace JustGainsAPI.Standard.Controllers
         /// Delete an exercise video EndPoint.
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code.</param>
-        /// <param name="userId">Required parameter: The userId of the video creator.</param>
         /// <param name="exerciseVideoId">Required parameter: The exercise video ID to delete.</param>
+        /// <param name="userId">Required parameter: The userId of the video creator.</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse DeleteAnExerciseVideo(
                 string exerciseCode,
-                string userId,
-                int exerciseVideoId)
-            => CoreHelper.RunTask(DeleteAnExerciseVideoAsync(exerciseCode, userId, exerciseVideoId));
+                int exerciseVideoId,
+                string userId)
+            => CoreHelper.RunTask(DeleteAnExerciseVideoAsync(exerciseCode, exerciseVideoId, userId));
 
         /// <summary>
         /// Delete an exercise video EndPoint.
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code.</param>
-        /// <param name="userId">Required parameter: The userId of the video creator.</param>
         /// <param name="exerciseVideoId">Required parameter: The exercise video ID to delete.</param>
+        /// <param name="userId">Required parameter: The userId of the video creator.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> DeleteAnExerciseVideoAsync(
                 string exerciseCode,
-                string userId,
                 int exerciseVideoId,
+                string userId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -197,8 +197,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Template(_template => _template.Setup("userId", userId))
-                      .Template(_template => _template.Setup("exerciseVideoId", exerciseVideoId))))
+                      .Template(_template => _template.Setup("exerciseVideoId", exerciseVideoId))
+                      .Template(_template => _template.Setup("userId", userId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("401", CreateErrorCase("Authentication required", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise video not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

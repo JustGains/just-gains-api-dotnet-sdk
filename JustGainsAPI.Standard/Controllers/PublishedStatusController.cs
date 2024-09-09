@@ -92,24 +92,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a published status EndPoint.
         /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateAPublishedStatus(
-                string publishedStatusCode,
-                Models.PublishedStatus body)
-            => CoreHelper.RunTask(UpdateAPublishedStatusAsync(publishedStatusCode, body));
+                Models.PublishedStatus body,
+                string publishedStatusCode)
+            => CoreHelper.RunTask(UpdateAPublishedStatusAsync(body, publishedStatusCode));
 
         /// <summary>
         /// Update a published status EndPoint.
         /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateAPublishedStatusAsync(
-                string publishedStatusCode,
                 Models.PublishedStatus body,
+                string publishedStatusCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -117,8 +117,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Published status not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -183,24 +183,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updatePublishedStatusTranslations EndPoint.
         /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdatePublishedStatusTranslations(
-                string publishedStatusCode,
-                List<Models.PublishedStatusTranslation> body)
-            => CoreHelper.RunTask(UpdatePublishedStatusTranslationsAsync(publishedStatusCode, body));
+                List<Models.PublishedStatusTranslation> body,
+                string publishedStatusCode)
+            => CoreHelper.RunTask(UpdatePublishedStatusTranslationsAsync(body, publishedStatusCode));
 
         /// <summary>
         /// updatePublishedStatusTranslations EndPoint.
         /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdatePublishedStatusTranslationsAsync(
-                string publishedStatusCode,
                 List<Models.PublishedStatusTranslation> body,
+                string publishedStatusCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -208,8 +208,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

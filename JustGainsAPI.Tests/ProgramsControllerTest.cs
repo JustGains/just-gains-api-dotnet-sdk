@@ -48,16 +48,16 @@ namespace JustGainsAPI.Tests
             // Parameters for the API call
             int? page = 1;
             int? pageSize = 20;
+            string publishStatusCode = null;
             string sortBy = null;
             Standard.Models.SortOrderEnum sortOrder = ApiHelper.JsonDeserialize<Standard.Models.SortOrderEnum>("\"desc\"");
-            string publishStatusCode = null;
             Guid? userId = null;
 
             // Perform API call
             Standard.Models.ProgramListResponse result = null;
             try
             {
-                result = await this.controller.GetProgramsAsync(page, pageSize, sortBy, sortOrder, publishStatusCode, userId);
+                result = await this.controller.GetProgramsAsync(page, pageSize, publishStatusCode, sortBy, sortOrder, userId);
             }
             catch (ApiException)
             {

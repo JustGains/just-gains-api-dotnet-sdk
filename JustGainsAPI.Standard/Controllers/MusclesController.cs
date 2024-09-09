@@ -91,24 +91,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateMuscleTranslations EndPoint.
         /// </summary>
-        /// <param name="muscleCode">Required parameter: The unique identifier code of the muscle to update translations for.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="muscleCode">Required parameter: The unique identifier code of the muscle to update translations for.</param>
         /// <returns>Returns the Models.MusclesTranslationsResponse1 response from the API call.</returns>
         public Models.MusclesTranslationsResponse1 UpdateMuscleTranslations(
-                string muscleCode,
-                List<Models.MuscleTranslation> body)
-            => CoreHelper.RunTask(UpdateMuscleTranslationsAsync(muscleCode, body));
+                List<Models.MuscleTranslation> body,
+                string muscleCode)
+            => CoreHelper.RunTask(UpdateMuscleTranslationsAsync(body, muscleCode));
 
         /// <summary>
         /// updateMuscleTranslations EndPoint.
         /// </summary>
-        /// <param name="muscleCode">Required parameter: The unique identifier code of the muscle to update translations for.</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="muscleCode">Required parameter: The unique identifier code of the muscle to update translations for.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.MusclesTranslationsResponse1 response from the API call.</returns>
         public async Task<Models.MusclesTranslationsResponse1> UpdateMuscleTranslationsAsync(
-                string muscleCode,
                 List<Models.MuscleTranslation> body,
+                string muscleCode,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.MusclesTranslationsResponse1>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -116,8 +116,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("muscleCode", muscleCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("muscleCode", muscleCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Failed to update muscle translations", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

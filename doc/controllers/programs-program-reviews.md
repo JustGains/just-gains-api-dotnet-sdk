@@ -59,16 +59,16 @@ catch (ApiException e)
 
 ```csharp
 AddReviewProgramAsync(
-    int programId,
-    Models.ProgramReview body)
+    Models.ProgramReview body,
+    int programId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `programId` | `int` | Template, Required | - |
 | `body` | [`ProgramReview`](../../doc/models/program-review.md) | Body, Required | - |
+| `programId` | `int` | Template, Required | - |
 
 ## Response Type
 
@@ -77,7 +77,6 @@ AddReviewProgramAsync(
 ## Example Usage
 
 ```csharp
-int programId = 126;
 ProgramReview body = new ProgramReview
 {
     ReviewId = 20001,
@@ -90,11 +89,12 @@ ProgramReview body = new ProgramReview
     ReviewText = "This program significantly improved my strength. Highly recommended for intermediate lifters!",
 };
 
+int programId = 126;
 try
 {
     ProgramReviewResponse result = await programsProgramReviewsController.AddReviewProgramAsync(
-        programId,
-        body
+        body,
+        programId
     );
 }
 catch (ApiException e)

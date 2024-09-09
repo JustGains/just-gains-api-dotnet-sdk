@@ -63,31 +63,31 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getWorkoutDetailById EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public Models.WorkoutDataResponse GetWorkoutDetailById(
-                int workoutId,
-                string exerciseCode)
-            => CoreHelper.RunTask(GetWorkoutDetailByIdAsync(workoutId, exerciseCode));
+                string exerciseCode,
+                int workoutId)
+            => CoreHelper.RunTask(GetWorkoutDetailByIdAsync(exerciseCode, workoutId));
 
         /// <summary>
         /// getWorkoutDetailById EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public async Task<Models.WorkoutDataResponse> GetWorkoutDetailByIdAsync(
-                int workoutId,
                 string exerciseCode,
+                int workoutId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutDataResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/workouts/{workoutId}/data/{exerciseCode}")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("workoutId", workoutId))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
+                      .Template(_template => _template.Setup("workoutId", workoutId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("Workout or exercise not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -95,28 +95,28 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Add new exercise to the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public Models.WorkoutDataResponse AddNewExerciseToTheWorkout(
-                int workoutId,
+                Models.WorkoutData body,
                 string exerciseCode,
-                Models.WorkoutData body)
-            => CoreHelper.RunTask(AddNewExerciseToTheWorkoutAsync(workoutId, exerciseCode, body));
+                int workoutId)
+            => CoreHelper.RunTask(AddNewExerciseToTheWorkoutAsync(body, exerciseCode, workoutId));
 
         /// <summary>
         /// Add new exercise to the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public async Task<Models.WorkoutDataResponse> AddNewExerciseToTheWorkoutAsync(
-                int workoutId,
-                string exerciseCode,
                 Models.WorkoutData body,
+                string exerciseCode,
+                int workoutId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutDataResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -124,9 +124,9 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("workoutId", workoutId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Template(_template => _template.Setup("workoutId", workoutId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Workout not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -135,28 +135,28 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update exercise in the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public Models.WorkoutDataResponse UpdateExerciseInTheWorkout(
-                int workoutId,
+                Models.WorkoutData body,
                 string exerciseCode,
-                Models.WorkoutData body)
-            => CoreHelper.RunTask(UpdateExerciseInTheWorkoutAsync(workoutId, exerciseCode, body));
+                int workoutId)
+            => CoreHelper.RunTask(UpdateExerciseInTheWorkoutAsync(body, exerciseCode, workoutId));
 
         /// <summary>
         /// Update exercise in the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
-        /// <param name="exerciseCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.WorkoutDataResponse response from the API call.</returns>
         public async Task<Models.WorkoutDataResponse> UpdateExerciseInTheWorkoutAsync(
-                int workoutId,
-                string exerciseCode,
                 Models.WorkoutData body,
+                string exerciseCode,
+                int workoutId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutDataResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -164,9 +164,9 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("workoutId", workoutId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Template(_template => _template.Setup("workoutId", workoutId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Workout or exercise not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -175,32 +175,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Deletes an exercise from the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse DeletesAnExerciseFromTheWorkout(
-                int workoutId,
-                string exerciseCode)
-            => CoreHelper.RunTask(DeletesAnExerciseFromTheWorkoutAsync(workoutId, exerciseCode));
+                string exerciseCode,
+                int workoutId)
+            => CoreHelper.RunTask(DeletesAnExerciseFromTheWorkoutAsync(exerciseCode, workoutId));
 
         /// <summary>
         /// Deletes an exercise from the workout EndPoint.
         /// </summary>
-        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: Example: .</param>
+        /// <param name="workoutId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> DeletesAnExerciseFromTheWorkoutAsync(
-                int workoutId,
                 string exerciseCode,
+                int workoutId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/workouts/{workoutId}/data/{exerciseCode}")
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("workoutId", workoutId))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
+                      .Template(_template => _template.Setup("workoutId", workoutId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("Workout or exercise not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

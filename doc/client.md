@@ -12,7 +12,7 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```csharp
-JustGainsAPI.Standard.JustGainsAPIClient client = new JustGainsAPI.Standard.JustGainsAPIClient.Builder()
+JustGainsAPIClient client = new JustGainsAPIClient.Builder()
     .BearerAuthCredentials(
         new BearerAuthModel.Builder(
             "AccessToken"

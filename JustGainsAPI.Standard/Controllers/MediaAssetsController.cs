@@ -66,31 +66,31 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Upload a new media asset EndPoint.
         /// </summary>
+        /// <param name="description">Optional parameter: Example: .</param>
         /// <param name="file">Optional parameter: Example: .</param>
         /// <param name="mediaType">Optional parameter: Example: .</param>
-        /// <param name="description">Optional parameter: Example: .</param>
         /// <param name="uploadDirectory">Optional parameter: Optional. Specify a custom upload directory..</param>
         /// <returns>Returns the Models.MediaAssetResponse response from the API call.</returns>
         public Models.MediaAssetResponse UploadANewMediaAsset(
+                string description = null,
                 FileStreamInfo file = null,
                 string mediaType = null,
-                string description = null,
                 string uploadDirectory = null)
-            => CoreHelper.RunTask(UploadANewMediaAssetAsync(file, mediaType, description, uploadDirectory));
+            => CoreHelper.RunTask(UploadANewMediaAssetAsync(description, file, mediaType, uploadDirectory));
 
         /// <summary>
         /// Upload a new media asset EndPoint.
         /// </summary>
+        /// <param name="description">Optional parameter: Example: .</param>
         /// <param name="file">Optional parameter: Example: .</param>
         /// <param name="mediaType">Optional parameter: Example: .</param>
-        /// <param name="description">Optional parameter: Example: .</param>
         /// <param name="uploadDirectory">Optional parameter: Optional. Specify a custom upload directory..</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.MediaAssetResponse response from the API call.</returns>
         public async Task<Models.MediaAssetResponse> UploadANewMediaAssetAsync(
+                string description = null,
                 FileStreamInfo file = null,
                 string mediaType = null,
-                string description = null,
                 string uploadDirectory = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.MediaAssetResponse>()
@@ -98,9 +98,9 @@ namespace JustGainsAPI.Standard.Controllers
                   .Setup(HttpMethod.Post, "/media-assets")
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
+                      .Form(_form => _form.Setup("description", description))
                       .Form(_form => _form.Setup("file", file))
                       .Form(_form => _form.Setup("mediaType", mediaType))
-                      .Form(_form => _form.Setup("description", description))
                       .Form(_form => _form.Setup("uploadDirectory", uploadDirectory))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
@@ -134,24 +134,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a media asset EndPoint.
         /// </summary>
-        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <returns>Returns the Models.MediaAssetResponse response from the API call.</returns>
         public Models.MediaAssetResponse UpdateAMediaAsset(
-                Guid mediaAssetId,
-                Models.MediaAsset body)
-            => CoreHelper.RunTask(UpdateAMediaAssetAsync(mediaAssetId, body));
+                Models.MediaAsset body,
+                Guid mediaAssetId)
+            => CoreHelper.RunTask(UpdateAMediaAssetAsync(body, mediaAssetId));
 
         /// <summary>
         /// Update a media asset EndPoint.
         /// </summary>
-        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.MediaAssetResponse response from the API call.</returns>
         public async Task<Models.MediaAssetResponse> UpdateAMediaAssetAsync(
-                Guid mediaAssetId,
                 Models.MediaAsset body,
+                Guid mediaAssetId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.MediaAssetResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -159,8 +159,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("mediaAssetId", mediaAssetId))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))
+                      .Template(_template => _template.Setup("mediaAssetId", mediaAssetId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("Media asset not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -196,31 +196,31 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getMediaAssetDetail EndPoint.
         /// </summary>
-        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="fileName">Required parameter: Example: .</param>
+        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <returns>Returns the Stream response from the API call.</returns>
         public Stream GetMediaAssetDetail(
-                Guid mediaAssetId,
-                string fileName)
-            => CoreHelper.RunTask(GetMediaAssetDetailAsync(mediaAssetId, fileName));
+                string fileName,
+                Guid mediaAssetId)
+            => CoreHelper.RunTask(GetMediaAssetDetailAsync(fileName, mediaAssetId));
 
         /// <summary>
         /// getMediaAssetDetail EndPoint.
         /// </summary>
-        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="fileName">Required parameter: Example: .</param>
+        /// <param name="mediaAssetId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Stream response from the API call.</returns>
         public async Task<Stream> GetMediaAssetDetailAsync(
-                Guid mediaAssetId,
                 string fileName,
+                Guid mediaAssetId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Stream>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/media-assets/{mediaAssetId}/{fileName}")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("mediaAssetId", mediaAssetId))
-                      .Template(_template => _template.Setup("fileName", fileName))))
+                      .Template(_template => _template.Setup("fileName", fileName))
+                      .Template(_template => _template.Setup("mediaAssetId", mediaAssetId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("Media asset not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

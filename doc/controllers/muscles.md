@@ -30,7 +30,7 @@ GetMusclesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | Locale code to filter muscles by language |
+| `localeCode` | `string` | Query, Optional | Locale code to filter muscles by language<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -104,16 +104,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateMuscleTranslationsAsync(
-    string muscleCode,
-    List<Models.MuscleTranslation> body)
+    List<Models.MuscleTranslation> body,
+    string muscleCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleCode` | `string` | Template, Required | The unique identifier code of the muscle to update translations for |
 | `body` | [`List<MuscleTranslation>`](../../doc/models/muscle-translation.md) | Body, Required | - |
+| `muscleCode` | `string` | Template, Required | The unique identifier code of the muscle to update translations for |
 
 ## Response Type
 
@@ -122,8 +122,7 @@ UpdateMuscleTranslationsAsync(
 ## Example Usage
 
 ```csharp
-string muscleCode = "muscleCode0";
-List<Models.MuscleTranslation> body = new List<Models.MuscleTranslation>
+List<MuscleTranslation> body = new List<MuscleTranslation>
 {
     new MuscleTranslation
     {
@@ -133,11 +132,12 @@ List<Models.MuscleTranslation> body = new List<Models.MuscleTranslation>
     },
 };
 
+string muscleCode = "muscleCode0";
 try
 {
     MusclesTranslationsResponse1 result = await musclesController.UpdateMuscleTranslationsAsync(
-        muscleCode,
-        body
+        body,
+        muscleCode
     );
 }
 catch (ApiException e)

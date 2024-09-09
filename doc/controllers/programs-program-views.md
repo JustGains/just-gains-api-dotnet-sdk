@@ -13,16 +13,16 @@ ProgramsProgramViewsController programsProgramViewsController = client.ProgramsP
 
 ```csharp
 AddViewProgramAsync(
-    int programId,
-    Models.ProgramView body)
+    Models.ProgramView body,
+    int programId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `programId` | `int` | Template, Required | - |
 | `body` | [`ProgramView`](../../doc/models/program-view.md) | Body, Required | - |
+| `programId` | `int` | Template, Required | - |
 
 ## Response Type
 
@@ -31,7 +31,6 @@ AddViewProgramAsync(
 ## Example Usage
 
 ```csharp
-int programId = 126;
 ProgramView body = new ProgramView
 {
     ProgramViewId = 10001,
@@ -47,11 +46,12 @@ ProgramView body = new ProgramView
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
 };
 
+int programId = 126;
 try
 {
     JustGainsBasicResponse result = await programsProgramViewsController.AddViewProgramAsync(
-        programId,
-        body
+        body,
+        programId
     );
 }
 catch (ApiException e)

@@ -32,10 +32,10 @@ GetAPaginatedListOfWorkoutsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | The page number to retrieve |
-| `pageSize` | `int?` | Query, Optional | The number of items to retrieve per page |
+| `page` | `int?` | Query, Optional | The page number to retrieve<br>**Default**: `1`<br>**Constraints**: `>= 1` |
+| `pageSize` | `int?` | Query, Optional | The number of items to retrieve per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 | `sortBy` | `string` | Query, Optional | - |
-| `sortOrder` | [`SortOrderEnum?`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in |
+| `sortOrder` | [`SortOrderEnum?`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in<br>**Default**: `SortOrderEnum.desc` |
 
 ## Response Type
 
@@ -167,16 +167,16 @@ Creates a copy of an existing workout, preserving creator credits and adding the
 
 ```csharp
 DuplicateAWorkoutAsync(
-    int workoutId,
-    Models.WorkoutsDuplicateRequest body)
+    Models.WorkoutsDuplicateRequest body,
+    int workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | The ID of the workout to duplicate |
 | `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
+| `workoutId` | `int` | Template, Required | The ID of the workout to duplicate |
 
 ## Response Type
 
@@ -185,17 +185,17 @@ DuplicateAWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
 WorkoutsDuplicateRequest body = new WorkoutsDuplicateRequest
 {
     NewWorkoutTitle = "My Modified Full Body Workout",
 };
 
+int workoutId = 250;
 try
 {
     WorkoutResponse result = await workoutsController.DuplicateAWorkoutAsync(
-        workoutId,
-        body
+        body,
+        workoutId
     );
 }
 catch (ApiException e)

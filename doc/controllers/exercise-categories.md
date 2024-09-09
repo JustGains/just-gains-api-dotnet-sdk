@@ -31,7 +31,7 @@ GetExerciseCategoriesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | The locale for returned category names |
+| `localeCode` | `string` | Query, Optional | The locale for returned category names<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -101,16 +101,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExerciseCategoryAsync(
-    string exerciseCategoryCode,
-    Models.ExerciseCategory body)
+    Models.ExerciseCategory body,
+    string exerciseCategoryCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCode` | `string` | Template, Required | - |
 | `body` | [`ExerciseCategory`](../../doc/models/exercise-category.md) | Body, Required | - |
+| `exerciseCategoryCode` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -119,18 +119,18 @@ UpdateAnExerciseCategoryAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCategoryCode = "exerciseCategoryCode8";
 ExerciseCategory body = new ExerciseCategory
 {
     ExerciseCategoryCode = "STRENGTH_TRAINING",
     ExerciseCategoryName = "Strength Training",
 };
 
+string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
     JustGainsBasicResponse result = await exerciseCategoriesController.UpdateAnExerciseCategoryAsync(
-        exerciseCategoryCode,
-        body
+        body,
+        exerciseCategoryCode
     );
 }
 catch (ApiException e)
@@ -235,16 +235,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseCategoryTranslationsAsync(
-    string exerciseCategoryCode,
-    List<Models.ExerciseCategoryTranslation> body)
+    List<Models.ExerciseCategoryTranslation> body,
+    string exerciseCategoryCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCode` | `string` | Template, Required | The unique code of the exercise category |
 | `body` | [`List<ExerciseCategoryTranslation>`](../../doc/models/exercise-category-translation.md) | Body, Required | - |
+| `exerciseCategoryCode` | `string` | Template, Required | The unique code of the exercise category |
 
 ## Response Type
 
@@ -253,8 +253,7 @@ UpdateExerciseCategoryTranslationsAsync(
 ## Example Usage
 
 ```csharp
-string exerciseCategoryCode = "exerciseCategoryCode8";
-List<Models.ExerciseCategoryTranslation> body = new List<Models.ExerciseCategoryTranslation>
+List<ExerciseCategoryTranslation> body = new List<ExerciseCategoryTranslation>
 {
     new ExerciseCategoryTranslation
     {
@@ -263,11 +262,12 @@ List<Models.ExerciseCategoryTranslation> body = new List<Models.ExerciseCategory
     },
 };
 
+string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
     JustGainsBasicResponse result = await exerciseCategoriesController.UpdateExerciseCategoryTranslationsAsync(
-        exerciseCategoryCode,
-        body
+        body,
+        exerciseCategoryCode
     );
 }
 catch (ApiException e)

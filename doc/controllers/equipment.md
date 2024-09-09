@@ -34,7 +34,7 @@ GetEquipmentsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment names. |
+| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment names.<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -120,7 +120,7 @@ GetEquipmentAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment. |
-| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment names. |
+| `localeCode` | `string` | Query, Optional | The locale to use for the localized equipment names.<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 
 ## Response Type
 
@@ -156,16 +156,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateEquipmentAsync(
-    string equipmentCode,
-    Models.Equipment body)
+    Models.Equipment body,
+    string equipmentCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
 | `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
+| `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
 
 ## Response Type
 
@@ -174,7 +174,6 @@ UpdateEquipmentAsync(
 ## Example Usage
 
 ```csharp
-string equipmentCode = "equipmentCode6";
 Equipment body = new Equipment
 {
     EquipmentCode = "BARBELL",
@@ -186,11 +185,12 @@ Equipment body = new Equipment
     },
 };
 
+string equipmentCode = "equipmentCode6";
 try
 {
     JustGainsBasicResponse result = await equipmentController.UpdateEquipmentAsync(
-        equipmentCode,
-        body
+        body,
+        equipmentCode
     );
 }
 catch (ApiException e)
@@ -296,16 +296,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateEquipmentTranslationsAsync(
-    string equipmentCode,
-    Models.EquipmentTranslation body)
+    Models.EquipmentTranslation body,
+    string equipmentCode)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
 | `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
+| `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
 
 ## Response Type
 
@@ -314,18 +314,18 @@ UpdateEquipmentTranslationsAsync(
 ## Example Usage
 
 ```csharp
-string equipmentCode = "equipmentCode6";
 EquipmentTranslation body = new EquipmentTranslation
 {
     EquipmentName = "Barbell",
     LocaleCode = "en-US",
 };
 
+string equipmentCode = "equipmentCode6";
 try
 {
     JustGainsBasicResponse result = await equipmentController.UpdateEquipmentTranslationsAsync(
-        equipmentCode,
-        body
+        body,
+        equipmentCode
     );
 }
 catch (ApiException e)

@@ -46,14 +46,14 @@ namespace JustGainsAPI.Tests
         public async Task TestTestGetCreatorProfiles()
         {
             // Parameters for the API call
-            int? page = 1;
             int? limit = 20;
+            int? page = 1;
 
             // Perform API call
             Standard.Models.CreatorProfileListResponse result = null;
             try
             {
-                result = await this.controller.GetCreatorProfilesAsync(page, limit);
+                result = await this.controller.GetCreatorProfilesAsync(limit, page);
             }
             catch (ApiException)
             {

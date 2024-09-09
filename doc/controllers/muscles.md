@@ -104,16 +104,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateMuscleTranslationsAsync(
-    List<Models.MuscleTranslation> body,
-    string muscleCode)
+    string muscleCode,
+    List<Models.MuscleTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<MuscleTranslation>`](../../doc/models/muscle-translation.md) | Body, Required | - |
 | `muscleCode` | `string` | Template, Required | The unique identifier code of the muscle to update translations for |
+| `body` | [`List<MuscleTranslation>`](../../doc/models/muscle-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -122,6 +122,7 @@ UpdateMuscleTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string muscleCode = "muscleCode0";
 List<MuscleTranslation> body = new List<MuscleTranslation>
 {
     new MuscleTranslation
@@ -132,12 +133,11 @@ List<MuscleTranslation> body = new List<MuscleTranslation>
     },
 };
 
-string muscleCode = "muscleCode0";
 try
 {
     MusclesTranslationsResponse1 result = await musclesController.UpdateMuscleTranslationsAsync(
-        body,
-        muscleCode
+        muscleCode,
+        body
     );
 }
 catch (ApiException e)

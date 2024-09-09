@@ -25,16 +25,16 @@ UsersRoleManagementController usersRoleManagementController = client.UsersRoleMa
 
 ```csharp
 AssignARoleToAUserAsync(
-    Models.RoleAssignmentRequest body,
-    Guid userId)
+    Guid userId,
+    Models.RoleAssignmentRequest body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
 | `userId` | `Guid` | Template, Required | - |
+| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -43,17 +43,17 @@ AssignARoleToAUserAsync(
 ## Example Usage
 
 ```csharp
+Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
 RoleAssignmentRequest body = new RoleAssignmentRequest
 {
     RoleId = 192,
 };
 
-Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
 try
 {
     UsersRolesResponse result = await usersRoleManagementController.AssignARoleToAUserAsync(
-        body,
-        userId
+        userId,
+        body
     );
 }
 catch (ApiException e)
@@ -105,16 +105,16 @@ catch (ApiException e)
 
 ```csharp
 RemoveARoleFromAUserAsync(
-    string roleName,
-    Guid userId)
+    Guid userId,
+    string roleName)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `roleName` | `string` | Template, Required | - |
 | `userId` | `Guid` | Template, Required | - |
+| `roleName` | `string` | Template, Required | - |
 
 ## Response Type
 
@@ -123,13 +123,13 @@ RemoveARoleFromAUserAsync(
 ## Example Usage
 
 ```csharp
-string roleName = "roleName6";
 Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
+string roleName = "roleName6";
 try
 {
     JustGainsResponse result = await usersRoleManagementController.RemoveARoleFromAUserAsync(
-        roleName,
-        userId
+        userId,
+        roleName
     );
 }
 catch (ApiException e)
@@ -212,16 +212,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateARoleAsync(
-    Models.RoleUpdateRequest body,
-    string roleName)
+    string roleName,
+    Models.RoleUpdateRequest body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`RoleUpdateRequest`](../../doc/models/role-update-request.md) | Body, Required | - |
 | `roleName` | `string` | Template, Required | - |
+| `body` | [`RoleUpdateRequest`](../../doc/models/role-update-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -230,16 +230,16 @@ UpdateARoleAsync(
 ## Example Usage
 
 ```csharp
+string roleName = "roleName6";
 RoleUpdateRequest body = new RoleUpdateRequest
 {
 };
 
-string roleName = "roleName6";
 try
 {
     RolesResponse1 result = await usersRoleManagementController.UpdateARoleAsync(
-        body,
-        roleName
+        roleName,
+        body
     );
 }
 catch (ApiException e)

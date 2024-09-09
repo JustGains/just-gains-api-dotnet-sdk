@@ -38,37 +38,37 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="page">Optional parameter: Example: 1.</param>
         /// <param name="pageSize">Optional parameter: Example: 20.</param>
-        /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: Example: desc.</param>
+        /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="userId">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.ProgramListResponse response from the API call.</returns>
         public Models.ProgramListResponse GetPrograms(
                 int? page = 1,
                 int? pageSize = 20,
-                string publishStatusCode = null,
                 string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
+                string publishStatusCode = null,
                 Guid? userId = null)
-            => CoreHelper.RunTask(GetProgramsAsync(page, pageSize, publishStatusCode, sortBy, sortOrder, userId));
+            => CoreHelper.RunTask(GetProgramsAsync(page, pageSize, sortBy, sortOrder, publishStatusCode, userId));
 
         /// <summary>
         /// getPrograms EndPoint.
         /// </summary>
         /// <param name="page">Optional parameter: Example: 1.</param>
         /// <param name="pageSize">Optional parameter: Example: 20.</param>
-        /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="sortBy">Optional parameter: Example: .</param>
         /// <param name="sortOrder">Optional parameter: Example: desc.</param>
+        /// <param name="publishStatusCode">Optional parameter: Example: .</param>
         /// <param name="userId">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ProgramListResponse response from the API call.</returns>
         public async Task<Models.ProgramListResponse> GetProgramsAsync(
                 int? page = 1,
                 int? pageSize = 20,
-                string publishStatusCode = null,
                 string sortBy = null,
                 Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
+                string publishStatusCode = null,
                 Guid? userId = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ProgramListResponse>()
@@ -77,9 +77,9 @@ namespace JustGainsAPI.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page ?? 1))
                       .Query(_query => _query.Setup("pageSize", pageSize ?? 20))
-                      .Query(_query => _query.Setup("publishStatusCode", publishStatusCode))
                       .Query(_query => _query.Setup("sortBy", sortBy))
                       .Query(_query => _query.Setup("sortOrder", (sortOrder.HasValue) ? ApiHelper.JsonSerialize(sortOrder.Value).Trim('\"') : "desc"))
+                      .Query(_query => _query.Setup("publishStatusCode", publishStatusCode))
                       .Query(_query => _query.Setup("userId", userId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -144,24 +144,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateProgram EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="programId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse UpdateProgram(
-                Models.Program body,
-                int programId)
-            => CoreHelper.RunTask(UpdateProgramAsync(body, programId));
+                int programId,
+                Models.Program body)
+            => CoreHelper.RunTask(UpdateProgramAsync(programId, body));
 
         /// <summary>
         /// updateProgram EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="programId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> UpdateProgramAsync(
-                Models.Program body,
                 int programId,
+                Models.Program body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -169,8 +169,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("programId", programId))))
+                      .Template(_template => _template.Setup("programId", programId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Program not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

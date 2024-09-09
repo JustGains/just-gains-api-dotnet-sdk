@@ -104,16 +104,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExerciseMetricAsync(
-    Models.ExerciseMetric body,
-    string metricCode)
+    string metricCode,
+    Models.ExerciseMetric body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
 | `metricCode` | `string` | Template, Required | - |
+| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
 
 ## Response Type
 
@@ -122,17 +122,17 @@ UpdateAnExerciseMetricAsync(
 ## Example Usage
 
 ```csharp
+string metricCode = "metricCode4";
 ExerciseMetric body = new ExerciseMetric
 {
     ExerciseMetricCode = "WEIGHT",
 };
 
-string metricCode = "metricCode4";
 try
 {
     JustGainsResponse result = await exerciseMetricsController.UpdateAnExerciseMetricAsync(
-        body,
-        metricCode
+        metricCode,
+        body
     );
 }
 catch (ApiException e)

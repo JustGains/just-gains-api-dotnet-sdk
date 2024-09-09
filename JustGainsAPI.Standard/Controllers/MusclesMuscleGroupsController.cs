@@ -91,24 +91,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a muscle group EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="muscleGroupCode">Required parameter: The muscle group code to update..</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateAMuscleGroup(
-                Models.MuscleGroup body,
-                string muscleGroupCode)
-            => CoreHelper.RunTask(UpdateAMuscleGroupAsync(body, muscleGroupCode));
+                string muscleGroupCode,
+                Models.MuscleGroup body)
+            => CoreHelper.RunTask(UpdateAMuscleGroupAsync(muscleGroupCode, body));
 
         /// <summary>
         /// Update a muscle group EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="muscleGroupCode">Required parameter: The muscle group code to update..</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateAMuscleGroupAsync(
-                Models.MuscleGroup body,
                 string muscleGroupCode,
+                Models.MuscleGroup body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -116,8 +116,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("muscleGroupCode", muscleGroupCode))))
+                      .Template(_template => _template.Setup("muscleGroupCode", muscleGroupCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid muscle group data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Authentication required", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
@@ -184,32 +184,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateMuscleGroupTranslations EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="muscleGroupCode">Required parameter: The unique code of the muscle group.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateMuscleGroupTranslations(
-                List<Models.MuscleGroupTranslation> body,
-                string muscleGroupCode)
-            => CoreHelper.RunTask(UpdateMuscleGroupTranslationsAsync(body, muscleGroupCode));
+                string muscleGroupCode,
+                List<Models.MuscleGroupTranslation> body)
+            => CoreHelper.RunTask(UpdateMuscleGroupTranslationsAsync(muscleGroupCode, body));
 
         /// <summary>
         /// updateMuscleGroupTranslations EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="muscleGroupCode">Required parameter: The unique code of the muscle group.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateMuscleGroupTranslationsAsync(
-                List<Models.MuscleGroupTranslation> body,
                 string muscleGroupCode,
+                List<Models.MuscleGroupTranslation> body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/muscle-groups/{muscleGroupCode}/translations")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("muscleGroupCode", muscleGroupCode))))
+                      .Template(_template => _template.Setup("muscleGroupCode", muscleGroupCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Failed to update muscle group translations", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Muscle group not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

@@ -116,16 +116,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAMuscleGroupAsync(
-    Models.MuscleGroup body,
-    string muscleGroupCode)
+    string muscleGroupCode,
+    Models.MuscleGroup body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`MuscleGroup`](../../doc/models/muscle-group.md) | Body, Required | - |
 | `muscleGroupCode` | `string` | Template, Required | The muscle group code to update.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`MuscleGroup`](../../doc/models/muscle-group.md) | Body, Required | - |
 
 ## Response Type
 
@@ -134,6 +134,7 @@ UpdateAMuscleGroupAsync(
 ## Example Usage
 
 ```csharp
+string muscleGroupCode = "muscleGroupCode2";
 MuscleGroup body = new MuscleGroup
 {
     MuscleGroupCode = "CHEST",
@@ -154,12 +155,11 @@ MuscleGroup body = new MuscleGroup
     MuscleGroupType = MuscleGroupTypeEnum.MainGroup,
 };
 
-string muscleGroupCode = "muscleGroupCode2";
 try
 {
     JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateAMuscleGroupAsync(
-        body,
-        muscleGroupCode
+        muscleGroupCode,
+        body
     );
 }
 catch (ApiException e)
@@ -266,16 +266,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateMuscleGroupTranslationsAsync(
-    List<Models.MuscleGroupTranslation> body,
-    string muscleGroupCode)
+    string muscleGroupCode,
+    List<Models.MuscleGroupTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<MuscleGroupTranslation>`](../../doc/models/muscle-group-translation.md) | Body, Required | - |
 | `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`List<MuscleGroupTranslation>`](../../doc/models/muscle-group-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -284,6 +284,7 @@ UpdateMuscleGroupTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string muscleGroupCode = "muscleGroupCode2";
 List<MuscleGroupTranslation> body = new List<MuscleGroupTranslation>
 {
     new MuscleGroupTranslation
@@ -294,12 +295,11 @@ List<MuscleGroupTranslation> body = new List<MuscleGroupTranslation>
     },
 };
 
-string muscleGroupCode = "muscleGroupCode2";
 try
 {
     JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateMuscleGroupTranslationsAsync(
-        body,
-        muscleGroupCode
+        muscleGroupCode,
+        body
     );
 }
 catch (ApiException e)

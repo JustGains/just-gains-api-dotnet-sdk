@@ -167,16 +167,16 @@ Creates a copy of an existing workout, preserving creator credits and adding the
 
 ```csharp
 DuplicateAWorkoutAsync(
-    Models.WorkoutsDuplicateRequest body,
-    int workoutId)
+    int workoutId,
+    Models.WorkoutsDuplicateRequest body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
 | `workoutId` | `int` | Template, Required | The ID of the workout to duplicate |
+| `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -185,17 +185,17 @@ DuplicateAWorkoutAsync(
 ## Example Usage
 
 ```csharp
+int workoutId = 250;
 WorkoutsDuplicateRequest body = new WorkoutsDuplicateRequest
 {
     NewWorkoutTitle = "My Modified Full Body Workout",
 };
 
-int workoutId = 250;
 try
 {
     WorkoutResponse result = await workoutsController.DuplicateAWorkoutAsync(
-        body,
-        workoutId
+        workoutId,
+        body
     );
 }
 catch (ApiException e)

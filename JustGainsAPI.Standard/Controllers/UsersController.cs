@@ -89,24 +89,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a user EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.UserWithoutCreatorProfileResponse response from the API call.</returns>
         public Models.UserWithoutCreatorProfileResponse UpdateAUser(
-                Models.UserWithoutCreatorProfile body,
-                string userId)
-            => CoreHelper.RunTask(UpdateAUserAsync(body, userId));
+                string userId,
+                Models.UserWithoutCreatorProfile body)
+            => CoreHelper.RunTask(UpdateAUserAsync(userId, body));
 
         /// <summary>
         /// Update a user EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.UserWithoutCreatorProfileResponse response from the API call.</returns>
         public async Task<Models.UserWithoutCreatorProfileResponse> UpdateAUserAsync(
-                Models.UserWithoutCreatorProfile body,
                 string userId,
+                Models.UserWithoutCreatorProfile body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UserWithoutCreatorProfileResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -114,8 +114,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("userId", userId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid user data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("User not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

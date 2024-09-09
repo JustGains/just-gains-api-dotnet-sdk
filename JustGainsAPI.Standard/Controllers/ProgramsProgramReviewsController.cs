@@ -63,24 +63,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// addReviewProgram EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="programId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ProgramReviewResponse response from the API call.</returns>
         public Models.ProgramReviewResponse AddReviewProgram(
-                Models.ProgramReview body,
-                int programId)
-            => CoreHelper.RunTask(AddReviewProgramAsync(body, programId));
+                int programId,
+                Models.ProgramReview body)
+            => CoreHelper.RunTask(AddReviewProgramAsync(programId, body));
 
         /// <summary>
         /// addReviewProgram EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="programId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ProgramReviewResponse response from the API call.</returns>
         public async Task<Models.ProgramReviewResponse> AddReviewProgramAsync(
-                Models.ProgramReview body,
                 int programId,
+                Models.ProgramReview body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ProgramReviewResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -88,8 +88,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("programId", programId))))
+                      .Template(_template => _template.Setup("programId", programId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Program not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

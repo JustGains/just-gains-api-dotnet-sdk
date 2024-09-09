@@ -92,24 +92,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update an existing equipment group EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="equipmentGroupCode">Required parameter: The equipment group code to update..</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateAnExistingEquipmentGroup(
-                Models.EquipmentGroup body,
-                string equipmentGroupCode)
-            => CoreHelper.RunTask(UpdateAnExistingEquipmentGroupAsync(body, equipmentGroupCode));
+                string equipmentGroupCode,
+                Models.EquipmentGroup body)
+            => CoreHelper.RunTask(UpdateAnExistingEquipmentGroupAsync(equipmentGroupCode, body));
 
         /// <summary>
         /// Update an existing equipment group EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="equipmentGroupCode">Required parameter: The equipment group code to update..</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateAnExistingEquipmentGroupAsync(
-                Models.EquipmentGroup body,
                 string equipmentGroupCode,
+                Models.EquipmentGroup body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -117,8 +117,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("equipmentGroupCode", equipmentGroupCode))))
+                      .Template(_template => _template.Setup("equipmentGroupCode", equipmentGroupCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -180,32 +180,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Updates the translations for a specific equipment group identified by its code.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="equipmentGroupCode">Required parameter: The unique code of the equipment group.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse UpdateEquipmentGroupTranslations(
-                List<Models.EquipmentGroupTranslation> body,
-                string equipmentGroupCode)
-            => CoreHelper.RunTask(UpdateEquipmentGroupTranslationsAsync(body, equipmentGroupCode));
+                string equipmentGroupCode,
+                List<Models.EquipmentGroupTranslation> body)
+            => CoreHelper.RunTask(UpdateEquipmentGroupTranslationsAsync(equipmentGroupCode, body));
 
         /// <summary>
         /// Updates the translations for a specific equipment group identified by its code.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="equipmentGroupCode">Required parameter: The unique code of the equipment group.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> UpdateEquipmentGroupTranslationsAsync(
-                List<Models.EquipmentGroupTranslation> body,
                 string equipmentGroupCode,
+                List<Models.EquipmentGroupTranslation> body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/equipment-groups/{equipmentGroupCode}/translations")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("equipmentGroupCode", equipmentGroupCode))))
+                      .Template(_template => _template.Setup("equipmentGroupCode", equipmentGroupCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Equipment group not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

@@ -136,24 +136,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Creates a copy of an existing workout, preserving creator credits and adding the current user as a new contributor.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="workoutId">Required parameter: The ID of the workout to duplicate.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
         public Models.WorkoutResponse DuplicateAWorkout(
-                Models.WorkoutsDuplicateRequest body,
-                int workoutId)
-            => CoreHelper.RunTask(DuplicateAWorkoutAsync(body, workoutId));
+                int workoutId,
+                Models.WorkoutsDuplicateRequest body)
+            => CoreHelper.RunTask(DuplicateAWorkoutAsync(workoutId, body));
 
         /// <summary>
         /// Creates a copy of an existing workout, preserving creator credits and adding the current user as a new contributor.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="workoutId">Required parameter: The ID of the workout to duplicate.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
         public async Task<Models.WorkoutResponse> DuplicateAWorkoutAsync(
-                Models.WorkoutsDuplicateRequest body,
                 int workoutId,
+                Models.WorkoutsDuplicateRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -161,8 +161,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("workoutId", workoutId))))
+                      .Template(_template => _template.Setup("workoutId", workoutId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid request data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("403", CreateErrorCase("Permission denied", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

@@ -107,16 +107,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAPublishedStatusAsync(
-    Models.PublishedStatus body,
-    string publishedStatusCode)
+    string publishedStatusCode,
+    Models.PublishedStatus body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`PublishedStatus`](../../doc/models/published-status.md) | Body, Required | - |
 | `publishedStatusCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`PublishedStatus`](../../doc/models/published-status.md) | Body, Required | - |
 
 ## Response Type
 
@@ -125,6 +125,7 @@ UpdateAPublishedStatusAsync(
 ## Example Usage
 
 ```csharp
+string publishedStatusCode = "publishedStatusCode2";
 PublishedStatus body = new PublishedStatus
 {
     PublishedStatusCode = "PUBLISHED",
@@ -132,12 +133,11 @@ PublishedStatus body = new PublishedStatus
     PublishedStatusName = "Published",
 };
 
-string publishedStatusCode = "publishedStatusCode2";
 try
 {
     JustGainsBasicResponse result = await publishedStatusController.UpdateAPublishedStatusAsync(
-        body,
-        publishedStatusCode
+        publishedStatusCode,
+        body
     );
 }
 catch (ApiException e)
@@ -240,16 +240,16 @@ catch (ApiException e)
 
 ```csharp
 UpdatePublishedStatusTranslationsAsync(
-    List<Models.PublishedStatusTranslation> body,
-    string publishedStatusCode)
+    string publishedStatusCode,
+    List<Models.PublishedStatusTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<PublishedStatusTranslation>`](../../doc/models/published-status-translation.md) | Body, Required | - |
 | `publishedStatusCode` | `string` | Template, Required | The unique code of the published status<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`List<PublishedStatusTranslation>`](../../doc/models/published-status-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -258,6 +258,7 @@ UpdatePublishedStatusTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string publishedStatusCode = "publishedStatusCode2";
 List<PublishedStatusTranslation> body = new List<PublishedStatusTranslation>
 {
     new PublishedStatusTranslation
@@ -267,12 +268,11 @@ List<PublishedStatusTranslation> body = new List<PublishedStatusTranslation>
     },
 };
 
-string publishedStatusCode = "publishedStatusCode2";
 try
 {
     JustGainsBasicResponse result = await publishedStatusController.UpdatePublishedStatusTranslationsAsync(
-        body,
-        publishedStatusCode
+        publishedStatusCode,
+        body
     );
 }
 catch (ApiException e)

@@ -156,16 +156,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateEquipmentAsync(
-    Models.Equipment body,
-    string equipmentCode)
+    string equipmentCode,
+    Models.Equipment body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
 | `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
+| `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
 
 ## Response Type
 
@@ -174,6 +174,7 @@ UpdateEquipmentAsync(
 ## Example Usage
 
 ```csharp
+string equipmentCode = "equipmentCode6";
 Equipment body = new Equipment
 {
     EquipmentCode = "BARBELL",
@@ -185,12 +186,11 @@ Equipment body = new Equipment
     },
 };
 
-string equipmentCode = "equipmentCode6";
 try
 {
     JustGainsBasicResponse result = await equipmentController.UpdateEquipmentAsync(
-        body,
-        equipmentCode
+        equipmentCode,
+        body
     );
 }
 catch (ApiException e)
@@ -296,16 +296,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateEquipmentTranslationsAsync(
-    Models.EquipmentTranslation body,
-    string equipmentCode)
+    string equipmentCode,
+    Models.EquipmentTranslation body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
 | `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
+| `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -314,18 +314,18 @@ UpdateEquipmentTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string equipmentCode = "equipmentCode6";
 EquipmentTranslation body = new EquipmentTranslation
 {
     EquipmentName = "Barbell",
     LocaleCode = "en-US",
 };
 
-string equipmentCode = "equipmentCode6";
 try
 {
     JustGainsBasicResponse result = await equipmentController.UpdateEquipmentTranslationsAsync(
-        body,
-        equipmentCode
+        equipmentCode,
+        body
     );
 }
 catch (ApiException e)

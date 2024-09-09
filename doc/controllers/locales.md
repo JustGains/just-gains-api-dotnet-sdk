@@ -130,16 +130,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateALocaleAsync(
-    Models.Locale body,
-    string localeCode)
+    string localeCode,
+    Models.Locale body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
 | `localeCode` | `string` | Template, Required | The locale code to update.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
+| `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
 
 ## Response Type
 
@@ -148,6 +148,7 @@ UpdateALocaleAsync(
 ## Example Usage
 
 ```csharp
+string localeCode = "localeCode2";
 Locale body = new Locale
 {
     LocaleCode = "en-US",
@@ -155,12 +156,11 @@ Locale body = new Locale
     Published = true,
 };
 
-string localeCode = "localeCode2";
 try
 {
     JustGainsBasicResponse result = await localesController.UpdateALocaleAsync(
-        body,
-        localeCode
+        localeCode,
+        body
     );
 }
 catch (ApiException e)

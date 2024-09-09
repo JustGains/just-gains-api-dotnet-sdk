@@ -28,32 +28,32 @@ ExercisesController exercisesController = client.ExercisesController;
 
 ```csharp
 GetExercisesAsync(
-    List<string> exerciseCategoryCodes = null,
-    List<string> exerciseEquipmentCodes = null,
-    List<string> exerciseMetricCodes = null,
-    List<string> exerciseMuscleCodes = null,
-    List<string> exerciseTypeCodes = null,
-    string localeCode = "en-US",
     string nameSearch = null,
+    List<string> exerciseCategoryCodes = null,
+    List<string> exerciseTypeCodes = null,
+    List<string> exerciseEquipmentCodes = null,
+    List<string> exerciseMuscleCodes = null,
+    List<string> exerciseMetricCodes = null,
+    List<string> publishedStatusCodes = null,
+    string localeCode = "en-US",
     int? pageIndex = 1,
-    int? pageSize = 100,
-    List<string> publishedStatusCodes = null)
+    int? pageSize = 100)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCodes` | `List<string>` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseEquipmentCodes` | `List<string>` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMetricCodes` | `List<string>` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMuscleCodes` | `List<string>` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseTypeCodes` | `List<string>` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `localeCode` | `string` | Query, Optional | Locale to filter by<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `nameSearch` | `string` | Query, Optional | List of exercise names to filter by |
+| `exerciseCategoryCodes` | `List<string>` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseTypeCodes` | `List<string>` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseEquipmentCodes` | `List<string>` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMuscleCodes` | `List<string>` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMetricCodes` | `List<string>` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `publishedStatusCodes` | `List<string>` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `localeCode` | `string` | Query, Optional | Locale to filter by<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `pageIndex` | `int?` | Query, Optional | Page index for pagination<br>**Default**: `1` |
 | `pageSize` | `int?` | Query, Optional | Page size for pagination<br>**Default**: `100` |
-| `publishedStatusCodes` | `List<string>` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -62,6 +62,7 @@ GetExercisesAsync(
 ## Example Usage
 
 ```csharp
+string nameSearch = "Bench Press";
 List<string> exerciseCategoryCodes = new List<string>
 {
     "STRENGTH",
@@ -69,19 +70,19 @@ List<string> exerciseCategoryCodes = new List<string>
 };
 
 string localeCode = "en-US";
-string nameSearch = "Bench Press";
 int? pageIndex = 1;
 int? pageSize = 100;
 try
 {
     ExerciseListResponse result = await exercisesController.GetExercisesAsync(
+        nameSearch,
         exerciseCategoryCodes,
         null,
         null,
         null,
         null,
+        null,
         localeCode,
-        nameSearch,
         pageIndex,
         pageSize
     );
@@ -220,16 +221,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExerciseAsync(
-    Models.Exercise body,
-    string exerciseCode)
+    string exerciseCode,
+    Models.Exercise body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Exercise`](../../doc/models/exercise.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | - |
+| `body` | [`Exercise`](../../doc/models/exercise.md) | Body, Required | - |
 
 ## Response Type
 
@@ -238,6 +239,7 @@ UpdateAnExerciseAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCode = "exerciseCode8";
 Exercise body = new Exercise
 {
     ExerciseCode = "BARBELL_SQUAT",
@@ -262,12 +264,11 @@ Exercise body = new Exercise
     AdminNotes = "This exercise requires supervision.",
 };
 
-string exerciseCode = "exerciseCode8";
 try
 {
     JustGainsBasicResponse result = await exercisesController.UpdateAnExerciseAsync(
-        body,
-        exerciseCode
+        exerciseCode,
+        body
     );
 }
 catch (ApiException e)
@@ -373,16 +374,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseTranslationsAsync(
-    List<Models.ExerciseTranslation> body,
-    string exerciseCode)
+    string exerciseCode,
+    List<Models.ExerciseTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<ExerciseTranslation>`](../../doc/models/exercise-translation.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The unique code of the exercise |
+| `body` | [`List<ExerciseTranslation>`](../../doc/models/exercise-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -391,6 +392,7 @@ UpdateExerciseTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCode = "exerciseCode8";
 List<ExerciseTranslation> body = new List<ExerciseTranslation>
 {
     new ExerciseTranslation
@@ -399,12 +401,11 @@ List<ExerciseTranslation> body = new List<ExerciseTranslation>
     },
 };
 
-string exerciseCode = "exerciseCode8";
 try
 {
     JustGainsBasicResponse result = await exercisesController.UpdateExerciseTranslationsAsync(
-        body,
-        exerciseCode
+        exerciseCode,
+        body
     );
 }
 catch (ApiException e)

@@ -90,24 +90,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update an exercise category EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCategoryCode">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateAnExerciseCategory(
-                Models.ExerciseCategory body,
-                string exerciseCategoryCode)
-            => CoreHelper.RunTask(UpdateAnExerciseCategoryAsync(body, exerciseCategoryCode));
+                string exerciseCategoryCode,
+                Models.ExerciseCategory body)
+            => CoreHelper.RunTask(UpdateAnExerciseCategoryAsync(exerciseCategoryCode, body));
 
         /// <summary>
         /// Update an exercise category EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCategoryCode">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateAnExerciseCategoryAsync(
-                Models.ExerciseCategory body,
                 string exerciseCategoryCode,
+                Models.ExerciseCategory body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -115,8 +115,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("exerciseCategoryCode", exerciseCategoryCode))))
+                      .Template(_template => _template.Setup("exerciseCategoryCode", exerciseCategoryCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad Request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Category not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -181,32 +181,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// updateExerciseCategoryTranslations EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCategoryCode">Required parameter: The unique code of the exercise category.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse UpdateExerciseCategoryTranslations(
-                List<Models.ExerciseCategoryTranslation> body,
-                string exerciseCategoryCode)
-            => CoreHelper.RunTask(UpdateExerciseCategoryTranslationsAsync(body, exerciseCategoryCode));
+                string exerciseCategoryCode,
+                List<Models.ExerciseCategoryTranslation> body)
+            => CoreHelper.RunTask(UpdateExerciseCategoryTranslationsAsync(exerciseCategoryCode, body));
 
         /// <summary>
         /// updateExerciseCategoryTranslations EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCategoryCode">Required parameter: The unique code of the exercise category.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> UpdateExerciseCategoryTranslationsAsync(
-                List<Models.ExerciseCategoryTranslation> body,
                 string exerciseCategoryCode,
+                List<Models.ExerciseCategoryTranslation> body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/exercise-categories/{exerciseCategoryCode}/translations")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("exerciseCategoryCode", exerciseCategoryCode))))
+                      .Template(_template => _template.Setup("exerciseCategoryCode", exerciseCategoryCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise category not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

@@ -69,24 +69,24 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Create new exercise instructions EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code to create instructions for.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public Models.ExerciseInstructionResponse CreateNewExerciseInstructions(
-                Models.ExerciseInstruction body,
-                string exerciseCode)
-            => CoreHelper.RunTask(CreateNewExerciseInstructionsAsync(body, exerciseCode));
+                string exerciseCode,
+                Models.ExerciseInstruction body)
+            => CoreHelper.RunTask(CreateNewExerciseInstructionsAsync(exerciseCode, body));
 
         /// <summary>
         /// Create new exercise instructions EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code to create instructions for.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public async Task<Models.ExerciseInstructionResponse> CreateNewExerciseInstructionsAsync(
-                Models.ExerciseInstruction body,
                 string exerciseCode,
+                Models.ExerciseInstruction body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseInstructionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -94,8 +94,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))))
+                      .Template(_template => _template.Setup("exerciseCode", exerciseCode))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -142,32 +142,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update exercise instructions EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to update.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to update.</param>
         /// <param name="userId">Required parameter: The userId of the creator for the instructions to update.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public Models.ExerciseInstructionResponse UpdateExerciseInstructions(
-                Models.ExerciseInstruction body,
                 string exerciseCode,
                 string localeCode,
-                string userId)
-            => CoreHelper.RunTask(UpdateExerciseInstructionsAsync(body, exerciseCode, localeCode, userId));
+                string userId,
+                Models.ExerciseInstruction body)
+            => CoreHelper.RunTask(UpdateExerciseInstructionsAsync(exerciseCode, localeCode, userId, body));
 
         /// <summary>
         /// Update exercise instructions EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to update.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to update.</param>
         /// <param name="userId">Required parameter: The userId of the creator for the instructions to update.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public async Task<Models.ExerciseInstructionResponse> UpdateExerciseInstructionsAsync(
-                Models.ExerciseInstruction body,
                 string exerciseCode,
                 string localeCode,
                 string userId,
+                Models.ExerciseInstruction body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseInstructionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -175,10 +175,10 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
                       .Template(_template => _template.Setup("localeCode", localeCode))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("userId", userId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))

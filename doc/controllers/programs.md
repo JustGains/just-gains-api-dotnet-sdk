@@ -27,9 +27,9 @@ ProgramsController programsController = client.ProgramsController;
 GetProgramsAsync(
     int? page = 1,
     int? pageSize = 20,
-    string publishStatusCode = null,
     string sortBy = null,
     Models.SortOrderEnum? sortOrder = Models.SortOrderEnum.Desc,
+    string publishStatusCode = null,
     Guid? userId = null)
 ```
 
@@ -39,9 +39,9 @@ GetProgramsAsync(
 |  --- | --- | --- | --- |
 | `page` | `int?` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 | `pageSize` | `int?` | Query, Optional | **Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
-| `publishStatusCode` | `string` | Query, Optional | - |
 | `sortBy` | `string` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum?`](../../doc/models/sort-order-enum.md) | Query, Optional | **Default**: `SortOrderEnum.desc` |
+| `publishStatusCode` | `string` | Query, Optional | - |
 | `userId` | `Guid?` | Query, Optional | - |
 
 ## Response Type
@@ -59,7 +59,6 @@ try
     ProgramListResponse result = await programsController.GetProgramsAsync(
         page,
         pageSize,
-        null,
         null,
         sortOrder
     );
@@ -180,16 +179,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateProgramAsync(
-    Models.Program body,
-    int programId)
+    int programId,
+    Models.Program body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Program`](../../doc/models/program.md) | Body, Required | - |
 | `programId` | `int` | Template, Required | - |
+| `body` | [`Program`](../../doc/models/program.md) | Body, Required | - |
 
 ## Response Type
 
@@ -198,6 +197,7 @@ UpdateProgramAsync(
 ## Example Usage
 
 ```csharp
+int programId = 126;
 Program body = new Program
 {
     ProgramId = 1001,
@@ -217,12 +217,11 @@ Program body = new Program
     DeletedBy = new Guid("987e6543-e21b-12d3-a456-426614174000"),
 };
 
-int programId = 126;
 try
 {
     JustGainsResponse result = await programsController.UpdateProgramAsync(
-        body,
-        programId
+        programId,
+        body
     );
 }
 catch (ApiException e)

@@ -65,16 +65,16 @@ catch (ApiException e)
 
 ```csharp
 CreateNewExerciseInstructionsAsync(
-    Models.ExerciseInstruction body,
-    string exerciseCode)
+    string exerciseCode,
+    Models.ExerciseInstruction body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
+| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 
 ## Response Type
 
@@ -83,6 +83,7 @@ CreateNewExerciseInstructionsAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCode = "exerciseCode8";
 ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
@@ -95,12 +96,11 @@ ExerciseInstruction body = new ExerciseInstruction
     UserId = "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
 };
 
-string exerciseCode = "exerciseCode8";
 try
 {
     ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.CreateNewExerciseInstructionsAsync(
-        body,
-        exerciseCode
+        exerciseCode,
+        body
     );
 }
 catch (ApiException e)
@@ -174,20 +174,20 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseInstructionsAsync(
-    Models.ExerciseInstruction body,
     string exerciseCode,
     string localeCode,
-    string userId)
+    string userId,
+    Models.ExerciseInstruction body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
 | `localeCode` | `string` | Template, Required | The locale code for the instructions to update<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
+| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 
 ## Response Type
 
@@ -196,6 +196,9 @@ UpdateExerciseInstructionsAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCode = "exerciseCode8";
+string localeCode = "localeCode2";
+string userId = "userId0";
 ExerciseInstruction body = new ExerciseInstruction
 {
     ExerciseCode = "BARBELL-BENCH-PRESS",
@@ -208,16 +211,13 @@ ExerciseInstruction body = new ExerciseInstruction
     UserId = "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
 };
 
-string exerciseCode = "exerciseCode8";
-string localeCode = "localeCode2";
-string userId = "userId0";
 try
 {
     ExerciseInstructionResponse result = await exercisesExerciseInstructionsController.UpdateExerciseInstructionsAsync(
-        body,
         exerciseCode,
         localeCode,
-        userId
+        userId,
+        body
     );
 }
 catch (ApiException e)

@@ -96,16 +96,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAUserAsync(
-    Models.UserWithoutCreatorProfile body,
-    string userId)
+    string userId,
+    Models.UserWithoutCreatorProfile body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
 | `userId` | `string` | Template, Required | - |
+| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
 
 ## Response Type
 
@@ -114,6 +114,7 @@ UpdateAUserAsync(
 ## Example Usage
 
 ```csharp
+string userId = "userId0";
 UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
 {
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
@@ -130,12 +131,11 @@ UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
     },
 };
 
-string userId = "userId0";
 try
 {
     UserWithoutCreatorProfileResponse result = await usersController.UpdateAUserAsync(
-        body,
-        userId
+        userId,
+        body
     );
 }
 catch (ApiException e)

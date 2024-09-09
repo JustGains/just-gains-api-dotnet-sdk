@@ -35,32 +35,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Assign a role to a user EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
         public Models.UsersRolesResponse AssignARoleToAUser(
-                Models.RoleAssignmentRequest body,
-                Guid userId)
-            => CoreHelper.RunTask(AssignARoleToAUserAsync(body, userId));
+                Guid userId,
+                Models.RoleAssignmentRequest body)
+            => CoreHelper.RunTask(AssignARoleToAUserAsync(userId, body));
 
         /// <summary>
         /// Assign a role to a user EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
         public async Task<Models.UsersRolesResponse> AssignARoleToAUserAsync(
-                Models.RoleAssignmentRequest body,
                 Guid userId,
+                Models.RoleAssignmentRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UsersRolesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/users/{userId}/roles")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("userId", userId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -91,31 +91,31 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Remove a role from a user EndPoint.
         /// </summary>
-        /// <param name="roleName">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="roleName">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public Models.JustGainsResponse RemoveARoleFromAUser(
-                string roleName,
-                Guid userId)
-            => CoreHelper.RunTask(RemoveARoleFromAUserAsync(roleName, userId));
+                Guid userId,
+                string roleName)
+            => CoreHelper.RunTask(RemoveARoleFromAUserAsync(userId, roleName));
 
         /// <summary>
         /// Remove a role from a user EndPoint.
         /// </summary>
-        /// <param name="roleName">Required parameter: Example: .</param>
         /// <param name="userId">Required parameter: Example: .</param>
+        /// <param name="roleName">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
         public async Task<Models.JustGainsResponse> RemoveARoleFromAUserAsync(
-                string roleName,
                 Guid userId,
+                string roleName,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/users/{userId}/roles/{roleName}")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("roleName", roleName))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("userId", userId))
+                      .Template(_template => _template.Setup("roleName", roleName))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -165,32 +165,32 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Update a role EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="roleName">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.RolesResponse1 response from the API call.</returns>
         public Models.RolesResponse1 UpdateARole(
-                Models.RoleUpdateRequest body,
-                string roleName)
-            => CoreHelper.RunTask(UpdateARoleAsync(body, roleName));
+                string roleName,
+                Models.RoleUpdateRequest body)
+            => CoreHelper.RunTask(UpdateARoleAsync(roleName, body));
 
         /// <summary>
         /// Update a role EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="roleName">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.RolesResponse1 response from the API call.</returns>
         public async Task<Models.RolesResponse1> UpdateARoleAsync(
-                Models.RoleUpdateRequest body,
                 string roleName,
+                Models.RoleUpdateRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.RolesResponse1>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/roles/{roleName}")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
-                      .Template(_template => _template.Setup("roleName", roleName))))
+                      .Template(_template => _template.Setup("roleName", roleName))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

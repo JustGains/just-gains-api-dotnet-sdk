@@ -97,28 +97,28 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// Add or update exercise thumbnail EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code to add or update thumbnail for.</param>
         /// <param name="userId">Required parameter: The userId of the thumbnail creator.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ExerciseThumbnailResponse response from the API call.</returns>
         public Models.ExerciseThumbnailResponse AddOrUpdateExerciseThumbnail(
-                Models.ExerciseThumbnail body,
                 string exerciseCode,
-                string userId)
-            => CoreHelper.RunTask(AddOrUpdateExerciseThumbnailAsync(body, exerciseCode, userId));
+                string userId,
+                Models.ExerciseThumbnail body)
+            => CoreHelper.RunTask(AddOrUpdateExerciseThumbnailAsync(exerciseCode, userId, body));
 
         /// <summary>
         /// Add or update exercise thumbnail EndPoint.
         /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="exerciseCode">Required parameter: The exercise code to add or update thumbnail for.</param>
         /// <param name="userId">Required parameter: The userId of the thumbnail creator.</param>
+        /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseThumbnailResponse response from the API call.</returns>
         public async Task<Models.ExerciseThumbnailResponse> AddOrUpdateExerciseThumbnailAsync(
-                Models.ExerciseThumbnail body,
                 string exerciseCode,
                 string userId,
+                Models.ExerciseThumbnail body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseThumbnailResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -126,9 +126,9 @@ namespace JustGainsAPI.Standard.Controllers
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("userId", userId))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Invalid exercise thumbnail data", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("401", CreateErrorCase("Authentication required", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

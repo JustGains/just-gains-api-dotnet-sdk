@@ -23,16 +23,16 @@ UsersCreatorProfilesController usersCreatorProfilesController = client.UsersCrea
 
 ```csharp
 GetCreatorProfilesAsync(
-    int? limit = 20,
-    int? page = 1)
+    int? page = 1,
+    int? limit = 20)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `limit` | `int?` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 | `page` | `int?` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `int?` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 
 ## Response Type
 
@@ -41,13 +41,13 @@ GetCreatorProfilesAsync(
 ## Example Usage
 
 ```csharp
-int? limit = 20;
 int? page = 1;
+int? limit = 20;
 try
 {
     CreatorProfileListResponse result = await usersCreatorProfilesController.GetCreatorProfilesAsync(
-        limit,
-        page
+        page,
+        limit
     );
 }
 catch (ApiException e)
@@ -155,16 +155,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateCreatorProfileAsync(
-    Models.CreatorProfile body,
-    Guid creatorProfileId)
+    Guid creatorProfileId,
+    Models.CreatorProfile body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Body, Required | - |
 | `creatorProfileId` | `Guid` | Template, Required | - |
+| `body` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Body, Required | - |
 
 ## Response Type
 
@@ -173,6 +173,7 @@ UpdateCreatorProfileAsync(
 ## Example Usage
 
 ```csharp
+Guid creatorProfileId = new Guid("000008d2-0000-0000-0000-000000000000");
 CreatorProfile body = new CreatorProfile
 {
     CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
@@ -180,12 +181,11 @@ CreatorProfile body = new CreatorProfile
     CreatorEmail = "dwayne@therockjohnson.com",
 };
 
-Guid creatorProfileId = new Guid("000008d2-0000-0000-0000-000000000000");
 try
 {
     CreatorProfileResponse result = await usersCreatorProfilesController.UpdateCreatorProfileAsync(
-        body,
-        creatorProfileId
+        creatorProfileId,
+        body
     );
 }
 catch (ApiException e)

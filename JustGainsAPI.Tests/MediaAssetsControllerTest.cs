@@ -81,16 +81,16 @@ namespace JustGainsAPI.Tests
         public async Task TestTestUploadANewMediaAsset()
         {
             // Parameters for the API call
-            string description = null;
             FileStreamInfo file = null;
             string mediaType = "image/jpeg";
+            string description = null;
             string uploadDirectory = null;
 
             // Perform API call
             Standard.Models.MediaAssetResponse result = null;
             try
             {
-                result = await this.controller.UploadANewMediaAssetAsync(description, file, mediaType, uploadDirectory);
+                result = await this.controller.UploadANewMediaAssetAsync(file, mediaType, description, uploadDirectory);
             }
             catch (ApiException)
             {

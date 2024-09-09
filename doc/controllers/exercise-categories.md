@@ -101,16 +101,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExerciseCategoryAsync(
-    Models.ExerciseCategory body,
-    string exerciseCategoryCode)
+    string exerciseCategoryCode,
+    Models.ExerciseCategory body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseCategory`](../../doc/models/exercise-category.md) | Body, Required | - |
 | `exerciseCategoryCode` | `string` | Template, Required | - |
+| `body` | [`ExerciseCategory`](../../doc/models/exercise-category.md) | Body, Required | - |
 
 ## Response Type
 
@@ -119,18 +119,18 @@ UpdateAnExerciseCategoryAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCategoryCode = "exerciseCategoryCode8";
 ExerciseCategory body = new ExerciseCategory
 {
     ExerciseCategoryCode = "STRENGTH_TRAINING",
     ExerciseCategoryName = "Strength Training",
 };
 
-string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
     JustGainsBasicResponse result = await exerciseCategoriesController.UpdateAnExerciseCategoryAsync(
-        body,
-        exerciseCategoryCode
+        exerciseCategoryCode,
+        body
     );
 }
 catch (ApiException e)
@@ -235,16 +235,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateExerciseCategoryTranslationsAsync(
-    List<Models.ExerciseCategoryTranslation> body,
-    string exerciseCategoryCode)
+    string exerciseCategoryCode,
+    List<Models.ExerciseCategoryTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<ExerciseCategoryTranslation>`](../../doc/models/exercise-category-translation.md) | Body, Required | - |
 | `exerciseCategoryCode` | `string` | Template, Required | The unique code of the exercise category |
+| `body` | [`List<ExerciseCategoryTranslation>`](../../doc/models/exercise-category-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -253,6 +253,7 @@ UpdateExerciseCategoryTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string exerciseCategoryCode = "exerciseCategoryCode8";
 List<ExerciseCategoryTranslation> body = new List<ExerciseCategoryTranslation>
 {
     new ExerciseCategoryTranslation
@@ -262,12 +263,11 @@ List<ExerciseCategoryTranslation> body = new List<ExerciseCategoryTranslation>
     },
 };
 
-string exerciseCategoryCode = "exerciseCategoryCode8";
 try
 {
     JustGainsBasicResponse result = await exerciseCategoriesController.UpdateExerciseCategoryTranslationsAsync(
-        body,
-        exerciseCategoryCode
+        exerciseCategoryCode,
+        body
     );
 }
 catch (ApiException e)

@@ -59,16 +59,16 @@ catch (ApiException e)
 
 ```csharp
 AddWeekToProgramAsync(
-    Models.Week body,
-    int programId)
+    int programId,
+    Models.Week body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Week`](../../doc/models/week.md) | Body, Required | - |
 | `programId` | `int` | Template, Required | - |
+| `body` | [`Week`](../../doc/models/week.md) | Body, Required | - |
 
 ## Response Type
 
@@ -77,6 +77,7 @@ AddWeekToProgramAsync(
 ## Example Usage
 
 ```csharp
+int programId = 126;
 Week body = new Week
 {
     WeekId = 1234,
@@ -95,12 +96,11 @@ Week body = new Week
     DeletedBy = new Guid("987e6543-e21b-12d3-a456-426614174000"),
 };
 
-int programId = 126;
 try
 {
     WeekResponse result = await programsProgramWeeksController.AddWeekToProgramAsync(
-        body,
-        programId
+        programId,
+        body
     );
 }
 catch (ApiException e)

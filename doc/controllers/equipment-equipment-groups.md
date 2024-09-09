@@ -109,16 +109,16 @@ catch (ApiException e)
 
 ```csharp
 UpdateAnExistingEquipmentGroupAsync(
-    Models.EquipmentGroup body,
-    string equipmentGroupCode)
+    string equipmentGroupCode,
+    Models.EquipmentGroup body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`EquipmentGroup`](../../doc/models/equipment-group.md) | Body, Required | - |
 | `equipmentGroupCode` | `string` | Template, Required | The equipment group code to update. |
+| `body` | [`EquipmentGroup`](../../doc/models/equipment-group.md) | Body, Required | - |
 
 ## Response Type
 
@@ -127,6 +127,7 @@ UpdateAnExistingEquipmentGroupAsync(
 ## Example Usage
 
 ```csharp
+string equipmentGroupCode = "equipmentGroupCode8";
 EquipmentGroup body = new EquipmentGroup
 {
     EquipmentGroupCode = "DUMBBELLS",
@@ -135,12 +136,11 @@ EquipmentGroup body = new EquipmentGroup
     SortOrder = 0,
 };
 
-string equipmentGroupCode = "equipmentGroupCode8";
 try
 {
     JustGainsBasicResponse result = await equipmentEquipmentGroupsController.UpdateAnExistingEquipmentGroupAsync(
-        body,
-        equipmentGroupCode
+        equipmentGroupCode,
+        body
     );
 }
 catch (ApiException e)
@@ -240,16 +240,16 @@ Updates the translations for a specific equipment group identified by its code.
 
 ```csharp
 UpdateEquipmentGroupTranslationsAsync(
-    List<Models.EquipmentGroupTranslation> body,
-    string equipmentGroupCode)
+    string equipmentGroupCode,
+    List<Models.EquipmentGroupTranslation> body)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`List<EquipmentGroupTranslation>`](../../doc/models/equipment-group-translation.md) | Body, Required | - |
 | `equipmentGroupCode` | `string` | Template, Required | The unique code of the equipment group |
+| `body` | [`List<EquipmentGroupTranslation>`](../../doc/models/equipment-group-translation.md) | Body, Required | - |
 
 ## Response Type
 
@@ -258,6 +258,7 @@ UpdateEquipmentGroupTranslationsAsync(
 ## Example Usage
 
 ```csharp
+string equipmentGroupCode = "EQP-001";
 List<EquipmentGroupTranslation> body = new List<EquipmentGroupTranslation>
 {
     new EquipmentGroupTranslation
@@ -268,12 +269,11 @@ List<EquipmentGroupTranslation> body = new List<EquipmentGroupTranslation>
     },
 };
 
-string equipmentGroupCode = "EQP-001";
 try
 {
     JustGainsResponse result = await equipmentEquipmentGroupsController.UpdateEquipmentGroupTranslationsAsync(
-        body,
-        equipmentGroupCode
+        equipmentGroupCode,
+        body
     );
 }
 catch (ApiException e)

@@ -13,7 +13,7 @@ ExercisesExerciseVideosController exercisesExerciseVideosController = client.Exe
 * [Get Exercise Video On](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-on)
 * [Add New Exercise Videos](../../doc/controllers/exercises-exercise-videos.md#add-new-exercise-videos)
 * [Update Exercise Videos](../../doc/controllers/exercises-exercise-videos.md#update-exercise-videos)
-* [Get Exercise Video by User Id](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-by-user-id)
+* [Get Exercise Video by Creator Profile Id](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-by-creator-profile-id)
 * [Delete an Exercise Video](../../doc/controllers/exercises-exercise-videos.md#delete-an-exercise-video)
 
 
@@ -86,6 +86,7 @@ ExerciseVideo body = new ExerciseVideo
 {
     ExerciseCode = "BARBELL_SQUAT",
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+    UserName = "john_doe",
     SortOrder = 1,
 };
 
@@ -140,6 +141,7 @@ List<ExerciseVideo> body = new List<ExerciseVideo>
     {
         ExerciseCode = "BARBELL_SQUAT",
         UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+        UserName = "john_doe",
         SortOrder = 1,
     },
 };
@@ -167,14 +169,14 @@ catch (ApiException e)
 | 404 | Exercise videos not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Get Exercise Video by User Id
+# Get Exercise Video by Creator Profile Id
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-GetExerciseVideoByUserIdAsync(
+GetExerciseVideoByCreatorProfileIdAsync(
     string exerciseCode,
-    string userId)
+    string creatorProfileId)
 ```
 
 ## Parameters
@@ -182,7 +184,7 @@ GetExerciseVideoByUserIdAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve videos for |
-| `userId` | `string` | Template, Required | The userId of the creator whose videos we're referencing |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the creator whose videos we're referencing |
 
 ## Response Type
 
@@ -192,12 +194,12 @@ GetExerciseVideoByUserIdAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
+string creatorProfileId = "creatorProfileId8";
 try
 {
-    ExercisesVideosResponse2 result = await exercisesExerciseVideosController.GetExerciseVideoByUserIdAsync(
+    ExercisesVideosResponse2 result = await exercisesExerciseVideosController.GetExerciseVideoByCreatorProfileIdAsync(
         exerciseCode,
-        userId
+        creatorProfileId
     );
 }
 catch (ApiException e)
@@ -220,7 +222,7 @@ catch (ApiException e)
 ```csharp
 DeleteAnExerciseVideoAsync(
     string exerciseCode,
-    string userId,
+    string creatorProfileId,
     int exerciseVideoId)
 ```
 
@@ -229,7 +231,7 @@ DeleteAnExerciseVideoAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `userId` | `string` | Template, Required | The userId of the video creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the video creator |
 | `exerciseVideoId` | `int` | Template, Required | The exercise video ID to delete |
 
 ## Response Type
@@ -240,13 +242,13 @@ DeleteAnExerciseVideoAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
+string creatorProfileId = "creatorProfileId8";
 int exerciseVideoId = 66;
 try
 {
     JustGainsResponse result = await exercisesExerciseVideosController.DeleteAnExerciseVideoAsync(
         exerciseCode,
-        userId,
+        creatorProfileId,
         exerciseVideoId
     );
 }

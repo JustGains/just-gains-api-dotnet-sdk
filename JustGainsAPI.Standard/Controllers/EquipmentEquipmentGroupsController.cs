@@ -90,24 +90,24 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update an existing equipment group EndPoint.
+        /// updateEquipmentGroup EndPoint.
         /// </summary>
         /// <param name="equipmentGroupCode">Required parameter: The equipment group code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse UpdateAnExistingEquipmentGroup(
+        public Models.JustGainsBasicResponse UpdateEquipmentGroup(
                 string equipmentGroupCode,
                 Models.EquipmentGroup body)
-            => CoreHelper.RunTask(UpdateAnExistingEquipmentGroupAsync(equipmentGroupCode, body));
+            => CoreHelper.RunTask(UpdateEquipmentGroupAsync(equipmentGroupCode, body));
 
         /// <summary>
-        /// Update an existing equipment group EndPoint.
+        /// updateEquipmentGroup EndPoint.
         /// </summary>
         /// <param name="equipmentGroupCode">Required parameter: The equipment group code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> UpdateAnExistingEquipmentGroupAsync(
+        public async Task<Models.JustGainsBasicResponse> UpdateEquipmentGroupAsync(
                 string equipmentGroupCode,
                 Models.EquipmentGroup body,
                 CancellationToken cancellationToken = default)

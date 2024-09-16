@@ -43,13 +43,13 @@ namespace JustGainsAPI.Tests
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestGetCurrentUserInformation()
+        public async Task TestTestGetUserInfo()
         {
             // Perform API call
             Standard.Models.UserInfoResponse result = null;
             try
             {
-                result = await this.controller.GetCurrentUserInformationAsync();
+                result = await this.controller.GetUserInfoAsync();
             }
             catch (ApiException)
             {
@@ -74,13 +74,13 @@ namespace JustGainsAPI.Tests
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestRefreshAuthenticationToken()
+        public async Task TestTestRefreshToken()
         {
             // Perform API call
-            Standard.Models.AuthResponse result = null;
+            Standard.Models.AuthRefreshTokenResponse result = null;
             try
             {
-                result = await this.controller.RefreshAuthenticationTokenAsync();
+                result = await this.controller.RefreshTokenAsync();
             }
             catch (ApiException)
             {
@@ -105,13 +105,13 @@ namespace JustGainsAPI.Tests
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestSignOutTheCurrentUser()
+        public async Task TestTestSignout()
         {
             // Perform API call
             Standard.Models.JustGainsBasicResponse result = null;
             try
             {
-                result = await this.controller.SignOutTheCurrentUserAsync();
+                result = await this.controller.SignoutAsync();
             }
             catch (ApiException)
             {

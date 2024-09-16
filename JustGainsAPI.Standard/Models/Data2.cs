@@ -21,6 +21,12 @@ namespace JustGainsAPI.Standard.Models
     /// </summary>
     public class Data2
     {
+        private string text;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "text", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Data2"/> class.
         /// </summary>
@@ -31,36 +37,34 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Data2"/> class.
         /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="message">message.</param>
-        /// <param name="data">data.</param>
+        /// <param name="text">text.</param>
         public Data2(
-            string status,
-            string message,
-            Models.Data1 data)
+            string text = null)
         {
-            this.Status = status;
-            this.Message = message;
-            this.Data = data;
+            if (text != null)
+            {
+                this.Text = text;
+            }
+
         }
 
         /// <summary>
-        /// The status of the response, corresponding to standard HTTP status codes.
+        /// Gets or sets Text.
         /// </summary>
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        [JsonProperty("text")]
+        public string Text
+        {
+            get
+            {
+                return this.text;
+            }
 
-        /// <summary>
-        /// A human-readable message describing the result of the operation.
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Gets or sets Data.
-        /// </summary>
-        [JsonProperty("data")]
-        public Models.Data1 Data { get; set; }
+            set
+            {
+                this.shouldSerialize["text"] = true;
+                this.text = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +74,23 @@ namespace JustGainsAPI.Standard.Models
             this.ToString(toStringOutput);
 
             return $"Data2 : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetText()
+        {
+            this.shouldSerialize["text"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeText()
+        {
+            return this.shouldSerialize["text"];
         }
 
         /// <inheritdoc/>
@@ -84,9 +105,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data2 other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
-                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
+            return obj is Data2 other &&                ((this.Text == null && other.Text == null) || (this.Text?.Equals(other.Text) == true));
         }
         
         /// <summary>
@@ -95,9 +114,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
+            toStringOutput.Add($"this.Text = {(this.Text == null ? "null" : this.Text)}");
         }
     }
 }

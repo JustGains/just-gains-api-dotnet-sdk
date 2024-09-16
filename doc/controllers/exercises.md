@@ -48,7 +48,7 @@ GetExercisesAsync(
 | `exerciseCategoryCodes` | `List<string>` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseTypeCodes` | `List<string>` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseEquipmentCodes` | `List<string>` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMuscleCodes` | `List<string>` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMuscleCodes` | `List<string>` | Query, Optional | List of exercise muscles to filter by (not muscle group)<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseMetricCodes` | `List<string>` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `publishedStatusCodes` | `List<string>` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `localeCode` | `string` | Query, Optional | Locale to filter by<br>**Default**: `"en-US"`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |

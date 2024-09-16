@@ -30,29 +30,30 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
+| StatusController | Gets StatusController controller. |
 | AuthenticationController | Gets AuthenticationController controller. |
 | UsersController | Gets UsersController controller. |
+| UsersRolesController | Gets UsersRolesController controller. |
 | UsersCreatorProfilesController | Gets UsersCreatorProfilesController controller. |
-| ExercisesController | Gets ExercisesController controller. |
-| ExercisesExerciseInstructionsController | Gets ExercisesExerciseInstructionsController controller. |
-| ExercisesExerciseVideosController | Gets ExercisesExerciseVideosController controller. |
+| LocalesController | Gets LocalesController controller. |
+| MediaAssetsController | Gets MediaAssetsController controller. |
+| PublishedStatusController | Gets PublishedStatusController controller. |
 | MusclesController | Gets MusclesController controller. |
 | MusclesMuscleGroupsController | Gets MusclesMuscleGroupsController controller. |
 | EquipmentController | Gets EquipmentController controller. |
 | EquipmentEquipmentGroupsController | Gets EquipmentEquipmentGroupsController controller. |
+| ExerciseMetricsController | Gets ExerciseMetricsController controller. |
+| ExerciseTypesController | Gets ExerciseTypesController controller. |
+| ExerciseCategoriesController | Gets ExerciseCategoriesController controller. |
+| ExercisesController | Gets ExercisesController controller. |
+| ExercisesExerciseInstructionsController | Gets ExercisesExerciseInstructionsController controller. |
+| ExercisesExerciseVideosController | Gets ExercisesExerciseVideosController controller. |
+| ExerciseDraftsController | Gets ExerciseDraftsController controller. |
 | WorkoutsController | Gets WorkoutsController controller. |
 | WorkoutsWorkoutDataController | Gets WorkoutsWorkoutDataController controller. |
-| ExerciseDraftsController | Gets ExerciseDraftsController controller. |
-| ExerciseCategoriesController | Gets ExerciseCategoriesController controller. |
 | ProgramsController | Gets ProgramsController controller. |
 | ProgramsProgramWeeksController | Gets ProgramsProgramWeeksController controller. |
 | ProgramsProgramAnalyticsController | Gets ProgramsProgramAnalyticsController controller. |
-| StatusController | Gets StatusController controller. |
-| UsersRoleManagementController | Gets UsersRoleManagementController controller. |
-| MediaAssetsController | Gets MediaAssetsController controller. |
-| LocalesController | Gets LocalesController controller. |
-| PublishedStatusController | Gets PublishedStatusController controller. |
-| ExerciseMetricsController | Gets ExerciseMetricsController controller. |
 | ProgramsProgramViewsController | Gets ProgramsProgramViewsController controller. |
 | ProgramsProgramReviewsController | Gets ProgramsProgramReviewsController controller. |
 | ExercisesExerciseThumbnailsController | Gets ExercisesExerciseThumbnailsController controller. |

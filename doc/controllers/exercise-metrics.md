@@ -18,6 +18,8 @@ ExerciseMetricsController exerciseMetricsController = client.ExerciseMetricsCont
 
 # Get Exercise Metrics
 
+Retrieve a list of all exercise metrics - Since the exercise type is never displayed, we don't have a translation for it.
+
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
@@ -72,7 +74,7 @@ CreateANewExerciseMetricAsync(
 
 ## Response Type
 
-[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -84,7 +86,7 @@ ExerciseMetric body = new ExerciseMetric
 
 try
 {
-    JustGainsBasicResponse result = await exerciseMetricsController.CreateANewExerciseMetricAsync(body);
+    JustGainsResponse result = await exerciseMetricsController.CreateANewExerciseMetricAsync(body);
 }
 catch (ApiException e)
 {
@@ -186,5 +188,5 @@ catch (ApiException e)
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Exercise metric deleted successfully | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Exercise metric not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

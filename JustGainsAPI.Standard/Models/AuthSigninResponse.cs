@@ -1,4 +1,4 @@
-// <copyright file="Auth.cs" company="APIMatic">
+// <copyright file="AuthSigninResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,24 +17,24 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// Auth.
+    /// AuthSigninResponse.
     /// </summary>
-    public class Auth
+    public class AuthSigninResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Auth"/> class.
+        /// Initializes a new instance of the <see cref="AuthSigninResponse"/> class.
         /// </summary>
-        public Auth()
+        public AuthSigninResponse()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Auth"/> class.
+        /// Initializes a new instance of the <see cref="AuthSigninResponse"/> class.
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="message">message.</param>
         /// <param name="data">data.</param>
-        public Auth(
+        public AuthSigninResponse(
             string status,
             string message,
             Models.Data1 data)
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"Auth : ({string.Join(", ", toStringOutput)})";
+            return $"AuthSigninResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,7 +84,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Auth other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+            return obj is AuthSigninResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }

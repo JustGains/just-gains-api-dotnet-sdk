@@ -26,6 +26,7 @@ Represents a creator credit for a workout.
   "creatorProfile": {
     "creatorProfileId": "00001068-0000-0000-0000-000000000000",
     "userId": "00001b82-0000-0000-0000-000000000000",
+    "userName": "userName4",
     "creatorEmail": "creatorEmail0",
     "profilePhoto": {
       "mediaId": "000006b6-0000-0000-0000-000000000000",
@@ -35,17 +36,7 @@ Represents a creator credit for a workout.
       "fileSize": 10,
       "fileFormat": "fileFormat6",
       "description": "description0"
-    },
-    "socialMediaAccounts": [
-      {
-        "socialMediaPlatformCode": "socialMediaPlatformCode8",
-        "socialMediaAccountUsername": "socialMediaAccountUsername8"
-      },
-      {
-        "socialMediaPlatformCode": "socialMediaPlatformCode8",
-        "socialMediaAccountUsername": "socialMediaAccountUsername8"
-      }
-    ]
+    }
   }
 }
 ```

@@ -33,16 +33,19 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         /// <param name="exerciseCode">exerciseCode.</param>
         /// <param name="userId">userId.</param>
+        /// <param name="userName">userName.</param>
         /// <param name="mediaAsset">mediaAsset.</param>
         /// <param name="sortOrder">sortOrder.</param>
         public ExerciseVideo(
             string exerciseCode = null,
             Guid? userId = null,
+            string userName = null,
             Models.MediaAsset mediaAsset = null,
             int? sortOrder = null)
         {
             this.ExerciseCode = exerciseCode;
             this.UserId = userId;
+            this.UserName = userName;
             this.MediaAsset = mediaAsset;
             this.SortOrder = sortOrder;
         }
@@ -58,6 +61,12 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public Guid? UserId { get; set; }
+
+        /// <summary>
+        /// Username of the user who created the video.
+        /// </summary>
+        [JsonProperty("userName", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets MediaAsset.
@@ -95,6 +104,7 @@ namespace JustGainsAPI.Standard.Models
             }
             return obj is ExerciseVideo other &&                ((this.ExerciseCode == null && other.ExerciseCode == null) || (this.ExerciseCode?.Equals(other.ExerciseCode) == true)) &&
                 ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
+                ((this.UserName == null && other.UserName == null) || (this.UserName?.Equals(other.UserName) == true)) &&
                 ((this.MediaAsset == null && other.MediaAsset == null) || (this.MediaAsset?.Equals(other.MediaAsset) == true)) &&
                 ((this.SortOrder == null && other.SortOrder == null) || (this.SortOrder?.Equals(other.SortOrder) == true));
         }
@@ -107,6 +117,7 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.ExerciseCode = {(this.ExerciseCode == null ? "null" : this.ExerciseCode)}");
             toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId.ToString())}");
+            toStringOutput.Add($"this.UserName = {(this.UserName == null ? "null" : this.UserName)}");
             toStringOutput.Add($"this.MediaAsset = {(this.MediaAsset == null ? "null" : this.MediaAsset.ToString())}");
             toStringOutput.Add($"this.SortOrder = {(this.SortOrder == null ? "null" : this.SortOrder.ToString())}");
         }

@@ -12,7 +12,7 @@ MusclesMuscleGroupsController musclesMuscleGroupsController = client.MusclesMusc
 
 * [Get Muscle Groups](../../doc/controllers/muscles-muscle-groups.md#get-muscle-groups)
 * [Create a New Muscle Group](../../doc/controllers/muscles-muscle-groups.md#create-a-new-muscle-group)
-* [Update a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-a-muscle-group)
+* [Update Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-muscle-group)
 * [Delete a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#delete-a-muscle-group)
 * [Get Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group-translations)
 * [Update Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#update-muscle-group-translations)
@@ -112,10 +112,10 @@ catch (ApiException e)
 | 401 | Authentication required | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Update a Muscle Group
+# Update Muscle Group
 
 ```csharp
-UpdateAMuscleGroupAsync(
+UpdateMuscleGroupAsync(
     string muscleGroupCode,
     Models.MuscleGroup body)
 ```
@@ -157,7 +157,7 @@ MuscleGroup body = new MuscleGroup
 
 try
 {
-    JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateAMuscleGroupAsync(
+    JustGainsBasicResponse result = await musclesMuscleGroupsController.UpdateMuscleGroupAsync(
         muscleGroupCode,
         body
     );

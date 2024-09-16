@@ -12,7 +12,7 @@ ExerciseCategoriesController exerciseCategoriesController = client.ExerciseCateg
 
 * [Get Exercise Categories](../../doc/controllers/exercise-categories.md#get-exercise-categories)
 * [Create Exercise Category](../../doc/controllers/exercise-categories.md#create-exercise-category)
-* [Update an Exercise Category](../../doc/controllers/exercise-categories.md#update-an-exercise-category)
+* [Update Exercise Category](../../doc/controllers/exercise-categories.md#update-exercise-category)
 * [Delete an Exercise Category](../../doc/controllers/exercise-categories.md#delete-an-exercise-category)
 * [Get Exercise Category Translations](../../doc/controllers/exercise-categories.md#get-exercise-category-translations)
 * [Update Exercise Category Translations](../../doc/controllers/exercise-categories.md#update-exercise-category-translations)
@@ -97,10 +97,10 @@ catch (ApiException e)
 | 400 | Bad Request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Update an Exercise Category
+# Update Exercise Category
 
 ```csharp
-UpdateAnExerciseCategoryAsync(
+UpdateExerciseCategoryAsync(
     string exerciseCategoryCode,
     Models.ExerciseCategory body)
 ```
@@ -128,7 +128,7 @@ ExerciseCategory body = new ExerciseCategory
 
 try
 {
-    JustGainsBasicResponse result = await exerciseCategoriesController.UpdateAnExerciseCategoryAsync(
+    JustGainsBasicResponse result = await exerciseCategoriesController.UpdateExerciseCategoryAsync(
         exerciseCategoryCode,
         body
     );

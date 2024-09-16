@@ -11,7 +11,7 @@ ExercisesExerciseThumbnailsController exercisesExerciseThumbnailsController = cl
 ## Methods
 
 * [Get Exercise Thumbnails](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnails)
-* [Get Exercise Thumbnail by User Id](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnail-by-user-id)
+* [Get Exercise Thumbnail by Creator Profile Id](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnail-by-creator-profile-id)
 * [Add or Update Exercise Thumbnail](../../doc/controllers/exercises-exercise-thumbnails.md#add-or-update-exercise-thumbnail)
 * [Delete an Exercise Thumbnail](../../doc/controllers/exercises-exercise-thumbnails.md#delete-an-exercise-thumbnail)
 
@@ -58,14 +58,14 @@ catch (ApiException e)
 | 404 | Exercise thumbnails not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Get Exercise Thumbnail by User Id
+# Get Exercise Thumbnail by Creator Profile Id
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-GetExerciseThumbnailByUserIdAsync(
+GetExerciseThumbnailByCreatorProfileIdAsync(
     string exerciseCode,
-    string userId)
+    string creatorProfileId)
 ```
 
 ## Parameters
@@ -73,7 +73,7 @@ GetExerciseThumbnailByUserIdAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve thumbnail for |
-| `userId` | `string` | Template, Required | The userId of the creator whose thumbnail we're referencing |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the creator whose thumbnail we're referencing |
 
 ## Response Type
 
@@ -83,12 +83,12 @@ GetExerciseThumbnailByUserIdAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
+string creatorProfileId = "creatorProfileId8";
 try
 {
-    ExerciseThumbnailResponse result = await exercisesExerciseThumbnailsController.GetExerciseThumbnailByUserIdAsync(
+    ExerciseThumbnailResponse result = await exercisesExerciseThumbnailsController.GetExerciseThumbnailByCreatorProfileIdAsync(
         exerciseCode,
-        userId
+        creatorProfileId
     );
 }
 catch (ApiException e)
@@ -111,7 +111,7 @@ catch (ApiException e)
 ```csharp
 AddOrUpdateExerciseThumbnailAsync(
     string exerciseCode,
-    string userId,
+    string creatorProfileId,
     Models.ExerciseThumbnail body)
 ```
 
@@ -120,7 +120,7 @@ AddOrUpdateExerciseThumbnailAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to add or update thumbnail for |
-| `userId` | `string` | Template, Required | The userId of the thumbnail creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the thumbnail creator |
 | `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 
 ## Response Type
@@ -131,11 +131,11 @@ AddOrUpdateExerciseThumbnailAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
+string creatorProfileId = "creatorProfileId8";
 ExerciseThumbnail body = new ExerciseThumbnail
 {
-    ExerciseCode = "exerciseCode2",
-    UserId = new Guid("000021e4-0000-0000-0000-000000000000"),
+    ExerciseCode = "SQUAT",
+    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
     MediaAsset = new MediaAsset
     {
         MediaId = new Guid("7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b"),
@@ -146,13 +146,14 @@ ExerciseThumbnail body = new ExerciseThumbnail
         FileUrl = "https://api.justsuperhuman.com/media/videos/routines/workout_routine.mp4",
         Description = "High-intensity interval training (HIIT) workout routine for beginners",
     },
+    UserName = "john_doe",
 };
 
 try
 {
     ExerciseThumbnailResponse result = await exercisesExerciseThumbnailsController.AddOrUpdateExerciseThumbnailAsync(
         exerciseCode,
-        userId,
+        creatorProfileId,
         body
     );
 }
@@ -176,7 +177,7 @@ catch (ApiException e)
 ```csharp
 DeleteAnExerciseThumbnailAsync(
     string exerciseCode,
-    string userId)
+    string creatorProfileId)
 ```
 
 ## Parameters
@@ -184,7 +185,7 @@ DeleteAnExerciseThumbnailAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `userId` | `string` | Template, Required | The userId of the thumbnail creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the thumbnail creator |
 
 ## Response Type
 
@@ -194,12 +195,12 @@ DeleteAnExerciseThumbnailAsync(
 
 ```csharp
 string exerciseCode = "exerciseCode8";
-string userId = "userId0";
+string creatorProfileId = "creatorProfileId8";
 try
 {
     JustGainsResponse result = await exercisesExerciseThumbnailsController.DeleteAnExerciseThumbnailAsync(
         exerciseCode,
-        userId
+        creatorProfileId
     );
 }
 catch (ApiException e)

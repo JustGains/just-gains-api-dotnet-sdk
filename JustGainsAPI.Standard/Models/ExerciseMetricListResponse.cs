@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public ExerciseMetricListResponse(
             string status,
             string message,
-            List<Models.ExerciseMetric> data)
+            List<Models.ExerciseMetricData> data)
         {
             this.Status = status;
             this.Message = message;
@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
         /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public List<Models.ExerciseMetric> Data { get; set; }
+        public List<Models.ExerciseMetricData> Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

@@ -1,4 +1,4 @@
-// <copyright file="UsersCreatorProfilesControllerTest.cs" company="APIMatic">
+// <copyright file="ExerciseTypesControllerTest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -19,15 +19,15 @@ using NUnit.Framework;
 namespace JustGainsAPI.Tests
 {
     /// <summary>
-    /// UsersCreatorProfilesControllerTest.
+    /// ExerciseTypesControllerTest.
     /// </summary>
     [TestFixture]
-    public class UsersCreatorProfilesControllerTest : ControllerTestBase
+    public class ExerciseTypesControllerTest : ControllerTestBase
     {
         /// <summary>
         /// Controller instance (for all tests).
         /// </summary>
-        private UsersCreatorProfilesController controller;
+        private ExerciseTypesController controller;
 
         /// <summary>
         /// Setup test class.
@@ -35,26 +35,21 @@ namespace JustGainsAPI.Tests
         [OneTimeSetUp]
         public void SetUpDerived()
         {
-            this.controller = this.Client.UsersCreatorProfilesController;
+            this.controller = this.Client.ExerciseTypesController;
         }
 
         /// <summary>
-        /// Get a list of creator profiles.
+        /// Get all exercise types.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestGetCreatorProfiles()
+        public async Task TestTestGetExerciseTypes()
         {
-            // Parameters for the API call
-            int? page = 1;
-            bool? mvpAssetsOnly = null;
-            int? limit = 20;
-
             // Perform API call
-            Standard.Models.CreatorProfileListResponse result = null;
+            Standard.Models.ExerciseTypeListResponse result = null;
             try
             {
-                result = await this.controller.GetCreatorProfilesAsync(page, mvpAssetsOnly, limit);
+                result = await this.controller.GetExerciseTypesAsync();
             }
             catch (ApiException)
             {

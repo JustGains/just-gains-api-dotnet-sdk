@@ -23,6 +23,7 @@
       "data": {
         "exerciseCode": "exerciseCode2",
         "userId": "000018a6-0000-0000-0000-000000000000",
+        "userName": "userName2",
         "mediaAsset": {
           "mediaId": "00001080-0000-0000-0000-000000000000",
           "fileName": "fileName0",
@@ -41,6 +42,7 @@
       "data": {
         "exerciseCode": "exerciseCode2",
         "userId": "000018a6-0000-0000-0000-000000000000",
+        "userName": "userName2",
         "mediaAsset": {
           "mediaId": "00001080-0000-0000-0000-000000000000",
           "fileName": "fileName0",

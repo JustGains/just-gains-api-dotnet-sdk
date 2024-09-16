@@ -32,23 +32,32 @@ namespace JustGainsAPI.Standard.Models
         /// Initializes a new instance of the <see cref="ExerciseVideoListItem"/> class.
         /// </summary>
         /// <param name="userId">userId.</param>
+        /// <param name="userName">userName.</param>
         /// <param name="dateUpdated">dateUpdated.</param>
         /// <param name="dateCreated">dateCreated.</param>
         public ExerciseVideoListItem(
-            string userId = null,
+            Guid? userId = null,
+            string userName = null,
             DateTime? dateUpdated = null,
             DateTime? dateCreated = null)
         {
             this.UserId = userId;
+            this.UserName = userName;
             this.DateUpdated = dateUpdated;
             this.DateCreated = dateCreated;
         }
 
         /// <summary>
-        /// Gets or sets UserId.
+        /// Unique identifier for the user.
         /// </summary>
         [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserId { get; set; }
+        public Guid? UserId { get; set; }
+
+        /// <summary>
+        /// Username of the user who created the video.
+        /// </summary>
+        [JsonProperty("userName", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets DateUpdated.
@@ -87,6 +96,7 @@ namespace JustGainsAPI.Standard.Models
                 return true;
             }
             return obj is ExerciseVideoListItem other &&                ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
+                ((this.UserName == null && other.UserName == null) || (this.UserName?.Equals(other.UserName) == true)) &&
                 ((this.DateUpdated == null && other.DateUpdated == null) || (this.DateUpdated?.Equals(other.DateUpdated) == true)) &&
                 ((this.DateCreated == null && other.DateCreated == null) || (this.DateCreated?.Equals(other.DateCreated) == true));
         }
@@ -97,7 +107,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId)}");
+            toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId.ToString())}");
+            toStringOutput.Add($"this.UserName = {(this.UserName == null ? "null" : this.UserName)}");
             toStringOutput.Add($"this.DateUpdated = {(this.DateUpdated == null ? "null" : this.DateUpdated.ToString())}");
             toStringOutput.Add($"this.DateCreated = {(this.DateCreated == null ? "null" : this.DateCreated.ToString())}");
         }

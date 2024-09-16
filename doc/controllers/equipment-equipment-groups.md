@@ -12,7 +12,7 @@ EquipmentEquipmentGroupsController equipmentEquipmentGroupsController = client.E
 
 * [Get Equipment Groups](../../doc/controllers/equipment-equipment-groups.md#get-equipment-groups)
 * [Add Equipment Group](../../doc/controllers/equipment-equipment-groups.md#add-equipment-group)
-* [Update an Existing Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-an-existing-equipment-group)
+* [Update Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-equipment-group)
 * [Delete an Equipment Group](../../doc/controllers/equipment-equipment-groups.md#delete-an-equipment-group)
 * [Get Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group-translations)
 * [Update Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#update-equipment-group-translations)
@@ -105,10 +105,10 @@ catch (ApiException e)
 | 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Update an Existing Equipment Group
+# Update Equipment Group
 
 ```csharp
-UpdateAnExistingEquipmentGroupAsync(
+UpdateEquipmentGroupAsync(
     string equipmentGroupCode,
     Models.EquipmentGroup body)
 ```
@@ -138,7 +138,7 @@ EquipmentGroup body = new EquipmentGroup
 
 try
 {
-    JustGainsBasicResponse result = await equipmentEquipmentGroupsController.UpdateAnExistingEquipmentGroupAsync(
+    JustGainsBasicResponse result = await equipmentEquipmentGroupsController.UpdateEquipmentGroupAsync(
         equipmentGroupCode,
         body
     );

@@ -106,34 +106,34 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code to retrieve instructions for.</param>
         /// <param name="localeCode">Required parameter: The locale for the instructions (e.g., 'en-US', 'es-ES').</param>
-        /// <param name="userId">Required parameter: The UserID that belongs to the instructions being requested.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId that belongs to the instructions being requested.</param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public Models.ExerciseInstructionResponse GetExerciseInstruction(
                 string exerciseCode,
                 string localeCode,
-                string userId)
-            => CoreHelper.RunTask(GetExerciseInstructionAsync(exerciseCode, localeCode, userId));
+                string creatorProfileId)
+            => CoreHelper.RunTask(GetExerciseInstructionAsync(exerciseCode, localeCode, creatorProfileId));
 
         /// <summary>
         /// getExerciseInstruction EndPoint.
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code to retrieve instructions for.</param>
         /// <param name="localeCode">Required parameter: The locale for the instructions (e.g., 'en-US', 'es-ES').</param>
-        /// <param name="userId">Required parameter: The UserID that belongs to the instructions being requested.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId that belongs to the instructions being requested.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public async Task<Models.ExerciseInstructionResponse> GetExerciseInstructionAsync(
                 string exerciseCode,
                 string localeCode,
-                string userId,
+                string creatorProfileId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseInstructionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/exercises/{exerciseCode}/instructions/{localeCode}/{userId}")
+                  .Setup(HttpMethod.Get, "/exercises/{exerciseCode}/instructions/{localeCode}/{creatorProfileId}")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
                       .Template(_template => _template.Setup("localeCode", localeCode))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise instructions not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
@@ -144,40 +144,40 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to update.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to update.</param>
-        /// <param name="userId">Required parameter: The userId of the creator for the instructions to update.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId of the creator for the instructions to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public Models.ExerciseInstructionResponse UpdateExerciseInstructions(
                 string exerciseCode,
                 string localeCode,
-                string userId,
+                string creatorProfileId,
                 Models.ExerciseInstruction body)
-            => CoreHelper.RunTask(UpdateExerciseInstructionsAsync(exerciseCode, localeCode, userId, body));
+            => CoreHelper.RunTask(UpdateExerciseInstructionsAsync(exerciseCode, localeCode, creatorProfileId, body));
 
         /// <summary>
         /// Update exercise instructions EndPoint.
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to update.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to update.</param>
-        /// <param name="userId">Required parameter: The userId of the creator for the instructions to update.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId of the creator for the instructions to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ExerciseInstructionResponse response from the API call.</returns>
         public async Task<Models.ExerciseInstructionResponse> UpdateExerciseInstructionsAsync(
                 string exerciseCode,
                 string localeCode,
-                string userId,
+                string creatorProfileId,
                 Models.ExerciseInstruction body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ExerciseInstructionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/exercises/{exerciseCode}/instructions/{localeCode}/{userId}")
+                  .Setup(HttpMethod.Put, "/exercises/{exerciseCode}/instructions/{localeCode}/{creatorProfileId}")
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
                       .Template(_template => _template.Setup("localeCode", localeCode))
-                      .Template(_template => _template.Setup("userId", userId))
+                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))
                       .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
@@ -190,35 +190,35 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to delete.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to delete.</param>
-        /// <param name="userId">Required parameter: The user ID of the instructions to delete.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId of the instructions to delete.</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public Models.JustGainsBasicResponse DeleteExerciseInstructions(
                 string exerciseCode,
                 string localeCode,
-                string userId)
-            => CoreHelper.RunTask(DeleteExerciseInstructionsAsync(exerciseCode, localeCode, userId));
+                string creatorProfileId)
+            => CoreHelper.RunTask(DeleteExerciseInstructionsAsync(exerciseCode, localeCode, creatorProfileId));
 
         /// <summary>
         /// Delete exercise instructions EndPoint.
         /// </summary>
         /// <param name="exerciseCode">Required parameter: The exercise code of the instructions to delete.</param>
         /// <param name="localeCode">Required parameter: The locale code for the instructions to delete.</param>
-        /// <param name="userId">Required parameter: The user ID of the instructions to delete.</param>
+        /// <param name="creatorProfileId">Required parameter: The creatorProfileId of the instructions to delete.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
         public async Task<Models.JustGainsBasicResponse> DeleteExerciseInstructionsAsync(
                 string exerciseCode,
                 string localeCode,
-                string userId,
+                string creatorProfileId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/exercises/{exerciseCode}/instructions/{localeCode}/{userId}")
+                  .Setup(HttpMethod.Delete, "/exercises/{exerciseCode}/instructions/{localeCode}/{creatorProfileId}")
                   .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("exerciseCode", exerciseCode))
                       .Template(_template => _template.Setup("localeCode", localeCode))
-                      .Template(_template => _template.Setup("userId", userId))))
+                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Exercise instructions not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

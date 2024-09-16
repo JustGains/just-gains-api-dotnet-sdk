@@ -24,6 +24,7 @@ UsersCreatorProfilesController usersCreatorProfilesController = client.UsersCrea
 ```csharp
 GetCreatorProfilesAsync(
     int? page = 1,
+    bool? mvpAssetsOnly = null,
     int? limit = 20)
 ```
 
@@ -32,6 +33,7 @@ GetCreatorProfilesAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `page` | `int?` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
+| `mvpAssetsOnly` | `bool?` | Query, Optional | Filter creator profiles with MVP assets only |
 | `limit` | `int?` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 
 ## Response Type
@@ -47,6 +49,7 @@ try
 {
     CreatorProfileListResponse result = await usersCreatorProfilesController.GetCreatorProfilesAsync(
         page,
+        null,
         limit
     );
 }
@@ -88,6 +91,7 @@ CreatorProfile body = new CreatorProfile
 {
     CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+    UserName = "TheRock",
     CreatorEmail = "dwayne@therockjohnson.com",
 };
 
@@ -178,6 +182,7 @@ CreatorProfile body = new CreatorProfile
 {
     CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
     UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+    UserName = "TheRock",
     CreatorEmail = "dwayne@therockjohnson.com",
 };
 

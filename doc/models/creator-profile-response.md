@@ -22,6 +22,7 @@
   "data": {
     "creatorProfileId": "123e4567-e89b-12d3-a456-426614174000",
     "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "userName": "TheRock",
     "creatorEmail": "dwayne@therockjohnson.com",
     "profilePhoto": {
       "mediaId": "000006b6-0000-0000-0000-000000000000",
@@ -31,17 +32,7 @@
       "fileSize": 10,
       "fileFormat": "fileFormat6",
       "description": "description0"
-    },
-    "socialMediaAccounts": [
-      {
-        "socialMediaPlatformCode": "socialMediaPlatformCode8",
-        "socialMediaAccountUsername": "socialMediaAccountUsername8"
-      },
-      {
-        "socialMediaPlatformCode": "socialMediaPlatformCode8",
-        "socialMediaAccountUsername": "socialMediaAccountUsername8"
-      }
-    ]
+    }
   }
 }
 ```

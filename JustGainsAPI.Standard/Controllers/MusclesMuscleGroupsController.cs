@@ -89,24 +89,24 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update a muscle group EndPoint.
+        /// updateMuscleGroup EndPoint.
         /// </summary>
         /// <param name="muscleGroupCode">Required parameter: The muscle group code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse UpdateAMuscleGroup(
+        public Models.JustGainsBasicResponse UpdateMuscleGroup(
                 string muscleGroupCode,
                 Models.MuscleGroup body)
-            => CoreHelper.RunTask(UpdateAMuscleGroupAsync(muscleGroupCode, body));
+            => CoreHelper.RunTask(UpdateMuscleGroupAsync(muscleGroupCode, body));
 
         /// <summary>
-        /// Update a muscle group EndPoint.
+        /// updateMuscleGroup EndPoint.
         /// </summary>
         /// <param name="muscleGroupCode">Required parameter: The muscle group code to update..</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> UpdateAMuscleGroupAsync(
+        public async Task<Models.JustGainsBasicResponse> UpdateMuscleGroupAsync(
                 string muscleGroupCode,
                 Models.MuscleGroup body,
                 CancellationToken cancellationToken = default)

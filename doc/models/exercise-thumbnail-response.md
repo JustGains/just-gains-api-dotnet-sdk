@@ -20,8 +20,9 @@
   "status": "OK",
   "message": "Operation completed successfully.",
   "data": {
-    "exerciseCode": "exerciseCode2",
-    "userId": "000018a6-0000-0000-0000-000000000000",
+    "exerciseCode": "SQUAT",
+    "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "userName": "john_doe",
     "mediaAsset": {
       "mediaId": "7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b",
       "fileName": "workout_routine.mp4",

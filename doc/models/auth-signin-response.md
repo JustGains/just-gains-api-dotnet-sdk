@@ -1,11 +1,9 @@
 
-# Auth
-
-Response object for authentication operations
+# Auth Signin Response
 
 ## Structure
 
-`Auth`
+`AuthSigninResponse`
 
 ## Fields
 

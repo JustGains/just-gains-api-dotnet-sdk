@@ -1,4 +1,4 @@
-// <copyright file="InstructionBlock.cs" company="APIMatic">
+// <copyright file="AuthRefreshTokenResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,50 +17,50 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// InstructionBlock.
+    /// AuthRefreshTokenResponse.
     /// </summary>
-    public class InstructionBlock
+    public class AuthRefreshTokenResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InstructionBlock"/> class.
+        /// Initializes a new instance of the <see cref="AuthRefreshTokenResponse"/> class.
         /// </summary>
-        public InstructionBlock()
+        public AuthRefreshTokenResponse()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InstructionBlock"/> class.
+        /// Initializes a new instance of the <see cref="AuthRefreshTokenResponse"/> class.
         /// </summary>
-        /// <param name="id">id.</param>
-        /// <param name="type">type.</param>
+        /// <param name="status">status.</param>
+        /// <param name="message">message.</param>
         /// <param name="data">data.</param>
-        public InstructionBlock(
-            string id = null,
-            Models.TypeEnum? type = null,
-            Models.Data2 data = null)
+        public AuthRefreshTokenResponse(
+            string status,
+            string message,
+            Models.Data1 data)
         {
-            this.Id = id;
-            this.Type = type;
+            this.Status = status;
+            this.Message = message;
             this.Data = data;
         }
 
         /// <summary>
-        /// Gets or sets Id.
+        /// The status of the response, corresponding to standard HTTP status codes.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public string Id { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
 
         /// <summary>
-        /// Gets or sets Type.
+        /// A human-readable message describing the result of the operation.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.TypeEnum? Type { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets Data.
         /// </summary>
-        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.Data2 Data { get; set; }
+        [JsonProperty("data")]
+        public Models.Data1 Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"InstructionBlock : ({string.Join(", ", toStringOutput)})";
+            return $"AuthRefreshTokenResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,8 +84,8 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is InstructionBlock other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is AuthRefreshTokenResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }
         
@@ -95,8 +95,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type.ToString())}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
             toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
         }
     }

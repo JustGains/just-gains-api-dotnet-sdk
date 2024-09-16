@@ -34,46 +34,48 @@ namespace JustGainsAPI.Standard.Controllers
         internal AuthenticationController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Get current user information EndPoint.
+        /// getUserInfo EndPoint.
         /// </summary>
         /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public Models.UserInfoResponse GetCurrentUserInformation()
-            => CoreHelper.RunTask(GetCurrentUserInformationAsync());
+        public Models.UserInfoResponse GetUserInfo()
+            => CoreHelper.RunTask(GetUserInfoAsync());
 
         /// <summary>
-        /// Get current user information EndPoint.
+        /// getUserInfo EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public async Task<Models.UserInfoResponse> GetCurrentUserInformationAsync(CancellationToken cancellationToken = default)
+        public async Task<Models.UserInfoResponse> GetUserInfoAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UserInfoResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/auth/user"))
+                  .Setup(HttpMethod.Get, "/auth/user")
+                  .WithAuth("bearerAuth"))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("401", CreateErrorCase("Failed to retrieve user information", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update user information EndPoint.
+        /// updateUserInfo EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public Models.JustGainsResponse UpdateUserInformation(
+        public Models.JustGainsResponse UpdateUserInfo(
                 Models.UpdateUserRequest body)
-            => CoreHelper.RunTask(UpdateUserInformationAsync(body));
+            => CoreHelper.RunTask(UpdateUserInfoAsync(body));
 
         /// <summary>
-        /// Update user information EndPoint.
+        /// updateUserInfo EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public async Task<Models.JustGainsResponse> UpdateUserInformationAsync(
+        public async Task<Models.JustGainsResponse> UpdateUserInfoAsync(
                 Models.UpdateUserRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/auth/user")
+                  .WithAuth("bearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("Content-Type", "application/json"))))
@@ -82,21 +84,21 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Register a new user EndPoint.
+        /// registerUser EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public Models.UserInfoResponse RegisterANewUser(
+        public Models.UserInfoResponse RegisterUser(
                 Models.UserRegisterRequest body)
-            => CoreHelper.RunTask(RegisterANewUserAsync(body));
+            => CoreHelper.RunTask(RegisterUserAsync(body));
 
         /// <summary>
-        /// Register a new user EndPoint.
+        /// registerUser EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public async Task<Models.UserInfoResponse> RegisterANewUserAsync(
+        public async Task<Models.UserInfoResponse> RegisterUserAsync(
                 Models.UserRegisterRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UserInfoResponse>()
@@ -110,24 +112,24 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Sign in a user EndPoint.
+        /// loginUser EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.AuthResponse response from the API call.</returns>
-        public Models.AuthResponse SignInAUser(
+        /// <returns>Returns the Models.AuthSigninResponse response from the API call.</returns>
+        public Models.AuthSigninResponse LoginUser(
                 Models.UserLoginRequest body)
-            => CoreHelper.RunTask(SignInAUserAsync(body));
+            => CoreHelper.RunTask(LoginUserAsync(body));
 
         /// <summary>
-        /// Sign in a user EndPoint.
+        /// loginUser EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.AuthResponse response from the API call.</returns>
-        public async Task<Models.AuthResponse> SignInAUserAsync(
+        /// <returns>Returns the Models.AuthSigninResponse response from the API call.</returns>
+        public async Task<Models.AuthSigninResponse> LoginUserAsync(
                 Models.UserLoginRequest body,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.AuthResponse>()
+            => await CreateApiCall<Models.AuthSigninResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/auth/signin")
                   .Parameters(_parameters => _parameters
@@ -138,7 +140,7 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Resend confirmation email EndPoint.
+        /// resendConfirmationEmail EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
@@ -147,7 +149,7 @@ namespace JustGainsAPI.Standard.Controllers
             => CoreHelper.RunTask(ResendConfirmationEmailAsync(body));
 
         /// <summary>
-        /// Resend confirmation email EndPoint.
+        /// resendConfirmationEmail EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -166,21 +168,21 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Initiate forgot password process EndPoint.
+        /// forgotPassword EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public Models.JustGainsResponse InitiateForgotPasswordProcess(
+        public Models.JustGainsResponse ForgotPassword(
                 Models.ForgotPasswordRequest body)
-            => CoreHelper.RunTask(InitiateForgotPasswordProcessAsync(body));
+            => CoreHelper.RunTask(ForgotPasswordAsync(body));
 
         /// <summary>
-        /// Initiate forgot password process EndPoint.
+        /// forgotPassword EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public async Task<Models.JustGainsResponse> InitiateForgotPasswordProcessAsync(
+        public async Task<Models.JustGainsResponse> ForgotPasswordAsync(
                 Models.ForgotPasswordRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsResponse>()
@@ -194,21 +196,21 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Reset user password EndPoint.
+        /// resetPassword EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse ResetUserPassword(
+        public Models.JustGainsBasicResponse ResetPassword(
                 Models.ResetPasswordRequest body)
-            => CoreHelper.RunTask(ResetUserPasswordAsync(body));
+            => CoreHelper.RunTask(ResetPasswordAsync(body));
 
         /// <summary>
-        /// Reset user password EndPoint.
+        /// resetPassword EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> ResetUserPasswordAsync(
+        public async Task<Models.JustGainsBasicResponse> ResetPasswordAsync(
                 Models.ResetPasswordRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
@@ -222,19 +224,19 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Refresh authentication token EndPoint.
+        /// refreshToken EndPoint.
         /// </summary>
-        /// <returns>Returns the Models.AuthResponse response from the API call.</returns>
-        public Models.AuthResponse RefreshAuthenticationToken()
-            => CoreHelper.RunTask(RefreshAuthenticationTokenAsync());
+        /// <returns>Returns the Models.AuthRefreshTokenResponse response from the API call.</returns>
+        public Models.AuthRefreshTokenResponse RefreshToken()
+            => CoreHelper.RunTask(RefreshTokenAsync());
 
         /// <summary>
-        /// Refresh authentication token EndPoint.
+        /// refreshToken EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.AuthResponse response from the API call.</returns>
-        public async Task<Models.AuthResponse> RefreshAuthenticationTokenAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.AuthResponse>()
+        /// <returns>Returns the Models.AuthRefreshTokenResponse response from the API call.</returns>
+        public async Task<Models.AuthRefreshTokenResponse> RefreshTokenAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.AuthRefreshTokenResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/auth/refresh-token"))
               .ResponseHandler(_responseHandler => _responseHandler
@@ -242,21 +244,22 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Sign out the current user EndPoint.
+        /// signout EndPoint.
         /// </summary>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse SignOutTheCurrentUser()
-            => CoreHelper.RunTask(SignOutTheCurrentUserAsync());
+        public Models.JustGainsBasicResponse Signout()
+            => CoreHelper.RunTask(SignoutAsync());
 
         /// <summary>
-        /// Sign out the current user EndPoint.
+        /// signout EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> SignOutTheCurrentUserAsync(CancellationToken cancellationToken = default)
+        public async Task<Models.JustGainsBasicResponse> SignoutAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/auth/signout"))
+                  .Setup(HttpMethod.Post, "/auth/signout")
+                  .WithAuth("bearerAuth"))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Failed to sign out user", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

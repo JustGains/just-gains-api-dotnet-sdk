@@ -1,4 +1,4 @@
-// <copyright file="AuthResponse.cs" company="APIMatic">
+// <copyright file="ExerciseTypeListResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,27 +17,27 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// AuthResponse.
+    /// ExerciseTypeListResponse.
     /// </summary>
-    public class AuthResponse
+    public class ExerciseTypeListResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthResponse"/> class.
+        /// Initializes a new instance of the <see cref="ExerciseTypeListResponse"/> class.
         /// </summary>
-        public AuthResponse()
+        public ExerciseTypeListResponse()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthResponse"/> class.
+        /// Initializes a new instance of the <see cref="ExerciseTypeListResponse"/> class.
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="message">message.</param>
         /// <param name="data">data.</param>
-        public AuthResponse(
+        public ExerciseTypeListResponse(
             string status,
             string message,
-            Models.Data1 data)
+            List<Models.ExerciseType> data)
         {
             this.Status = status;
             this.Message = message;
@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
         /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public Models.Data1 Data { get; set; }
+        public List<Models.ExerciseType> Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"AuthResponse : ({string.Join(", ", toStringOutput)})";
+            return $"ExerciseTypeListResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,7 +84,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is AuthResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+            return obj is ExerciseTypeListResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }
@@ -97,7 +97,7 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
+            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : $"[{string.Join(", ", this.Data)} ]")}");
         }
     }
 }

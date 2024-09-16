@@ -1,4 +1,4 @@
-// <copyright file="UsersRoleManagementController.cs" company="APIMatic">
+// <copyright file="UsersRolesController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -23,14 +23,14 @@ using System.Net.Http;
 namespace JustGainsAPI.Standard.Controllers
 {
     /// <summary>
-    /// UsersRoleManagementController.
+    /// UsersRolesController.
     /// </summary>
-    public class UsersRoleManagementController : BaseController
+    public class UsersRolesController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsersRoleManagementController"/> class.
+        /// Initializes a new instance of the <see cref="UsersRolesController"/> class.
         /// </summary>
-        internal UsersRoleManagementController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
+        internal UsersRolesController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
         /// Assign a role to a user EndPoint.
@@ -40,7 +40,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
         public Models.UsersRolesResponse AssignARoleToAUser(
                 Guid userId,
-                Models.RoleAssignmentRequest body)
+                List<string> body)
             => CoreHelper.RunTask(AssignARoleToAUserAsync(userId, body));
 
         /// <summary>
@@ -52,11 +52,11 @@ namespace JustGainsAPI.Standard.Controllers
         /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
         public async Task<Models.UsersRolesResponse> AssignARoleToAUserAsync(
                 Guid userId,
-                Models.RoleAssignmentRequest body,
+                List<string> body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UsersRolesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/users/{userId}/roles")
+                  .Setup(HttpMethod.Put, "/users/{userId}/roles")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("userId", userId))
@@ -86,36 +86,6 @@ namespace JustGainsAPI.Standard.Controllers
                   .Setup(HttpMethod.Get, "/users/{userId}/roles")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("userId", userId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Remove a role from a user EndPoint.
-        /// </summary>
-        /// <param name="userId">Required parameter: Example: .</param>
-        /// <param name="roleName">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public Models.JustGainsResponse RemoveARoleFromAUser(
-                Guid userId,
-                string roleName)
-            => CoreHelper.RunTask(RemoveARoleFromAUserAsync(userId, roleName));
-
-        /// <summary>
-        /// Remove a role from a user EndPoint.
-        /// </summary>
-        /// <param name="userId">Required parameter: Example: .</param>
-        /// <param name="roleName">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public async Task<Models.JustGainsResponse> RemoveARoleFromAUserAsync(
-                Guid userId,
-                string roleName,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.JustGainsResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/users/{userId}/roles/{roleName}")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("userId", userId))
-                      .Template(_template => _template.Setup("roleName", roleName))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

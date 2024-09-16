@@ -1,4 +1,4 @@
-// <copyright file="UsersRoleManagementControllerTest.cs" company="APIMatic">
+// <copyright file="UsersRolesControllerTest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -19,15 +19,15 @@ using NUnit.Framework;
 namespace JustGainsAPI.Tests
 {
     /// <summary>
-    /// UsersRoleManagementControllerTest.
+    /// UsersRolesControllerTest.
     /// </summary>
     [TestFixture]
-    public class UsersRoleManagementControllerTest : ControllerTestBase
+    public class UsersRolesControllerTest : ControllerTestBase
     {
         /// <summary>
         /// Controller instance (for all tests).
         /// </summary>
-        private UsersRoleManagementController controller;
+        private UsersRolesController controller;
 
         /// <summary>
         /// Setup test class.
@@ -35,7 +35,7 @@ namespace JustGainsAPI.Tests
         [OneTimeSetUp]
         public void SetUpDerived()
         {
-            this.controller = this.Client.UsersRoleManagementController;
+            this.controller = this.Client.UsersRolesController;
         }
 
         /// <summary>

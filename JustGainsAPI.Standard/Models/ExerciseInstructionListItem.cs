@@ -32,16 +32,19 @@ namespace JustGainsAPI.Standard.Models
         /// Initializes a new instance of the <see cref="ExerciseInstructionListItem"/> class.
         /// </summary>
         /// <param name="userId">userId.</param>
+        /// <param name="userName">userName.</param>
         /// <param name="localeCode">localeCode.</param>
         /// <param name="dateUpdated">dateUpdated.</param>
         /// <param name="dateCreated">dateCreated.</param>
         public ExerciseInstructionListItem(
             string userId = null,
+            string userName = null,
             string localeCode = null,
             DateTime? dateUpdated = null,
             DateTime? dateCreated = null)
         {
             this.UserId = userId;
+            this.UserName = userName;
             this.LocaleCode = localeCode;
             this.DateUpdated = dateUpdated;
             this.DateCreated = dateCreated;
@@ -52,6 +55,12 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
+
+        /// <summary>
+        /// Username of the user who created this instruction.
+        /// </summary>
+        [JsonProperty("userName", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserName { get; set; }
 
         /// <summary>
         /// Language code for the instructions
@@ -96,6 +105,7 @@ namespace JustGainsAPI.Standard.Models
                 return true;
             }
             return obj is ExerciseInstructionListItem other &&                ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
+                ((this.UserName == null && other.UserName == null) || (this.UserName?.Equals(other.UserName) == true)) &&
                 ((this.LocaleCode == null && other.LocaleCode == null) || (this.LocaleCode?.Equals(other.LocaleCode) == true)) &&
                 ((this.DateUpdated == null && other.DateUpdated == null) || (this.DateUpdated?.Equals(other.DateUpdated) == true)) &&
                 ((this.DateCreated == null && other.DateCreated == null) || (this.DateCreated?.Equals(other.DateCreated) == true));
@@ -108,6 +118,7 @@ namespace JustGainsAPI.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId)}");
+            toStringOutput.Add($"this.UserName = {(this.UserName == null ? "null" : this.UserName)}");
             toStringOutput.Add($"this.LocaleCode = {(this.LocaleCode == null ? "null" : this.LocaleCode)}");
             toStringOutput.Add($"this.DateUpdated = {(this.DateUpdated == null ? "null" : this.DateUpdated.ToString())}");
             toStringOutput.Add($"this.DateCreated = {(this.DateCreated == null ? "null" : this.DateCreated.ToString())}");

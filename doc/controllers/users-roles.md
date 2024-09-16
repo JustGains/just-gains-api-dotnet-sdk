@@ -1,22 +1,23 @@
-# Users Role Management
+# Users Roles
+
+Manage User roles.
 
 ```csharp
-UsersRoleManagementController usersRoleManagementController = client.UsersRoleManagementController;
+UsersRolesController usersRolesController = client.UsersRolesController;
 ```
 
 ## Class Name
 
-`UsersRoleManagementController`
+`UsersRolesController`
 
 ## Methods
 
-* [Assign a Role to a User](../../doc/controllers/users-role-management.md#assign-a-role-to-a-user)
-* [Get User Roles](../../doc/controllers/users-role-management.md#get-user-roles)
-* [Remove a Role From a User](../../doc/controllers/users-role-management.md#remove-a-role-from-a-user)
-* [Get All Roles](../../doc/controllers/users-role-management.md#get-all-roles)
-* [Create a New Role](../../doc/controllers/users-role-management.md#create-a-new-role)
-* [Update a Role](../../doc/controllers/users-role-management.md#update-a-role)
-* [Delete a Role](../../doc/controllers/users-role-management.md#delete-a-role)
+* [Assign a Role to a User](../../doc/controllers/users-roles.md#assign-a-role-to-a-user)
+* [Get User Roles](../../doc/controllers/users-roles.md#get-user-roles)
+* [Get All Roles](../../doc/controllers/users-roles.md#get-all-roles)
+* [Create a New Role](../../doc/controllers/users-roles.md#create-a-new-role)
+* [Update a Role](../../doc/controllers/users-roles.md#update-a-role)
+* [Delete a Role](../../doc/controllers/users-roles.md#delete-a-role)
 
 
 # Assign a Role to a User
@@ -26,7 +27,7 @@ UsersRoleManagementController usersRoleManagementController = client.UsersRoleMa
 ```csharp
 AssignARoleToAUserAsync(
     Guid userId,
-    Models.RoleAssignmentRequest body)
+    List<string> body)
 ```
 
 ## Parameters
@@ -34,7 +35,7 @@ AssignARoleToAUserAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `Guid` | Template, Required | - |
-| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
+| `body` | `List<string>` | Body, Required | - |
 
 ## Response Type
 
@@ -44,14 +45,15 @@ AssignARoleToAUserAsync(
 
 ```csharp
 Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
-RoleAssignmentRequest body = new RoleAssignmentRequest
+List<string> body = new List<string>
 {
-    RoleId = 192,
+    "body4",
+    "body5",
 };
 
 try
 {
-    UsersRolesResponse result = await usersRoleManagementController.AssignARoleToAUserAsync(
+    UsersRolesResponse result = await usersRolesController.AssignARoleToAUserAsync(
         userId,
         body
     );
@@ -89,48 +91,7 @@ GetUserRolesAsync(
 Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
 try
 {
-    UsersRolesResponse result = await usersRoleManagementController.GetUserRolesAsync(userId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Remove a Role From a User
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-RemoveARoleFromAUserAsync(
-    Guid userId,
-    string roleName)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `userId` | `Guid` | Template, Required | - |
-| `roleName` | `string` | Template, Required | - |
-
-## Response Type
-
-[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
-
-## Example Usage
-
-```csharp
-Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
-string roleName = "roleName6";
-try
-{
-    JustGainsResponse result = await usersRoleManagementController.RemoveARoleFromAUserAsync(
-        userId,
-        roleName
-    );
+    UsersRolesResponse result = await usersRolesController.GetUserRolesAsync(userId);
 }
 catch (ApiException e)
 {
@@ -157,7 +118,7 @@ GetAllRolesAsync()
 ```csharp
 try
 {
-    RolesResponse result = await usersRoleManagementController.GetAllRolesAsync();
+    RolesResponse result = await usersRolesController.GetAllRolesAsync();
 }
 catch (ApiException e)
 {
@@ -196,7 +157,7 @@ RoleCreateRequest body = new RoleCreateRequest
 
 try
 {
-    RolesResponse1 result = await usersRoleManagementController.CreateANewRoleAsync(body);
+    RolesResponse1 result = await usersRolesController.CreateANewRoleAsync(body);
 }
 catch (ApiException e)
 {
@@ -237,7 +198,7 @@ RoleUpdateRequest body = new RoleUpdateRequest
 
 try
 {
-    RolesResponse1 result = await usersRoleManagementController.UpdateARoleAsync(
+    RolesResponse1 result = await usersRolesController.UpdateARoleAsync(
         roleName,
         body
     );
@@ -275,7 +236,7 @@ DeleteARoleAsync(
 string roleName = "roleName6";
 try
 {
-    JustGainsResponse result = await usersRoleManagementController.DeleteARoleAsync(roleName);
+    JustGainsResponse result = await usersRolesController.DeleteARoleAsync(roleName);
 }
 catch (ApiException e)
 {

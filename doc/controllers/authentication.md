@@ -1,6 +1,6 @@
 # Authentication
 
-Updated endpoints for user authentication, including registration, login, logout, and token refresh.
+Endpoints for user authentication, including registration, login, logout, and token refresh.
 
 ```csharp
 AuthenticationController authenticationController = client.AuthenticationController;
@@ -12,23 +12,21 @@ AuthenticationController authenticationController = client.AuthenticationControl
 
 ## Methods
 
-* [Get Current User Information](../../doc/controllers/authentication.md#get-current-user-information)
-* [Update User Information](../../doc/controllers/authentication.md#update-user-information)
-* [Register a New User](../../doc/controllers/authentication.md#register-a-new-user)
-* [Sign in a User](../../doc/controllers/authentication.md#sign-in-a-user)
+* [Get User Info](../../doc/controllers/authentication.md#get-user-info)
+* [Update User Info](../../doc/controllers/authentication.md#update-user-info)
+* [Register User](../../doc/controllers/authentication.md#register-user)
+* [Login User](../../doc/controllers/authentication.md#login-user)
 * [Resend Confirmation Email](../../doc/controllers/authentication.md#resend-confirmation-email)
-* [Initiate Forgot Password Process](../../doc/controllers/authentication.md#initiate-forgot-password-process)
-* [Reset User Password](../../doc/controllers/authentication.md#reset-user-password)
-* [Refresh Authentication Token](../../doc/controllers/authentication.md#refresh-authentication-token)
-* [Sign Out the Current User](../../doc/controllers/authentication.md#sign-out-the-current-user)
+* [Forgot Password](../../doc/controllers/authentication.md#forgot-password)
+* [Reset Password](../../doc/controllers/authentication.md#reset-password)
+* [Refresh Token](../../doc/controllers/authentication.md#refresh-token)
+* [Signout](../../doc/controllers/authentication.md#signout)
 
 
-# Get Current User Information
-
-:information_source: **Note** This endpoint does not require authentication.
+# Get User Info
 
 ```csharp
-GetCurrentUserInformationAsync()
+GetUserInfoAsync()
 ```
 
 ## Response Type
@@ -40,7 +38,7 @@ GetCurrentUserInformationAsync()
 ```csharp
 try
 {
-    UserInfoResponse result = await authenticationController.GetCurrentUserInformationAsync();
+    UserInfoResponse result = await authenticationController.GetUserInfoAsync();
 }
 catch (ApiException e)
 {
@@ -56,12 +54,10 @@ catch (ApiException e)
 | 401 | Failed to retrieve user information | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Update User Information
-
-:information_source: **Note** This endpoint does not require authentication.
+# Update User Info
 
 ```csharp
-UpdateUserInformationAsync(
+UpdateUserInfoAsync(
     Models.UpdateUserRequest body)
 ```
 
@@ -99,7 +95,7 @@ UpdateUserRequest body = new UpdateUserRequest
 
 try
 {
-    JustGainsResponse result = await authenticationController.UpdateUserInformationAsync(body);
+    JustGainsResponse result = await authenticationController.UpdateUserInfoAsync(body);
 }
 catch (ApiException e)
 {
@@ -115,12 +111,12 @@ catch (ApiException e)
 | 400 | Failed to update user information | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Register a New User
+# Register User
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-RegisterANewUserAsync(
+RegisterUserAsync(
     Models.UserRegisterRequest body)
 ```
 
@@ -149,7 +145,7 @@ UserRegisterRequest body = new UserRegisterRequest
 
 try
 {
-    UserInfoResponse result = await authenticationController.RegisterANewUserAsync(body);
+    UserInfoResponse result = await authenticationController.RegisterUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -165,12 +161,12 @@ catch (ApiException e)
 | 400 | Invalid parameters | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Sign in a User
+# Login User
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-SignInAUserAsync(
+LoginUserAsync(
     Models.UserLoginRequest body)
 ```
 
@@ -182,7 +178,7 @@ SignInAUserAsync(
 
 ## Response Type
 
-[`Task<Models.AuthResponse>`](../../doc/models/auth-response.md)
+[`Task<Models.AuthSigninResponse>`](../../doc/models/auth-signin-response.md)
 
 ## Example Usage
 
@@ -195,7 +191,7 @@ UserLoginRequest body = new UserLoginRequest
 
 try
 {
-    AuthResponse result = await authenticationController.SignInAUserAsync(body);
+    AuthSigninResponse result = await authenticationController.LoginUserAsync(body);
 }
 catch (ApiException e)
 {
@@ -256,12 +252,12 @@ catch (ApiException e)
 | 400 | Failed to send confirmation email | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Initiate Forgot Password Process
+# Forgot Password
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-InitiateForgotPasswordProcessAsync(
+ForgotPasswordAsync(
     Models.ForgotPasswordRequest body)
 ```
 
@@ -285,7 +281,7 @@ ForgotPasswordRequest body = new ForgotPasswordRequest
 
 try
 {
-    JustGainsResponse result = await authenticationController.InitiateForgotPasswordProcessAsync(body);
+    JustGainsResponse result = await authenticationController.ForgotPasswordAsync(body);
 }
 catch (ApiException e)
 {
@@ -301,12 +297,12 @@ catch (ApiException e)
 | 404 | Failed to send password reset email | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Reset User Password
+# Reset Password
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-ResetUserPasswordAsync(
+ResetPasswordAsync(
     Models.ResetPasswordRequest body)
 ```
 
@@ -330,7 +326,7 @@ ResetPasswordRequest body = new ResetPasswordRequest
 
 try
 {
-    JustGainsBasicResponse result = await authenticationController.ResetUserPasswordAsync(body);
+    JustGainsBasicResponse result = await authenticationController.ResetPasswordAsync(body);
 }
 catch (ApiException e)
 {
@@ -346,24 +342,24 @@ catch (ApiException e)
 | 400 | Failed to reset password | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Refresh Authentication Token
+# Refresh Token
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-RefreshAuthenticationTokenAsync()
+RefreshTokenAsync()
 ```
 
 ## Response Type
 
-[`Task<Models.AuthResponse>`](../../doc/models/auth-response.md)
+[`Task<Models.AuthRefreshTokenResponse>`](../../doc/models/auth-refresh-token-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    AuthResponse result = await authenticationController.RefreshAuthenticationTokenAsync();
+    AuthRefreshTokenResponse result = await authenticationController.RefreshTokenAsync();
 }
 catch (ApiException e)
 {
@@ -379,12 +375,10 @@ catch (ApiException e)
 | 400 | Failed to refresh token | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Sign Out the Current User
-
-:information_source: **Note** This endpoint does not require authentication.
+# Signout
 
 ```csharp
-SignOutTheCurrentUserAsync()
+SignoutAsync()
 ```
 
 ## Response Type
@@ -396,7 +390,7 @@ SignOutTheCurrentUserAsync()
 ```csharp
 try
 {
-    JustGainsBasicResponse result = await authenticationController.SignOutTheCurrentUserAsync();
+    JustGainsBasicResponse result = await authenticationController.SignoutAsync();
 }
 catch (ApiException e)
 {

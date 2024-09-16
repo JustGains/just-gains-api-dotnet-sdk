@@ -37,22 +37,26 @@ namespace JustGainsAPI.Standard.Controllers
         /// getCreatorProfiles EndPoint.
         /// </summary>
         /// <param name="page">Optional parameter: Page number for pagination.</param>
+        /// <param name="mvpAssetsOnly">Optional parameter: Filter creator profiles with MVP assets only.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public Models.CreatorProfileListResponse GetCreatorProfiles(
                 int? page = 1,
+                bool? mvpAssetsOnly = null,
                 int? limit = 20)
-            => CoreHelper.RunTask(GetCreatorProfilesAsync(page, limit));
+            => CoreHelper.RunTask(GetCreatorProfilesAsync(page, mvpAssetsOnly, limit));
 
         /// <summary>
         /// getCreatorProfiles EndPoint.
         /// </summary>
         /// <param name="page">Optional parameter: Page number for pagination.</param>
+        /// <param name="mvpAssetsOnly">Optional parameter: Filter creator profiles with MVP assets only.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public async Task<Models.CreatorProfileListResponse> GetCreatorProfilesAsync(
                 int? page = 1,
+                bool? mvpAssetsOnly = null,
                 int? limit = 20,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.CreatorProfileListResponse>()
@@ -60,6 +64,7 @@ namespace JustGainsAPI.Standard.Controllers
                   .Setup(HttpMethod.Get, "/creator-profiles")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page ?? 1))
+                      .Query(_query => _query.Setup("mvpAssetsOnly", mvpAssetsOnly))
                       .Query(_query => _query.Setup("limit", limit ?? 20))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))

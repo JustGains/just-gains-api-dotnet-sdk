@@ -1,11 +1,9 @@
 
-# Auth Response
-
-Response object for authentication operations
+# Auth Refresh Token Response
 
 ## Structure
 
-`AuthResponse`
+`AuthRefreshTokenResponse`
 
 ## Fields
 

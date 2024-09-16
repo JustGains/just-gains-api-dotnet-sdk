@@ -40,7 +40,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
         /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
-        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
+        /// <param name="exerciseMuscleCodes">Optional parameter: List of exercise muscles to filter by (not muscle group).</param>
         /// <param name="exerciseMetricCodes">Optional parameter: List of exercise metrics to filter by.</param>
         /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
         /// <param name="localeCode">Optional parameter: Locale to filter by.</param>
@@ -67,7 +67,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="exerciseCategoryCodes">Optional parameter: List of exercise category codes to filter by.</param>
         /// <param name="exerciseTypeCodes">Optional parameter: List of exercise types to filter by.</param>
         /// <param name="exerciseEquipmentCodes">Optional parameter: List of exercise equipment to filter by.</param>
-        /// <param name="exerciseMuscleCodes">Optional parameter: Example: .</param>
+        /// <param name="exerciseMuscleCodes">Optional parameter: List of exercise muscles to filter by (not muscle group).</param>
         /// <param name="exerciseMetricCodes">Optional parameter: List of exercise metrics to filter by.</param>
         /// <param name="publishedStatusCodes">Optional parameter: List of publish statuses to filter by.</param>
         /// <param name="localeCode">Optional parameter: Locale to filter by.</param>

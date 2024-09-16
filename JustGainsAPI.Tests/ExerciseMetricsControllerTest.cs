@@ -39,7 +39,7 @@ namespace JustGainsAPI.Tests
         }
 
         /// <summary>
-        /// Get all exercise metrics.
+        /// Retrieve a list of all exercise metrics - Since the exercise type is never displayed, we don't have a translation for it..
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]

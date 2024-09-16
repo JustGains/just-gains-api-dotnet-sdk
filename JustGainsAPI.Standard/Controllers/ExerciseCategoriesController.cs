@@ -88,24 +88,24 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update an exercise category EndPoint.
+        /// updateExerciseCategory EndPoint.
         /// </summary>
         /// <param name="exerciseCategoryCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse UpdateAnExerciseCategory(
+        public Models.JustGainsBasicResponse UpdateExerciseCategory(
                 string exerciseCategoryCode,
                 Models.ExerciseCategory body)
-            => CoreHelper.RunTask(UpdateAnExerciseCategoryAsync(exerciseCategoryCode, body));
+            => CoreHelper.RunTask(UpdateExerciseCategoryAsync(exerciseCategoryCode, body));
 
         /// <summary>
-        /// Update an exercise category EndPoint.
+        /// updateExerciseCategory EndPoint.
         /// </summary>
         /// <param name="exerciseCategoryCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> UpdateAnExerciseCategoryAsync(
+        public async Task<Models.JustGainsBasicResponse> UpdateExerciseCategoryAsync(
                 string exerciseCategoryCode,
                 Models.ExerciseCategory body,
                 CancellationToken cancellationToken = default)

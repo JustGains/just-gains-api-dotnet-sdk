@@ -1,5 +1,7 @@
 # Locales
 
+Manage language locales and translations.
+
 ```csharp
 LocalesController localesController = client.LocalesController;
 ```

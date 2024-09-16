@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`List<ExerciseMetric>`](../../doc/models/exercise-metric.md) | Required | - |
+| `Data` | [`List<ExerciseMetricData>`](../../doc/models/exercise-metric-data.md) | Required | - |
 
 ## Example (as JSON)
 
@@ -22,61 +22,25 @@
   "data": [
     {
       "exerciseMetricCode": "WEIGHT",
-      "exerciseMetricName": "exerciseMetricName0",
-      "measurementData": {
-        "metricCode": "metricCode4",
-        "displayName": "displayName2",
-        "units": {
-          "metricUnits": {
-            "units": [
-              {
-                "unitCode": "unitCode0",
-                "unitShort": {
-                  "unitShortName": "unitShortName4",
-                  "unitShortPlural": "unitShortPlural8"
-                },
-                "unitLong": {
-                  "unitLongName": "unitLongName4",
-                  "unitLongPlural": "unitLongPlural6"
-                },
-                "conversionFactor": 5.06
-              }
-            ],
-            "defaultUnit": 88
-          },
-          "imperialUnits": {
-            "units": [
-              {
-                "unitCode": "unitCode0",
-                "unitShort": {
-                  "unitShortName": "unitShortName4",
-                  "unitShortPlural": "unitShortPlural8"
-                },
-                "unitLong": {
-                  "unitLongName": "unitLongName4",
-                  "unitLongPlural": "unitLongPlural6"
-                },
-                "conversionFactor": 5.06
-              },
-              {
-                "unitCode": "unitCode0",
-                "unitShort": {
-                  "unitShortName": "unitShortName4",
-                  "unitShortPlural": "unitShortPlural8"
-                },
-                "unitLong": {
-                  "unitLongName": "unitLongName4",
-                  "unitLongPlural": "unitLongPlural6"
-                },
-                "conversionFactor": 5.06
-              }
-            ],
-            "defaultUnit": 12
-          }
+      "metricName": "Weight",
+      "measurementData": "{\r\n  \"unit\": \"lbs\",\r\n  \"precision\": 2\r\n}",
+      "exerciseMetricTranslations": [
+        {
+          "localeCode": "localeCode6",
+          "metricName": "metricName8",
+          "measurementData": "measurementData4"
         },
-        "displayFormat": "displayFormat8",
-        "inputType": "inputType0"
-      }
+        {
+          "localeCode": "localeCode6",
+          "metricName": "metricName8",
+          "measurementData": "measurementData4"
+        },
+        {
+          "localeCode": "localeCode6",
+          "metricName": "metricName8",
+          "measurementData": "measurementData4"
+        }
+      ]
     }
   ]
 }

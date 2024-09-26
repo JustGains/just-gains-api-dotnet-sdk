@@ -24,6 +24,16 @@ namespace JustGainsAPI.Standard
         string AccessToken { get; }
 
         /// <summary>
+        /// Gets the credentials to use with UserRoles.
+        /// </summary>
+        IUserRolesCredentials UserRolesCredentials { get; }
+
+        /// <summary>
+        /// Gets the credentials model to use with UserRoles.
+        /// </summary>
+        UserRolesModel UserRolesModel { get; }
+
+        /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters.
         /// </summary>
         /// <param name="alias">Default value:DEFAULT.</param>

@@ -76,21 +76,11 @@ UpdateUserInfoAsync(
 ```csharp
 UpdateUserRequest body = new UpdateUserRequest
 {
-    User = new User
-    {
-        UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-        UserName = "fitness_enthusiast_42",
-        Email = "jane.doe@example.com",
-        Password = "$2a$10$Ks6Qr5Yl.Y5iY5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5",
-        FirstName = "Jane",
-        LastName = "Doe",
-        FullName = "Jane Doe",
-        OAuthProvider = "Google",
-        Roles = new List<string>
-        {
-            "user",
-        },
-    },
+    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+    Email = "jane.doe@example.com",
+    FirstName = "Jane",
+    LastName = "Doe",
+    FullName = "Jane Doe",
 };
 
 try

@@ -39,6 +39,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="emailConfirmed">emailConfirmed.</param>
         /// <param name="roles">roles.</param>
         /// <param name="lastLoginAt">lastLoginAt.</param>
+        /// <param name="creatorProfileId">creatorProfileId.</param>
+        /// <param name="profilePhoto">profilePhoto.</param>
         public UserInfo(
             Guid? id = null,
             string email = null,
@@ -47,7 +49,9 @@ namespace JustGainsAPI.Standard.Models
             string lastName = null,
             bool? emailConfirmed = null,
             List<string> roles = null,
-            DateTime? lastLoginAt = null)
+            DateTime? lastLoginAt = null,
+            Guid? creatorProfileId = null,
+            Models.MediaAsset profilePhoto = null)
         {
             this.Id = id;
             this.Email = email;
@@ -57,6 +61,8 @@ namespace JustGainsAPI.Standard.Models
             this.EmailConfirmed = emailConfirmed;
             this.Roles = roles;
             this.LastLoginAt = lastLoginAt;
+            this.CreatorProfileId = creatorProfileId;
+            this.ProfilePhoto = profilePhoto;
         }
 
         /// <summary>
@@ -108,6 +114,18 @@ namespace JustGainsAPI.Standard.Models
         [JsonProperty("lastLoginAt", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? LastLoginAt { get; set; }
 
+        /// <summary>
+        /// Unique identifier for the creator profile
+        /// </summary>
+        [JsonProperty("creatorProfileId", NullValueHandling = NullValueHandling.Ignore)]
+        public Guid? CreatorProfileId { get; set; }
+
+        /// <summary>
+        /// Gets or sets ProfilePhoto.
+        /// </summary>
+        [JsonProperty("profilePhoto", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MediaAsset ProfilePhoto { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -137,7 +155,9 @@ namespace JustGainsAPI.Standard.Models
                 ((this.LastName == null && other.LastName == null) || (this.LastName?.Equals(other.LastName) == true)) &&
                 ((this.EmailConfirmed == null && other.EmailConfirmed == null) || (this.EmailConfirmed?.Equals(other.EmailConfirmed) == true)) &&
                 ((this.Roles == null && other.Roles == null) || (this.Roles?.Equals(other.Roles) == true)) &&
-                ((this.LastLoginAt == null && other.LastLoginAt == null) || (this.LastLoginAt?.Equals(other.LastLoginAt) == true));
+                ((this.LastLoginAt == null && other.LastLoginAt == null) || (this.LastLoginAt?.Equals(other.LastLoginAt) == true)) &&
+                ((this.CreatorProfileId == null && other.CreatorProfileId == null) || (this.CreatorProfileId?.Equals(other.CreatorProfileId) == true)) &&
+                ((this.ProfilePhoto == null && other.ProfilePhoto == null) || (this.ProfilePhoto?.Equals(other.ProfilePhoto) == true));
         }
         
         /// <summary>
@@ -154,6 +174,8 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.EmailConfirmed = {(this.EmailConfirmed == null ? "null" : this.EmailConfirmed.ToString())}");
             toStringOutput.Add($"this.Roles = {(this.Roles == null ? "null" : $"[{string.Join(", ", this.Roles)} ]")}");
             toStringOutput.Add($"this.LastLoginAt = {(this.LastLoginAt == null ? "null" : this.LastLoginAt.ToString())}");
+            toStringOutput.Add($"this.CreatorProfileId = {(this.CreatorProfileId == null ? "null" : this.CreatorProfileId.ToString())}");
+            toStringOutput.Add($"this.ProfilePhoto = {(this.ProfilePhoto == null ? "null" : this.ProfilePhoto.ToString())}");
         }
     }
 }

@@ -18,7 +18,7 @@
 | `FullName` | `string` | Optional | The user's full name, typically a combination of first and last name. |
 | `OAuthProvider` | `string` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
 | `Roles` | `List<string>` | Optional | The user's role in the system, determining their permissions. |
-| `RefreshToken` | `string` | Optional | refreshToken value to get next accesstoken |
+| `RefreshToken` | `string` | Optional | refreshToken value to get next accessToken |
 | `UserCreatorProfile` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
 
 ## Example (as JSON)

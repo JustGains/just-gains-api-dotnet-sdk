@@ -34,18 +34,18 @@ namespace JustGainsAPI.Standard.Controllers
         internal UsersController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Get a list of all users EndPoint.
+        /// Get a list of all users for admin management EndPoint.
         /// </summary>
         /// <returns>Returns the Models.UserInfoListResponse response from the API call.</returns>
-        public Models.UserInfoListResponse GetAListOfAllUsers()
-            => CoreHelper.RunTask(GetAListOfAllUsersAsync());
+        public Models.UserInfoListResponse GetAListOfAllUsersForAdminManagement()
+            => CoreHelper.RunTask(GetAListOfAllUsersForAdminManagementAsync());
 
         /// <summary>
-        /// Get a list of all users EndPoint.
+        /// Get a list of all users for admin management EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.UserInfoListResponse response from the API call.</returns>
-        public async Task<Models.UserInfoListResponse> GetAListOfAllUsersAsync(CancellationToken cancellationToken = default)
+        public async Task<Models.UserInfoListResponse> GetAListOfAllUsersForAdminManagementAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.UserInfoListResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/users")
@@ -147,6 +147,43 @@ namespace JustGainsAPI.Standard.Controllers
                       .Template(_template => _template.Setup("userId", userId))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("User not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// assignUserCreatorProfile EndPoint.
+        /// </summary>
+        /// <param name="creatorProfileId">Required parameter: The ID of the creator profile to assign to the user.</param>
+        /// <param name="userId">Required parameter: The ID of the user to assign the creator profile to.</param>
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public Models.JustGainsResponse AssignUserCreatorProfile(
+                string creatorProfileId,
+                string userId)
+            => CoreHelper.RunTask(AssignUserCreatorProfileAsync(creatorProfileId, userId));
+
+        /// <summary>
+        /// assignUserCreatorProfile EndPoint.
+        /// </summary>
+        /// <param name="creatorProfileId">Required parameter: The ID of the creator profile to assign to the user.</param>
+        /// <param name="userId">Required parameter: The ID of the user to assign the creator profile to.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public async Task<Models.JustGainsResponse> AssignUserCreatorProfileAsync(
+                string creatorProfileId,
+                string userId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.JustGainsResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Put, "/user/{userId}/{creatorProfileId}")
+                  .WithOrAuth(_orAuth => _orAuth
+                      .Add("bearerAuth")
+                      .Add("userRoles")
+                  )
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("creatorProfileId", creatorProfileId))
+                      .Template(_template => _template.Setup("userId", userId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Failed to assign creator profile to user", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
+                  .ErrorCase("409", CreateErrorCase("Creator profile is already assigned to another user", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

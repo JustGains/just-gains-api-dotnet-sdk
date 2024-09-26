@@ -32,19 +32,19 @@ namespace JustGainsAPI.Standard.Models
         /// Initializes a new instance of the <see cref="ExerciseVideo"/> class.
         /// </summary>
         /// <param name="exerciseCode">exerciseCode.</param>
-        /// <param name="userId">userId.</param>
+        /// <param name="creatorProfileId">creatorProfileId.</param>
         /// <param name="userName">userName.</param>
         /// <param name="mediaAsset">mediaAsset.</param>
         /// <param name="sortOrder">sortOrder.</param>
         public ExerciseVideo(
             string exerciseCode = null,
-            Guid? userId = null,
+            Guid? creatorProfileId = null,
             string userName = null,
             Models.MediaAsset mediaAsset = null,
             int? sortOrder = null)
         {
             this.ExerciseCode = exerciseCode;
-            this.UserId = userId;
+            this.CreatorProfileId = creatorProfileId;
             this.UserName = userName;
             this.MediaAsset = mediaAsset;
             this.SortOrder = sortOrder;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string ExerciseCode { get; set; }
 
         /// <summary>
-        /// The user ID of the user who created the exercise.
+        /// Unique identifier for the creator profile.
         /// </summary>
-        [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? UserId { get; set; }
+        [JsonProperty("creatorProfileId", NullValueHandling = NullValueHandling.Ignore)]
+        public Guid? CreatorProfileId { get; set; }
 
         /// <summary>
         /// Username of the user who created the video.
@@ -103,7 +103,7 @@ namespace JustGainsAPI.Standard.Models
                 return true;
             }
             return obj is ExerciseVideo other &&                ((this.ExerciseCode == null && other.ExerciseCode == null) || (this.ExerciseCode?.Equals(other.ExerciseCode) == true)) &&
-                ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
+                ((this.CreatorProfileId == null && other.CreatorProfileId == null) || (this.CreatorProfileId?.Equals(other.CreatorProfileId) == true)) &&
                 ((this.UserName == null && other.UserName == null) || (this.UserName?.Equals(other.UserName) == true)) &&
                 ((this.MediaAsset == null && other.MediaAsset == null) || (this.MediaAsset?.Equals(other.MediaAsset) == true)) &&
                 ((this.SortOrder == null && other.SortOrder == null) || (this.SortOrder?.Equals(other.SortOrder) == true));
@@ -116,7 +116,7 @@ namespace JustGainsAPI.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.ExerciseCode = {(this.ExerciseCode == null ? "null" : this.ExerciseCode)}");
-            toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId.ToString())}");
+            toStringOutput.Add($"this.CreatorProfileId = {(this.CreatorProfileId == null ? "null" : this.CreatorProfileId.ToString())}");
             toStringOutput.Add($"this.UserName = {(this.UserName == null ? "null" : this.UserName)}");
             toStringOutput.Add($"this.MediaAsset = {(this.MediaAsset == null ? "null" : this.MediaAsset.ToString())}");
             toStringOutput.Add($"this.SortOrder = {(this.SortOrder == null ? "null" : this.SortOrder.ToString())}");

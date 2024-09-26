@@ -21,7 +21,7 @@
   "message": "Operation completed successfully.",
   "data": {
     "exerciseCode": "BARBELL_SQUAT",
-    "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "creatorProfileId": "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
     "userName": "john_doe",
     "sortOrder": 1,
     "mediaAsset": {

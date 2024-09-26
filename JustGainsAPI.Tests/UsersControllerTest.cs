@@ -39,17 +39,17 @@ namespace JustGainsAPI.Tests
         }
 
         /// <summary>
-        /// Get a list of all users.
+        /// Get a list of all users for admin management.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        public async Task TestTestGetAListOfAllUsers()
+        public async Task TestTestGetAListOfAllUsersForAdminManagement()
         {
             // Perform API call
             Standard.Models.UserInfoListResponse result = null;
             try
             {
-                result = await this.controller.GetAListOfAllUsersAsync();
+                result = await this.controller.GetAListOfAllUsersForAdminManagementAsync();
             }
             catch (ApiException)
             {

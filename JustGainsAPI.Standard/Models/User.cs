@@ -123,7 +123,7 @@ namespace JustGainsAPI.Standard.Models
         public List<string> Roles { get; set; }
 
         /// <summary>
-        /// refreshToken value to get next accesstoken
+        /// refreshToken value to get next accessToken
         /// </summary>
         [JsonProperty("refreshToken", NullValueHandling = NullValueHandling.Ignore)]
         public string RefreshToken { get; set; }

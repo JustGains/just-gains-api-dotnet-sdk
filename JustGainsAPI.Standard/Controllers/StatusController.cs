@@ -53,5 +53,24 @@ namespace JustGainsAPI.Standard.Controllers
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new ApiException(_reason, _context)))
                   .ErrorCase("404", CreateErrorCase("Not found", (_reason, _context) => new ApiException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Returns a JSON response simulating an unauthorized access attempt.
+        /// </summary>
+        public void TestUnauthorized()
+            => CoreHelper.RunVoidTask(TestUnauthorizedAsync());
+
+        /// <summary>
+        /// Returns a JSON response simulating an unauthorized access attempt.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the void response from the API call.</returns>
+        public async Task TestUnauthorizedAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<VoidType>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/test/unauthorized"))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("401", CreateErrorCase("Unauthorized response", (_reason, _context) => new JustGainsResponseErrorException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

@@ -41,14 +41,14 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="equipmentGroupName">equipmentGroupName.</param>
         /// <param name="equipmentGroupParent">equipmentGroupParent.</param>
         /// <param name="equipmentGroupEquipment">equipmentGroupEquipment.</param>
-        /// <param name="equipmentThumbnail">equipmentThumbnail.</param>
+        /// <param name="equipmentGroupThumbnail">equipmentGroupThumbnail.</param>
         /// <param name="sortOrder">sortOrder.</param>
         public EquipmentGroup(
             string equipmentGroupCode = null,
             string equipmentGroupName = null,
             string equipmentGroupParent = null,
             List<string> equipmentGroupEquipment = null,
-            Models.MediaAsset equipmentThumbnail = null,
+            Models.MediaAsset equipmentGroupThumbnail = null,
             int? sortOrder = 0)
         {
             this.EquipmentGroupCode = equipmentGroupCode;
@@ -59,7 +59,7 @@ namespace JustGainsAPI.Standard.Models
             }
 
             this.EquipmentGroupEquipment = equipmentGroupEquipment;
-            this.EquipmentThumbnail = equipmentThumbnail;
+            this.EquipmentGroupThumbnail = equipmentGroupThumbnail;
             this.SortOrder = sortOrder;
         }
 
@@ -100,10 +100,10 @@ namespace JustGainsAPI.Standard.Models
         public List<string> EquipmentGroupEquipment { get; set; }
 
         /// <summary>
-        /// Gets or sets EquipmentThumbnail.
+        /// Gets or sets EquipmentGroupThumbnail.
         /// </summary>
-        [JsonProperty("equipmentThumbnail", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.MediaAsset EquipmentThumbnail { get; set; }
+        [JsonProperty("equipmentGroupThumbnail", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MediaAsset EquipmentGroupThumbnail { get; set; }
 
         /// <summary>
         /// Used to sort the equipment groups
@@ -154,7 +154,7 @@ namespace JustGainsAPI.Standard.Models
                 ((this.EquipmentGroupName == null && other.EquipmentGroupName == null) || (this.EquipmentGroupName?.Equals(other.EquipmentGroupName) == true)) &&
                 ((this.EquipmentGroupParent == null && other.EquipmentGroupParent == null) || (this.EquipmentGroupParent?.Equals(other.EquipmentGroupParent) == true)) &&
                 ((this.EquipmentGroupEquipment == null && other.EquipmentGroupEquipment == null) || (this.EquipmentGroupEquipment?.Equals(other.EquipmentGroupEquipment) == true)) &&
-                ((this.EquipmentThumbnail == null && other.EquipmentThumbnail == null) || (this.EquipmentThumbnail?.Equals(other.EquipmentThumbnail) == true)) &&
+                ((this.EquipmentGroupThumbnail == null && other.EquipmentGroupThumbnail == null) || (this.EquipmentGroupThumbnail?.Equals(other.EquipmentGroupThumbnail) == true)) &&
                 ((this.SortOrder == null && other.SortOrder == null) || (this.SortOrder?.Equals(other.SortOrder) == true));
         }
         
@@ -168,7 +168,7 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.EquipmentGroupName = {(this.EquipmentGroupName == null ? "null" : this.EquipmentGroupName)}");
             toStringOutput.Add($"this.EquipmentGroupParent = {(this.EquipmentGroupParent == null ? "null" : this.EquipmentGroupParent)}");
             toStringOutput.Add($"this.EquipmentGroupEquipment = {(this.EquipmentGroupEquipment == null ? "null" : $"[{string.Join(", ", this.EquipmentGroupEquipment)} ]")}");
-            toStringOutput.Add($"this.EquipmentThumbnail = {(this.EquipmentThumbnail == null ? "null" : this.EquipmentThumbnail.ToString())}");
+            toStringOutput.Add($"this.EquipmentGroupThumbnail = {(this.EquipmentGroupThumbnail == null ? "null" : this.EquipmentGroupThumbnail.ToString())}");
             toStringOutput.Add($"this.SortOrder = {(this.SortOrder == null ? "null" : this.SortOrder.ToString())}");
         }
     }

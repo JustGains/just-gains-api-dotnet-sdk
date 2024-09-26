@@ -24,6 +24,12 @@
     {
       "exerciseCode": "BENCH_PRESS",
       "exerciseName": "Bench Press",
+      "exerciseTypeCode": "STRENGTH",
+      "exerciseCategories": [
+        "STRENGTH",
+        "CARDIO"
+      ],
+      "publishedStatus": "PUBLISHED",
       "exerciseMuscles": [
         {
           "muscleCode": "PECTORALIS_MAJOR",
@@ -41,22 +47,12 @@
           "isPrimary": false
         }
       ],
-      "recentOrder": 1,
-      "exerciseTypeCode": "STRENGTH",
       "exerciseMetrics": [
         "WEIGHT",
         "REPS",
         "DISTANCE"
       ],
-      "exerciseThumbnail": {
-        "mediaId": "000024ec-0000-0000-0000-000000000000",
-        "fileName": "fileName8",
-        "filePath": "filePath6",
-        "fileUrl": "fileUrl8",
-        "fileSize": 240,
-        "fileFormat": "fileFormat0",
-        "description": "description6"
-      }
+      "recentOrder": 1
     }
   ],
   "pagination": {

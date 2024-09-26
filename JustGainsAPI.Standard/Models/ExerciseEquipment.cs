@@ -34,24 +34,24 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="required">required.</param>
         /// <param name="optional">optional.</param>
         public ExerciseEquipment(
-            List<string> required = null,
-            List<string> optional = null)
+            List<List<string>> required = null,
+            List<List<string>> optional = null)
         {
             this.Required = required;
             this.Optional = optional;
         }
 
         /// <summary>
-        /// Array of equipment codes that are required for this exercise
+        /// Array of equipment code arrays that are required for this exercise
         /// </summary>
         [JsonProperty("required", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Required { get; set; }
+        public List<List<string>> Required { get; set; }
 
         /// <summary>
-        /// Array of equipment codes that are optional for this exercise
+        /// Array of equipment code arrays that are optional for this exercise
         /// </summary>
         [JsonProperty("optional", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Optional { get; set; }
+        public List<List<string>> Optional { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

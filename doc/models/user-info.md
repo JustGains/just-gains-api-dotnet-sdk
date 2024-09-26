@@ -19,6 +19,8 @@ User information object
 | `EmailConfirmed` | `bool?` | Optional | Indicates if the user's email has been confirmed |
 | `Roles` | `List<string>` | Optional | List of roles assigned to the user |
 | `LastLoginAt` | `DateTime?` | Optional | Timestamp of the user's last login |
+| `CreatorProfileId` | `Guid?` | Optional | Unique identifier for the creator profile |
+| `ProfilePhoto` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +36,8 @@ User information object
     "user",
     "admin"
   ],
-  "lastLoginAt": "06/14/2023 09:30:00"
+  "lastLoginAt": "06/14/2023 09:30:00",
+  "creatorProfileId": "123e4567-e89b-12d3-a456-426614174000"
 }
 ```
 

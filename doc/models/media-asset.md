@@ -14,7 +14,7 @@
 | `FilePath` | `string` | Required | The relative path to the file within the storage system, useful for constructing URLs. |
 | `FileUrl` | `string` | Optional | The URL to the media file, which may be useful for embedding or downloading. |
 | `FileSize` | `int` | Required | File size in bytes |
-| `FileFormat` | `string` | Required | File format, extension |
+| `FileFormat` | `string` | Optional | File format, extension |
 | `Description` | `string` | Optional | Description of the media element |
 
 ## Example (as JSON)

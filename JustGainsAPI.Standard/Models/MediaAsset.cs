@@ -35,16 +35,16 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="fileName">fileName.</param>
         /// <param name="filePath">filePath.</param>
         /// <param name="fileSize">fileSize.</param>
-        /// <param name="fileFormat">fileFormat.</param>
         /// <param name="fileUrl">fileUrl.</param>
+        /// <param name="fileFormat">fileFormat.</param>
         /// <param name="description">description.</param>
         public MediaAsset(
             Guid mediaId,
             string fileName,
             string filePath,
             int fileSize,
-            string fileFormat,
             string fileUrl = null,
+            string fileFormat = null,
             string description = null)
         {
             this.MediaId = mediaId;
@@ -89,7 +89,7 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// File format, extension
         /// </summary>
-        [JsonProperty("fileFormat")]
+        [JsonProperty("fileFormat", NullValueHandling = NullValueHandling.Ignore)]
         public string FileFormat { get; set; }
 
         /// <summary>

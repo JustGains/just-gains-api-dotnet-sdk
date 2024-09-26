@@ -13,7 +13,7 @@
 | `EquipmentGroupName` | `string` | Optional | Name of the equipment group, localized. |
 | `EquipmentGroupParent` | `string` | Optional | parent group CODE for hierarchical structuring. |
 | `EquipmentGroupEquipment` | `List<string>` | Optional | - |
-| `EquipmentThumbnail` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
+| `EquipmentGroupThumbnail` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 | `SortOrder` | `int?` | Optional | Used to sort the equipment groups<br>**Default**: `0` |
 
 ## Example (as JSON)
@@ -27,14 +27,14 @@
   "equipmentGroupEquipment": [
     "equipmentGroupEquipment9"
   ],
-  "equipmentThumbnail": {
-    "mediaId": "0000103e-0000-0000-0000-000000000000",
-    "fileName": "fileName4",
-    "filePath": "filePath0",
-    "fileUrl": "fileUrl4",
-    "fileSize": 162,
-    "fileFormat": "fileFormat6",
-    "description": "description0"
+  "equipmentGroupThumbnail": {
+    "mediaId": "00000372-0000-0000-0000-000000000000",
+    "fileName": "fileName8",
+    "filePath": "filePath6",
+    "fileUrl": "fileUrl8",
+    "fileSize": 182,
+    "fileFormat": "fileFormat0",
+    "description": "description4"
   }
 }
 ```

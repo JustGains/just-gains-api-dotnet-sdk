@@ -9,21 +9,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Required` | `List<string>` | Optional | Array of equipment codes that are required for this exercise |
-| `Optional` | `List<string>` | Optional | Array of equipment codes that are optional for this exercise |
+| `Required` | `List<List<string>>` | Optional | Array of equipment code arrays that are required for this exercise |
+| `Optional` | `List<List<string>>` | Optional | Array of equipment code arrays that are optional for this exercise |
 
 ## Example (as JSON)
 
 ```json
 {
   "required": [
-    "BARBELL",
-    "BENCH",
-    "WEIGHT_PLATES"
+    [
+      "BARBELL",
+      "WEIGHT_PLATES"
+    ],
+    [
+      "DUMBBELLS"
+    ]
   ],
   "optional": [
-    "WEIGHT_BELT",
-    "WRIST_WRAPS"
+    [
+      "WEIGHT_BELT",
+      "WRIST_WRAPS"
+    ],
+    [
+      "RESISTANCE_BANDS"
+    ]
   ]
 }
 ```

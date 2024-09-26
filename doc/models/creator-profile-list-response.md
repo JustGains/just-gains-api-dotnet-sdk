@@ -12,6 +12,7 @@
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
 | `Data` | [`List<CreatorProfile>`](../../doc/models/creator-profile.md) | Required | - |
+| `Pagination` | [`Pagination`](../../doc/models/pagination.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +36,14 @@
         "description": "description0"
       }
     }
-  ]
+  ],
+  "pagination": {
+    "currentPage": 166,
+    "totalPages": 154,
+    "pageSize": 134,
+    "totalCount": 250,
+    "hasPrevious": false
+  }
 }
 ```
 

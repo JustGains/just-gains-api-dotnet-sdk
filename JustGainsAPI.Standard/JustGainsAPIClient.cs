@@ -51,32 +51,28 @@ namespace JustGainsAPI.Standard
         private readonly Lazy<UsersController> users;
         private readonly Lazy<UsersRolesController> usersRoles;
         private readonly Lazy<UsersCreatorProfilesController> usersCreatorProfiles;
-        private readonly Lazy<LocalesController> locales;
-        private readonly Lazy<MediaAssetsController> mediaAssets;
-        private readonly Lazy<PublishedStatusController> publishedStatus;
-        private readonly Lazy<MusclesController> muscles;
-        private readonly Lazy<MusclesMuscleGroupsController> musclesMuscleGroups;
-        private readonly Lazy<EquipmentController> equipment;
-        private readonly Lazy<EquipmentEquipmentGroupsController> equipmentEquipmentGroups;
-        private readonly Lazy<ExerciseMetricsController> exerciseMetrics;
-        private readonly Lazy<ExerciseTypesController> exerciseTypes;
-        private readonly Lazy<ExerciseCategoriesController> exerciseCategories;
-        private readonly Lazy<ExercisesController> exercises;
-        private readonly Lazy<ExercisesExerciseInstructionsController> exercisesExerciseInstructions;
-        private readonly Lazy<ExercisesExerciseVideosController> exercisesExerciseVideos;
-        private readonly Lazy<ExerciseDraftsController> exerciseDrafts;
+        private readonly Lazy<UsersSocialMediaAccountsController> usersSocialMediaAccounts;
+        private readonly Lazy<ExerciseLibraryExercisesController> exerciseLibraryExercises;
+        private readonly Lazy<ExerciseLibraryExercisesExerciseInstructionsController> exerciseLibraryExercisesExerciseInstructions;
+        private readonly Lazy<ExerciseLibraryExercisesExerciseVideosController> exerciseLibraryExercisesExerciseVideos;
+        private readonly Lazy<ExerciseLibraryExercisesExerciseThumbnailsController> exerciseLibraryExercisesExerciseThumbnails;
+        private readonly Lazy<ExerciseLibraryMusclesController> exerciseLibraryMuscles;
+        private readonly Lazy<ExerciseLibraryMusclesMuscleGroupsController> exerciseLibraryMusclesMuscleGroups;
+        private readonly Lazy<ExerciseLibraryEquipmentController> exerciseLibraryEquipment;
+        private readonly Lazy<ExerciseLibraryEquipmentEquipmentGroupsController> exerciseLibraryEquipmentEquipmentGroups;
+        private readonly Lazy<ExerciseLibraryExerciseDraftsController> exerciseLibraryExerciseDrafts;
+        private readonly Lazy<ExerciseLibraryExerciseCategoriesController> exerciseLibraryExerciseCategories;
+        private readonly Lazy<ExerciseLibraryExerciseMetricsController> exerciseLibraryExerciseMetrics;
         private readonly Lazy<WorkoutsController> workouts;
         private readonly Lazy<WorkoutsWorkoutDataController> workoutsWorkoutData;
-        private readonly Lazy<ProgramsController> programs;
-        private readonly Lazy<ProgramsProgramWeeksController> programsProgramWeeks;
-        private readonly Lazy<ProgramsProgramAnalyticsController> programsProgramAnalytics;
-        private readonly Lazy<ProgramsProgramViewsController> programsProgramViews;
-        private readonly Lazy<ProgramsProgramReviewsController> programsProgramReviews;
-        private readonly Lazy<ExercisesExerciseThumbnailsController> exercisesExerciseThumbnails;
+        private readonly Lazy<CommonMediaAssetsController> commonMediaAssets;
+        private readonly Lazy<CommonLocalesController> commonLocales;
+        private readonly Lazy<CommonPublishedStatusController> commonPublishedStatus;
 
         private JustGainsAPIClient(
             Environment environment,
             BearerAuthModel bearerAuthModel,
+            UserRolesModel userRolesModel,
             HttpCallback httpCallback,
             IHttpClientConfiguration httpClientConfiguration)
         {
@@ -85,9 +81,12 @@ namespace JustGainsAPI.Standard
             this.HttpClientConfiguration = httpClientConfiguration;
             BearerAuthModel = bearerAuthModel;
             var bearerAuthManager = new BearerAuthManager(bearerAuthModel);
+            UserRolesModel = userRolesModel;
+            var userRolesManager = new UserRolesManager(userRolesModel);
             globalConfiguration = new GlobalConfiguration.Builder()
                 .AuthManagers(new Dictionary<string, AuthManager> {
                     {"bearerAuth", bearerAuthManager},
+                    {"userRoles", userRolesManager},
                 })
                 .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
@@ -96,6 +95,7 @@ namespace JustGainsAPI.Standard
                 .Build();
 
             BearerAuthCredentials = bearerAuthManager;
+            UserRolesCredentials = userRolesManager;
 
             this.status = new Lazy<StatusController>(
                 () => new StatusController(globalConfiguration));
@@ -107,50 +107,40 @@ namespace JustGainsAPI.Standard
                 () => new UsersRolesController(globalConfiguration));
             this.usersCreatorProfiles = new Lazy<UsersCreatorProfilesController>(
                 () => new UsersCreatorProfilesController(globalConfiguration));
-            this.locales = new Lazy<LocalesController>(
-                () => new LocalesController(globalConfiguration));
-            this.mediaAssets = new Lazy<MediaAssetsController>(
-                () => new MediaAssetsController(globalConfiguration));
-            this.publishedStatus = new Lazy<PublishedStatusController>(
-                () => new PublishedStatusController(globalConfiguration));
-            this.muscles = new Lazy<MusclesController>(
-                () => new MusclesController(globalConfiguration));
-            this.musclesMuscleGroups = new Lazy<MusclesMuscleGroupsController>(
-                () => new MusclesMuscleGroupsController(globalConfiguration));
-            this.equipment = new Lazy<EquipmentController>(
-                () => new EquipmentController(globalConfiguration));
-            this.equipmentEquipmentGroups = new Lazy<EquipmentEquipmentGroupsController>(
-                () => new EquipmentEquipmentGroupsController(globalConfiguration));
-            this.exerciseMetrics = new Lazy<ExerciseMetricsController>(
-                () => new ExerciseMetricsController(globalConfiguration));
-            this.exerciseTypes = new Lazy<ExerciseTypesController>(
-                () => new ExerciseTypesController(globalConfiguration));
-            this.exerciseCategories = new Lazy<ExerciseCategoriesController>(
-                () => new ExerciseCategoriesController(globalConfiguration));
-            this.exercises = new Lazy<ExercisesController>(
-                () => new ExercisesController(globalConfiguration));
-            this.exercisesExerciseInstructions = new Lazy<ExercisesExerciseInstructionsController>(
-                () => new ExercisesExerciseInstructionsController(globalConfiguration));
-            this.exercisesExerciseVideos = new Lazy<ExercisesExerciseVideosController>(
-                () => new ExercisesExerciseVideosController(globalConfiguration));
-            this.exerciseDrafts = new Lazy<ExerciseDraftsController>(
-                () => new ExerciseDraftsController(globalConfiguration));
+            this.usersSocialMediaAccounts = new Lazy<UsersSocialMediaAccountsController>(
+                () => new UsersSocialMediaAccountsController(globalConfiguration));
+            this.exerciseLibraryExercises = new Lazy<ExerciseLibraryExercisesController>(
+                () => new ExerciseLibraryExercisesController(globalConfiguration));
+            this.exerciseLibraryExercisesExerciseInstructions = new Lazy<ExerciseLibraryExercisesExerciseInstructionsController>(
+                () => new ExerciseLibraryExercisesExerciseInstructionsController(globalConfiguration));
+            this.exerciseLibraryExercisesExerciseVideos = new Lazy<ExerciseLibraryExercisesExerciseVideosController>(
+                () => new ExerciseLibraryExercisesExerciseVideosController(globalConfiguration));
+            this.exerciseLibraryExercisesExerciseThumbnails = new Lazy<ExerciseLibraryExercisesExerciseThumbnailsController>(
+                () => new ExerciseLibraryExercisesExerciseThumbnailsController(globalConfiguration));
+            this.exerciseLibraryMuscles = new Lazy<ExerciseLibraryMusclesController>(
+                () => new ExerciseLibraryMusclesController(globalConfiguration));
+            this.exerciseLibraryMusclesMuscleGroups = new Lazy<ExerciseLibraryMusclesMuscleGroupsController>(
+                () => new ExerciseLibraryMusclesMuscleGroupsController(globalConfiguration));
+            this.exerciseLibraryEquipment = new Lazy<ExerciseLibraryEquipmentController>(
+                () => new ExerciseLibraryEquipmentController(globalConfiguration));
+            this.exerciseLibraryEquipmentEquipmentGroups = new Lazy<ExerciseLibraryEquipmentEquipmentGroupsController>(
+                () => new ExerciseLibraryEquipmentEquipmentGroupsController(globalConfiguration));
+            this.exerciseLibraryExerciseDrafts = new Lazy<ExerciseLibraryExerciseDraftsController>(
+                () => new ExerciseLibraryExerciseDraftsController(globalConfiguration));
+            this.exerciseLibraryExerciseCategories = new Lazy<ExerciseLibraryExerciseCategoriesController>(
+                () => new ExerciseLibraryExerciseCategoriesController(globalConfiguration));
+            this.exerciseLibraryExerciseMetrics = new Lazy<ExerciseLibraryExerciseMetricsController>(
+                () => new ExerciseLibraryExerciseMetricsController(globalConfiguration));
             this.workouts = new Lazy<WorkoutsController>(
                 () => new WorkoutsController(globalConfiguration));
             this.workoutsWorkoutData = new Lazy<WorkoutsWorkoutDataController>(
                 () => new WorkoutsWorkoutDataController(globalConfiguration));
-            this.programs = new Lazy<ProgramsController>(
-                () => new ProgramsController(globalConfiguration));
-            this.programsProgramWeeks = new Lazy<ProgramsProgramWeeksController>(
-                () => new ProgramsProgramWeeksController(globalConfiguration));
-            this.programsProgramAnalytics = new Lazy<ProgramsProgramAnalyticsController>(
-                () => new ProgramsProgramAnalyticsController(globalConfiguration));
-            this.programsProgramViews = new Lazy<ProgramsProgramViewsController>(
-                () => new ProgramsProgramViewsController(globalConfiguration));
-            this.programsProgramReviews = new Lazy<ProgramsProgramReviewsController>(
-                () => new ProgramsProgramReviewsController(globalConfiguration));
-            this.exercisesExerciseThumbnails = new Lazy<ExercisesExerciseThumbnailsController>(
-                () => new ExercisesExerciseThumbnailsController(globalConfiguration));
+            this.commonMediaAssets = new Lazy<CommonMediaAssetsController>(
+                () => new CommonMediaAssetsController(globalConfiguration));
+            this.commonLocales = new Lazy<CommonLocalesController>(
+                () => new CommonLocalesController(globalConfiguration));
+            this.commonPublishedStatus = new Lazy<CommonPublishedStatusController>(
+                () => new CommonPublishedStatusController(globalConfiguration));
         }
 
         /// <summary>
@@ -179,74 +169,64 @@ namespace JustGainsAPI.Standard
         public UsersCreatorProfilesController UsersCreatorProfilesController => this.usersCreatorProfiles.Value;
 
         /// <summary>
-        /// Gets LocalesController controller.
+        /// Gets UsersSocialMediaAccountsController controller.
         /// </summary>
-        public LocalesController LocalesController => this.locales.Value;
+        public UsersSocialMediaAccountsController UsersSocialMediaAccountsController => this.usersSocialMediaAccounts.Value;
 
         /// <summary>
-        /// Gets MediaAssetsController controller.
+        /// Gets ExerciseLibraryExercisesController controller.
         /// </summary>
-        public MediaAssetsController MediaAssetsController => this.mediaAssets.Value;
+        public ExerciseLibraryExercisesController ExerciseLibraryExercisesController => this.exerciseLibraryExercises.Value;
 
         /// <summary>
-        /// Gets PublishedStatusController controller.
+        /// Gets ExerciseLibraryExercisesExerciseInstructionsController controller.
         /// </summary>
-        public PublishedStatusController PublishedStatusController => this.publishedStatus.Value;
+        public ExerciseLibraryExercisesExerciseInstructionsController ExerciseLibraryExercisesExerciseInstructionsController => this.exerciseLibraryExercisesExerciseInstructions.Value;
 
         /// <summary>
-        /// Gets MusclesController controller.
+        /// Gets ExerciseLibraryExercisesExerciseVideosController controller.
         /// </summary>
-        public MusclesController MusclesController => this.muscles.Value;
+        public ExerciseLibraryExercisesExerciseVideosController ExerciseLibraryExercisesExerciseVideosController => this.exerciseLibraryExercisesExerciseVideos.Value;
 
         /// <summary>
-        /// Gets MusclesMuscleGroupsController controller.
+        /// Gets ExerciseLibraryExercisesExerciseThumbnailsController controller.
         /// </summary>
-        public MusclesMuscleGroupsController MusclesMuscleGroupsController => this.musclesMuscleGroups.Value;
+        public ExerciseLibraryExercisesExerciseThumbnailsController ExerciseLibraryExercisesExerciseThumbnailsController => this.exerciseLibraryExercisesExerciseThumbnails.Value;
 
         /// <summary>
-        /// Gets EquipmentController controller.
+        /// Gets ExerciseLibraryMusclesController controller.
         /// </summary>
-        public EquipmentController EquipmentController => this.equipment.Value;
+        public ExerciseLibraryMusclesController ExerciseLibraryMusclesController => this.exerciseLibraryMuscles.Value;
 
         /// <summary>
-        /// Gets EquipmentEquipmentGroupsController controller.
+        /// Gets ExerciseLibraryMusclesMuscleGroupsController controller.
         /// </summary>
-        public EquipmentEquipmentGroupsController EquipmentEquipmentGroupsController => this.equipmentEquipmentGroups.Value;
+        public ExerciseLibraryMusclesMuscleGroupsController ExerciseLibraryMusclesMuscleGroupsController => this.exerciseLibraryMusclesMuscleGroups.Value;
 
         /// <summary>
-        /// Gets ExerciseMetricsController controller.
+        /// Gets ExerciseLibraryEquipmentController controller.
         /// </summary>
-        public ExerciseMetricsController ExerciseMetricsController => this.exerciseMetrics.Value;
+        public ExerciseLibraryEquipmentController ExerciseLibraryEquipmentController => this.exerciseLibraryEquipment.Value;
 
         /// <summary>
-        /// Gets ExerciseTypesController controller.
+        /// Gets ExerciseLibraryEquipmentEquipmentGroupsController controller.
         /// </summary>
-        public ExerciseTypesController ExerciseTypesController => this.exerciseTypes.Value;
+        public ExerciseLibraryEquipmentEquipmentGroupsController ExerciseLibraryEquipmentEquipmentGroupsController => this.exerciseLibraryEquipmentEquipmentGroups.Value;
 
         /// <summary>
-        /// Gets ExerciseCategoriesController controller.
+        /// Gets ExerciseLibraryExerciseDraftsController controller.
         /// </summary>
-        public ExerciseCategoriesController ExerciseCategoriesController => this.exerciseCategories.Value;
+        public ExerciseLibraryExerciseDraftsController ExerciseLibraryExerciseDraftsController => this.exerciseLibraryExerciseDrafts.Value;
 
         /// <summary>
-        /// Gets ExercisesController controller.
+        /// Gets ExerciseLibraryExerciseCategoriesController controller.
         /// </summary>
-        public ExercisesController ExercisesController => this.exercises.Value;
+        public ExerciseLibraryExerciseCategoriesController ExerciseLibraryExerciseCategoriesController => this.exerciseLibraryExerciseCategories.Value;
 
         /// <summary>
-        /// Gets ExercisesExerciseInstructionsController controller.
+        /// Gets ExerciseLibraryExerciseMetricsController controller.
         /// </summary>
-        public ExercisesExerciseInstructionsController ExercisesExerciseInstructionsController => this.exercisesExerciseInstructions.Value;
-
-        /// <summary>
-        /// Gets ExercisesExerciseVideosController controller.
-        /// </summary>
-        public ExercisesExerciseVideosController ExercisesExerciseVideosController => this.exercisesExerciseVideos.Value;
-
-        /// <summary>
-        /// Gets ExerciseDraftsController controller.
-        /// </summary>
-        public ExerciseDraftsController ExerciseDraftsController => this.exerciseDrafts.Value;
+        public ExerciseLibraryExerciseMetricsController ExerciseLibraryExerciseMetricsController => this.exerciseLibraryExerciseMetrics.Value;
 
         /// <summary>
         /// Gets WorkoutsController controller.
@@ -259,34 +239,19 @@ namespace JustGainsAPI.Standard
         public WorkoutsWorkoutDataController WorkoutsWorkoutDataController => this.workoutsWorkoutData.Value;
 
         /// <summary>
-        /// Gets ProgramsController controller.
+        /// Gets CommonMediaAssetsController controller.
         /// </summary>
-        public ProgramsController ProgramsController => this.programs.Value;
+        public CommonMediaAssetsController CommonMediaAssetsController => this.commonMediaAssets.Value;
 
         /// <summary>
-        /// Gets ProgramsProgramWeeksController controller.
+        /// Gets CommonLocalesController controller.
         /// </summary>
-        public ProgramsProgramWeeksController ProgramsProgramWeeksController => this.programsProgramWeeks.Value;
+        public CommonLocalesController CommonLocalesController => this.commonLocales.Value;
 
         /// <summary>
-        /// Gets ProgramsProgramAnalyticsController controller.
+        /// Gets CommonPublishedStatusController controller.
         /// </summary>
-        public ProgramsProgramAnalyticsController ProgramsProgramAnalyticsController => this.programsProgramAnalytics.Value;
-
-        /// <summary>
-        /// Gets ProgramsProgramViewsController controller.
-        /// </summary>
-        public ProgramsProgramViewsController ProgramsProgramViewsController => this.programsProgramViews.Value;
-
-        /// <summary>
-        /// Gets ProgramsProgramReviewsController controller.
-        /// </summary>
-        public ProgramsProgramReviewsController ProgramsProgramReviewsController => this.programsProgramReviews.Value;
-
-        /// <summary>
-        /// Gets ExercisesExerciseThumbnailsController controller.
-        /// </summary>
-        public ExercisesExerciseThumbnailsController ExercisesExerciseThumbnailsController => this.exercisesExerciseThumbnails.Value;
+        public CommonPublishedStatusController CommonPublishedStatusController => this.commonPublishedStatus.Value;
 
         /// <summary>
         /// Gets the configuration of the Http Client associated with this client.
@@ -320,6 +285,16 @@ namespace JustGainsAPI.Standard
         public string AccessToken => this.BearerAuthCredentials.AccessToken;
 
         /// <summary>
+        /// Gets the credentials to use with UserRoles.
+        /// </summary>
+        public IUserRolesCredentials UserRolesCredentials { get; private set; }
+
+        /// <summary>
+        /// Gets the credentials model to use with UserRoles.
+        /// </summary>
+        public UserRolesModel UserRolesModel { get; private set; }
+
+        /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends
         /// it with template parameters.
         /// </summary>
@@ -346,6 +321,11 @@ namespace JustGainsAPI.Standard
                 builder.BearerAuthCredentials(BearerAuthModel.ToBuilder().Build());
             }
 
+            if (UserRolesModel != null)
+            {
+                builder.UserRolesCredentials(UserRolesModel.ToBuilder().Build());
+            }
+
             return builder;
         }
 
@@ -367,6 +347,7 @@ namespace JustGainsAPI.Standard
 
             string environment = System.Environment.GetEnvironmentVariable("JUST_GAINS_API_STANDARD_ENVIRONMENT");
             string accessToken = System.Environment.GetEnvironmentVariable("JUST_GAINS_API_STANDARD_ACCESS_TOKEN");
+            string xUserRole = System.Environment.GetEnvironmentVariable("JUST_GAINS_API_STANDARD_X_USER_ROLE");
 
             if (environment != null)
             {
@@ -380,6 +361,13 @@ namespace JustGainsAPI.Standard
                 .Build());
             }
 
+            if (xUserRole != null)
+            {
+                builder.UserRolesCredentials(new UserRolesModel
+                .Builder(xUserRole)
+                .Build());
+            }
+
             return builder.Build();
         }
 
@@ -390,22 +378,9 @@ namespace JustGainsAPI.Standard
         {
             private Environment environment = JustGainsAPI.Standard.Environment.Testing;
             private BearerAuthModel bearerAuthModel = new BearerAuthModel();
+            private UserRolesModel userRolesModel = new UserRolesModel();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
             private HttpCallback httpCallback;
-
-            /// <summary>
-            /// Sets credentials for BearerAuth.
-            /// </summary>
-            /// <param name="accessToken">AccessToken.</param>
-            /// <returns>Builder.</returns>
-            [Obsolete("This method is deprecated. Use BearerAuthCredentials(bearerAuthModel) instead.")]
-            public Builder AccessToken(string accessToken)
-            {
-                bearerAuthModel = bearerAuthModel.ToBuilder()
-                    .AccessToken(accessToken)
-                    .Build();
-                return this;
-            }
 
             /// <summary>
             /// Sets credentials for BearerAuth.
@@ -420,6 +395,22 @@ namespace JustGainsAPI.Standard
                 }
 
                 this.bearerAuthModel = bearerAuthModel;
+                return this;
+            }
+
+            /// <summary>
+            /// Sets credentials for UserRoles.
+            /// </summary>
+            /// <param name="userRolesModel">UserRolesModel.</param>
+            /// <returns>Builder.</returns>
+            public Builder UserRolesCredentials(UserRolesModel userRolesModel)
+            {
+                if (userRolesModel is null)
+                {
+                    throw new ArgumentNullException(nameof(userRolesModel));
+                }
+
+                this.userRolesModel = userRolesModel;
                 return this;
             }
 
@@ -473,9 +464,14 @@ namespace JustGainsAPI.Standard
                 {
                     bearerAuthModel = null;
                 }
+                if (userRolesModel.XUserRole == null)
+                {
+                    userRolesModel = null;
+                }
                 return new JustGainsAPIClient(
                     environment,
                     bearerAuthModel,
+                    userRolesModel,
                     httpCallback,
                     httpClientConfig.Build());
             }

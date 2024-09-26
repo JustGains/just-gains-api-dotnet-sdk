@@ -33,27 +33,33 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         /// <param name="exerciseCode">exerciseCode.</param>
         /// <param name="exerciseName">exerciseName.</param>
+        /// <param name="exerciseTypeCode">exerciseTypeCode.</param>
+        /// <param name="exerciseCategories">exerciseCategories.</param>
+        /// <param name="publishedStatus">publishedStatus.</param>
         /// <param name="exerciseMuscles">exerciseMuscles.</param>
         /// <param name="exerciseThumbnail">exerciseThumbnail.</param>
-        /// <param name="recentOrder">recentOrder.</param>
-        /// <param name="exerciseTypeCode">exerciseTypeCode.</param>
         /// <param name="exerciseMetrics">exerciseMetrics.</param>
+        /// <param name="recentOrder">recentOrder.</param>
         public ExerciseListItem(
             string exerciseCode = null,
             string exerciseName = null,
+            string exerciseTypeCode = null,
+            List<string> exerciseCategories = null,
+            string publishedStatus = null,
             List<Models.ExerciseMuscle> exerciseMuscles = null,
             Models.MediaAsset exerciseThumbnail = null,
-            int? recentOrder = null,
-            string exerciseTypeCode = null,
-            List<string> exerciseMetrics = null)
+            List<string> exerciseMetrics = null,
+            int? recentOrder = null)
         {
             this.ExerciseCode = exerciseCode;
             this.ExerciseName = exerciseName;
+            this.ExerciseTypeCode = exerciseTypeCode;
+            this.ExerciseCategories = exerciseCategories;
+            this.PublishedStatus = publishedStatus;
             this.ExerciseMuscles = exerciseMuscles;
             this.ExerciseThumbnail = exerciseThumbnail;
-            this.RecentOrder = recentOrder;
-            this.ExerciseTypeCode = exerciseTypeCode;
             this.ExerciseMetrics = exerciseMetrics;
+            this.RecentOrder = recentOrder;
         }
 
         /// <summary>
@@ -69,6 +75,24 @@ namespace JustGainsAPI.Standard.Models
         public string ExerciseName { get; set; }
 
         /// <summary>
+        /// The exerciseTypeCode of the exercise
+        /// </summary>
+        [JsonProperty("exerciseTypeCode", NullValueHandling = NullValueHandling.Ignore)]
+        public string ExerciseTypeCode { get; set; }
+
+        /// <summary>
+        /// Array of category codes associated with this exercise
+        /// </summary>
+        [JsonProperty("exerciseCategories", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> ExerciseCategories { get; set; }
+
+        /// <summary>
+        /// The publish status of the exercise
+        /// </summary>
+        [JsonProperty("publishedStatus", NullValueHandling = NullValueHandling.Ignore)]
+        public string PublishedStatus { get; set; }
+
+        /// <summary>
         /// Gets or sets ExerciseMuscles.
         /// </summary>
         [JsonProperty("exerciseMuscles", NullValueHandling = NullValueHandling.Ignore)]
@@ -81,22 +105,16 @@ namespace JustGainsAPI.Standard.Models
         public Models.MediaAsset ExerciseThumbnail { get; set; }
 
         /// <summary>
-        /// Used for sorting by most recently used exercises.
-        /// </summary>
-        [JsonProperty("recentOrder", NullValueHandling = NullValueHandling.Ignore)]
-        public int? RecentOrder { get; set; }
-
-        /// <summary>
-        /// The exerciseTypeCode of the exercise
-        /// </summary>
-        [JsonProperty("exerciseTypeCode", NullValueHandling = NullValueHandling.Ignore)]
-        public string ExerciseTypeCode { get; set; }
-
-        /// <summary>
         /// Array of metric codes associated with this exercise
         /// </summary>
         [JsonProperty("exerciseMetrics", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExerciseMetrics { get; set; }
+
+        /// <summary>
+        /// Used for sorting by most recently used exercises.
+        /// </summary>
+        [JsonProperty("recentOrder", NullValueHandling = NullValueHandling.Ignore)]
+        public int? RecentOrder { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -122,11 +140,13 @@ namespace JustGainsAPI.Standard.Models
             }
             return obj is ExerciseListItem other &&                ((this.ExerciseCode == null && other.ExerciseCode == null) || (this.ExerciseCode?.Equals(other.ExerciseCode) == true)) &&
                 ((this.ExerciseName == null && other.ExerciseName == null) || (this.ExerciseName?.Equals(other.ExerciseName) == true)) &&
+                ((this.ExerciseTypeCode == null && other.ExerciseTypeCode == null) || (this.ExerciseTypeCode?.Equals(other.ExerciseTypeCode) == true)) &&
+                ((this.ExerciseCategories == null && other.ExerciseCategories == null) || (this.ExerciseCategories?.Equals(other.ExerciseCategories) == true)) &&
+                ((this.PublishedStatus == null && other.PublishedStatus == null) || (this.PublishedStatus?.Equals(other.PublishedStatus) == true)) &&
                 ((this.ExerciseMuscles == null && other.ExerciseMuscles == null) || (this.ExerciseMuscles?.Equals(other.ExerciseMuscles) == true)) &&
                 ((this.ExerciseThumbnail == null && other.ExerciseThumbnail == null) || (this.ExerciseThumbnail?.Equals(other.ExerciseThumbnail) == true)) &&
-                ((this.RecentOrder == null && other.RecentOrder == null) || (this.RecentOrder?.Equals(other.RecentOrder) == true)) &&
-                ((this.ExerciseTypeCode == null && other.ExerciseTypeCode == null) || (this.ExerciseTypeCode?.Equals(other.ExerciseTypeCode) == true)) &&
-                ((this.ExerciseMetrics == null && other.ExerciseMetrics == null) || (this.ExerciseMetrics?.Equals(other.ExerciseMetrics) == true));
+                ((this.ExerciseMetrics == null && other.ExerciseMetrics == null) || (this.ExerciseMetrics?.Equals(other.ExerciseMetrics) == true)) &&
+                ((this.RecentOrder == null && other.RecentOrder == null) || (this.RecentOrder?.Equals(other.RecentOrder) == true));
         }
         
         /// <summary>
@@ -137,11 +157,13 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.ExerciseCode = {(this.ExerciseCode == null ? "null" : this.ExerciseCode)}");
             toStringOutput.Add($"this.ExerciseName = {(this.ExerciseName == null ? "null" : this.ExerciseName)}");
+            toStringOutput.Add($"this.ExerciseTypeCode = {(this.ExerciseTypeCode == null ? "null" : this.ExerciseTypeCode)}");
+            toStringOutput.Add($"this.ExerciseCategories = {(this.ExerciseCategories == null ? "null" : $"[{string.Join(", ", this.ExerciseCategories)} ]")}");
+            toStringOutput.Add($"this.PublishedStatus = {(this.PublishedStatus == null ? "null" : this.PublishedStatus)}");
             toStringOutput.Add($"this.ExerciseMuscles = {(this.ExerciseMuscles == null ? "null" : $"[{string.Join(", ", this.ExerciseMuscles)} ]")}");
             toStringOutput.Add($"this.ExerciseThumbnail = {(this.ExerciseThumbnail == null ? "null" : this.ExerciseThumbnail.ToString())}");
-            toStringOutput.Add($"this.RecentOrder = {(this.RecentOrder == null ? "null" : this.RecentOrder.ToString())}");
-            toStringOutput.Add($"this.ExerciseTypeCode = {(this.ExerciseTypeCode == null ? "null" : this.ExerciseTypeCode)}");
             toStringOutput.Add($"this.ExerciseMetrics = {(this.ExerciseMetrics == null ? "null" : $"[{string.Join(", ", this.ExerciseMetrics)} ]")}");
+            toStringOutput.Add($"this.RecentOrder = {(this.RecentOrder == null ? "null" : this.RecentOrder.ToString())}");
         }
     }
 }

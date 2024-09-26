@@ -12,16 +12,17 @@ UsersController usersController = client.UsersController;
 
 ## Methods
 
-* [Get a List of All Users](../../doc/controllers/users.md#get-a-list-of-all-users)
+* [Get a List of All Users for Admin Management](../../doc/controllers/users.md#get-a-list-of-all-users-for-admin-management)
 * [Get a User by ID](../../doc/controllers/users.md#get-a-user-by-id)
 * [Update a User](../../doc/controllers/users.md#update-a-user)
 * [Delete a User](../../doc/controllers/users.md#delete-a-user)
+* [Assign User Creator Profile](../../doc/controllers/users.md#assign-user-creator-profile)
 
 
-# Get a List of All Users
+# Get a List of All Users for Admin Management
 
 ```csharp
-GetAListOfAllUsersAsync()
+GetAListOfAllUsersForAdminManagementAsync()
 ```
 
 ## Response Type
@@ -33,7 +34,7 @@ GetAListOfAllUsersAsync()
 ```csharp
 try
 {
-    UserInfoListResponse result = await usersController.GetAListOfAllUsersAsync();
+    UserInfoListResponse result = await usersController.GetAListOfAllUsersForAdminManagementAsync();
 }
 catch (ApiException e)
 {
@@ -190,4 +191,56 @@ catch (ApiException e)
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 404 | User not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
+# Assign User Creator Profile
+
+```csharp
+AssignUserCreatorProfileAsync(
+    string creatorProfileId,
+    string userId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `creatorProfileId` | `string` | Template, Required | The ID of the creator profile to assign to the user |
+| `userId` | `string` | Template, Required | The ID of the user to assign the creator profile to |
+
+## Requires scope
+
+### userRoles
+
+`ADMIN`
+
+## Response Type
+
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
+
+## Example Usage
+
+```csharp
+string creatorProfileId = "12345678-1234-1234-1234-123456789012";
+string userId = "12345678-1234-1234-1234-123456789012";
+try
+{
+    JustGainsResponse result = await usersController.AssignUserCreatorProfileAsync(
+        creatorProfileId,
+        userId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to assign creator profile to user | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 409 | Creator profile is already assigned to another user | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

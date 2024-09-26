@@ -8,6 +8,7 @@ The following parameters are configurable for the API Client:
 | `Environment` | `Environment` | The API environment. <br> **Default: `Environment.Testing`** |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
 | `BearerAuthCredentials` | [`BearerAuthCredentials`](auth/oauth-2-bearer-token.md) | The Credentials Setter for OAuth 2 Bearer token |
+| `UserRolesCredentials` | [`UserRolesCredentials`](auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
 
@@ -16,6 +17,11 @@ JustGainsAPIClient client = new JustGainsAPIClient.Builder()
     .BearerAuthCredentials(
         new BearerAuthModel.Builder(
             "AccessToken"
+        )
+        .Build())
+    .UserRolesCredentials(
+        new UserRolesModel.Builder(
+            "X-User-Role"
         )
         .Build())
     .Environment(JustGainsAPI.Standard.Environment.Testing)
@@ -35,28 +41,23 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | UsersController | Gets UsersController controller. |
 | UsersRolesController | Gets UsersRolesController controller. |
 | UsersCreatorProfilesController | Gets UsersCreatorProfilesController controller. |
-| LocalesController | Gets LocalesController controller. |
-| MediaAssetsController | Gets MediaAssetsController controller. |
-| PublishedStatusController | Gets PublishedStatusController controller. |
-| MusclesController | Gets MusclesController controller. |
-| MusclesMuscleGroupsController | Gets MusclesMuscleGroupsController controller. |
-| EquipmentController | Gets EquipmentController controller. |
-| EquipmentEquipmentGroupsController | Gets EquipmentEquipmentGroupsController controller. |
-| ExerciseMetricsController | Gets ExerciseMetricsController controller. |
-| ExerciseTypesController | Gets ExerciseTypesController controller. |
-| ExerciseCategoriesController | Gets ExerciseCategoriesController controller. |
-| ExercisesController | Gets ExercisesController controller. |
-| ExercisesExerciseInstructionsController | Gets ExercisesExerciseInstructionsController controller. |
-| ExercisesExerciseVideosController | Gets ExercisesExerciseVideosController controller. |
-| ExerciseDraftsController | Gets ExerciseDraftsController controller. |
+| UsersSocialMediaAccountsController | Gets UsersSocialMediaAccountsController controller. |
+| ExerciseLibraryExercisesController | Gets ExerciseLibraryExercisesController controller. |
+| ExerciseLibraryExercisesExerciseInstructionsController | Gets ExerciseLibraryExercisesExerciseInstructionsController controller. |
+| ExerciseLibraryExercisesExerciseVideosController | Gets ExerciseLibraryExercisesExerciseVideosController controller. |
+| ExerciseLibraryExercisesExerciseThumbnailsController | Gets ExerciseLibraryExercisesExerciseThumbnailsController controller. |
+| ExerciseLibraryMusclesController | Gets ExerciseLibraryMusclesController controller. |
+| ExerciseLibraryMusclesMuscleGroupsController | Gets ExerciseLibraryMusclesMuscleGroupsController controller. |
+| ExerciseLibraryEquipmentController | Gets ExerciseLibraryEquipmentController controller. |
+| ExerciseLibraryEquipmentEquipmentGroupsController | Gets ExerciseLibraryEquipmentEquipmentGroupsController controller. |
+| ExerciseLibraryExerciseDraftsController | Gets ExerciseLibraryExerciseDraftsController controller. |
+| ExerciseLibraryExerciseCategoriesController | Gets ExerciseLibraryExerciseCategoriesController controller. |
+| ExerciseLibraryExerciseMetricsController | Gets ExerciseLibraryExerciseMetricsController controller. |
 | WorkoutsController | Gets WorkoutsController controller. |
 | WorkoutsWorkoutDataController | Gets WorkoutsWorkoutDataController controller. |
-| ProgramsController | Gets ProgramsController controller. |
-| ProgramsProgramWeeksController | Gets ProgramsProgramWeeksController controller. |
-| ProgramsProgramAnalyticsController | Gets ProgramsProgramAnalyticsController controller. |
-| ProgramsProgramViewsController | Gets ProgramsProgramViewsController controller. |
-| ProgramsProgramReviewsController | Gets ProgramsProgramReviewsController controller. |
-| ExercisesExerciseThumbnailsController | Gets ExercisesExerciseThumbnailsController controller. |
+| CommonMediaAssetsController | Gets CommonMediaAssetsController controller. |
+| CommonLocalesController | Gets CommonLocalesController controller. |
+| CommonPublishedStatusController | Gets CommonPublishedStatusController controller. |
 
 ### Properties
 
@@ -66,6 +67,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | Timeout | Http client timeout. | `TimeSpan` |
 | Environment | Current API environment. | `Environment` |
 | BearerAuthCredentials | Gets the credentials to use with BearerAuth. | [`IBearerAuthCredentials`](auth/oauth-2-bearer-token.md) |
+| UserRolesCredentials | Gets the credentials to use with UserRoles. | [`IUserRolesCredentials`](auth/custom-header-signature.md) |
 
 ### Methods
 
@@ -86,4 +88,5 @@ Class to build instances of JustGains-APIClient.
 | `Timeout(TimeSpan timeout)` | Http client timeout. | `Builder` |
 | `Environment(Environment environment)` | Current API environment. | `Builder` |
 | `BearerAuthCredentials(Action<BearerAuthModel.Builder> action)` | Sets credentials for BearerAuth. | `Builder` |
+| `UserRolesCredentials(Action<UserRolesModel.Builder> action)` | Sets credentials for UserRoles. | `Builder` |
 

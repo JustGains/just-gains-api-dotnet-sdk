@@ -57,7 +57,7 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// Represents a single exercise within a workout, including its data, order, and grouping information.
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
         public Models.WorkoutData Data { get; set; }

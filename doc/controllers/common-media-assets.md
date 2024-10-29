@@ -168,12 +168,9 @@ Guid mediaAssetId = new Guid("9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1");
 MediaAsset body = new MediaAsset
 {
     MediaId = new Guid("7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b"),
-    FileName = "workout_routine.mp4",
-    FilePath = "media/videos/routines/workout_routine.mp4",
-    FileSize = 15728640,
-    FileUrl = "https://api.justsuperhuman.com/media/videos/routines/workout_routine.mp4",
-    FileFormat = "video/mp4",
-    Description = "High-intensity interval training (HIIT) workout routine for beginners",
+    FileName = null,
+    FilePath = null,
+    FileSize = 0,
 };
 
 try

@@ -77,7 +77,6 @@ CreateEquipmentAsync(
 Equipment body = new Equipment
 {
     EquipmentCode = "BARBELL",
-    EquipmentName = "Barbell",
     EquipmentEquipmentGroups = new List<string>
     {
         "WEIGHTS",
@@ -176,7 +175,6 @@ string equipmentCode = "equipmentCode6";
 Equipment body = new Equipment
 {
     EquipmentCode = "BARBELL",
-    EquipmentName = "Barbell",
     EquipmentEquipmentGroups = new List<string>
     {
         "WEIGHTS",

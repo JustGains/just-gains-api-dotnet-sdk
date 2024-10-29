@@ -76,7 +76,6 @@ CreateANewMuscleGroupAsync(
 MuscleGroup body = new MuscleGroup
 {
     MuscleGroupCode = "CHEST",
-    MuscleGroupName = "Chest",
     MuscleGroupParent = "UPPER_BODY",
     MuscleGroupMuscles = new List<string>
     {
@@ -138,7 +137,6 @@ string muscleGroupCode = "muscleGroupCode2";
 MuscleGroup body = new MuscleGroup
 {
     MuscleGroupCode = "CHEST",
-    MuscleGroupName = "Chest",
     MuscleGroupParent = "UPPER_BODY",
     MuscleGroupMuscles = new List<string>
     {

@@ -23,41 +23,24 @@
     {
       "exerciseCode": "BARBELL_SQUAT",
       "exerciseNotes": "Keep your core tight throughout the movement",
-      "exerciseMetrics": [
-        {
-          "metricCode": "WEIGHT",
-          "metricUnit": "KG"
-        },
-        {
-          "metricCode": "REPS",
-          "metricUnit": "COUNT"
-        }
-      ],
-      "exerciseData": [
-        [
-          1.0,
-          100.0,
-          10.0
-        ],
-        [
-          2.0,
-          110.0,
-          8.0
-        ],
-        [
-          3.0,
-          120.0,
-          6.0
-        ],
-        [
-          4.0,
-          120.0,
-          6.0
-        ]
-      ],
       "exerciseOrder": 2,
       "exerciseGroupID": 1,
-      "exerciseGroupType": "SUPERSET"
+      "exerciseGroupType": "SUPERSET",
+      "exerciseThumbnail": {
+        "mediaId": "000024ec-0000-0000-0000-000000000000",
+        "fileName": "fileName8",
+        "filePath": "filePath6",
+        "fileUrl": "fileUrl8",
+        "fileSize": 240,
+        "fileFormat": "fileFormat0",
+        "description": "description6"
+      },
+      "exerciseMetrics": [
+        {
+          "metricCode": "metricCode6",
+          "metricUnit": "metricUnit0"
+        }
+      ]
     }
   ]
 }

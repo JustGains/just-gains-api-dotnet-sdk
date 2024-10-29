@@ -124,7 +124,6 @@ CreateANewExerciseAsync(
 ExerciseUpdateRequest body = new ExerciseUpdateRequest
 {
     ExerciseCode = "BARBELL_SQUAT",
-    ExerciseName = "Barbell Squat",
     ExerciseCategories = new List<string>
     {
         "STRENGTH",
@@ -245,7 +244,6 @@ string exerciseCode = "exerciseCode8";
 ExerciseUpdateRequest body = new ExerciseUpdateRequest
 {
     ExerciseCode = "BARBELL_SQUAT",
-    ExerciseName = "Barbell Squat",
     ExerciseCategories = new List<string>
     {
         "STRENGTH",

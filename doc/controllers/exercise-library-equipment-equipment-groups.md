@@ -82,7 +82,6 @@ AddEquipmentGroupAsync(
 EquipmentGroup body = new EquipmentGroup
 {
     EquipmentGroupCode = "DUMBBELLS",
-    EquipmentGroupName = "Dumbbells",
     EquipmentGroupParent = "FREE_WEIGHTS",
     SortOrder = 0,
 };
@@ -131,7 +130,6 @@ string equipmentGroupCode = "equipmentGroupCode8";
 EquipmentGroup body = new EquipmentGroup
 {
     EquipmentGroupCode = "DUMBBELLS",
-    EquipmentGroupName = "Dumbbells",
     EquipmentGroupParent = "FREE_WEIGHTS",
     SortOrder = 0,
 };

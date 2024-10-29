@@ -263,5 +263,107 @@ namespace JustGainsAPI.Standard.Controllers
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Failed to sign out user", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// initiateAuth EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <param name="body">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.AuthInitiateResponse response from the API call.</returns>
+        public Models.AuthInitiateResponse InitiateAuth(
+                string provider,
+                Models.InitiateAuthRequest body)
+            => CoreHelper.RunTask(InitiateAuthAsync(provider, body));
+
+        /// <summary>
+        /// initiateAuth EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.AuthInitiateResponse response from the API call.</returns>
+        public async Task<Models.AuthInitiateResponse> InitiateAuthAsync(
+                string provider,
+                Models.InitiateAuthRequest body,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.AuthInitiateResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/auth/{provider}/initiate")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Template(_template => _template.Setup("provider", provider))
+                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Failed to initiate OAuth flow", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// handleCallback EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <param name="code">Required parameter: Authorization code from OAuth provider.</param>
+        /// <param name="error">Optional parameter: Error code from OAuth provider.</param>
+        /// <param name="errorDescription">Optional parameter: Detailed error description from OAuth provider.</param>
+        /// <returns>Returns the Models.AuthCallbackResponse response from the API call.</returns>
+        public Models.AuthCallbackResponse HandleCallback(
+                string provider,
+                string code,
+                string error = null,
+                string errorDescription = null)
+            => CoreHelper.RunTask(HandleCallbackAsync(provider, code, error, errorDescription));
+
+        /// <summary>
+        /// handleCallback EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <param name="code">Required parameter: Authorization code from OAuth provider.</param>
+        /// <param name="error">Optional parameter: Error code from OAuth provider.</param>
+        /// <param name="errorDescription">Optional parameter: Detailed error description from OAuth provider.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.AuthCallbackResponse response from the API call.</returns>
+        public async Task<Models.AuthCallbackResponse> HandleCallbackAsync(
+                string provider,
+                string code,
+                string error = null,
+                string errorDescription = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.AuthCallbackResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/auth/{provider}/callback")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("provider", provider))
+                      .Query(_query => _query.Setup("code", code))
+                      .Query(_query => _query.Setup("error", error))
+                      .Query(_query => _query.Setup("errorDescription", errorDescription))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Failed to handle OAuth callback", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// getSettings EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <returns>Returns the Models.AuthSettingsResponse response from the API call.</returns>
+        public Models.AuthSettingsResponse GetSettings(
+                string provider)
+            => CoreHelper.RunTask(GetSettingsAsync(provider));
+
+        /// <summary>
+        /// getSettings EndPoint.
+        /// </summary>
+        /// <param name="provider">Required parameter: OAuth provider name (e.g., 'google', 'facebook').</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.AuthSettingsResponse response from the API call.</returns>
+        public async Task<Models.AuthSettingsResponse> GetSettingsAsync(
+                string provider,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.AuthSettingsResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/auth/{provider}/settings")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("provider", provider))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Failed to retrieve OAuth provider settings", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public InstructionBlock(
             string id = null,
             Models.TypeEnum? type = null,
-            Models.Data2 data = null)
+            Models.Data5 data = null)
         {
             this.Id = id;
             this.Type = type;
@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
         /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.Data2 Data { get; set; }
+        public Models.Data5 Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

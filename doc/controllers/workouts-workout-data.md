@@ -11,8 +11,8 @@ WorkoutsWorkoutDataController workoutsWorkoutDataController = client.WorkoutsWor
 ## Methods
 
 * [Get Workout Data by Id](../../doc/controllers/workouts-workout-data.md#get-workout-data-by-id)
+* [Update Workout Data by Workout ID](../../doc/controllers/workouts-workout-data.md#update-workout-data-by-workout-id)
 * [Get Workout Detail by Id](../../doc/controllers/workouts-workout-data.md#get-workout-detail-by-id)
-* [Add New Exercise to the Workout](../../doc/controllers/workouts-workout-data.md#add-new-exercise-to-the-workout)
 * [Update Exercise in the Workout](../../doc/controllers/workouts-workout-data.md#update-exercise-in-the-workout)
 * [Deletes an Exercise From the Workout](../../doc/controllers/workouts-workout-data.md#deletes-an-exercise-from-the-workout)
 
@@ -23,14 +23,14 @@ WorkoutsWorkoutDataController workoutsWorkoutDataController = client.WorkoutsWor
 
 ```csharp
 GetWorkoutDataByIdAsync(
-    int workoutId)
+    Guid workoutId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
+| `workoutId` | `Guid` | Template, Required | - |
 
 ## Response Type
 
@@ -39,7 +39,7 @@ GetWorkoutDataByIdAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 try
 {
     WorkoutDataListResponse result = await workoutsWorkoutDataController.GetWorkoutDataByIdAsync(workoutId);
@@ -58,13 +58,70 @@ catch (ApiException e)
 | 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
+# Update Workout Data by Workout ID
+
+```csharp
+UpdateWorkoutDataByWorkoutIDAsync(
+    Guid workoutId,
+    List<Models.WorkoutData> body)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `Guid` | Template, Required | - |
+| `body` | [`List<WorkoutData>`](../../doc/models/workout-data.md) | Body, Required | - |
+
+## Response Type
+
+[`Task<Models.WorkoutDataListResponse>`](../../doc/models/workout-data-list-response.md)
+
+## Example Usage
+
+```csharp
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
+List<WorkoutData> body = new List<WorkoutData>
+{
+    new WorkoutData
+    {
+        ExerciseCode = "BARBELL_SQUAT",
+        ExerciseNotes = "Keep your core tight throughout the movement",
+        ExerciseOrder = 2,
+        ExerciseGroupID = 1,
+        ExerciseGroupType = ExerciseGroupTypeEnum.SUPERSET,
+    },
+};
+
+try
+{
+    WorkoutDataListResponse result = await workoutsWorkoutDataController.UpdateWorkoutDataByWorkoutIDAsync(
+        workoutId,
+        body
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Invalid workout data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
 # Get Workout Detail by Id
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
 GetWorkoutDetailByIdAsync(
-    int workoutId,
+    Guid workoutId,
     string exerciseCode)
 ```
 
@@ -72,8 +129,8 @@ GetWorkoutDetailByIdAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `Guid` | Template, Required | The unique identifier code of the workout to retrieve the exercise from |
+| `exerciseCode` | `string` | Template, Required | The unique identifier code of the exercise to retrieve<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -82,7 +139,7 @@ GetWorkoutDetailByIdAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 string exerciseCode = "exerciseCode8";
 try
 {
@@ -105,109 +162,11 @@ catch (ApiException e)
 | 404 | Workout or exercise not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 
 
-# Add New Exercise to the Workout
-
-```csharp
-AddNewExerciseToTheWorkoutAsync(
-    int workoutId,
-    string exerciseCode,
-    Models.WorkoutData body)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
-
-## Response Type
-
-[`Task<Models.WorkoutDataResponse>`](../../doc/models/workout-data-response.md)
-
-## Example Usage
-
-```csharp
-int workoutId = 250;
-string exerciseCode = "exerciseCode8";
-WorkoutData body = new WorkoutData
-{
-    ExerciseCode = "BARBELL_SQUAT",
-    ExerciseNotes = "Keep your core tight throughout the movement",
-    ExerciseMetrics = new List<ExerciseMetric1>
-    {
-        new ExerciseMetric1
-        {
-            MetricCode = "WEIGHT",
-            MetricUnit = "KG",
-        },
-        new ExerciseMetric1
-        {
-            MetricCode = "REPS",
-            MetricUnit = "COUNT",
-        },
-    },
-    ExerciseData = new List<List<double>>
-    {
-        new List<double>
-        {
-            1,
-            100,
-            10,
-        },
-        new List<double>
-        {
-            2,
-            110,
-            8,
-        },
-        new List<double>
-        {
-            3,
-            120,
-            6,
-        },
-        new List<double>
-        {
-            4,
-            120,
-            6,
-        },
-    },
-    ExerciseOrder = 2,
-    ExerciseGroupID = 1,
-    ExerciseGroupType = ExerciseGroupTypeEnum.SUPERSET,
-};
-
-try
-{
-    WorkoutDataResponse result = await workoutsWorkoutDataController.AddNewExerciseToTheWorkoutAsync(
-        workoutId,
-        exerciseCode,
-        body
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Invalid exercise data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
-| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
-
-
 # Update Exercise in the Workout
 
 ```csharp
 UpdateExerciseInTheWorkoutAsync(
-    int workoutId,
+    Guid workoutId,
     string exerciseCode,
     Models.WorkoutData body)
 ```
@@ -216,8 +175,8 @@ UpdateExerciseInTheWorkoutAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `Guid` | Template, Required | The unique identifier code of the workout to update the exercise in |
+| `exerciseCode` | `string` | Template, Required | The unique identifier code of the exercise to update<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
 
 ## Response Type
@@ -227,52 +186,12 @@ UpdateExerciseInTheWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
-string exerciseCode = "exerciseCode8";
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
+string exerciseCode = "SQUAT";
 WorkoutData body = new WorkoutData
 {
     ExerciseCode = "BARBELL_SQUAT",
     ExerciseNotes = "Keep your core tight throughout the movement",
-    ExerciseMetrics = new List<ExerciseMetric1>
-    {
-        new ExerciseMetric1
-        {
-            MetricCode = "WEIGHT",
-            MetricUnit = "KG",
-        },
-        new ExerciseMetric1
-        {
-            MetricCode = "REPS",
-            MetricUnit = "COUNT",
-        },
-    },
-    ExerciseData = new List<List<double>>
-    {
-        new List<double>
-        {
-            1,
-            100,
-            10,
-        },
-        new List<double>
-        {
-            2,
-            110,
-            8,
-        },
-        new List<double>
-        {
-            3,
-            120,
-            6,
-        },
-        new List<double>
-        {
-            4,
-            120,
-            6,
-        },
-    },
     ExerciseOrder = 2,
     ExerciseGroupID = 1,
     ExerciseGroupType = ExerciseGroupTypeEnum.SUPERSET,
@@ -305,7 +224,7 @@ catch (ApiException e)
 
 ```csharp
 DeletesAnExerciseFromTheWorkoutAsync(
-    int workoutId,
+    Guid workoutId,
     string exerciseCode)
 ```
 
@@ -313,8 +232,8 @@ DeletesAnExerciseFromTheWorkoutAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `int` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `Guid` | Template, Required | The unique identifier code of the workout to remove the exercise from |
+| `exerciseCode` | `string` | Template, Required | The unique identifier code of the exercise to remove<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 
 ## Response Type
 
@@ -323,7 +242,7 @@ DeletesAnExerciseFromTheWorkoutAsync(
 ## Example Usage
 
 ```csharp
-int workoutId = 250;
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 string exerciseCode = "exerciseCode8";
 try
 {

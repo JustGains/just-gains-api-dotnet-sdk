@@ -74,7 +74,6 @@ CreateANewLocaleAsync(
 ```csharp
 Locale body = new Locale
 {
-    LocaleCode = "en-US",
     LocaleName = "English (United States)",
     Published = true,
 };
@@ -151,7 +150,6 @@ UpdateALocaleAsync(
 string localeCode = "localeCode2";
 Locale body = new Locale
 {
-    LocaleCode = "en-US",
     LocaleName = "English (United States)",
     Published = true,
 };

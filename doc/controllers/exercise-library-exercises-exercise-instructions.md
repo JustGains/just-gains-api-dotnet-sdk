@@ -151,14 +151,13 @@ string localeCode = "localeCode2";
 string creatorProfileId = "creatorProfileId8";
 ExerciseInstruction body = new ExerciseInstruction
 {
-    ExerciseCode = "BARBELL-BENCH-PRESS",
+    ExerciseCode = null,
     LocaleCode = "en-US",
     InstructionJSON = new InstructionJSON
     {
         Time = 1625832000000L,
         Version = "2.24.3",
     },
-    UserId = "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
 };
 
 try

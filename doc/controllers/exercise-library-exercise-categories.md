@@ -76,7 +76,6 @@ CreateExerciseCategoryAsync(
 ExerciseCategory body = new ExerciseCategory
 {
     ExerciseCategoryCode = "STRENGTH_TRAINING",
-    ExerciseCategoryName = "Strength Training",
 };
 
 try
@@ -123,7 +122,6 @@ string exerciseCategoryCode = "exerciseCategoryCode8";
 ExerciseCategory body = new ExerciseCategory
 {
     ExerciseCategoryCode = "STRENGTH_TRAINING",
-    ExerciseCategoryName = "Strength Training",
 };
 
 try

@@ -91,9 +91,7 @@ CreateANewPublishedStatusAsync(
 ```csharp
 PublishedStatus body = new PublishedStatus
 {
-    PublishedStatusCode = "PUBLISHED",
     UserRoleAccess = "ADMIN,USER",
-    PublishedStatusName = "Published",
 };
 
 try
@@ -139,9 +137,7 @@ UpdateAPublishedStatusAsync(
 string publishedStatusCode = "publishedStatusCode2";
 PublishedStatus body = new PublishedStatus
 {
-    PublishedStatusCode = "PUBLISHED",
     UserRoleAccess = "ADMIN,USER",
-    PublishedStatusName = "Published",
 };
 
 try

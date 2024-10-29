@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Id` | `string` | Optional | - |
 | `Type` | [`TypeEnum?`](../../doc/models/type-enum.md) | Optional | - |
-| `Data` | [`Data2`](../../doc/models/data-2.md) | Optional | - |
+| `Data` | [`Data5`](../../doc/models/data-5.md) | Optional | - |
 
 ## Example (as JSON)
 

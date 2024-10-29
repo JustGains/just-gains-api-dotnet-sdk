@@ -31,36 +31,36 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkoutAnalytics"/> class.
         /// </summary>
-        /// <param name="views">views.</param>
-        /// <param name="totalUses">totalUses.</param>
-        /// <param name="averageRating">averageRating.</param>
+        /// <param name="totalViews">totalViews.</param>
+        /// <param name="ratingAverage">ratingAverage.</param>
+        /// <param name="ratingCount">ratingCount.</param>
         public WorkoutAnalytics(
-            int? views = null,
-            int? totalUses = 0,
-            double? averageRating = null)
+            int? totalViews = null,
+            double? ratingAverage = null,
+            int? ratingCount = null)
         {
-            this.Views = views;
-            this.TotalUses = totalUses;
-            this.AverageRating = averageRating;
+            this.TotalViews = totalViews;
+            this.RatingAverage = ratingAverage;
+            this.RatingCount = ratingCount;
         }
 
         /// <summary>
         /// Number of views for the workout.
         /// </summary>
-        [JsonProperty("views", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Views { get; set; }
-
-        /// <summary>
-        /// The number of times this workout has been used.
-        /// </summary>
-        [JsonProperty("totalUses", NullValueHandling = NullValueHandling.Ignore)]
-        public int? TotalUses { get; set; }
+        [JsonProperty("totalViews", NullValueHandling = NullValueHandling.Ignore)]
+        public int? TotalViews { get; set; }
 
         /// <summary>
         /// The average rating of the workout.
         /// </summary>
-        [JsonProperty("averageRating", NullValueHandling = NullValueHandling.Ignore)]
-        public double? AverageRating { get; set; }
+        [JsonProperty("ratingAverage", NullValueHandling = NullValueHandling.Ignore)]
+        public double? RatingAverage { get; set; }
+
+        /// <summary>
+        /// The number of ratings for the workout.
+        /// </summary>
+        [JsonProperty("ratingCount", NullValueHandling = NullValueHandling.Ignore)]
+        public int? RatingCount { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -84,9 +84,9 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is WorkoutAnalytics other &&                ((this.Views == null && other.Views == null) || (this.Views?.Equals(other.Views) == true)) &&
-                ((this.TotalUses == null && other.TotalUses == null) || (this.TotalUses?.Equals(other.TotalUses) == true)) &&
-                ((this.AverageRating == null && other.AverageRating == null) || (this.AverageRating?.Equals(other.AverageRating) == true));
+            return obj is WorkoutAnalytics other &&                ((this.TotalViews == null && other.TotalViews == null) || (this.TotalViews?.Equals(other.TotalViews) == true)) &&
+                ((this.RatingAverage == null && other.RatingAverage == null) || (this.RatingAverage?.Equals(other.RatingAverage) == true)) &&
+                ((this.RatingCount == null && other.RatingCount == null) || (this.RatingCount?.Equals(other.RatingCount) == true));
         }
         
         /// <summary>
@@ -95,9 +95,9 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Views = {(this.Views == null ? "null" : this.Views.ToString())}");
-            toStringOutput.Add($"this.TotalUses = {(this.TotalUses == null ? "null" : this.TotalUses.ToString())}");
-            toStringOutput.Add($"this.AverageRating = {(this.AverageRating == null ? "null" : this.AverageRating.ToString())}");
+            toStringOutput.Add($"this.TotalViews = {(this.TotalViews == null ? "null" : this.TotalViews.ToString())}");
+            toStringOutput.Add($"this.RatingAverage = {(this.RatingAverage == null ? "null" : this.RatingAverage.ToString())}");
+            toStringOutput.Add($"this.RatingCount = {(this.RatingCount == null ? "null" : this.RatingCount.ToString())}");
         }
     }
 }

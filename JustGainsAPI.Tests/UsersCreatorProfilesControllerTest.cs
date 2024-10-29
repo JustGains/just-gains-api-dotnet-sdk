@@ -49,12 +49,13 @@ namespace JustGainsAPI.Tests
             int? page = 1;
             bool? mvpAssetsOnly = null;
             int? limit = 20;
+            string search = null;
 
             // Perform API call
             Standard.Models.CreatorProfileListResponse result = null;
             try
             {
-                result = await this.controller.GetCreatorProfilesAsync(page, mvpAssetsOnly, limit);
+                result = await this.controller.GetCreatorProfilesAsync(page, mvpAssetsOnly, limit, search);
             }
             catch (ApiException)
             {

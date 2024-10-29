@@ -125,7 +125,7 @@ List<MuscleTranslation> body = new List<MuscleTranslation>
 {
     new MuscleTranslation
     {
-        MuscleCode = "QUAD",
+        MuscleCode = null,
         LocaleCode = "en-US",
         MuscleName = "Quadriceps",
     },

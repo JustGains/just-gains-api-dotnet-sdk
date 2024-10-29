@@ -39,12 +39,14 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <param name="mvpAssetsOnly">Optional parameter: Filter creator profiles with MVP assets only.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
+        /// <param name="search">Optional parameter: Optional search term to filter creator profiles. The search is case-insensitive and matches against: - Creator's username - Creator's social media account usernames - Creator's full name (first name + last name)  Examples: - search=john (matches usernames, social media accounts, or names containing "john") - search=@twitter (matches social media accounts containing "@twitter") - search="John Doe" (matches full names containing "John Doe")  Leave empty to retrieve all profiles without filtering..</param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public Models.CreatorProfileListResponse GetCreatorProfiles(
                 int? page = 1,
                 bool? mvpAssetsOnly = null,
-                int? limit = 20)
-            => CoreHelper.RunTask(GetCreatorProfilesAsync(page, mvpAssetsOnly, limit));
+                int? limit = 20,
+                string search = null)
+            => CoreHelper.RunTask(GetCreatorProfilesAsync(page, mvpAssetsOnly, limit, search));
 
         /// <summary>
         /// getCreatorProfiles EndPoint.
@@ -52,12 +54,14 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="page">Optional parameter: Page number for pagination.</param>
         /// <param name="mvpAssetsOnly">Optional parameter: Filter creator profiles with MVP assets only.</param>
         /// <param name="limit">Optional parameter: Number of items per page.</param>
+        /// <param name="search">Optional parameter: Optional search term to filter creator profiles. The search is case-insensitive and matches against: - Creator's username - Creator's social media account usernames - Creator's full name (first name + last name)  Examples: - search=john (matches usernames, social media accounts, or names containing "john") - search=@twitter (matches social media accounts containing "@twitter") - search="John Doe" (matches full names containing "John Doe")  Leave empty to retrieve all profiles without filtering..</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CreatorProfileListResponse response from the API call.</returns>
         public async Task<Models.CreatorProfileListResponse> GetCreatorProfilesAsync(
                 int? page = 1,
                 bool? mvpAssetsOnly = null,
                 int? limit = 20,
+                string search = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.CreatorProfileListResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -65,7 +69,8 @@ namespace JustGainsAPI.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page ?? 1))
                       .Query(_query => _query.Setup("mvpAssetsOnly", mvpAssetsOnly))
-                      .Query(_query => _query.Setup("limit", limit ?? 20))))
+                      .Query(_query => _query.Setup("limit", limit ?? 20))
+                      .Query(_query => _query.Setup("search", search))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

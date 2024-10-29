@@ -25,16 +25,9 @@
       "creatorProfileId": "123e4567-e89b-12d3-a456-426614174000",
       "userId": "123e4567-e89b-12d3-a456-426614174000",
       "userName": "TheRock",
-      "creatorEmail": "dwayne@therockjohnson.com",
-      "profilePhoto": {
-        "mediaId": "000006b6-0000-0000-0000-000000000000",
-        "fileName": "fileName4",
-        "filePath": "filePath0",
-        "fileUrl": "fileUrl4",
-        "fileSize": 10,
-        "fileFormat": "fileFormat6",
-        "description": "description0"
-      }
+      "firstName": "Dwayne",
+      "lastName": "Johnson",
+      "fullName": "Dwayne Johnson"
     }
   ],
   "pagination": {

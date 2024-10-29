@@ -22,9 +22,11 @@
   "message": "Operation completed successfully.",
   "data": [
     {
-      "workoutId": 1234,
+      "workoutId": "9f897bfa-716d-4caa-b8fb-20bf3f2f3416",
+      "originalWorkoutId": "9f897bfa-716d-4caa-b8fb-20bf3f2f3416",
       "workoutTitle": "Full Body Strength Training",
-      "isMyWorkout": true,
+      "workoutSlug": "full-body-strength-training",
+      "isBookmark": true,
       "primaryMuscleGroups": [
         "CHEST",
         "QUADRICEPS",
@@ -42,13 +44,12 @@
       ],
       "createdAt": "07/01/2023 10:00:00",
       "updatedAt": "07/08/2023 14:30:00",
-      "lastUsedAt": "07/07/2023 09:15:00",
+      "lastViewedAt": "07/07/2023 09:15:00",
       "tags": [
         "strength",
         "fullbody",
         "beginner"
       ],
-      "originalWorkoutId": 1000,
       "workoutImage": {
         "mediaId": "00000cf4-0000-0000-0000-000000000000",
         "fileName": "fileName2",
@@ -57,29 +58,7 @@
         "fileSize": 40,
         "fileFormat": "fileFormat4",
         "description": "description8"
-      },
-      "creatorCredits": [
-        {
-          "creatorProfileId": "00002506-0000-0000-0000-000000000000",
-          "workoutSourceURL": "workoutSourceURL2",
-          "contributionType": "ORIGINAL_AUTHOR",
-          "creatorProfile": {
-            "creatorProfileId": "00001068-0000-0000-0000-000000000000",
-            "userId": "00001b82-0000-0000-0000-000000000000",
-            "userName": "userName4",
-            "creatorEmail": "creatorEmail0",
-            "profilePhoto": {
-              "mediaId": "000006b6-0000-0000-0000-000000000000",
-              "fileName": "fileName4",
-              "filePath": "filePath0",
-              "fileUrl": "fileUrl4",
-              "fileSize": 10,
-              "fileFormat": "fileFormat6",
-              "description": "description0"
-            }
-          }
-        }
-      ]
+      }
     }
   ],
   "pagination": {

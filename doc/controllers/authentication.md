@@ -21,6 +21,9 @@ AuthenticationController authenticationController = client.AuthenticationControl
 * [Reset Password](../../doc/controllers/authentication.md#reset-password)
 * [Refresh Token](../../doc/controllers/authentication.md#refresh-token)
 * [Signout](../../doc/controllers/authentication.md#signout)
+* [Initiate Auth](../../doc/controllers/authentication.md#initiate-auth)
+* [Handle Callback](../../doc/controllers/authentication.md#handle-callback)
+* [Get Settings](../../doc/controllers/authentication.md#get-settings)
 
 
 # Get User Info
@@ -394,4 +397,147 @@ catch (ApiException e)
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Failed to sign out user | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
+# Initiate Auth
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```csharp
+InitiateAuthAsync(
+    string provider,
+    Models.InitiateAuthRequest body)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+| `body` | [`InitiateAuthRequest`](../../doc/models/initiate-auth-request.md) | Body, Required | - |
+
+## Response Type
+
+[`Task<Models.AuthInitiateResponse>`](../../doc/models/auth-initiate-response.md)
+
+## Example Usage
+
+```csharp
+string provider = "google";
+InitiateAuthRequest body = new InitiateAuthRequest
+{
+    RedirectUrl = "https://example.com/callback",
+};
+
+try
+{
+    AuthInitiateResponse result = await authenticationController.InitiateAuthAsync(
+        provider,
+        body
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to initiate OAuth flow | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
+# Handle Callback
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```csharp
+HandleCallbackAsync(
+    string provider,
+    string code,
+    string error = null,
+    string errorDescription = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+| `code` | `string` | Query, Required | Authorization code from OAuth provider |
+| `error` | `string` | Query, Optional | Error code from OAuth provider |
+| `errorDescription` | `string` | Query, Optional | Detailed error description from OAuth provider |
+
+## Response Type
+
+[`Task<Models.AuthCallbackResponse>`](../../doc/models/auth-callback-response.md)
+
+## Example Usage
+
+```csharp
+string provider = "google";
+string code = "code8";
+try
+{
+    AuthCallbackResponse result = await authenticationController.HandleCallbackAsync(
+        provider,
+        code
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to handle OAuth callback | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
+# Get Settings
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```csharp
+GetSettingsAsync(
+    string provider)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+
+## Response Type
+
+[`Task<Models.AuthSettingsResponse>`](../../doc/models/auth-settings-response.md)
+
+## Example Usage
+
+```csharp
+string provider = "google";
+try
+{
+    AuthSettingsResponse result = await authenticationController.GetSettingsAsync(provider);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to retrieve OAuth provider settings | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

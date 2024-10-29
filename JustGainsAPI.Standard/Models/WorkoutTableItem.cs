@@ -32,59 +32,68 @@ namespace JustGainsAPI.Standard.Models
         /// Initializes a new instance of the <see cref="WorkoutTableItem"/> class.
         /// </summary>
         /// <param name="workoutId">workoutId.</param>
+        /// <param name="originalWorkoutId">originalWorkoutId.</param>
         /// <param name="workoutTitle">workoutTitle.</param>
+        /// <param name="workoutSlug">workoutSlug.</param>
         /// <param name="workoutImage">workoutImage.</param>
-        /// <param name="isMyWorkout">isMyWorkout.</param>
+        /// <param name="isBookmark">isBookmark.</param>
         /// <param name="creatorCredits">creatorCredits.</param>
         /// <param name="primaryMuscleGroups">primaryMuscleGroups.</param>
         /// <param name="equipmentList">equipmentList.</param>
         /// <param name="secondaryMuscleGroups">secondaryMuscleGroups.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        /// <param name="lastUsedAt">lastUsedAt.</param>
+        /// <param name="lastViewedAt">lastViewedAt.</param>
         /// <param name="tags">tags.</param>
         /// <param name="workoutSummary">workoutSummary.</param>
-        /// <param name="analytics">analytics.</param>
-        /// <param name="originalWorkoutId">originalWorkoutId.</param>
+        /// <param name="workoutAnalytics">workoutAnalytics.</param>
         public WorkoutTableItem(
-            int? workoutId = null,
+            Guid? workoutId = null,
+            Guid? originalWorkoutId = null,
             string workoutTitle = null,
+            string workoutSlug = null,
             Models.MediaAsset workoutImage = null,
-            bool? isMyWorkout = null,
+            bool? isBookmark = null,
             List<Models.CreatorCredit> creatorCredits = null,
             List<string> primaryMuscleGroups = null,
             List<string> equipmentList = null,
             List<string> secondaryMuscleGroups = null,
             DateTime? createdAt = null,
             DateTime? updatedAt = null,
-            DateTime? lastUsedAt = null,
+            DateTime? lastViewedAt = null,
             List<string> tags = null,
             Models.WorkoutSummary workoutSummary = null,
-            Models.WorkoutAnalytics analytics = null,
-            int? originalWorkoutId = null)
+            Models.WorkoutAnalytics workoutAnalytics = null)
         {
             this.WorkoutId = workoutId;
+            this.OriginalWorkoutId = originalWorkoutId;
             this.WorkoutTitle = workoutTitle;
+            this.WorkoutSlug = workoutSlug;
             this.WorkoutImage = workoutImage;
-            this.IsMyWorkout = isMyWorkout;
+            this.IsBookmark = isBookmark;
             this.CreatorCredits = creatorCredits;
             this.PrimaryMuscleGroups = primaryMuscleGroups;
             this.EquipmentList = equipmentList;
             this.SecondaryMuscleGroups = secondaryMuscleGroups;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            this.LastUsedAt = lastUsedAt;
+            this.LastViewedAt = lastViewedAt;
             this.Tags = tags;
             this.WorkoutSummary = workoutSummary;
-            this.Analytics = analytics;
-            this.OriginalWorkoutId = originalWorkoutId;
+            this.WorkoutAnalytics = workoutAnalytics;
         }
 
         /// <summary>
         /// Unique identifier for the workout.
         /// </summary>
         [JsonProperty("workoutId", NullValueHandling = NullValueHandling.Ignore)]
-        public int? WorkoutId { get; set; }
+        public Guid? WorkoutId { get; set; }
+
+        /// <summary>
+        /// ID of the original workout if this is a duplicate.
+        /// </summary>
+        [JsonProperty("originalWorkoutId", NullValueHandling = NullValueHandling.Ignore)]
+        public Guid? OriginalWorkoutId { get; set; }
 
         /// <summary>
         /// The title of the workout.
@@ -93,16 +102,22 @@ namespace JustGainsAPI.Standard.Models
         public string WorkoutTitle { get; set; }
 
         /// <summary>
+        /// The URL slug of the workout.
+        /// </summary>
+        [JsonProperty("workoutSlug", NullValueHandling = NullValueHandling.Ignore)]
+        public string WorkoutSlug { get; set; }
+
+        /// <summary>
         /// Gets or sets WorkoutImage.
         /// </summary>
         [JsonProperty("workoutImage", NullValueHandling = NullValueHandling.Ignore)]
         public Models.MediaAsset WorkoutImage { get; set; }
 
         /// <summary>
-        /// Indicates if the workout is a user's own workout.
+        /// Indicates if the workout is a user's own workout or a bookmarked one from another user.
         /// </summary>
-        [JsonProperty("isMyWorkout", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? IsMyWorkout { get; set; }
+        [JsonProperty("isBookmark", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? IsBookmark { get; set; }
 
         /// <summary>
         /// List of creator credits associated with this workout.
@@ -146,8 +161,8 @@ namespace JustGainsAPI.Standard.Models
         /// The date and time when the workout was last used.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("lastUsedAt", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? LastUsedAt { get; set; }
+        [JsonProperty("lastViewedAt", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? LastViewedAt { get; set; }
 
         /// <summary>
         /// NOT IMPLEMENTED:- TODO- List of tags associated with the workout.
@@ -164,14 +179,8 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Analytics data for the workout.
         /// </summary>
-        [JsonProperty("analytics", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.WorkoutAnalytics Analytics { get; set; }
-
-        /// <summary>
-        /// ID of the original workout if this is a duplicate.
-        /// </summary>
-        [JsonProperty("originalWorkoutId", NullValueHandling = NullValueHandling.Ignore)]
-        public int? OriginalWorkoutId { get; set; }
+        [JsonProperty("workoutAnalytics", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.WorkoutAnalytics WorkoutAnalytics { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -196,20 +205,21 @@ namespace JustGainsAPI.Standard.Models
                 return true;
             }
             return obj is WorkoutTableItem other &&                ((this.WorkoutId == null && other.WorkoutId == null) || (this.WorkoutId?.Equals(other.WorkoutId) == true)) &&
+                ((this.OriginalWorkoutId == null && other.OriginalWorkoutId == null) || (this.OriginalWorkoutId?.Equals(other.OriginalWorkoutId) == true)) &&
                 ((this.WorkoutTitle == null && other.WorkoutTitle == null) || (this.WorkoutTitle?.Equals(other.WorkoutTitle) == true)) &&
+                ((this.WorkoutSlug == null && other.WorkoutSlug == null) || (this.WorkoutSlug?.Equals(other.WorkoutSlug) == true)) &&
                 ((this.WorkoutImage == null && other.WorkoutImage == null) || (this.WorkoutImage?.Equals(other.WorkoutImage) == true)) &&
-                ((this.IsMyWorkout == null && other.IsMyWorkout == null) || (this.IsMyWorkout?.Equals(other.IsMyWorkout) == true)) &&
+                ((this.IsBookmark == null && other.IsBookmark == null) || (this.IsBookmark?.Equals(other.IsBookmark) == true)) &&
                 ((this.CreatorCredits == null && other.CreatorCredits == null) || (this.CreatorCredits?.Equals(other.CreatorCredits) == true)) &&
                 ((this.PrimaryMuscleGroups == null && other.PrimaryMuscleGroups == null) || (this.PrimaryMuscleGroups?.Equals(other.PrimaryMuscleGroups) == true)) &&
                 ((this.EquipmentList == null && other.EquipmentList == null) || (this.EquipmentList?.Equals(other.EquipmentList) == true)) &&
                 ((this.SecondaryMuscleGroups == null && other.SecondaryMuscleGroups == null) || (this.SecondaryMuscleGroups?.Equals(other.SecondaryMuscleGroups) == true)) &&
                 ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.LastUsedAt == null && other.LastUsedAt == null) || (this.LastUsedAt?.Equals(other.LastUsedAt) == true)) &&
+                ((this.LastViewedAt == null && other.LastViewedAt == null) || (this.LastViewedAt?.Equals(other.LastViewedAt) == true)) &&
                 ((this.Tags == null && other.Tags == null) || (this.Tags?.Equals(other.Tags) == true)) &&
                 ((this.WorkoutSummary == null && other.WorkoutSummary == null) || (this.WorkoutSummary?.Equals(other.WorkoutSummary) == true)) &&
-                ((this.Analytics == null && other.Analytics == null) || (this.Analytics?.Equals(other.Analytics) == true)) &&
-                ((this.OriginalWorkoutId == null && other.OriginalWorkoutId == null) || (this.OriginalWorkoutId?.Equals(other.OriginalWorkoutId) == true));
+                ((this.WorkoutAnalytics == null && other.WorkoutAnalytics == null) || (this.WorkoutAnalytics?.Equals(other.WorkoutAnalytics) == true));
         }
         
         /// <summary>
@@ -219,20 +229,21 @@ namespace JustGainsAPI.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.WorkoutId = {(this.WorkoutId == null ? "null" : this.WorkoutId.ToString())}");
+            toStringOutput.Add($"this.OriginalWorkoutId = {(this.OriginalWorkoutId == null ? "null" : this.OriginalWorkoutId.ToString())}");
             toStringOutput.Add($"this.WorkoutTitle = {(this.WorkoutTitle == null ? "null" : this.WorkoutTitle)}");
+            toStringOutput.Add($"this.WorkoutSlug = {(this.WorkoutSlug == null ? "null" : this.WorkoutSlug)}");
             toStringOutput.Add($"this.WorkoutImage = {(this.WorkoutImage == null ? "null" : this.WorkoutImage.ToString())}");
-            toStringOutput.Add($"this.IsMyWorkout = {(this.IsMyWorkout == null ? "null" : this.IsMyWorkout.ToString())}");
+            toStringOutput.Add($"this.IsBookmark = {(this.IsBookmark == null ? "null" : this.IsBookmark.ToString())}");
             toStringOutput.Add($"this.CreatorCredits = {(this.CreatorCredits == null ? "null" : $"[{string.Join(", ", this.CreatorCredits)} ]")}");
             toStringOutput.Add($"this.PrimaryMuscleGroups = {(this.PrimaryMuscleGroups == null ? "null" : $"[{string.Join(", ", this.PrimaryMuscleGroups)} ]")}");
             toStringOutput.Add($"this.EquipmentList = {(this.EquipmentList == null ? "null" : $"[{string.Join(", ", this.EquipmentList)} ]")}");
             toStringOutput.Add($"this.SecondaryMuscleGroups = {(this.SecondaryMuscleGroups == null ? "null" : $"[{string.Join(", ", this.SecondaryMuscleGroups)} ]")}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.LastUsedAt = {(this.LastUsedAt == null ? "null" : this.LastUsedAt.ToString())}");
+            toStringOutput.Add($"this.LastViewedAt = {(this.LastViewedAt == null ? "null" : this.LastViewedAt.ToString())}");
             toStringOutput.Add($"this.Tags = {(this.Tags == null ? "null" : $"[{string.Join(", ", this.Tags)} ]")}");
             toStringOutput.Add($"this.WorkoutSummary = {(this.WorkoutSummary == null ? "null" : this.WorkoutSummary.ToString())}");
-            toStringOutput.Add($"this.Analytics = {(this.Analytics == null ? "null" : this.Analytics.ToString())}");
-            toStringOutput.Add($"this.OriginalWorkoutId = {(this.OriginalWorkoutId == null ? "null" : this.OriginalWorkoutId.ToString())}");
+            toStringOutput.Add($"this.WorkoutAnalytics = {(this.WorkoutAnalytics == null ? "null" : this.WorkoutAnalytics.ToString())}");
         }
     }
 }

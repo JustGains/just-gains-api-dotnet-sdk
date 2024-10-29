@@ -21,12 +21,6 @@ namespace JustGainsAPI.Standard.Models
     /// </summary>
     public class Data2
     {
-        private string text;
-        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
-        {
-            { "text", false },
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Data2"/> class.
         /// </summary>
@@ -37,34 +31,27 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Data2"/> class.
         /// </summary>
-        /// <param name="text">text.</param>
+        /// <param name="uri">uri.</param>
+        /// <param name="pkceVerifier">pkceVerifier.</param>
         public Data2(
-            string text = null)
+            string uri = null,
+            string pkceVerifier = null)
         {
-            if (text != null)
-            {
-                this.Text = text;
-            }
-
+            this.Uri = uri;
+            this.PkceVerifier = pkceVerifier;
         }
 
         /// <summary>
-        /// Gets or sets Text.
+        /// The authorization URL to redirect the user to
         /// </summary>
-        [JsonProperty("text")]
-        public string Text
-        {
-            get
-            {
-                return this.text;
-            }
+        [JsonProperty("uri", NullValueHandling = NullValueHandling.Ignore)]
+        public string Uri { get; set; }
 
-            set
-            {
-                this.shouldSerialize["text"] = true;
-                this.text = value;
-            }
-        }
+        /// <summary>
+        /// The PKCE verifier code for the OAuth flow
+        /// </summary>
+        [JsonProperty("pkceVerifier", NullValueHandling = NullValueHandling.Ignore)]
+        public string PkceVerifier { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -74,23 +61,6 @@ namespace JustGainsAPI.Standard.Models
             this.ToString(toStringOutput);
 
             return $"Data2 : ({string.Join(", ", toStringOutput)})";
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetText()
-        {
-            this.shouldSerialize["text"] = false;
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeText()
-        {
-            return this.shouldSerialize["text"];
         }
 
         /// <inheritdoc/>
@@ -105,7 +75,8 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data2 other &&                ((this.Text == null && other.Text == null) || (this.Text?.Equals(other.Text) == true));
+            return obj is Data2 other &&                ((this.Uri == null && other.Uri == null) || (this.Uri?.Equals(other.Uri) == true)) &&
+                ((this.PkceVerifier == null && other.PkceVerifier == null) || (this.PkceVerifier?.Equals(other.PkceVerifier) == true));
         }
         
         /// <summary>
@@ -114,7 +85,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Text = {(this.Text == null ? "null" : this.Text)}");
+            toStringOutput.Add($"this.Uri = {(this.Uri == null ? "null" : this.Uri)}");
+            toStringOutput.Add($"this.PkceVerifier = {(this.PkceVerifier == null ? "null" : this.PkceVerifier)}");
         }
     }
 }

@@ -41,24 +41,26 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         /// <param name="exerciseCode">exerciseCode.</param>
         /// <param name="exerciseNotes">exerciseNotes.</param>
+        /// <param name="exerciseThumbnail">exerciseThumbnail.</param>
         /// <param name="exerciseMetrics">exerciseMetrics.</param>
-        /// <param name="exerciseData">exerciseData.</param>
         /// <param name="exerciseOrder">exerciseOrder.</param>
         /// <param name="exerciseGroupID">exerciseGroupID.</param>
         /// <param name="exerciseGroupType">exerciseGroupType.</param>
+        /// <param name="exerciseData">exerciseData.</param>
         public WorkoutData(
             string exerciseCode = null,
             string exerciseNotes = null,
+            Models.MediaAsset exerciseThumbnail = null,
             List<Models.ExerciseMetric1> exerciseMetrics = null,
-            List<List<double>> exerciseData = null,
             int? exerciseOrder = null,
             int? exerciseGroupID = null,
-            Models.ExerciseGroupTypeEnum? exerciseGroupType = null)
+            Models.ExerciseGroupTypeEnum? exerciseGroupType = null,
+            List<Models.ExerciseSet> exerciseData = null)
         {
             this.ExerciseCode = exerciseCode;
             this.ExerciseNotes = exerciseNotes;
+            this.ExerciseThumbnail = exerciseThumbnail;
             this.ExerciseMetrics = exerciseMetrics;
-            this.ExerciseData = exerciseData;
             this.ExerciseOrder = exerciseOrder;
             if (exerciseGroupID != null)
             {
@@ -70,6 +72,7 @@ namespace JustGainsAPI.Standard.Models
                 this.ExerciseGroupType = exerciseGroupType;
             }
 
+            this.ExerciseData = exerciseData;
         }
 
         /// <summary>
@@ -85,16 +88,16 @@ namespace JustGainsAPI.Standard.Models
         public string ExerciseNotes { get; set; }
 
         /// <summary>
+        /// Gets or sets ExerciseThumbnail.
+        /// </summary>
+        [JsonProperty("exerciseThumbnail", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MediaAsset ExerciseThumbnail { get; set; }
+
+        /// <summary>
         /// List of metric codes and their units used for this exercise, in order
         /// </summary>
         [JsonProperty("exerciseMetrics", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.ExerciseMetric1> ExerciseMetrics { get; set; }
-
-        /// <summary>
-        /// Array of sets, each containing the set number and metric values in order.
-        /// </summary>
-        [JsonProperty("exerciseData", NullValueHandling = NullValueHandling.Ignore)]
-        public List<List<double>> ExerciseData { get; set; }
 
         /// <summary>
         /// The order of this exercise within the workout or its group.
@@ -137,6 +140,12 @@ namespace JustGainsAPI.Standard.Models
                 this.exerciseGroupType = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets ExerciseData.
+        /// </summary>
+        [JsonProperty("exerciseData", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.ExerciseSet> ExerciseData { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -196,11 +205,12 @@ namespace JustGainsAPI.Standard.Models
             }
             return obj is WorkoutData other &&                ((this.ExerciseCode == null && other.ExerciseCode == null) || (this.ExerciseCode?.Equals(other.ExerciseCode) == true)) &&
                 ((this.ExerciseNotes == null && other.ExerciseNotes == null) || (this.ExerciseNotes?.Equals(other.ExerciseNotes) == true)) &&
+                ((this.ExerciseThumbnail == null && other.ExerciseThumbnail == null) || (this.ExerciseThumbnail?.Equals(other.ExerciseThumbnail) == true)) &&
                 ((this.ExerciseMetrics == null && other.ExerciseMetrics == null) || (this.ExerciseMetrics?.Equals(other.ExerciseMetrics) == true)) &&
-                ((this.ExerciseData == null && other.ExerciseData == null) || (this.ExerciseData?.Equals(other.ExerciseData) == true)) &&
                 ((this.ExerciseOrder == null && other.ExerciseOrder == null) || (this.ExerciseOrder?.Equals(other.ExerciseOrder) == true)) &&
                 ((this.ExerciseGroupID == null && other.ExerciseGroupID == null) || (this.ExerciseGroupID?.Equals(other.ExerciseGroupID) == true)) &&
-                ((this.ExerciseGroupType == null && other.ExerciseGroupType == null) || (this.ExerciseGroupType?.Equals(other.ExerciseGroupType) == true));
+                ((this.ExerciseGroupType == null && other.ExerciseGroupType == null) || (this.ExerciseGroupType?.Equals(other.ExerciseGroupType) == true)) &&
+                ((this.ExerciseData == null && other.ExerciseData == null) || (this.ExerciseData?.Equals(other.ExerciseData) == true));
         }
         
         /// <summary>
@@ -211,11 +221,12 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.ExerciseCode = {(this.ExerciseCode == null ? "null" : this.ExerciseCode)}");
             toStringOutput.Add($"this.ExerciseNotes = {(this.ExerciseNotes == null ? "null" : this.ExerciseNotes)}");
+            toStringOutput.Add($"this.ExerciseThumbnail = {(this.ExerciseThumbnail == null ? "null" : this.ExerciseThumbnail.ToString())}");
             toStringOutput.Add($"this.ExerciseMetrics = {(this.ExerciseMetrics == null ? "null" : $"[{string.Join(", ", this.ExerciseMetrics)} ]")}");
-            toStringOutput.Add($"this.ExerciseData = {(this.ExerciseData == null ? "null" : $"[{string.Join(", ", this.ExerciseData)} ]")}");
             toStringOutput.Add($"this.ExerciseOrder = {(this.ExerciseOrder == null ? "null" : this.ExerciseOrder.ToString())}");
             toStringOutput.Add($"this.ExerciseGroupID = {(this.ExerciseGroupID == null ? "null" : this.ExerciseGroupID.ToString())}");
             toStringOutput.Add($"this.ExerciseGroupType = {(this.ExerciseGroupType == null ? "null" : this.ExerciseGroupType.ToString())}");
+            toStringOutput.Add($"this.ExerciseData = {(this.ExerciseData == null ? "null" : $"[{string.Join(", ", this.ExerciseData)} ]")}");
         }
     }
 }

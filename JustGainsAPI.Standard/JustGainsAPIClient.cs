@@ -65,6 +65,8 @@ namespace JustGainsAPI.Standard
         private readonly Lazy<ExerciseLibraryExerciseMetricsController> exerciseLibraryExerciseMetrics;
         private readonly Lazy<WorkoutsController> workouts;
         private readonly Lazy<WorkoutsWorkoutDataController> workoutsWorkoutData;
+        private readonly Lazy<WorkoutsWorkoutContentController> workoutsWorkoutContent;
+        private readonly Lazy<WorkoutsWorkoutPreviewController> workoutsWorkoutPreview;
         private readonly Lazy<CommonMediaAssetsController> commonMediaAssets;
         private readonly Lazy<CommonLocalesController> commonLocales;
         private readonly Lazy<CommonPublishedStatusController> commonPublishedStatus;
@@ -135,6 +137,10 @@ namespace JustGainsAPI.Standard
                 () => new WorkoutsController(globalConfiguration));
             this.workoutsWorkoutData = new Lazy<WorkoutsWorkoutDataController>(
                 () => new WorkoutsWorkoutDataController(globalConfiguration));
+            this.workoutsWorkoutContent = new Lazy<WorkoutsWorkoutContentController>(
+                () => new WorkoutsWorkoutContentController(globalConfiguration));
+            this.workoutsWorkoutPreview = new Lazy<WorkoutsWorkoutPreviewController>(
+                () => new WorkoutsWorkoutPreviewController(globalConfiguration));
             this.commonMediaAssets = new Lazy<CommonMediaAssetsController>(
                 () => new CommonMediaAssetsController(globalConfiguration));
             this.commonLocales = new Lazy<CommonLocalesController>(
@@ -237,6 +243,16 @@ namespace JustGainsAPI.Standard
         /// Gets WorkoutsWorkoutDataController controller.
         /// </summary>
         public WorkoutsWorkoutDataController WorkoutsWorkoutDataController => this.workoutsWorkoutData.Value;
+
+        /// <summary>
+        /// Gets WorkoutsWorkoutContentController controller.
+        /// </summary>
+        public WorkoutsWorkoutContentController WorkoutsWorkoutContentController => this.workoutsWorkoutContent.Value;
+
+        /// <summary>
+        /// Gets WorkoutsWorkoutPreviewController controller.
+        /// </summary>
+        public WorkoutsWorkoutPreviewController WorkoutsWorkoutPreviewController => this.workoutsWorkoutPreview.Value;
 
         /// <summary>
         /// Gets CommonMediaAssetsController controller.

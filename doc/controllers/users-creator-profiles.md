@@ -25,7 +25,8 @@ UsersCreatorProfilesController usersCreatorProfilesController = client.UsersCrea
 GetCreatorProfilesAsync(
     int? page = 1,
     bool? mvpAssetsOnly = null,
-    int? limit = 20)
+    int? limit = 20,
+    string search = null)
 ```
 
 ## Parameters
@@ -35,6 +36,7 @@ GetCreatorProfilesAsync(
 | `page` | `int?` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
 | `mvpAssetsOnly` | `bool?` | Query, Optional | Filter creator profiles with MVP assets only |
 | `limit` | `int?` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
+| `search` | `string` | Query, Optional | Optional search term to filter creator profiles. The search is case-insensitive and matches against:<br><br>- Creator's username<br>- Creator's social media account usernames<br>- Creator's full name (first name + last name)<br><br>Examples:<br><br>- search=john (matches usernames, social media accounts, or names containing "john")<br>- search=@twitter (matches social media accounts containing "@twitter")<br>- search="John Doe" (matches full names containing "John Doe")<br><br>Leave empty to retrieve all profiles without filtering. |
 
 ## Response Type
 
@@ -89,10 +91,8 @@ CreateCreatorProfileAsync(
 ```csharp
 CreatorProfile body = new CreatorProfile
 {
-    CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-    UserName = "TheRock",
-    CreatorEmail = "dwayne@therockjohnson.com",
+    FirstName = "Dwayne",
+    LastName = "Johnson",
 };
 
 try
@@ -180,10 +180,8 @@ UpdateCreatorProfileAsync(
 Guid creatorProfileId = new Guid("000008d2-0000-0000-0000-000000000000");
 CreatorProfile body = new CreatorProfile
 {
-    CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-    UserName = "TheRock",
-    CreatorEmail = "dwayne@therockjohnson.com",
+    FirstName = "Dwayne",
+    LastName = "Johnson",
 };
 
 try

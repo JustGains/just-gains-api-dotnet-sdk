@@ -91,10 +91,10 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.UserWithoutCreatorProfileResponse response from the API call.</returns>
-        public Models.UserWithoutCreatorProfileResponse UpdateAUser(
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public Models.UserResponse UpdateAUser(
                 string userId,
-                Models.UserWithoutCreatorProfile body)
+                Models.UpdateUserRequest body)
             => CoreHelper.RunTask(UpdateAUserAsync(userId, body));
 
         /// <summary>
@@ -103,12 +103,12 @@ namespace JustGainsAPI.Standard.Controllers
         /// <param name="userId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.UserWithoutCreatorProfileResponse response from the API call.</returns>
-        public async Task<Models.UserWithoutCreatorProfileResponse> UpdateAUserAsync(
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public async Task<Models.UserResponse> UpdateAUserAsync(
                 string userId,
-                Models.UserWithoutCreatorProfile body,
+                Models.UpdateUserRequest body,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.UserWithoutCreatorProfileResponse>()
+            => await CreateApiCall<Models.UserResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/users/{userId}")
                   .WithAuth("bearerAuth")

@@ -1,7 +1,7 @@
 
 # O Auth Settings
 
-OAuth provider settings
+OAuth provider settings response
 
 ## Structure
 
@@ -11,16 +11,12 @@ OAuth provider settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
-| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`Data4`](../../doc/models/data-4.md) | Required | - |
+| `Data` | [`OAuthSettingsData`](../../doc/models/o-auth-settings-data.md) | Optional | Data object containing OAuth provider settings |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Operation completed successfully.",
   "data": {
     "clientId": "clientId4",
     "authorizeUrl": "authorizeUrl6",

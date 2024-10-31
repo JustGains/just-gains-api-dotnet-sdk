@@ -98,7 +98,7 @@ catch (ApiException e)
 ```csharp
 UpdateAUserAsync(
     string userId,
-    Models.UserWithoutCreatorProfile body)
+    Models.UpdateUserRequest body)
 ```
 
 ## Parameters
@@ -106,35 +106,25 @@ UpdateAUserAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `string` | Template, Required | - |
-| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
+| `body` | [`UpdateUserRequest`](../../doc/models/update-user-request.md) | Body, Required | - |
 
 ## Response Type
 
-[`Task<Models.UserWithoutCreatorProfileResponse>`](../../doc/models/user-without-creator-profile-response.md)
+[`Task<Models.UserResponse>`](../../doc/models/user-response.md)
 
 ## Example Usage
 
 ```csharp
 string userId = "userId0";
-UserWithoutCreatorProfile body = new UserWithoutCreatorProfile
+UpdateUserRequest body = new UpdateUserRequest
 {
-    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-    UserName = "fitness_enthusiast_42",
+    CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
     Email = "jane.doe@example.com",
-    Password = "$2a$10$Ks6Qr5Yl.Y5iY5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5",
-    FirstName = "Jane",
-    LastName = "Doe",
-    FullName = "Jane Doe",
-    OAuthProvider = "Google",
-    Roles = new List<string>
-    {
-        "user",
-    },
 };
 
 try
 {
-    UserWithoutCreatorProfileResponse result = await usersController.UpdateAUserAsync(
+    UserResponse result = await usersController.UpdateAUserAsync(
         userId,
         body
     );

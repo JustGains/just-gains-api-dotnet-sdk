@@ -46,7 +46,7 @@ namespace JustGainsAPI.Tests
         public async Task TestTestGetUserInfo()
         {
             // Perform API call
-            Standard.Models.UserInfoResponse result = null;
+            Standard.Models.UserResponse result = null;
             try
             {
                 result = await this.controller.GetUserInfoAsync();

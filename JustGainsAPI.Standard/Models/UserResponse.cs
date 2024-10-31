@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public UserResponse(
             string status,
             string message,
-            Models.Data data)
+            Models.User data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or sets Data.
+        /// Represents a user in the system.
         /// </summary>
         [JsonProperty("data")]
-        public Models.Data Data { get; set; }
+        public Models.User Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

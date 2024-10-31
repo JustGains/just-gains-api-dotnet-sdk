@@ -1,4 +1,4 @@
-// <copyright file="Data2.cs" company="APIMatic">
+// <copyright file="OAuthStateData.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,25 +17,25 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// Data2.
+    /// OAuthStateData.
     /// </summary>
-    public class Data2
+    public class OAuthStateData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data2"/> class.
+        /// Initializes a new instance of the <see cref="OAuthStateData"/> class.
         /// </summary>
-        public Data2()
+        public OAuthStateData()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data2"/> class.
+        /// Initializes a new instance of the <see cref="OAuthStateData"/> class.
         /// </summary>
         /// <param name="uri">uri.</param>
         /// <param name="pkceVerifier">pkceVerifier.</param>
-        public Data2(
-            string uri = null,
-            string pkceVerifier = null)
+        public OAuthStateData(
+            string uri,
+            string pkceVerifier)
         {
             this.Uri = uri;
             this.PkceVerifier = pkceVerifier;
@@ -44,13 +44,13 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// The authorization URL to redirect the user to
         /// </summary>
-        [JsonProperty("uri", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("uri")]
         public string Uri { get; set; }
 
         /// <summary>
         /// The PKCE verifier code for the OAuth flow
         /// </summary>
-        [JsonProperty("pkceVerifier", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("pkceVerifier")]
         public string PkceVerifier { get; set; }
 
         /// <inheritdoc/>
@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"Data2 : ({string.Join(", ", toStringOutput)})";
+            return $"OAuthStateData : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -75,7 +75,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data2 other &&                ((this.Uri == null && other.Uri == null) || (this.Uri?.Equals(other.Uri) == true)) &&
+            return obj is OAuthStateData other &&                ((this.Uri == null && other.Uri == null) || (this.Uri?.Equals(other.Uri) == true)) &&
                 ((this.PkceVerifier == null && other.PkceVerifier == null) || (this.PkceVerifier?.Equals(other.PkceVerifier) == true));
         }
         

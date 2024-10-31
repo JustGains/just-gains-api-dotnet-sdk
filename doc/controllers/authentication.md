@@ -34,14 +34,14 @@ GetUserInfoAsync()
 
 ## Response Type
 
-[`Task<Models.UserInfoResponse>`](../../doc/models/user-info-response.md)
+[`Task<Models.UserResponse>`](../../doc/models/user-response.md)
 
 ## Example Usage
 
 ```csharp
 try
 {
-    UserInfoResponse result = await authenticationController.GetUserInfoAsync();
+    UserResponse result = await authenticationController.GetUserInfoAsync();
 }
 catch (ApiException e)
 {
@@ -79,11 +79,8 @@ UpdateUserInfoAsync(
 ```csharp
 UpdateUserRequest body = new UpdateUserRequest
 {
-    UserId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
+    CreatorProfileId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
     Email = "jane.doe@example.com",
-    FirstName = "Jane",
-    LastName = "Doe",
-    FullName = "Jane Doe",
 };
 
 try
@@ -121,7 +118,7 @@ RegisterUserAsync(
 
 ## Response Type
 
-[`Task<Models.UserInfoResponse>`](../../doc/models/user-info-response.md)
+[`Task<Models.UserResponse>`](../../doc/models/user-response.md)
 
 ## Example Usage
 
@@ -138,7 +135,7 @@ UserRegisterRequest body = new UserRegisterRequest
 
 try
 {
-    UserInfoResponse result = await authenticationController.RegisterUserAsync(body);
+    UserResponse result = await authenticationController.RegisterUserAsync(body);
 }
 catch (ApiException e)
 {

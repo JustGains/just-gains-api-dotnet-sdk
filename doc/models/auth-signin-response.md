@@ -9,26 +9,32 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
-| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`Data1`](../../doc/models/data-1.md) | Required | - |
+| `Data` | [`AuthData`](../../doc/models/auth-data.md) | Optional | Authentication data containing tokens and user information |
+| `Status` | `object` | Optional | - |
+| `Message` | `object` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Operation completed successfully.",
+  "status": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "message": {
+    "key1": "val1",
+    "key2": "val2"
+  },
   "data": {
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "tokenExpiration": "06/15/2023 14:30:00",
+    "accessToken": "accessToken8",
+    "refreshToken": "refreshToken8",
+    "tokenExpiration": "tokenExpiration4",
     "userInfo": {
-      "id": "00000bce-0000-0000-0000-000000000000",
-      "email": "email4",
+      "userId": "0000084a-0000-0000-0000-000000000000",
       "userName": "userName4",
-      "firstName": "firstName2",
-      "lastName": "lastName6"
+      "emailConfirmed": false,
+      "email": "email4",
+      "password": "password6"
     }
   }
 }

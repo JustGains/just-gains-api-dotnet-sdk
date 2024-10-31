@@ -1,4 +1,4 @@
-// <copyright file="Data3.cs" company="APIMatic">
+// <copyright file="AuthData.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,50 +17,59 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// Data3.
+    /// AuthData.
     /// </summary>
-    public class Data3
+    public class AuthData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data3"/> class.
+        /// Initializes a new instance of the <see cref="AuthData"/> class.
         /// </summary>
-        public Data3()
+        public AuthData()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data3"/> class.
+        /// Initializes a new instance of the <see cref="AuthData"/> class.
         /// </summary>
         /// <param name="accessToken">accessToken.</param>
         /// <param name="refreshToken">refreshToken.</param>
-        /// <param name="user">user.</param>
-        public Data3(
+        /// <param name="tokenExpiration">tokenExpiration.</param>
+        /// <param name="userInfo">userInfo.</param>
+        public AuthData(
             string accessToken = null,
             string refreshToken = null,
-            Models.UserInfo user = null)
+            string tokenExpiration = null,
+            Models.User userInfo = null)
         {
             this.AccessToken = accessToken;
             this.RefreshToken = refreshToken;
-            this.User = user;
+            this.TokenExpiration = tokenExpiration;
+            this.UserInfo = userInfo;
         }
 
         /// <summary>
-        /// The access token received from the OAuth provider
+        /// JWT access token for authenticated requests
         /// </summary>
         [JsonProperty("accessToken", NullValueHandling = NullValueHandling.Ignore)]
         public string AccessToken { get; set; }
 
         /// <summary>
-        /// The refresh token received from the OAuth provider
+        /// JWT refresh token for obtaining new access tokens
         /// </summary>
         [JsonProperty("refreshToken", NullValueHandling = NullValueHandling.Ignore)]
         public string RefreshToken { get; set; }
 
         /// <summary>
-        /// User information object
+        /// Expiration time of the access token
         /// </summary>
-        [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.UserInfo User { get; set; }
+        [JsonProperty("tokenExpiration", NullValueHandling = NullValueHandling.Ignore)]
+        public string TokenExpiration { get; set; }
+
+        /// <summary>
+        /// Represents a user in the system.
+        /// </summary>
+        [JsonProperty("userInfo", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.User UserInfo { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -69,7 +78,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"Data3 : ({string.Join(", ", toStringOutput)})";
+            return $"AuthData : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,9 +93,10 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data3 other &&                ((this.AccessToken == null && other.AccessToken == null) || (this.AccessToken?.Equals(other.AccessToken) == true)) &&
+            return obj is AuthData other &&                ((this.AccessToken == null && other.AccessToken == null) || (this.AccessToken?.Equals(other.AccessToken) == true)) &&
                 ((this.RefreshToken == null && other.RefreshToken == null) || (this.RefreshToken?.Equals(other.RefreshToken) == true)) &&
-                ((this.User == null && other.User == null) || (this.User?.Equals(other.User) == true));
+                ((this.TokenExpiration == null && other.TokenExpiration == null) || (this.TokenExpiration?.Equals(other.TokenExpiration) == true)) &&
+                ((this.UserInfo == null && other.UserInfo == null) || (this.UserInfo?.Equals(other.UserInfo) == true));
         }
         
         /// <summary>
@@ -97,7 +107,8 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.AccessToken = {(this.AccessToken == null ? "null" : this.AccessToken)}");
             toStringOutput.Add($"this.RefreshToken = {(this.RefreshToken == null ? "null" : this.RefreshToken)}");
-            toStringOutput.Add($"this.User = {(this.User == null ? "null" : this.User.ToString())}");
+            toStringOutput.Add($"this.TokenExpiration = {(this.TokenExpiration == null ? "null" : this.TokenExpiration)}");
+            toStringOutput.Add($"this.UserInfo = {(this.UserInfo == null ? "null" : this.UserInfo.ToString())}");
         }
     }
 }

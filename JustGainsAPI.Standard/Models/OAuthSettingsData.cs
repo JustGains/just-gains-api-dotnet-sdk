@@ -1,4 +1,4 @@
-// <copyright file="Data4.cs" company="APIMatic">
+// <copyright file="OAuthSettingsData.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,29 +17,29 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// Data4.
+    /// OAuthSettingsData.
     /// </summary>
-    public class Data4
+    public class OAuthSettingsData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data4"/> class.
+        /// Initializes a new instance of the <see cref="OAuthSettingsData"/> class.
         /// </summary>
-        public Data4()
+        public OAuthSettingsData()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data4"/> class.
+        /// Initializes a new instance of the <see cref="OAuthSettingsData"/> class.
         /// </summary>
         /// <param name="clientId">clientId.</param>
         /// <param name="authorizeUrl">authorizeUrl.</param>
         /// <param name="tokenUrl">tokenUrl.</param>
         /// <param name="scopes">scopes.</param>
-        public Data4(
-            string clientId = null,
-            string authorizeUrl = null,
-            string tokenUrl = null,
-            List<string> scopes = null)
+        public OAuthSettingsData(
+            string clientId,
+            string authorizeUrl,
+            string tokenUrl,
+            List<string> scopes)
         {
             this.ClientId = clientId;
             this.AuthorizeUrl = authorizeUrl;
@@ -50,25 +50,25 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// The OAuth client ID
         /// </summary>
-        [JsonProperty("clientId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("clientId")]
         public string ClientId { get; set; }
 
         /// <summary>
         /// The authorization endpoint URL
         /// </summary>
-        [JsonProperty("authorizeUrl", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("authorizeUrl")]
         public string AuthorizeUrl { get; set; }
 
         /// <summary>
         /// The token endpoint URL
         /// </summary>
-        [JsonProperty("tokenUrl", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("tokenUrl")]
         public string TokenUrl { get; set; }
 
         /// <summary>
         /// Available OAuth scopes
         /// </summary>
-        [JsonProperty("scopes", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("scopes")]
         public List<string> Scopes { get; set; }
 
         /// <inheritdoc/>
@@ -78,7 +78,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"Data4 : ({string.Join(", ", toStringOutput)})";
+            return $"OAuthSettingsData : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -93,7 +93,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data4 other &&                ((this.ClientId == null && other.ClientId == null) || (this.ClientId?.Equals(other.ClientId) == true)) &&
+            return obj is OAuthSettingsData other &&                ((this.ClientId == null && other.ClientId == null) || (this.ClientId?.Equals(other.ClientId) == true)) &&
                 ((this.AuthorizeUrl == null && other.AuthorizeUrl == null) || (this.AuthorizeUrl?.Equals(other.AuthorizeUrl) == true)) &&
                 ((this.TokenUrl == null && other.TokenUrl == null) || (this.TokenUrl?.Equals(other.TokenUrl) == true)) &&
                 ((this.Scopes == null && other.Scopes == null) || (this.Scopes?.Equals(other.Scopes) == true));

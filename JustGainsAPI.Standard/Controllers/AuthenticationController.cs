@@ -36,17 +36,17 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getUserInfo EndPoint.
         /// </summary>
-        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public Models.UserInfoResponse GetUserInfo()
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public Models.UserResponse GetUserInfo()
             => CoreHelper.RunTask(GetUserInfoAsync());
 
         /// <summary>
         /// getUserInfo EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public async Task<Models.UserInfoResponse> GetUserInfoAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.UserInfoResponse>()
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public async Task<Models.UserResponse> GetUserInfoAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.UserResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/auth/user")
                   .WithAuth("bearerAuth"))
@@ -87,8 +87,8 @@ namespace JustGainsAPI.Standard.Controllers
         /// registerUser EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public Models.UserInfoResponse RegisterUser(
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public Models.UserResponse RegisterUser(
                 Models.UserRegisterRequest body)
             => CoreHelper.RunTask(RegisterUserAsync(body));
 
@@ -97,11 +97,11 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.UserInfoResponse response from the API call.</returns>
-        public async Task<Models.UserInfoResponse> RegisterUserAsync(
+        /// <returns>Returns the Models.UserResponse response from the API call.</returns>
+        public async Task<Models.UserResponse> RegisterUserAsync(
                 Models.UserRegisterRequest body,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.UserInfoResponse>()
+            => await CreateApiCall<Models.UserResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/auth/signup")
                   .Parameters(_parameters => _parameters

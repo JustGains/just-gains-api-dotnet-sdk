@@ -16,6 +16,7 @@ WorkoutsController workoutsController = client.WorkoutsController;
 * [Create a New Workout](../../doc/controllers/workouts.md#create-a-new-workout)
 * [Get a Workout by ID](../../doc/controllers/workouts.md#get-a-workout-by-id)
 * [Update a Workout by ID](../../doc/controllers/workouts.md#update-a-workout-by-id)
+* [Delete a Workout](../../doc/controllers/workouts.md#delete-a-workout)
 * [Get a Workout by Workout Slug](../../doc/controllers/workouts.md#get-a-workout-by-workout-slug)
 * [Bookmark Workout](../../doc/controllers/workouts.md#bookmark-workout)
 * [Remove Workout Bookmark](../../doc/controllers/workouts.md#remove-workout-bookmark)
@@ -211,6 +212,49 @@ catch (ApiException e)
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Invalid workout data | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 403 | Permission denied | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
+
+
+# Delete a Workout
+
+Soft-deletes a workout and all associated data
+
+```csharp
+DeleteAWorkoutAsync(
+    Guid workoutId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `Guid` | Template, Required | The ID of the workout to delete |
+
+## Response Type
+
+[`Task<Models.WorkoutResponse>`](../../doc/models/workout-response.md)
+
+## Example Usage
+
+```csharp
+Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
+try
+{
+    WorkoutResponse result = await workoutsController.DeleteAWorkoutAsync(workoutId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Invalid workout ID format | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 | 403 | Permission denied | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 | 404 | Workout not found | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

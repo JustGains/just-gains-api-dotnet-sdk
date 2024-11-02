@@ -110,6 +110,40 @@ namespace JustGainsAPI.Tests
         }
 
         /// <summary>
+        /// Soft-deletes a workout and all associated data.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [Test]
+        public async Task TestTestDeleteAWorkout()
+        {
+            // Parameters for the API call
+            Guid workoutId = Guid.Parse("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
+
+            // Perform API call
+            Standard.Models.WorkoutResponse result = null;
+            try
+            {
+                result = await this.controller.DeleteAWorkoutAsync(workoutId);
+            }
+            catch (ApiException)
+            {
+            }
+
+            // Test response code
+            Assert.AreEqual(204, HttpCallBack.Response.StatusCode, "Status should be 204");
+
+            // Test headers
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Content-Type", "application/json");
+
+            Assert.IsTrue(
+                    TestHelper.AreHeadersProperSubsetOf (
+                    headers,
+                    HttpCallBack.Response.Headers),
+                    "Headers should match");
+        }
+
+        /// <summary>
         /// Get a workout by workout slug.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>

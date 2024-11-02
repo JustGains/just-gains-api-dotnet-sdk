@@ -170,6 +170,36 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
+        /// Soft-deletes a workout and all associated data.
+        /// </summary>
+        /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
+        /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
+        public Models.WorkoutResponse DeleteAWorkout(
+                Guid workoutId)
+            => CoreHelper.RunTask(DeleteAWorkoutAsync(workoutId));
+
+        /// <summary>
+        /// Soft-deletes a workout and all associated data.
+        /// </summary>
+        /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
+        public async Task<Models.WorkoutResponse> DeleteAWorkoutAsync(
+                Guid workoutId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.WorkoutResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Delete, "/workouts/{workoutId}")
+                  .WithAuth("bearerAuth")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("workoutId", workoutId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Invalid workout ID format", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
+                  .ErrorCase("403", CreateErrorCase("Permission denied", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
+                  .ErrorCase("404", CreateErrorCase("Workout not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
         /// Get a workout by workout slug EndPoint.
         /// </summary>
         /// <param name="workoutSlug">Required parameter: The URL slug of the workout.</param>

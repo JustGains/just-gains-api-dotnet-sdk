@@ -173,8 +173,8 @@ namespace JustGainsAPI.Standard.Controllers
         /// Soft-deletes a workout and all associated data.
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
-        /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
-        public Models.WorkoutResponse DeleteAWorkout(
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public Models.JustGainsResponse DeleteAWorkout(
                 Guid workoutId)
             => CoreHelper.RunTask(DeleteAWorkoutAsync(workoutId));
 
@@ -183,11 +183,11 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
-        public async Task<Models.WorkoutResponse> DeleteAWorkoutAsync(
+        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
+        public async Task<Models.JustGainsResponse> DeleteAWorkoutAsync(
                 Guid workoutId,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.WorkoutResponse>()
+            => await CreateApiCall<Models.JustGainsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/workouts/{workoutId}")
                   .WithAuth("bearerAuth")

@@ -233,7 +233,7 @@ DeleteAWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.WorkoutResponse>`](../../doc/models/workout-response.md)
+[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -241,7 +241,7 @@ DeleteAWorkoutAsync(
 Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 try
 {
-    WorkoutResponse result = await workoutsController.DeleteAWorkoutAsync(workoutId);
+    JustGainsResponse result = await workoutsController.DeleteAWorkoutAsync(workoutId);
 }
 catch (ApiException e)
 {

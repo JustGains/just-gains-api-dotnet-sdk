@@ -32,18 +32,21 @@ namespace JustGainsAPI.Standard.Models
         /// Initializes a new instance of the <see cref="WorkoutRequest"/> class.
         /// </summary>
         /// <param name="workoutTitle">workoutTitle.</param>
-        /// <param name="workoutSlug">workoutSlug.</param>
         /// <param name="workoutBackgroundImage">workoutBackgroundImage.</param>
+        /// <param name="workoutContent">workoutContent.</param>
+        /// <param name="workoutData">workoutData.</param>
         /// <param name="creatorCredits">creatorCredits.</param>
         public WorkoutRequest(
             string workoutTitle = null,
-            string workoutSlug = null,
             Models.MediaAsset workoutBackgroundImage = null,
+            object workoutContent = null,
+            List<Models.WorkoutData> workoutData = null,
             List<Models.CreatorCredit> creatorCredits = null)
         {
             this.WorkoutTitle = workoutTitle;
-            this.WorkoutSlug = workoutSlug;
             this.WorkoutBackgroundImage = workoutBackgroundImage;
+            this.WorkoutContent = workoutContent;
+            this.WorkoutData = workoutData;
             this.CreatorCredits = creatorCredits;
         }
 
@@ -54,16 +57,22 @@ namespace JustGainsAPI.Standard.Models
         public string WorkoutTitle { get; set; }
 
         /// <summary>
-        /// The URL slug of the workout.
-        /// </summary>
-        [JsonProperty("workoutSlug", NullValueHandling = NullValueHandling.Ignore)]
-        public string WorkoutSlug { get; set; }
-
-        /// <summary>
         /// Gets or sets WorkoutBackgroundImage.
         /// </summary>
         [JsonProperty("workoutBackgroundImage", NullValueHandling = NullValueHandling.Ignore)]
         public Models.MediaAsset WorkoutBackgroundImage { get; set; }
+
+        /// <summary>
+        /// The content of the workout (JSON formatted output from the JS Editor)
+        /// </summary>
+        [JsonProperty("workoutContent", NullValueHandling = NullValueHandling.Ignore)]
+        public object WorkoutContent { get; set; }
+
+        /// <summary>
+        /// Gets or sets WorkoutData.
+        /// </summary>
+        [JsonProperty("workoutData", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.WorkoutData> WorkoutData { get; set; }
 
         /// <summary>
         /// List of creator credits associated with this workout.
@@ -94,8 +103,9 @@ namespace JustGainsAPI.Standard.Models
                 return true;
             }
             return obj is WorkoutRequest other &&                ((this.WorkoutTitle == null && other.WorkoutTitle == null) || (this.WorkoutTitle?.Equals(other.WorkoutTitle) == true)) &&
-                ((this.WorkoutSlug == null && other.WorkoutSlug == null) || (this.WorkoutSlug?.Equals(other.WorkoutSlug) == true)) &&
                 ((this.WorkoutBackgroundImage == null && other.WorkoutBackgroundImage == null) || (this.WorkoutBackgroundImage?.Equals(other.WorkoutBackgroundImage) == true)) &&
+                ((this.WorkoutContent == null && other.WorkoutContent == null) || (this.WorkoutContent?.Equals(other.WorkoutContent) == true)) &&
+                ((this.WorkoutData == null && other.WorkoutData == null) || (this.WorkoutData?.Equals(other.WorkoutData) == true)) &&
                 ((this.CreatorCredits == null && other.CreatorCredits == null) || (this.CreatorCredits?.Equals(other.CreatorCredits) == true));
         }
         
@@ -106,8 +116,9 @@ namespace JustGainsAPI.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.WorkoutTitle = {(this.WorkoutTitle == null ? "null" : this.WorkoutTitle)}");
-            toStringOutput.Add($"this.WorkoutSlug = {(this.WorkoutSlug == null ? "null" : this.WorkoutSlug)}");
             toStringOutput.Add($"this.WorkoutBackgroundImage = {(this.WorkoutBackgroundImage == null ? "null" : this.WorkoutBackgroundImage.ToString())}");
+            toStringOutput.Add($"WorkoutContent = {(this.WorkoutContent == null ? "null" : this.WorkoutContent.ToString())}");
+            toStringOutput.Add($"this.WorkoutData = {(this.WorkoutData == null ? "null" : $"[{string.Join(", ", this.WorkoutData)} ]")}");
             toStringOutput.Add($"this.CreatorCredits = {(this.CreatorCredits == null ? "null" : $"[{string.Join(", ", this.CreatorCredits)} ]")}");
         }
     }

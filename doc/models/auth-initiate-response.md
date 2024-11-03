@@ -9,25 +9,19 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`OAuthStateData`](../../doc/models/o-auth-state-data.md) | Optional | Data object containing OAuth state information |
-| `Message` | `object` | Optional | - |
-| `Status` | `object` | Optional | - |
+| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
+| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
+| `Data` | [`OAuthStateData`](../../doc/models/o-auth-state-data.md) | Required | Data object containing OAuth state information |
 
 ## Example (as JSON)
 
 ```json
 {
-  "message": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "status": {
-    "key1": "val1",
-    "key2": "val2"
-  },
+  "status": "OK",
+  "message": "Operation completed successfully.",
   "data": {
-    "uri": "uri4",
-    "pkceVerifier": "pkceVerifier2"
+    "uri": "https://oauth-provider.com/auth?client_id=123&redirect_uri=...",
+    "pkceVerifier": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
   }
 }
 ```

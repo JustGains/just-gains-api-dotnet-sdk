@@ -14,7 +14,7 @@ Represents a creator credit for a workout.
 | `CreatorProfileId` | `Guid?` | Optional | Unique identifier for the creator profile. |
 | `WorkoutSourceURL` | `string` | Optional | URL source of the workout, if applicable. |
 | `ContributionType` | [`ContributionTypeEnum?`](../../doc/models/contribution-type-enum.md) | Optional | Type of contribution made by the creator. |
-| `CreatorProfile` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
+| `CreatorProfile` | [`CreatorProfile2`](../../doc/models/creator-profile-2.md) | Optional | - |
 
 ## Example (as JSON)
 

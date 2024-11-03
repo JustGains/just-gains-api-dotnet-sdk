@@ -39,7 +39,7 @@ namespace JustGainsAPI.Standard.Models
             Guid? creatorProfileId = null,
             string workoutSourceURL = null,
             Models.ContributionTypeEnum? contributionType = null,
-            Models.CreatorProfile creatorProfile = null)
+            Models.CreatorProfile2 creatorProfile = null)
         {
             this.CreatorProfileId = creatorProfileId;
             this.WorkoutSourceURL = workoutSourceURL;
@@ -66,10 +66,10 @@ namespace JustGainsAPI.Standard.Models
         public Models.ContributionTypeEnum? ContributionType { get; set; }
 
         /// <summary>
-        /// Represents a creator's profile information.
+        /// Gets or sets CreatorProfile.
         /// </summary>
         [JsonProperty("creatorProfile", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.CreatorProfile CreatorProfile { get; set; }
+        public Models.CreatorProfile2 CreatorProfile { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

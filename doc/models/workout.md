@@ -21,6 +21,8 @@ Represents a workout in the system.
 | `LastViewedAt` | `DateTime?` | Optional | The date and time when the workout was last used. |
 | `WorkoutSummary` | [`WorkoutSummary`](../../doc/models/workout-summary.md) | Optional | Summary information about the workout. |
 | `WorkoutAnalytics` | [`WorkoutAnalytics`](../../doc/models/workout-analytics.md) | Optional | Analytics data for the workout. |
+| `WorkoutData` | [`List<WorkoutData>`](../../doc/models/workout-data.md) | Optional | - |
+| `WorkoutContent` | `object` | Optional | The content of the workout (JSON formatted output from the JS Editor) |
 | `CreatorCredits` | [`List<CreatorCredit>`](../../doc/models/creator-credit.md) | Optional | List of creator credits associated with this workout. |
 
 ## Example (as JSON)
@@ -34,6 +36,7 @@ Represents a workout in the system.
   "createdAt": "07/01/2023 10:00:00",
   "updatedAt": "07/08/2023 14:30:00",
   "lastViewedAt": "07/07/2023 09:15:00",
+  "workoutContent": {},
   "workoutBackgroundImage": {
     "mediaId": "00001014-0000-0000-0000-000000000000",
     "fileName": "fileName2",

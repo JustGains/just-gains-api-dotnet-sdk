@@ -11,12 +11,16 @@ Response object for authentication operations
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`AuthData`](../../doc/models/auth-data.md) | Optional | Authentication data containing tokens and user information |
+| `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
+| `Message` | `string` | Required | A human-readable message describing the result of the operation. |
+| `Data` | [`Data`](../../doc/models/data.md) | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "status": "OK",
+  "message": "Operation completed successfully.",
   "data": {
     "accessToken": "accessToken8",
     "refreshToken": "refreshToken8",

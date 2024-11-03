@@ -21,12 +21,6 @@ namespace JustGainsAPI.Standard.Models
     /// </summary>
     public class Data
     {
-        private string text;
-        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
-        {
-            { "text", false },
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Data"/> class.
         /// </summary>
@@ -37,34 +31,45 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Data"/> class.
         /// </summary>
-        /// <param name="text">text.</param>
+        /// <param name="accessToken">accessToken.</param>
+        /// <param name="refreshToken">refreshToken.</param>
+        /// <param name="tokenExpiration">tokenExpiration.</param>
+        /// <param name="userInfo">userInfo.</param>
         public Data(
-            string text = null)
+            string accessToken = null,
+            string refreshToken = null,
+            string tokenExpiration = null,
+            Models.User userInfo = null)
         {
-            if (text != null)
-            {
-                this.Text = text;
-            }
-
+            this.AccessToken = accessToken;
+            this.RefreshToken = refreshToken;
+            this.TokenExpiration = tokenExpiration;
+            this.UserInfo = userInfo;
         }
 
         /// <summary>
-        /// Gets or sets Text.
+        /// JWT access token for authenticated requests
         /// </summary>
-        [JsonProperty("text")]
-        public string Text
-        {
-            get
-            {
-                return this.text;
-            }
+        [JsonProperty("accessToken", NullValueHandling = NullValueHandling.Ignore)]
+        public string AccessToken { get; set; }
 
-            set
-            {
-                this.shouldSerialize["text"] = true;
-                this.text = value;
-            }
-        }
+        /// <summary>
+        /// JWT refresh token for obtaining new access tokens
+        /// </summary>
+        [JsonProperty("refreshToken", NullValueHandling = NullValueHandling.Ignore)]
+        public string RefreshToken { get; set; }
+
+        /// <summary>
+        /// Expiration time of the access token
+        /// </summary>
+        [JsonProperty("tokenExpiration", NullValueHandling = NullValueHandling.Ignore)]
+        public string TokenExpiration { get; set; }
+
+        /// <summary>
+        /// Represents a user in the system.
+        /// </summary>
+        [JsonProperty("userInfo", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.User UserInfo { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -74,23 +79,6 @@ namespace JustGainsAPI.Standard.Models
             this.ToString(toStringOutput);
 
             return $"Data : ({string.Join(", ", toStringOutput)})";
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetText()
-        {
-            this.shouldSerialize["text"] = false;
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeText()
-        {
-            return this.shouldSerialize["text"];
         }
 
         /// <inheritdoc/>
@@ -105,7 +93,10 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is Data other &&                ((this.Text == null && other.Text == null) || (this.Text?.Equals(other.Text) == true));
+            return obj is Data other &&                ((this.AccessToken == null && other.AccessToken == null) || (this.AccessToken?.Equals(other.AccessToken) == true)) &&
+                ((this.RefreshToken == null && other.RefreshToken == null) || (this.RefreshToken?.Equals(other.RefreshToken) == true)) &&
+                ((this.TokenExpiration == null && other.TokenExpiration == null) || (this.TokenExpiration?.Equals(other.TokenExpiration) == true)) &&
+                ((this.UserInfo == null && other.UserInfo == null) || (this.UserInfo?.Equals(other.UserInfo) == true));
         }
         
         /// <summary>
@@ -114,7 +105,10 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Text = {(this.Text == null ? "null" : this.Text)}");
+            toStringOutput.Add($"this.AccessToken = {(this.AccessToken == null ? "null" : this.AccessToken)}");
+            toStringOutput.Add($"this.RefreshToken = {(this.RefreshToken == null ? "null" : this.RefreshToken)}");
+            toStringOutput.Add($"this.TokenExpiration = {(this.TokenExpiration == null ? "null" : this.TokenExpiration)}");
+            toStringOutput.Add($"this.UserInfo = {(this.UserInfo == null ? "null" : this.UserInfo.ToString())}");
         }
     }
 }

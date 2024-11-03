@@ -31,17 +31,35 @@ namespace JustGainsAPI.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthStateResponse"/> class.
         /// </summary>
+        /// <param name="status">status.</param>
+        /// <param name="message">message.</param>
         /// <param name="data">data.</param>
         public OAuthStateResponse(
-            Models.OAuthStateData data = null)
+            string status,
+            string message,
+            Models.OAuthStateData data)
         {
+            this.Status = status;
+            this.Message = message;
             this.Data = data;
         }
 
         /// <summary>
+        /// The status of the response, corresponding to standard HTTP status codes.
+        /// </summary>
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        /// <summary>
+        /// A human-readable message describing the result of the operation.
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Data object containing OAuth state information
         /// </summary>
-        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("data")]
         public Models.OAuthStateData Data { get; set; }
 
         /// <inheritdoc/>
@@ -66,7 +84,9 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is OAuthStateResponse other &&                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
+            return obj is OAuthStateResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
+                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }
         
         /// <summary>
@@ -75,6 +95,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
             toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
         }
     }

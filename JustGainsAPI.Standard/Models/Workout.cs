@@ -41,6 +41,8 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="lastViewedAt">lastViewedAt.</param>
         /// <param name="workoutSummary">workoutSummary.</param>
         /// <param name="workoutAnalytics">workoutAnalytics.</param>
+        /// <param name="workoutData">workoutData.</param>
+        /// <param name="workoutContent">workoutContent.</param>
         /// <param name="creatorCredits">creatorCredits.</param>
         public Workout(
             Guid? workoutId = null,
@@ -53,6 +55,8 @@ namespace JustGainsAPI.Standard.Models
             DateTime? lastViewedAt = null,
             Models.WorkoutSummary workoutSummary = null,
             Models.WorkoutAnalytics workoutAnalytics = null,
+            List<Models.WorkoutData> workoutData = null,
+            object workoutContent = null,
             List<Models.CreatorCredit> creatorCredits = null)
         {
             this.WorkoutId = workoutId;
@@ -65,6 +69,8 @@ namespace JustGainsAPI.Standard.Models
             this.LastViewedAt = lastViewedAt;
             this.WorkoutSummary = workoutSummary;
             this.WorkoutAnalytics = workoutAnalytics;
+            this.WorkoutData = workoutData;
+            this.WorkoutContent = workoutContent;
             this.CreatorCredits = creatorCredits;
         }
 
@@ -132,6 +138,18 @@ namespace JustGainsAPI.Standard.Models
         public Models.WorkoutAnalytics WorkoutAnalytics { get; set; }
 
         /// <summary>
+        /// Gets or sets WorkoutData.
+        /// </summary>
+        [JsonProperty("workoutData", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.WorkoutData> WorkoutData { get; set; }
+
+        /// <summary>
+        /// The content of the workout (JSON formatted output from the JS Editor)
+        /// </summary>
+        [JsonProperty("workoutContent", NullValueHandling = NullValueHandling.Ignore)]
+        public object WorkoutContent { get; set; }
+
+        /// <summary>
         /// List of creator credits associated with this workout.
         /// </summary>
         [JsonProperty("creatorCredits", NullValueHandling = NullValueHandling.Ignore)]
@@ -169,6 +187,8 @@ namespace JustGainsAPI.Standard.Models
                 ((this.LastViewedAt == null && other.LastViewedAt == null) || (this.LastViewedAt?.Equals(other.LastViewedAt) == true)) &&
                 ((this.WorkoutSummary == null && other.WorkoutSummary == null) || (this.WorkoutSummary?.Equals(other.WorkoutSummary) == true)) &&
                 ((this.WorkoutAnalytics == null && other.WorkoutAnalytics == null) || (this.WorkoutAnalytics?.Equals(other.WorkoutAnalytics) == true)) &&
+                ((this.WorkoutData == null && other.WorkoutData == null) || (this.WorkoutData?.Equals(other.WorkoutData) == true)) &&
+                ((this.WorkoutContent == null && other.WorkoutContent == null) || (this.WorkoutContent?.Equals(other.WorkoutContent) == true)) &&
                 ((this.CreatorCredits == null && other.CreatorCredits == null) || (this.CreatorCredits?.Equals(other.CreatorCredits) == true));
         }
         
@@ -188,6 +208,8 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.LastViewedAt = {(this.LastViewedAt == null ? "null" : this.LastViewedAt.ToString())}");
             toStringOutput.Add($"this.WorkoutSummary = {(this.WorkoutSummary == null ? "null" : this.WorkoutSummary.ToString())}");
             toStringOutput.Add($"this.WorkoutAnalytics = {(this.WorkoutAnalytics == null ? "null" : this.WorkoutAnalytics.ToString())}");
+            toStringOutput.Add($"this.WorkoutData = {(this.WorkoutData == null ? "null" : $"[{string.Join(", ", this.WorkoutData)} ]")}");
+            toStringOutput.Add($"WorkoutContent = {(this.WorkoutContent == null ? "null" : this.WorkoutContent.ToString())}");
             toStringOutput.Add($"this.CreatorCredits = {(this.CreatorCredits == null ? "null" : $"[{string.Join(", ", this.CreatorCredits)} ]")}");
         }
     }

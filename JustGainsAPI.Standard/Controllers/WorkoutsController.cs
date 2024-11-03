@@ -77,7 +77,7 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Create a new workout EndPoint.
+        /// Creates a new workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
@@ -86,7 +86,7 @@ namespace JustGainsAPI.Standard.Controllers
             => CoreHelper.RunTask(CreateANewWorkoutAsync(body));
 
         /// <summary>
-        /// Create a new workout EndPoint.
+        /// Creates a new workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
         /// </summary>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -134,18 +134,18 @@ namespace JustGainsAPI.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update a workout by ID EndPoint.
+        /// Updates an existing workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
         public Models.WorkoutResponse UpdateAWorkoutByID(
                 Guid workoutId,
-                Models.WorkoutUpdate body)
+                Models.WorkoutRequest body)
             => CoreHelper.RunTask(UpdateAWorkoutByIDAsync(workoutId, body));
 
         /// <summary>
-        /// Update a workout by ID EndPoint.
+        /// Updates an existing workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to update.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -153,7 +153,7 @@ namespace JustGainsAPI.Standard.Controllers
         /// <returns>Returns the Models.WorkoutResponse response from the API call.</returns>
         public async Task<Models.WorkoutResponse> UpdateAWorkoutByIDAsync(
                 Guid workoutId,
-                Models.WorkoutUpdate body,
+                Models.WorkoutRequest body,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.WorkoutResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -173,8 +173,8 @@ namespace JustGainsAPI.Standard.Controllers
         /// Soft-deletes a workout and all associated data.
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public Models.JustGainsResponse DeleteAWorkout(
+        /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
+        public Models.JustGainsBasicResponse DeleteAWorkout(
                 Guid workoutId)
             => CoreHelper.RunTask(DeleteAWorkoutAsync(workoutId));
 
@@ -183,11 +183,11 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="workoutId">Required parameter: The ID of the workout to delete.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public async Task<Models.JustGainsResponse> DeleteAWorkoutAsync(
+        /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
+        public async Task<Models.JustGainsBasicResponse> DeleteAWorkoutAsync(
                 Guid workoutId,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.JustGainsResponse>()
+            => await CreateApiCall<Models.JustGainsBasicResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/workouts/{workoutId}")
                   .WithAuth("bearerAuth")

@@ -77,6 +77,8 @@ catch (ApiException e)
 
 # Create a New Workout
 
+Creates a new workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
+
 ```csharp
 CreateANewWorkoutAsync(
     Models.WorkoutRequest body)
@@ -98,7 +100,7 @@ CreateANewWorkoutAsync(
 WorkoutRequest body = new WorkoutRequest
 {
     WorkoutTitle = "Full Body Strength Training",
-    WorkoutSlug = "full-body-strength-training",
+    WorkoutContent = ApiHelper.JsonDeserialize<object>("{}"),
 };
 
 try
@@ -160,10 +162,12 @@ catch (ApiException e)
 
 # Update a Workout by ID
 
+Updates an existing workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
+
 ```csharp
 UpdateAWorkoutByIDAsync(
     Guid workoutId,
-    Models.WorkoutUpdate body)
+    Models.WorkoutRequest body)
 ```
 
 ## Parameters
@@ -171,7 +175,7 @@ UpdateAWorkoutByIDAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `workoutId` | `Guid` | Template, Required | The ID of the workout to update |
-| `body` | [`WorkoutUpdate`](../../doc/models/workout-update.md) | Body, Required | - |
+| `body` | [`WorkoutRequest`](../../doc/models/workout-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -181,16 +185,10 @@ UpdateAWorkoutByIDAsync(
 
 ```csharp
 Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
-WorkoutUpdate body = new WorkoutUpdate
+WorkoutRequest body = new WorkoutRequest
 {
     WorkoutTitle = "Full Body Strength Training",
-    WorkoutSlug = "full-body-strength-training",
-    Tags = new List<string>
-    {
-        "strength",
-        "fullbody",
-        "beginner",
-    },
+    WorkoutContent = ApiHelper.JsonDeserialize<object>("{}"),
 };
 
 try
@@ -233,7 +231,7 @@ DeleteAWorkoutAsync(
 
 ## Response Type
 
-[`Task<Models.JustGainsResponse>`](../../doc/models/just-gains-response.md)
+[`Task<Models.JustGainsBasicResponse>`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -241,7 +239,7 @@ DeleteAWorkoutAsync(
 Guid workoutId = new Guid("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 try
 {
-    JustGainsResponse result = await workoutsController.DeleteAWorkoutAsync(workoutId);
+    JustGainsBasicResponse result = await workoutsController.DeleteAWorkoutAsync(workoutId);
 }
 catch (ApiException e)
 {

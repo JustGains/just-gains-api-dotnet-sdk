@@ -27,6 +27,7 @@
     "createdAt": "07/01/2023 10:00:00",
     "updatedAt": "07/08/2023 14:30:00",
     "lastViewedAt": "07/07/2023 09:15:00",
+    "workoutContent": {},
     "workoutBackgroundImage": {
       "mediaId": "00001014-0000-0000-0000-000000000000",
       "fileName": "fileName2",

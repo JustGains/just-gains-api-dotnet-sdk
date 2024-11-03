@@ -120,7 +120,7 @@ namespace JustGainsAPI.Tests
             Guid workoutId = Guid.Parse("9f897bfa-716d-4caa-b8fb-20bf3f2f3416");
 
             // Perform API call
-            Standard.Models.JustGainsResponse result = null;
+            Standard.Models.JustGainsBasicResponse result = null;
             try
             {
                 result = await this.controller.DeleteAWorkoutAsync(workoutId);

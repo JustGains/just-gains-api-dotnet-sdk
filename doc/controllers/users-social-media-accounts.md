@@ -15,6 +15,7 @@ UsersSocialMediaAccountsController usersSocialMediaAccountsController = client.U
 * [Get Social Media Platform](../../doc/controllers/users-social-media-accounts.md#get-social-media-platform)
 * [Update Social Media Platform](../../doc/controllers/users-social-media-accounts.md#update-social-media-platform)
 * [Delete Social Media Platform](../../doc/controllers/users-social-media-accounts.md#delete-social-media-platform)
+* [Validate Social Media Username](../../doc/controllers/users-social-media-accounts.md#validate-social-media-username)
 
 
 # List Users Social Media Accounts
@@ -218,4 +219,51 @@ catch (ApiException e)
     Console.WriteLine(e.Message);
 }
 ```
+
+
+# Validate Social Media Username
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```csharp
+ValidateSocialMediaUsernameAsync(
+    string socialMediaPlatformCode,
+    string username)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `socialMediaPlatformCode` | `string` | Template, Required | The code of the social media platform to check against<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `username` | `string` | Template, Required | The username to validate |
+
+## Response Type
+
+[`Task<Models.SocialMediaPlatformsValidateUsernameResponse>`](../../doc/models/social-media-platforms-validate-username-response.md)
+
+## Example Usage
+
+```csharp
+string socialMediaPlatformCode = "INSTAGRAM";
+string username = "fitness_guru";
+try
+{
+    SocialMediaPlatformsValidateUsernameResponse result = await usersSocialMediaAccountsController.ValidateSocialMediaUsernameAsync(
+        socialMediaPlatformCode,
+        username
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`JustGainsErrorResponseException`](../../doc/models/just-gains-error-response-exception.md) |
 

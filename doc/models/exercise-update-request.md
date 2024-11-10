@@ -14,6 +14,7 @@
 | `ExerciseEquipment` | [`ExerciseEquipment`](../../doc/models/exercise-equipment.md) | Optional | - |
 | `ExerciseMuscles` | [`List<ExerciseMuscle>`](../../doc/models/exercise-muscle.md) | Optional | - |
 | `ExerciseCategories` | `List<string>` | Optional | Array of category codes associated with this exercise |
+| `RelatedExercises` | [`List<RelatedExerciseListItem>`](../../doc/models/related-exercise-list-item.md) | Optional | - |
 | `ExerciseTypeCode` | `string` | Optional | The exerciseTypeCode of the exercise |
 | `PublishStatusCode` | [`PublishStatusCodeEnum?`](../../doc/models/publish-status-code-enum.md) | Optional | The publish status of the exercise |
 | `Difficulty` | `int?` | Optional | Difficulty level of the exercise |
@@ -30,6 +31,7 @@
 | `IsWeighted` | `bool?` | Optional | Indicates if the exercise is weighted |
 | `IsUnilateral` | `bool?` | Optional | Indicates if the exercise is unilateral |
 | `IsBodyweight` | `bool?` | Optional | Indicates if the exercise is bodyweight |
+| `IsVariant` | `bool?` | Optional | Indicates if the exercise is a variant. When true, the exercise won't show up without being searched. |
 | `AdminNotes` | `string` | Optional | Admin notes for the exercise |
 
 ## Example (as JSON)
@@ -58,6 +60,7 @@
   "isWeighted": false,
   "isUnilateral": true,
   "isBodyweight": true,
+  "isVariant": false,
   "adminNotes": "This exercise requires supervision.",
   "exerciseEquipment": {
     "required": [

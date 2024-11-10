@@ -67,8 +67,8 @@ namespace JustGainsAPI.Standard.Controllers
         /// Get user roles EndPoint.
         /// </summary>
         /// <param name="userId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
-        public Models.UsersRolesResponse GetUserRoles(
+        /// <returns>Returns the Models.UsersRolesResponse1 response from the API call.</returns>
+        public Models.UsersRolesResponse1 GetUserRoles(
                 Guid userId)
             => CoreHelper.RunTask(GetUserRolesAsync(userId));
 
@@ -77,11 +77,11 @@ namespace JustGainsAPI.Standard.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.UsersRolesResponse response from the API call.</returns>
-        public async Task<Models.UsersRolesResponse> GetUserRolesAsync(
+        /// <returns>Returns the Models.UsersRolesResponse1 response from the API call.</returns>
+        public async Task<Models.UsersRolesResponse1> GetUserRolesAsync(
                 Guid userId,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.UsersRolesResponse>()
+            => await CreateApiCall<Models.UsersRolesResponse1>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/users/{userId}/roles")
                   .Parameters(_parameters => _parameters

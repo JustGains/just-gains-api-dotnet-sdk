@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `Message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `Data` | [`Data`](../../doc/models/data.md) | Required | - |
+| `Data` | [`AuthData`](../../doc/models/auth-data.md) | Required | Authentication data containing tokens and user information |
 
 ## Example (as JSON)
 

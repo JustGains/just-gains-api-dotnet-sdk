@@ -45,15 +45,11 @@ namespace JustGainsAPI.Tests
         [Test]
         public async Task TestTestGetAllPublishedStatus()
         {
-            // Parameters for the API call
-            string localeCode = null;
-            List<string> localeCodes = ApiHelper.JsonDeserialize<List<string>>("[\"en-US\",\"es-ES\"]");
-
             // Perform API call
             Standard.Models.PublishedStatusListResponse result = null;
             try
             {
-                result = await this.controller.GetAllPublishedStatusAsync(localeCode, localeCodes);
+                result = await this.controller.GetAllPublishedStatusAsync();
             }
             catch (ApiException)
             {

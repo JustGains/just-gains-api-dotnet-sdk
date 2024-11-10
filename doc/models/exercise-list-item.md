@@ -17,6 +17,7 @@
 | `ExerciseMuscles` | [`List<ExerciseMuscle>`](../../doc/models/exercise-muscle.md) | Optional | - |
 | `ExerciseThumbnail` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 | `ExerciseMetrics` | `List<string>` | Optional | Array of metric codes associated with this exercise |
+| `RelatedExercises` | [`List<RelatedExerciseListItem>`](../../doc/models/related-exercise-list-item.md) | Optional | - |
 | `RecentOrder` | `int?` | Optional | Used for sorting by most recently used exercises. |
 
 ## Example (as JSON)

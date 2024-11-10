@@ -1,4 +1,4 @@
-// <copyright file="PublishedStatusTranslationListResponse.cs" company="APIMatic">
+// <copyright file="SocialMediaPlatformsValidateUsernameResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,27 +17,27 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// PublishedStatusTranslationListResponse.
+    /// SocialMediaPlatformsValidateUsernameResponse.
     /// </summary>
-    public class PublishedStatusTranslationListResponse
+    public class SocialMediaPlatformsValidateUsernameResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublishedStatusTranslationListResponse"/> class.
+        /// Initializes a new instance of the <see cref="SocialMediaPlatformsValidateUsernameResponse"/> class.
         /// </summary>
-        public PublishedStatusTranslationListResponse()
+        public SocialMediaPlatformsValidateUsernameResponse()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublishedStatusTranslationListResponse"/> class.
+        /// Initializes a new instance of the <see cref="SocialMediaPlatformsValidateUsernameResponse"/> class.
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="message">message.</param>
         /// <param name="data">data.</param>
-        public PublishedStatusTranslationListResponse(
+        public SocialMediaPlatformsValidateUsernameResponse(
             string status,
             string message,
-            List<Models.PublishedStatusTranslation> data)
+            Models.Data2 data)
         {
             this.Status = status;
             this.Message = message;
@@ -60,7 +60,7 @@ namespace JustGainsAPI.Standard.Models
         /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public List<Models.PublishedStatusTranslation> Data { get; set; }
+        public Models.Data2 Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"PublishedStatusTranslationListResponse : ({string.Join(", ", toStringOutput)})";
+            return $"SocialMediaPlatformsValidateUsernameResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,7 +84,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is PublishedStatusTranslationListResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+            return obj is SocialMediaPlatformsValidateUsernameResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }
@@ -97,7 +97,7 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : $"[{string.Join(", ", this.Data)} ]")}");
+            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
         }
     }
 }

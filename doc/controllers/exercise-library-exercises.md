@@ -145,6 +145,7 @@ ExerciseUpdateRequest body = new ExerciseUpdateRequest
     IsWeighted = false,
     IsUnilateral = true,
     IsBodyweight = true,
+    IsVariant = false,
     AdminNotes = "This exercise requires supervision.",
 };
 
@@ -265,6 +266,7 @@ ExerciseUpdateRequest body = new ExerciseUpdateRequest
     IsWeighted = false,
     IsUnilateral = true,
     IsBodyweight = true,
+    IsVariant = false,
     AdminNotes = "This exercise requires supervision.",
 };
 

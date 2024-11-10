@@ -19,7 +19,7 @@ Represents a user in the system.
 | `OAuthProvider` | `string` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
 | `Roles` | `List<string>` | Optional | The user's role in the system, determining their permissions. |
 | `LastSignInAt` | `DateTime?` | Optional | Timestamp of the user's last login |
-| `CreatorProfile` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
+| `CreatorProfile` | [`CreatorProfile1`](../../doc/models/creator-profile-1.md) | Optional | - |
 
 ## Example (as JSON)
 

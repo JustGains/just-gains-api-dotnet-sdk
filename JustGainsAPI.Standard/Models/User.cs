@@ -49,7 +49,7 @@ namespace JustGainsAPI.Standard.Models
             string oAuthProvider = null,
             List<string> roles = null,
             DateTime? lastSignInAt = null,
-            Models.CreatorProfile creatorProfile = null)
+            Models.CreatorProfile1 creatorProfile = null)
         {
             this.UserId = userId;
             this.UserName = userName;
@@ -112,10 +112,10 @@ namespace JustGainsAPI.Standard.Models
         public DateTime? LastSignInAt { get; set; }
 
         /// <summary>
-        /// Represents a creator's profile information.
+        /// Gets or sets CreatorProfile.
         /// </summary>
         [JsonProperty("creatorProfile", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.CreatorProfile CreatorProfile { get; set; }
+        public Models.CreatorProfile1 CreatorProfile { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

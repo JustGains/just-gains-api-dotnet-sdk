@@ -71,5 +71,40 @@ namespace JustGainsAPI.Tests
                     HttpCallBack.Response.Headers),
                     "Headers should match");
         }
+
+        /// <summary>
+        /// Check if a social media username is already taken.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [Test]
+        public async Task TestTestValidateSocialMediaUsername()
+        {
+            // Parameters for the API call
+            string socialMediaPlatformCode = "INSTAGRAM";
+            string username = "fitness_guru";
+
+            // Perform API call
+            Standard.Models.SocialMediaPlatformsValidateUsernameResponse result = null;
+            try
+            {
+                result = await this.controller.ValidateSocialMediaUsernameAsync(socialMediaPlatformCode, username);
+            }
+            catch (ApiException)
+            {
+            }
+
+            // Test response code
+            Assert.AreEqual(200, HttpCallBack.Response.StatusCode, "Status should be 200");
+
+            // Test headers
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Content-Type", "application/json");
+
+            Assert.IsTrue(
+                    TestHelper.AreHeadersProperSubsetOf (
+                    headers,
+                    HttpCallBack.Response.Headers),
+                    "Headers should match");
+        }
     }
 }

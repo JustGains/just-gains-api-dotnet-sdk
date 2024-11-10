@@ -50,14 +50,14 @@
         "fullbody",
         "beginner"
       ],
-      "workoutImage": {
-        "mediaId": "00000cf4-0000-0000-0000-000000000000",
-        "fileName": "fileName2",
-        "filePath": "filePath2",
-        "fileUrl": "fileUrl2",
-        "fileSize": 40,
-        "fileFormat": "fileFormat4",
-        "description": "description8"
+      "WorkoutBackgroundImage": {
+        "mediaId": "00000cba-0000-0000-0000-000000000000",
+        "fileName": "fileName4",
+        "filePath": "filePath0",
+        "fileUrl": "fileUrl4",
+        "fileSize": 14,
+        "fileFormat": "fileFormat6",
+        "description": "description0"
       }
     }
   ],

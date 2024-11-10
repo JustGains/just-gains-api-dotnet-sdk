@@ -37,7 +37,7 @@ namespace JustGainsAPI.Standard.Models
         public AuthRefreshTokenResponse(
             string status,
             string message,
-            Models.Data data)
+            Models.AuthData data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or sets Data.
+        /// Authentication data containing tokens and user information
         /// </summary>
         [JsonProperty("data")]
-        public Models.Data Data { get; set; }
+        public Models.AuthData Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

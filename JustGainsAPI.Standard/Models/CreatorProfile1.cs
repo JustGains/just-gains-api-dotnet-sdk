@@ -1,4 +1,4 @@
-// <copyright file="CreatorProfile2.cs" company="APIMatic">
+// <copyright file="CreatorProfile1.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,19 +17,19 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// CreatorProfile2.
+    /// CreatorProfile1.
     /// </summary>
-    public class CreatorProfile2
+    public class CreatorProfile1
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorProfile2"/> class.
+        /// Initializes a new instance of the <see cref="CreatorProfile1"/> class.
         /// </summary>
-        public CreatorProfile2()
+        public CreatorProfile1()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorProfile2"/> class.
+        /// Initializes a new instance of the <see cref="CreatorProfile1"/> class.
         /// </summary>
         /// <param name="creatorProfileId">creatorProfileId.</param>
         /// <param name="userId">userId.</param>
@@ -39,7 +39,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="fullName">fullName.</param>
         /// <param name="profilePhoto">profilePhoto.</param>
         /// <param name="socialMediaAccounts">socialMediaAccounts.</param>
-        public CreatorProfile2(
+        public CreatorProfile1(
             Guid? creatorProfileId = null,
             Guid? userId = null,
             string userName = null,
@@ -114,7 +114,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"CreatorProfile2 : ({string.Join(", ", toStringOutput)})";
+            return $"CreatorProfile1 : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -129,7 +129,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is CreatorProfile2 other &&                ((this.CreatorProfileId == null && other.CreatorProfileId == null) || (this.CreatorProfileId?.Equals(other.CreatorProfileId) == true)) &&
+            return obj is CreatorProfile1 other &&                ((this.CreatorProfileId == null && other.CreatorProfileId == null) || (this.CreatorProfileId?.Equals(other.CreatorProfileId) == true)) &&
                 ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
                 ((this.UserName == null && other.UserName == null) || (this.UserName?.Equals(other.UserName) == true)) &&
                 ((this.FirstName == null && other.FirstName == null) || (this.FirstName?.Equals(other.FirstName) == true)) &&

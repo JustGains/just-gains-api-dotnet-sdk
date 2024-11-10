@@ -15,6 +15,7 @@ using APIMatic.Core.Types;
 using APIMatic.Core.Utilities;
 using APIMatic.Core.Utilities.Date.Xml;
 using JustGainsAPI.Standard;
+using JustGainsAPI.Standard.Exceptions;
 using JustGainsAPI.Standard.Http.Client;
 using JustGainsAPI.Standard.Utilities;
 using Newtonsoft.Json.Converters;
@@ -162,6 +163,38 @@ namespace JustGainsAPI.Standard.Controllers
                   .Setup(HttpMethod.Delete, "/social-media-platforms/{socialMediaPlatformCode}")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("socialMediaPlatformCode", socialMediaPlatformCode))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// validateSocialMediaUsername EndPoint.
+        /// </summary>
+        /// <param name="socialMediaPlatformCode">Required parameter: The code of the social media platform to check against.</param>
+        /// <param name="username">Required parameter: The username to validate.</param>
+        /// <returns>Returns the Models.SocialMediaPlatformsValidateUsernameResponse response from the API call.</returns>
+        public Models.SocialMediaPlatformsValidateUsernameResponse ValidateSocialMediaUsername(
+                string socialMediaPlatformCode,
+                string username)
+            => CoreHelper.RunTask(ValidateSocialMediaUsernameAsync(socialMediaPlatformCode, username));
+
+        /// <summary>
+        /// validateSocialMediaUsername EndPoint.
+        /// </summary>
+        /// <param name="socialMediaPlatformCode">Required parameter: The code of the social media platform to check against.</param>
+        /// <param name="username">Required parameter: The username to validate.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.SocialMediaPlatformsValidateUsernameResponse response from the API call.</returns>
+        public async Task<Models.SocialMediaPlatformsValidateUsernameResponse> ValidateSocialMediaUsernameAsync(
+                string socialMediaPlatformCode,
+                string username,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.SocialMediaPlatformsValidateUsernameResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/social-media-platforms/{socialMediaPlatformCode}/validate-username/{username}")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("socialMediaPlatformCode", socialMediaPlatformCode))
+                      .Template(_template => _template.Setup("username", username))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

@@ -35,7 +35,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="originalWorkoutId">originalWorkoutId.</param>
         /// <param name="workoutTitle">workoutTitle.</param>
         /// <param name="workoutSlug">workoutSlug.</param>
-        /// <param name="workoutImage">workoutImage.</param>
+        /// <param name="workoutBackgroundImage">WorkoutBackgroundImage.</param>
         /// <param name="isBookmark">isBookmark.</param>
         /// <param name="creatorCredits">creatorCredits.</param>
         /// <param name="primaryMuscleGroups">primaryMuscleGroups.</param>
@@ -52,7 +52,7 @@ namespace JustGainsAPI.Standard.Models
             Guid? originalWorkoutId = null,
             string workoutTitle = null,
             string workoutSlug = null,
-            Models.MediaAsset workoutImage = null,
+            Models.MediaAsset workoutBackgroundImage = null,
             bool? isBookmark = null,
             List<Models.CreatorCredit> creatorCredits = null,
             List<string> primaryMuscleGroups = null,
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
             this.OriginalWorkoutId = originalWorkoutId;
             this.WorkoutTitle = workoutTitle;
             this.WorkoutSlug = workoutSlug;
-            this.WorkoutImage = workoutImage;
+            this.WorkoutBackgroundImage = workoutBackgroundImage;
             this.IsBookmark = isBookmark;
             this.CreatorCredits = creatorCredits;
             this.PrimaryMuscleGroups = primaryMuscleGroups;
@@ -108,10 +108,10 @@ namespace JustGainsAPI.Standard.Models
         public string WorkoutSlug { get; set; }
 
         /// <summary>
-        /// Gets or sets WorkoutImage.
+        /// Gets or sets WorkoutBackgroundImage.
         /// </summary>
-        [JsonProperty("workoutImage", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.MediaAsset WorkoutImage { get; set; }
+        [JsonProperty("WorkoutBackgroundImage", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MediaAsset WorkoutBackgroundImage { get; set; }
 
         /// <summary>
         /// Indicates if the workout is a user's own workout or a bookmarked one from another user.
@@ -208,7 +208,7 @@ namespace JustGainsAPI.Standard.Models
                 ((this.OriginalWorkoutId == null && other.OriginalWorkoutId == null) || (this.OriginalWorkoutId?.Equals(other.OriginalWorkoutId) == true)) &&
                 ((this.WorkoutTitle == null && other.WorkoutTitle == null) || (this.WorkoutTitle?.Equals(other.WorkoutTitle) == true)) &&
                 ((this.WorkoutSlug == null && other.WorkoutSlug == null) || (this.WorkoutSlug?.Equals(other.WorkoutSlug) == true)) &&
-                ((this.WorkoutImage == null && other.WorkoutImage == null) || (this.WorkoutImage?.Equals(other.WorkoutImage) == true)) &&
+                ((this.WorkoutBackgroundImage == null && other.WorkoutBackgroundImage == null) || (this.WorkoutBackgroundImage?.Equals(other.WorkoutBackgroundImage) == true)) &&
                 ((this.IsBookmark == null && other.IsBookmark == null) || (this.IsBookmark?.Equals(other.IsBookmark) == true)) &&
                 ((this.CreatorCredits == null && other.CreatorCredits == null) || (this.CreatorCredits?.Equals(other.CreatorCredits) == true)) &&
                 ((this.PrimaryMuscleGroups == null && other.PrimaryMuscleGroups == null) || (this.PrimaryMuscleGroups?.Equals(other.PrimaryMuscleGroups) == true)) &&
@@ -232,7 +232,7 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.OriginalWorkoutId = {(this.OriginalWorkoutId == null ? "null" : this.OriginalWorkoutId.ToString())}");
             toStringOutput.Add($"this.WorkoutTitle = {(this.WorkoutTitle == null ? "null" : this.WorkoutTitle)}");
             toStringOutput.Add($"this.WorkoutSlug = {(this.WorkoutSlug == null ? "null" : this.WorkoutSlug)}");
-            toStringOutput.Add($"this.WorkoutImage = {(this.WorkoutImage == null ? "null" : this.WorkoutImage.ToString())}");
+            toStringOutput.Add($"this.WorkoutBackgroundImage = {(this.WorkoutBackgroundImage == null ? "null" : this.WorkoutBackgroundImage.ToString())}");
             toStringOutput.Add($"this.IsBookmark = {(this.IsBookmark == null ? "null" : this.IsBookmark.ToString())}");
             toStringOutput.Add($"this.CreatorCredits = {(this.CreatorCredits == null ? "null" : $"[{string.Join(", ", this.CreatorCredits)} ]")}");
             toStringOutput.Add($"this.PrimaryMuscleGroups = {(this.PrimaryMuscleGroups == null ? "null" : $"[{string.Join(", ", this.PrimaryMuscleGroups)} ]")}");

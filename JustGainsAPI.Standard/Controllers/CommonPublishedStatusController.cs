@@ -36,83 +36,42 @@ namespace JustGainsAPI.Standard.Controllers
         /// <summary>
         /// getAllPublishedStatus EndPoint.
         /// </summary>
-        /// <param name="localeCode">Optional parameter: Locale code for translations (e.g., en-US).</param>
-        /// <param name="localeCodes">Optional parameter: The array of locales for the instructions (e.g., 'en-US', 'es-ES').</param>
         /// <returns>Returns the Models.PublishedStatusListResponse response from the API call.</returns>
-        public Models.PublishedStatusListResponse GetAllPublishedStatus(
-                string localeCode = null,
-                List<string> localeCodes = null)
-            => CoreHelper.RunTask(GetAllPublishedStatusAsync(localeCode, localeCodes));
+        public Models.PublishedStatusListResponse GetAllPublishedStatus()
+            => CoreHelper.RunTask(GetAllPublishedStatusAsync());
 
         /// <summary>
         /// getAllPublishedStatus EndPoint.
         /// </summary>
-        /// <param name="localeCode">Optional parameter: Locale code for translations (e.g., en-US).</param>
-        /// <param name="localeCodes">Optional parameter: The array of locales for the instructions (e.g., 'en-US', 'es-ES').</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.PublishedStatusListResponse response from the API call.</returns>
-        public async Task<Models.PublishedStatusListResponse> GetAllPublishedStatusAsync(
-                string localeCode = null,
-                List<string> localeCodes = null,
-                CancellationToken cancellationToken = default)
+        public async Task<Models.PublishedStatusListResponse> GetAllPublishedStatusAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.PublishedStatusListResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/published-status")
-                  .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("localeCode", localeCode))
-                      .Query(_query => _query.Setup("localeCodes", localeCodes))))
+                  .Setup(HttpMethod.Get, "/published-status"))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Create a new published status EndPoint.
-        /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public Models.JustGainsResponse CreateANewPublishedStatus(
-                Models.PublishedStatus body)
-            => CoreHelper.RunTask(CreateANewPublishedStatusAsync(body));
-
-        /// <summary>
-        /// Create a new published status EndPoint.
-        /// </summary>
-        /// <param name="body">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.JustGainsResponse response from the API call.</returns>
-        public async Task<Models.JustGainsResponse> CreateANewPublishedStatusAsync(
-                Models.PublishedStatus body,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.JustGainsResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/published-status")
-                  .WithAuth("bearerAuth")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Update a published status EndPoint.
+        /// Create / Update a published status EndPoint.
         /// </summary>
         /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse UpdateAPublishedStatus(
+        public Models.JustGainsBasicResponse CreateUpdateAPublishedStatus(
                 string publishedStatusCode,
                 Models.PublishedStatus body)
-            => CoreHelper.RunTask(UpdateAPublishedStatusAsync(publishedStatusCode, body));
+            => CoreHelper.RunTask(CreateUpdateAPublishedStatusAsync(publishedStatusCode, body));
 
         /// <summary>
-        /// Update a published status EndPoint.
+        /// Create / Update a published status EndPoint.
         /// </summary>
         /// <param name="publishedStatusCode">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> UpdateAPublishedStatusAsync(
+        public async Task<Models.JustGainsBasicResponse> CreateUpdateAPublishedStatusAsync(
                 string publishedStatusCode,
                 Models.PublishedStatus body,
                 CancellationToken cancellationToken = default)
@@ -155,71 +114,6 @@ namespace JustGainsAPI.Standard.Controllers
                       .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .ErrorCase("404", CreateErrorCase("Published status not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// getAllPublishedStatusTranslations EndPoint.
-        /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
-        /// <returns>Returns the Models.PublishedStatusTranslationListResponse response from the API call.</returns>
-        public Models.PublishedStatusTranslationListResponse GetAllPublishedStatusTranslations(
-                string publishedStatusCode)
-            => CoreHelper.RunTask(GetAllPublishedStatusTranslationsAsync(publishedStatusCode));
-
-        /// <summary>
-        /// getAllPublishedStatusTranslations EndPoint.
-        /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.PublishedStatusTranslationListResponse response from the API call.</returns>
-        public async Task<Models.PublishedStatusTranslationListResponse> GetAllPublishedStatusTranslationsAsync(
-                string publishedStatusCode,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.PublishedStatusTranslationListResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/published-status/{publishedStatusCode}/translations")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Published status not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// updatePublishedStatusTranslations EndPoint.
-        /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
-        /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public Models.JustGainsBasicResponse UpdatePublishedStatusTranslations(
-                string publishedStatusCode,
-                List<Models.PublishedStatusTranslation> body)
-            => CoreHelper.RunTask(UpdatePublishedStatusTranslationsAsync(publishedStatusCode, body));
-
-        /// <summary>
-        /// updatePublishedStatusTranslations EndPoint.
-        /// </summary>
-        /// <param name="publishedStatusCode">Required parameter: The unique code of the published status.</param>
-        /// <param name="body">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.JustGainsBasicResponse response from the API call.</returns>
-        public async Task<Models.JustGainsBasicResponse> UpdatePublishedStatusTranslationsAsync(
-                string publishedStatusCode,
-                List<Models.PublishedStatusTranslation> body,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.JustGainsBasicResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/published-status/{publishedStatusCode}/translations")
-                  .WithAuth("bearerAuth")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("publishedStatusCode", publishedStatusCode))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad request", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
-                  .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Published status not found", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context)))
-                  .ErrorCase("422", CreateErrorCase("Unprocessable Entity", (_reason, _context) => new JustGainsErrorResponseException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

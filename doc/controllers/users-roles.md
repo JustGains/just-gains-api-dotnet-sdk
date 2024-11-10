@@ -83,7 +83,7 @@ GetUserRolesAsync(
 
 ## Response Type
 
-[`Task<Models.UsersRolesResponse>`](../../doc/models/users-roles-response.md)
+[`Task<Models.UsersRolesResponse1>`](../../doc/models/users-roles-response-1.md)
 
 ## Example Usage
 
@@ -91,7 +91,7 @@ GetUserRolesAsync(
 Guid userId = new Guid("000013ec-0000-0000-0000-000000000000");
 try
 {
-    UsersRolesResponse result = await usersRolesController.GetUserRolesAsync(userId);
+    UsersRolesResponse1 result = await usersRolesController.GetUserRolesAsync(userId);
 }
 catch (ApiException e)
 {

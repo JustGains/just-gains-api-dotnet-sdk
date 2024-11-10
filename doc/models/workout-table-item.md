@@ -15,7 +15,7 @@ Represents a workout in the system from the My Workouts Page.
 | `OriginalWorkoutId` | `Guid?` | Optional | ID of the original workout if this is a duplicate. |
 | `WorkoutTitle` | `string` | Optional | The title of the workout. |
 | `WorkoutSlug` | `string` | Optional | The URL slug of the workout. |
-| `WorkoutImage` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
+| `WorkoutBackgroundImage` | [`MediaAsset`](../../doc/models/media-asset.md) | Optional | - |
 | `IsBookmark` | `bool?` | Optional | Indicates if the workout is a user's own workout or a bookmarked one from another user. |
 | `CreatorCredits` | [`List<CreatorCredit>`](../../doc/models/creator-credit.md) | Optional | List of creator credits associated with this workout. |
 | `PrimaryMuscleGroups` | `List<string>` | Optional | List of primary muscle group codes targeted in the workout.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
@@ -60,14 +60,14 @@ Represents a workout in the system from the My Workouts Page.
     "fullbody",
     "beginner"
   ],
-  "workoutImage": {
-    "mediaId": "00000cf4-0000-0000-0000-000000000000",
-    "fileName": "fileName2",
-    "filePath": "filePath2",
-    "fileUrl": "fileUrl2",
-    "fileSize": 40,
-    "fileFormat": "fileFormat4",
-    "description": "description8"
+  "WorkoutBackgroundImage": {
+    "mediaId": "00000cba-0000-0000-0000-000000000000",
+    "fileName": "fileName4",
+    "filePath": "filePath0",
+    "fileUrl": "fileUrl4",
+    "fileSize": 14,
+    "fileFormat": "fileFormat6",
+    "description": "description0"
   }
 }
 ```

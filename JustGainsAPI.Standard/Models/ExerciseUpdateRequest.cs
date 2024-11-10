@@ -36,6 +36,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="exerciseEquipment">exerciseEquipment.</param>
         /// <param name="exerciseMuscles">exerciseMuscles.</param>
         /// <param name="exerciseCategories">exerciseCategories.</param>
+        /// <param name="relatedExercises">relatedExercises.</param>
         /// <param name="exerciseTypeCode">exerciseTypeCode.</param>
         /// <param name="publishStatusCode">publishStatusCode.</param>
         /// <param name="difficulty">difficulty.</param>
@@ -52,6 +53,7 @@ namespace JustGainsAPI.Standard.Models
         /// <param name="isWeighted">isWeighted.</param>
         /// <param name="isUnilateral">isUnilateral.</param>
         /// <param name="isBodyweight">isBodyweight.</param>
+        /// <param name="isVariant">isVariant.</param>
         /// <param name="adminNotes">adminNotes.</param>
         public ExerciseUpdateRequest(
             string exerciseCode = null,
@@ -59,6 +61,7 @@ namespace JustGainsAPI.Standard.Models
             Models.ExerciseEquipment exerciseEquipment = null,
             List<Models.ExerciseMuscle> exerciseMuscles = null,
             List<string> exerciseCategories = null,
+            List<Models.RelatedExerciseListItem> relatedExercises = null,
             string exerciseTypeCode = null,
             Models.PublishStatusCodeEnum? publishStatusCode = null,
             int? difficulty = null,
@@ -75,6 +78,7 @@ namespace JustGainsAPI.Standard.Models
             bool? isWeighted = null,
             bool? isUnilateral = null,
             bool? isBodyweight = null,
+            bool? isVariant = null,
             string adminNotes = null)
         {
             this.ExerciseCode = exerciseCode;
@@ -82,6 +86,7 @@ namespace JustGainsAPI.Standard.Models
             this.ExerciseEquipment = exerciseEquipment;
             this.ExerciseMuscles = exerciseMuscles;
             this.ExerciseCategories = exerciseCategories;
+            this.RelatedExercises = relatedExercises;
             this.ExerciseTypeCode = exerciseTypeCode;
             this.PublishStatusCode = publishStatusCode;
             this.Difficulty = difficulty;
@@ -98,6 +103,7 @@ namespace JustGainsAPI.Standard.Models
             this.IsWeighted = isWeighted;
             this.IsUnilateral = isUnilateral;
             this.IsBodyweight = isBodyweight;
+            this.IsVariant = isVariant;
             this.AdminNotes = adminNotes;
         }
 
@@ -130,6 +136,12 @@ namespace JustGainsAPI.Standard.Models
         /// </summary>
         [JsonProperty("exerciseCategories", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExerciseCategories { get; set; }
+
+        /// <summary>
+        /// Gets or sets RelatedExercises.
+        /// </summary>
+        [JsonProperty("relatedExercises", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.RelatedExerciseListItem> RelatedExercises { get; set; }
 
         /// <summary>
         /// The exerciseTypeCode of the exercise
@@ -228,6 +240,12 @@ namespace JustGainsAPI.Standard.Models
         public bool? IsBodyweight { get; set; }
 
         /// <summary>
+        /// Indicates if the exercise is a variant. When true, the exercise won't show up without being searched.
+        /// </summary>
+        [JsonProperty("isVariant", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? IsVariant { get; set; }
+
+        /// <summary>
         /// Admin notes for the exercise
         /// </summary>
         [JsonProperty("adminNotes", NullValueHandling = NullValueHandling.Ignore)]
@@ -260,6 +278,7 @@ namespace JustGainsAPI.Standard.Models
                 ((this.ExerciseEquipment == null && other.ExerciseEquipment == null) || (this.ExerciseEquipment?.Equals(other.ExerciseEquipment) == true)) &&
                 ((this.ExerciseMuscles == null && other.ExerciseMuscles == null) || (this.ExerciseMuscles?.Equals(other.ExerciseMuscles) == true)) &&
                 ((this.ExerciseCategories == null && other.ExerciseCategories == null) || (this.ExerciseCategories?.Equals(other.ExerciseCategories) == true)) &&
+                ((this.RelatedExercises == null && other.RelatedExercises == null) || (this.RelatedExercises?.Equals(other.RelatedExercises) == true)) &&
                 ((this.ExerciseTypeCode == null && other.ExerciseTypeCode == null) || (this.ExerciseTypeCode?.Equals(other.ExerciseTypeCode) == true)) &&
                 ((this.PublishStatusCode == null && other.PublishStatusCode == null) || (this.PublishStatusCode?.Equals(other.PublishStatusCode) == true)) &&
                 ((this.Difficulty == null && other.Difficulty == null) || (this.Difficulty?.Equals(other.Difficulty) == true)) &&
@@ -276,6 +295,7 @@ namespace JustGainsAPI.Standard.Models
                 ((this.IsWeighted == null && other.IsWeighted == null) || (this.IsWeighted?.Equals(other.IsWeighted) == true)) &&
                 ((this.IsUnilateral == null && other.IsUnilateral == null) || (this.IsUnilateral?.Equals(other.IsUnilateral) == true)) &&
                 ((this.IsBodyweight == null && other.IsBodyweight == null) || (this.IsBodyweight?.Equals(other.IsBodyweight) == true)) &&
+                ((this.IsVariant == null && other.IsVariant == null) || (this.IsVariant?.Equals(other.IsVariant) == true)) &&
                 ((this.AdminNotes == null && other.AdminNotes == null) || (this.AdminNotes?.Equals(other.AdminNotes) == true));
         }
         
@@ -290,6 +310,7 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.ExerciseEquipment = {(this.ExerciseEquipment == null ? "null" : this.ExerciseEquipment.ToString())}");
             toStringOutput.Add($"this.ExerciseMuscles = {(this.ExerciseMuscles == null ? "null" : $"[{string.Join(", ", this.ExerciseMuscles)} ]")}");
             toStringOutput.Add($"this.ExerciseCategories = {(this.ExerciseCategories == null ? "null" : $"[{string.Join(", ", this.ExerciseCategories)} ]")}");
+            toStringOutput.Add($"this.RelatedExercises = {(this.RelatedExercises == null ? "null" : $"[{string.Join(", ", this.RelatedExercises)} ]")}");
             toStringOutput.Add($"this.ExerciseTypeCode = {(this.ExerciseTypeCode == null ? "null" : this.ExerciseTypeCode)}");
             toStringOutput.Add($"this.PublishStatusCode = {(this.PublishStatusCode == null ? "null" : this.PublishStatusCode.ToString())}");
             toStringOutput.Add($"this.Difficulty = {(this.Difficulty == null ? "null" : this.Difficulty.ToString())}");
@@ -306,6 +327,7 @@ namespace JustGainsAPI.Standard.Models
             toStringOutput.Add($"this.IsWeighted = {(this.IsWeighted == null ? "null" : this.IsWeighted.ToString())}");
             toStringOutput.Add($"this.IsUnilateral = {(this.IsUnilateral == null ? "null" : this.IsUnilateral.ToString())}");
             toStringOutput.Add($"this.IsBodyweight = {(this.IsBodyweight == null ? "null" : this.IsBodyweight.ToString())}");
+            toStringOutput.Add($"this.IsVariant = {(this.IsVariant == null ? "null" : this.IsVariant.ToString())}");
             toStringOutput.Add($"this.AdminNotes = {(this.AdminNotes == null ? "null" : this.AdminNotes)}");
         }
     }

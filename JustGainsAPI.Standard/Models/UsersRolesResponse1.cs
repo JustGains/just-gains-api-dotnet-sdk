@@ -1,4 +1,4 @@
-// <copyright file="AuthSigninResponse.cs" company="APIMatic">
+// <copyright file="UsersRolesResponse1.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,27 +17,27 @@ using Newtonsoft.Json.Converters;
 namespace JustGainsAPI.Standard.Models
 {
     /// <summary>
-    /// AuthSigninResponse.
+    /// UsersRolesResponse1.
     /// </summary>
-    public class AuthSigninResponse
+    public class UsersRolesResponse1
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthSigninResponse"/> class.
+        /// Initializes a new instance of the <see cref="UsersRolesResponse1"/> class.
         /// </summary>
-        public AuthSigninResponse()
+        public UsersRolesResponse1()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthSigninResponse"/> class.
+        /// Initializes a new instance of the <see cref="UsersRolesResponse1"/> class.
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="message">message.</param>
         /// <param name="data">data.</param>
-        public AuthSigninResponse(
+        public UsersRolesResponse1(
             string status,
             string message,
-            Models.AuthData data)
+            List<Models.Role> data)
         {
             this.Status = status;
             this.Message = message;
@@ -57,10 +57,10 @@ namespace JustGainsAPI.Standard.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// Authentication data containing tokens and user information
+        /// Gets or sets Data.
         /// </summary>
         [JsonProperty("data")]
-        public Models.AuthData Data { get; set; }
+        public List<Models.Role> Data { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -69,7 +69,7 @@ namespace JustGainsAPI.Standard.Models
 
             this.ToString(toStringOutput);
 
-            return $"AuthSigninResponse : ({string.Join(", ", toStringOutput)})";
+            return $"UsersRolesResponse1 : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -84,7 +84,7 @@ namespace JustGainsAPI.Standard.Models
             {
                 return true;
             }
-            return obj is AuthSigninResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+            return obj is UsersRolesResponse1 other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true));
         }
@@ -97,7 +97,7 @@ namespace JustGainsAPI.Standard.Models
         {
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
+            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : $"[{string.Join(", ", this.Data)} ]")}");
         }
     }
 }

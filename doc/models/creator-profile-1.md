@@ -1,9 +1,9 @@
 
-# Creator Profile 2
+# Creator Profile 1
 
 ## Structure
 
-`CreatorProfile2`
+`CreatorProfile1`
 
 ## Fields
 

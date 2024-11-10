@@ -39,7 +39,7 @@ namespace JustGainsAPI.Standard.Models
             string socialMediaPlatformCode = null,
             string socialMediaPlatformName = null,
             string socialMediaPlatformUrlFormat = null,
-            Guid? socialMediaPlatformIcon = null)
+            Models.MediaAsset socialMediaPlatformIcon = null)
         {
             this.SocialMediaPlatformCode = socialMediaPlatformCode;
             this.SocialMediaPlatformName = socialMediaPlatformName;
@@ -66,10 +66,10 @@ namespace JustGainsAPI.Standard.Models
         public string SocialMediaPlatformUrlFormat { get; set; }
 
         /// <summary>
-        /// UUID of the associated MediaAsset for the platform's icon
+        /// Gets or sets SocialMediaPlatformIcon.
         /// </summary>
         [JsonProperty("socialMediaPlatformIcon", NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? SocialMediaPlatformIcon { get; set; }
+        public Models.MediaAsset SocialMediaPlatformIcon { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

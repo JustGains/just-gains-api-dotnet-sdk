@@ -23,7 +23,15 @@
     "socialMediaPlatformCode": "TWITTER",
     "socialMediaPlatformName": "Twitter",
     "socialMediaPlatformUrlFormat": "https://twitter.com/{username}",
-    "socialMediaPlatformIcon": "123e4567-e89b-12d3-a456-426614174000"
+    "socialMediaPlatformIcon": {
+      "mediaId": "000004fe-0000-0000-0000-000000000000",
+      "fileName": "fileName4",
+      "filePath": "filePath0",
+      "fileUrl": "fileUrl4",
+      "fileSize": 18,
+      "fileFormat": "fileFormat6",
+      "description": "description0"
+    }
   }
 }
 ```
